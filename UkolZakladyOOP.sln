@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UkolZakladyOOP", "UkolZakladyOOP\UkolZakladyOOP.csproj", "{16897082-4D39-4EBC-ABE9-3904E4C0F61D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Položky řešení", "Položky řešení", "{991EDC0C-22FA-4844-82CE-88AF34D15500}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16897082-4D39-4EBC-ABE9-3904E4C0F61D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16897082-4D39-4EBC-ABE9-3904E4C0F61D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16897082-4D39-4EBC-ABE9-3904E4C0F61D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16897082-4D39-4EBC-ABE9-3904E4C0F61D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CFB87427-9BDD-4E19-AA87-573782ABB5CA}
+	EndGlobalSection
+EndGlobal

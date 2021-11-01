@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "ZcCI0lTL00Nw0BQrB651C23vOeS8KK3SGwZQnzUMOZbusUM8mmKXVyVvSE7CsIO4btRNtuBcLRVlsTcC7OKwFA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Denis\\Downloads\\UkolZakladyOOPv2\\UkolZakladyOOP\\UkolZakladyOOP.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Denis\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.11\\microsoft.netcore.app.host.win-x64.5.0.11.nupkg.sha512"
+  ],
+  "logs": []
+}

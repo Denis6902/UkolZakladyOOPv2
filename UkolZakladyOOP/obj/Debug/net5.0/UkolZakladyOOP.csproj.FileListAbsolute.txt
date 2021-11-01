@@ -1,0 +1,16 @@
+C:\Users\Denis\Downloads\UkolZakladyOOPv2\UkolZakladyOOP\bin\Debug\net5.0\UkolZakladyOOP.exe
+C:\Users\Denis\Downloads\UkolZakladyOOPv2\UkolZakladyOOP\bin\Debug\net5.0\UkolZakladyOOP.deps.json
+C:\Users\Denis\Downloads\UkolZakladyOOPv2\UkolZakladyOOP\bin\Debug\net5.0\UkolZakladyOOP.runtimeconfig.json
+C:\Users\Denis\Downloads\UkolZakladyOOPv2\UkolZakladyOOP\bin\Debug\net5.0\UkolZakladyOOP.runtimeconfig.dev.json
+C:\Users\Denis\Downloads\UkolZakladyOOPv2\UkolZakladyOOP\bin\Debug\net5.0\UkolZakladyOOP.dll
+C:\Users\Denis\Downloads\UkolZakladyOOPv2\UkolZakladyOOP\bin\Debug\net5.0\ref\UkolZakladyOOP.dll
+C:\Users\Denis\Downloads\UkolZakladyOOPv2\UkolZakladyOOP\bin\Debug\net5.0\UkolZakladyOOP.pdb
+C:\Users\Denis\Downloads\UkolZakladyOOPv2\UkolZakladyOOP\obj\Debug\net5.0\UkolZakladyOOP.csproj.AssemblyReference.cache
+C:\Users\Denis\Downloads\UkolZakladyOOPv2\UkolZakladyOOP\obj\Debug\net5.0\UkolZakladyOOP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Denis\Downloads\UkolZakladyOOPv2\UkolZakladyOOP\obj\Debug\net5.0\UkolZakladyOOP.AssemblyInfoInputs.cache
+C:\Users\Denis\Downloads\UkolZakladyOOPv2\UkolZakladyOOP\obj\Debug\net5.0\UkolZakladyOOP.AssemblyInfo.cs
+C:\Users\Denis\Downloads\UkolZakladyOOPv2\UkolZakladyOOP\obj\Debug\net5.0\UkolZakladyOOP.csproj.CoreCompileInputs.cache
+C:\Users\Denis\Downloads\UkolZakladyOOPv2\UkolZakladyOOP\obj\Debug\net5.0\UkolZakladyOOP.dll
+C:\Users\Denis\Downloads\UkolZakladyOOPv2\UkolZakladyOOP\obj\Debug\net5.0\ref\UkolZakladyOOP.dll
+C:\Users\Denis\Downloads\UkolZakladyOOPv2\UkolZakladyOOP\obj\Debug\net5.0\UkolZakladyOOP.pdb
+C:\Users\Denis\Downloads\UkolZakladyOOPv2\UkolZakladyOOP\obj\Debug\net5.0\UkolZakladyOOP.genruntimeconfig.cache
