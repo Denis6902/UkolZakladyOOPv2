@@ -216,7 +216,7 @@ namespace UkolZakladyOOP
                 while (end == false);
             }
         }
-        
+
 
         public void endSubject(ref Student chosenStudent)
         {
@@ -334,7 +334,9 @@ namespace UkolZakladyOOP
                     Console.WriteLine(Teacher.firstName);
                 }
 
-                chosenTeacher.firstName = Console.ReadLine();
+                //chosenTeacher.firstName = Console.ReadLine();
+                chosenTeacher.firstName = "Pavel";
+                Console.ReadKey();
                 Console.Clear();
 
                 foreach (Teacher Teacher in teachers)
@@ -356,8 +358,10 @@ namespace UkolZakladyOOP
                 {
                     Console.WriteLine("Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}", Subject.name, Subject.creditsToFinish, Subject.garantOfSubject.returnFullName());
                 }
+
                 Console.WriteLine("Zadejte název předmětu");
-                string subject = Console.ReadLine();
+                //string subject = Console.ReadLine(); 
+                string subject = "Czech";
                 Console.Clear();
 
                 foreach (Subject Subject in chosenTeacher.subjectsToRegister.ToArray())
@@ -408,7 +412,8 @@ namespace UkolZakladyOOP
             if (howCreate == "nový předmět")
             {
                 Console.WriteLine("Jméno:");
-                string name = Console.ReadLine();
+                //string name = Console.ReadLine();
+                string name = "Nový Předmět";
                 Console.Clear();
 
                 do
@@ -420,7 +425,8 @@ namespace UkolZakladyOOP
                         Console.WriteLine(Teacher.firstName);
                     }
 
-                    garantOfSubject.firstName = Console.ReadLine();
+                    //garantOfSubject.firstName = Console.ReadLine();
+                    garantOfSubject.firstName = "Pavel";
                     Console.Clear();
 
                     foreach (Teacher Teacher in teachers)
@@ -435,7 +441,8 @@ namespace UkolZakladyOOP
                 while (end == false);
 
                 Console.WriteLine("Počet kreditů k dokončení");
-                double creditsToFinish = double.Parse(Console.ReadLine());
+                //double creditsToFinish = double.Parse(Console.ReadLine());
+                double creditsToFinish = 50;
 
                 Subject Subject = new(name, garantOfSubject, creditsToFinish, subjects);
 
@@ -458,7 +465,8 @@ namespace UkolZakladyOOP
                 Console.WriteLine("Math");
                 Console.WriteLine("English");
 
-                string subject = Console.ReadLine();
+                //string subject = Console.ReadLine();
+                string subject = "Czech";
 
                 Console.Clear();
 
@@ -471,7 +479,8 @@ namespace UkolZakladyOOP
                         Console.WriteLine(Teacher.firstName);
                     }
 
-                    garantOfSubject.firstName = Console.ReadLine();
+                    //garantOfSubject.firstName = Console.ReadLine();
+                    garantOfSubject.firstName = "Pavel";
                     Console.Clear();
 
                     foreach (Teacher Teacher in teachers)
@@ -486,7 +495,8 @@ namespace UkolZakladyOOP
                 while (end == false);
 
                 Console.WriteLine("Počet kreditů k dokončení");
-                double creditsToFinish = double.Parse(Console.ReadLine());
+                //double creditsToFinish = double.Parse(Console.ReadLine());
+                double creditsToFinish = 50;
 
                 if (subject.ToLower() == "czech")
                 {
@@ -676,11 +686,13 @@ namespace UkolZakladyOOP
                 Console.WriteLine("Cvičení z Matematiky");
                 Console.WriteLine("Cvičení z Angličtiny");
 
-                string exercise = Console.ReadLine().ToLower();
+                //string exercise = Console.ReadLine().ToLower();
+                string exercise = "Cvičení z Matematiky";
                 Console.Clear();
 
                 Console.WriteLine("Počet kreditů k dokončení");
-                double credits = double.Parse(Console.ReadLine());
+                //double credits = double.Parse(Console.ReadLine());
+                double credits = 50;
 
                 if (exercise == "cvičení z češtiny")
                 {
@@ -770,11 +782,14 @@ namespace UkolZakladyOOP
         public void createNewLecture(ref Teacher chosenTeacher, ref Subject chosenSubject)
         {
             Console.WriteLine("Jméno:");
-            string nameOfLecture = Console.ReadLine();
+            //string nameOfLecture = Console.ReadLine();
+            string nameOfLecture = "Přednáška 1";
             Console.WriteLine("Nutnost PC? (true/false)");
-            bool computerRequired = bool.Parse(Console.ReadLine());
+            //bool computerRequired = bool.Parse(Console.ReadLine());
+            bool computerRequired = true;
             Console.WriteLine("Počet kreditů:");
-            double credits = double.Parse(Console.ReadLine());
+            //double credits = double.Parse(Console.ReadLine());
+            double credits = 50;
             Console.WriteLine("Předmět?");
 
             foreach (Subject oneSubject in chosenTeacher.subjectsToRegister)
@@ -787,7 +802,8 @@ namespace UkolZakladyOOP
                 Console.WriteLine(oneSubject.name);
             }
 
-            string subject = Console.ReadLine();
+            //string subject = Console.ReadLine();
+            string subject = "Czech";
 
             foreach (Subject oneSubject in chosenTeacher.subjectsToRegister)
             {
@@ -809,11 +825,13 @@ namespace UkolZakladyOOP
             Console.WriteLine("Přednáška z Matematiky");
             Console.WriteLine("Přednáška z Angličtiny");
 
-            string lecture = Console.ReadLine().ToLower();
+            //string lecture = Console.ReadLine().ToLower();
+            string lecture = "Přednáška z Matematiky";
             Console.Clear();
 
             Console.WriteLine("Počet kreditů k dokončení");
-            double credits = double.Parse(Console.ReadLine());
+            //double credits = double.Parse(Console.ReadLine());
+            double credits = 50;
 
             if (lecture == "přednáška z češtiny")
             {
