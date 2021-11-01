@@ -35,7 +35,6 @@ namespace UkolZakladyOOP
         public List<Subject> registredSubjects = new();
         public List<Exercise> exerciseList = new();
         public List<Subject> completedSubjects = new();
-        public List<Lecture> lectureList = new();
         public double averageOfAllMarks;
 
         public Student(string firstName, string lastName, DateTime birthDate, DateTime registrationDate, List<Subject> subjectsToRegister, List<Exercise> exerciseList, List<Student> students) : base(firstName, lastName, birthDate)
@@ -170,24 +169,15 @@ namespace UkolZakladyOOP
             }
         }
 
-        public void goOnLecture(List<Lecture> lectures, ref Student chosenStudent, ref Lecture chosenLecture, ref Subject chosenSubject, Subject DefaultSubject, Lecture DefaultLecture)
-        {
+        public void goOnLecture(List<Lecture> lectures, ref Student chosenStudent, ref Lecture chosenLecture, ref Subject chosenSubject, Subject DefaultSubject, Lecture DefaultLecture, List<Lecture> lectureList)
+        {/*
             if (chosenStudent.exerciseList.Count != 0 && chosenStudent.registredSubjects.Count != 0)
             {
                 bool end = false;
                 do
                 {
-                    foreach(Subject Subject in chosenStudent.registredSubjects)
-                    {
-                        Console.WriteLine(Subject.name);
-                    }
 
-                    foreach (Lecture Lecture in chosenStudent.lectureList)
-                    {
-                        Console.WriteLine(Lecture.name + " " + Lecture.subject);
-                    }
-
-                    foreach (Lecture Lecture in chosenStudent.lectureList)
+                    foreach (Lecture Lecture in lectureList)
                     {
                         if (chosenStudent.registredSubjects.Contains(Lecture.subject))
                         {
@@ -197,10 +187,7 @@ namespace UkolZakladyOOP
 
                     Console.WriteLine("Zadejte název přednášky");
 
-                    chosenLecture.name = Console.ReadLine();
-                    //chosenLecture.name = "LectureFromCzech";
-
-                    Console.Clear();
+                    // NEFUNGUJE ??
 
                     if (chosenLecture.name == "")
                     {
@@ -226,7 +213,9 @@ namespace UkolZakladyOOP
                         chosenLecture = DefaultLecture;
                     }
                 }
-                while (end == false);
+                while (end == false);*/
+
+                Console.WriteLine("Nejde")
             }
         }
 
@@ -647,7 +636,6 @@ namespace UkolZakladyOOP
 
         public void createNewExercise(ref Teacher chosenTeacher, ref Subject chosenSubject, List<Exercise> exercises, List<Subject> subjects)
         {
-            bool end = false;
             Console.WriteLine("Jméno:");
             string nameOfExercise = Console.ReadLine();
             Console.WriteLine("Nutnost PC? (true/false)");
@@ -810,7 +798,7 @@ namespace UkolZakladyOOP
                 }
             }
 
-            Lecture Lecture = new(nameOfLecture, computerRequired, credits, chosenSubject);
+            Lecture Lecture = new(nameOfLecture, computerRequired, credits, chosenSubject, lectureList);
         }
 
         public void createLectureFromTemplate(ref Teacher chosenTeacher, ref Subject chosenSubject, List<Subject> subjects)
@@ -850,7 +838,7 @@ namespace UkolZakladyOOP
 
                 if (end == true)
                 {
-                    Lecture LectureFromCzech = LectureFactory.CreateLectureFromCzech(credits, chosenSubject);
+                    Lecture LectureFromCzech = LectureFactory.CreateLectureFromCzech(credits, chosenSubject, lectureList);
                     addLectureToList(LectureFromCzech, ref lectureList);
                 }
             }
@@ -877,7 +865,7 @@ namespace UkolZakladyOOP
 
                 if (end == true)
                 {
-                    Lecture LectureFromEnglish = LectureFactory.CreateLectureFromEnglish(credits, chosenSubject);
+                    Lecture LectureFromEnglish = LectureFactory.CreateLectureFromEnglish(credits, chosenSubject, lectureList);
                     addLectureToList(LectureFromEnglish, ref lectureList);
                 }
 
@@ -905,7 +893,7 @@ namespace UkolZakladyOOP
 
                 if (end == true)
                 {
-                    Lecture LectureFromMath = LectureFactory.CreateLectureFromMath(credits, chosenSubject);
+                    Lecture LectureFromMath = LectureFactory.CreateLectureFromMath(credits, chosenSubject, lectureList);
                     addLectureToList(LectureFromMath, ref lectureList);
                 }
 
@@ -949,7 +937,7 @@ namespace UkolZakladyOOP
         public Subject subject;
         public Teacher teacher;
 
-        public Lecture(string name, bool computerRequired, double credits, Subject subject)
+        public Lecture(string name, bool computerRequired, double credits, Subject subject, List<Lecture> lectureList)
         {
             this.name = name;
             this.computerRequired = computerRequired;
@@ -957,6 +945,7 @@ namespace UkolZakladyOOP
             this.subject = subject;
             teacher = subject.garantOfSubject;
             teacher.lectureList.Add(this);
+            lectureList.Add(this);
         }
     }
 
@@ -1025,19 +1014,19 @@ namespace UkolZakladyOOP
 
     class LectureFactory
     {
-        public static Lecture CreateLectureFromMath(double credits, Subject Math)
+        public static Lecture CreateLectureFromMath(double credits, Subject Math, List<Lecture> lectureList)
         {
-            return new Lecture("Přednáška z Matematiky", false, credits, Math);
+            return new Lecture("Přednáška z Matematiky", false, credits, Math, lectureList);
         }
 
-        public static Lecture CreateLectureFromCzech(double credits, Subject Czech)
+        public static Lecture CreateLectureFromCzech(double credits, Subject Czech, List<Lecture> lectureList)
         {
-            return new Lecture("Přednáška z Češtiny", false, credits, Czech);
+            return new Lecture("Přednáška z Češtiny", false, credits, Czech, lectureList);
         }
 
-        public static Lecture CreateLectureFromEnglish(double credits, Subject English)
+        public static Lecture CreateLectureFromEnglish(double credits, Subject English, List<Lecture> lectureList)
         {
-            return new Lecture("Přednáška z Angličtiny", false, credits, English);
+            return new Lecture("Přednáška z Angličtiny", false, credits, English, lectureList);
         }
     }
 

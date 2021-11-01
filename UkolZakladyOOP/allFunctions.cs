@@ -5,7 +5,7 @@ namespace UkolZakladyOOP
 {
     public class Method
     {
-        public void mainMenu(Exercise chosenExercise, Exercise DefaultExercise, Student chosenStudent, Student DefaultStudent, Teacher chosenTeacher, Teacher DefaultTeacher, Subject chosenSubject, Subject DefaultSubject, string who, bool end, List<Student> students, List<Teacher> teachers, string whoIAm, string option, string subject, List<string> averageMarksList, List<Lecture> lectures, Lecture chosenLecture, Lecture DefaultLecture, List<Exercise> exercises, List<Subject> subjects)
+        public void mainMenu(Exercise chosenExercise, Exercise DefaultExercise, Student chosenStudent, Student DefaultStudent, Teacher chosenTeacher, Teacher DefaultTeacher, Subject chosenSubject, Subject DefaultSubject, string who, bool end, List<Student> students, List<Teacher> teachers, string whoIAm, string option, string subject, List<string> averageMarksList, List<Lecture> lectures, Lecture chosenLecture, Lecture DefaultLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList)
         {
             resetAllChosenObjects(ref chosenExercise, ref DefaultExercise, ref chosenStudent, ref DefaultStudent, ref DefaultTeacher, ref chosenTeacher, ref DefaultSubject, ref chosenSubject);
 
@@ -23,12 +23,12 @@ namespace UkolZakladyOOP
             {
                 case "student":
                     DefaultStudent.selectStudent(students, ref chosenStudent);
-                    studentMenu(whoIAm, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, option, subject, who, end, students, teachers, chosenExercise, DefaultExercise, chosenSubject, DefaultSubject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects);
+                    studentMenu(whoIAm, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, option, subject, who, end, students, teachers, chosenExercise, DefaultExercise, chosenSubject, DefaultSubject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects, lectureList);
                     break;
 
                 case "ucitel":
                     DefaultTeacher.selectTeacher(teachers, ref chosenTeacher);
-                    teacherMenu(chosenStudent, DefaultStudent, whoIAm, chosenTeacher, DefaultTeacher, option, subject, who, end, chosenExercise, DefaultExercise, chosenSubject, DefaultSubject, students, teachers, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects);
+                    teacherMenu(chosenStudent, DefaultStudent, whoIAm, chosenTeacher, DefaultTeacher, option, subject, who, end, chosenExercise, DefaultExercise, chosenSubject, DefaultSubject, students, teachers, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects, lectureList);
                     break;
             }
         }
@@ -41,7 +41,7 @@ namespace UkolZakladyOOP
             chosenSubject = DefaultSubject;
         }
 
-        public void studentMenu(string whoIAm, Student chosenStudent, Student DefaultStudent, Teacher chosenTeacher, Teacher DefaultTeacher, string option, string subject, string who, bool end, List<Student> students, List<Teacher> teachers, Exercise chosenExercise, Exercise DefaultExercise, Subject chosenSubject, Subject DefaultSubject, List<string> averageMarksList, List<Lecture> lectures, Lecture chosenLecture, Lecture DefaultLecture, List<Exercise> exercises, List<Subject> subjects)
+        public void studentMenu(string whoIAm, Student chosenStudent, Student DefaultStudent, Teacher chosenTeacher, Teacher DefaultTeacher, string option, string subject, string who, bool end, List<Student> students, List<Teacher> teachers, Exercise chosenExercise, Exercise DefaultExercise, Subject chosenSubject, Subject DefaultSubject, List<string> averageMarksList, List<Lecture> lectures, Lecture chosenLecture, Lecture DefaultLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList)
         {
             int optionAsInt;
             do
@@ -72,7 +72,7 @@ namespace UkolZakladyOOP
                             break;
 
                         case 3:
-                            mainMenu(chosenExercise, DefaultExercise, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, chosenSubject, DefaultSubject, who, end, students, teachers, whoIAm, option, subject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects);
+                            mainMenu(chosenExercise, DefaultExercise, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, chosenSubject, DefaultSubject, who, end, students, teachers, whoIAm, option, subject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects, lectureList);
                             break;
 
                         case 4:
@@ -95,7 +95,7 @@ namespace UkolZakladyOOP
                             break;
 
                         case 8:
-                            chosenStudent.goOnLecture(lectures, ref chosenStudent, ref chosenLecture, ref chosenSubject, DefaultSubject, DefaultLecture);
+                            chosenStudent.goOnLecture(lectures, ref chosenStudent, ref chosenLecture, ref chosenSubject, DefaultSubject, DefaultLecture, lectureList);
                             break;
 
                         case 9:
@@ -112,14 +112,14 @@ namespace UkolZakladyOOP
                 else
                 {
                     Console.Clear();
-                    studentMenu(whoIAm, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, option, subject, who, end, students, teachers, chosenExercise, DefaultExercise, chosenSubject, DefaultSubject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects);
+                    studentMenu(whoIAm, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, option, subject, who, end, students, teachers, chosenExercise, DefaultExercise, chosenSubject, DefaultSubject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects, lectureList);
                 }
 
             }
             while (optionAsInt > 0 && optionAsInt < 11);
         }
 
-        public void teacherMenu(Student chosenStudent, Student DefaultStudent, string whoIAm, Teacher chosenTeacher, Teacher DefaultTeacher, string option, string subject, string who, bool end, Exercise chosenExercise, Exercise DefaultExercise, Subject chosenSubject, Subject DefaultSubject, List<Student> students, List<Teacher> teachers, List<string> averageMarksList, List<Lecture> lectures, Lecture chosenLecture, Lecture DefaultLecture, List<Exercise> exercises, List<Subject> subjects)
+        public void teacherMenu(Student chosenStudent, Student DefaultStudent, string whoIAm, Teacher chosenTeacher, Teacher DefaultTeacher, string option, string subject, string who, bool end, Exercise chosenExercise, Exercise DefaultExercise, Subject chosenSubject, Subject DefaultSubject, List<Student> students, List<Teacher> teachers, List<string> averageMarksList, List<Lecture> lectures, Lecture chosenLecture, Lecture DefaultLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList)
         {
             int optionAsInt;
             do
@@ -143,7 +143,7 @@ namespace UkolZakladyOOP
                             break;
 
                         case 3:
-                            mainMenu(chosenExercise, DefaultExercise, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, chosenSubject, DefaultSubject, who, end, students, teachers, whoIAm, option, subject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects);
+                            mainMenu(chosenExercise, DefaultExercise, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, chosenSubject, DefaultSubject, who, end, students, teachers, whoIAm, option, subject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects, lectureList);
                             break;
 
                         case 4:
@@ -183,7 +183,7 @@ namespace UkolZakladyOOP
                 else
                 {
                     Console.Clear();
-                    teacherMenu(chosenStudent, DefaultStudent, whoIAm, chosenTeacher, DefaultTeacher, option, subject, who, end, chosenExercise, DefaultExercise, chosenSubject, DefaultSubject, students, teachers, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects);
+                    teacherMenu(chosenStudent, DefaultStudent, whoIAm, chosenTeacher, DefaultTeacher, option, subject, who, end, chosenExercise, DefaultExercise, chosenSubject, DefaultSubject, students, teachers, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects, lectureList);
                 }
 
             }

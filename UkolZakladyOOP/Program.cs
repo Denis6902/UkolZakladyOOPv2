@@ -13,12 +13,13 @@ namespace UkolZakladyOOP
             List<Lecture> lectures = new();
             List<Student> students = new();
             List<Teacher> teachers = new();
+            List<Lecture> lectureList = new();
             List<string> averageMarksList = new();
 
             Student DefaultStudent = new("Default", "Default", new DateTime(0001, 1, 1), new DateTime(0001, 1, 1), subjects.ToList(), exercises);
             Teacher DefaultTeacher = new("Default", "Default", "Default", new DateTime(0001, 1, 1), subjects.ToList(), exercises);
             Subject DefaultSubject = new("Default", DefaultTeacher, 0);
-            Lecture DefaultLecture = new("Default", true, 0, DefaultSubject);
+            Lecture DefaultLecture = new("Default", true, 0, DefaultSubject, lectureList);
             Exercise DefaultExercise = new("Default exercise", true, 0, DefaultSubject);
 
             Teacher Pavel = new("Ing.", "Pavel", "Novotný", new DateTime(1980, 2, 9), null, exercises, teachers);
@@ -26,7 +27,7 @@ namespace UkolZakladyOOP
             Subject English = new("English", Pavel, 100, subjects);
             Subject Czech = new("Czech", Aneta, 100, subjects);
             Subject x = new("x", Pavel, 0, subjects); // TEST_ONLY
-            Lecture c = new("c", false, 0, x); // TEST_ONLY
+            Lecture c = new("c", false, 0, x, lectureList); // TEST_ONLY
 
             Pavel.subjectsToRegister = subjects.ToList();
             Aneta.subjectsToRegister = subjects.ToList();
@@ -36,8 +37,8 @@ namespace UkolZakladyOOP
             Student Denis = new("Denis", "Vojtěch", new DateTime(1984, 9, 3), new DateTime(2020, 1, 2), subjects.ToList(), exercises, students);
             Exercise ExerciseFromEnglish = new("Cvičení z Angličtiny", false, 50, English, exercises);
             Exercise ExerciseFromCzech = new("Cvičení z Češtiny", false, 50, Czech, exercises);
-            Lecture LectureFromEnglish = new("Přednáška z Angličtiny", false, 50, English);
-            Lecture LectureFromCzech = new("Přednáška z Češtiny", false, 50, Czech);
+            Lecture LectureFromEnglish = new("Přednáška z Angličtiny", false, 50, English, lectureList);
+            Lecture LectureFromCzech = new("Přednáška z Češtiny", false, 50, Czech, lectureList);
 
             Denis.registredSubjects.Add(x); // TEST_ONLY
 
@@ -55,7 +56,7 @@ namespace UkolZakladyOOP
 
 
             Method Method = new();
-            Method.mainMenu(chosenExercise, DefaultExercise, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, chosenSubject, DefaultSubject, who, end, students, teachers, whoIAm, option, subject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects);
+            Method.mainMenu(chosenExercise, DefaultExercise, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, chosenSubject, DefaultSubject, who, end, students, teachers, whoIAm, option, subject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects, lectureList);
         }
     }
 }

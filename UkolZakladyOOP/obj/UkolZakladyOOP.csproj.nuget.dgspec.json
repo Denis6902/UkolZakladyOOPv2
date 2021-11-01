@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Denis\\Downloads\\UkolZakladyOOPv2\\UkolZakladyOOP\\UkolZakladyOOP.csproj": {}
+    "C:\\Users\\Denis\\Source\\Repos\\UkolZakladyOOPv2\\UkolZakladyOOP\\UkolZakladyOOP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Denis\\Downloads\\UkolZakladyOOPv2\\UkolZakladyOOP\\UkolZakladyOOP.csproj": {
+    "C:\\Users\\Denis\\Source\\Repos\\UkolZakladyOOPv2\\UkolZakladyOOP\\UkolZakladyOOP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Denis\\Downloads\\UkolZakladyOOPv2\\UkolZakladyOOP\\UkolZakladyOOP.csproj",
+        "projectUniqueName": "C:\\Users\\Denis\\Source\\Repos\\UkolZakladyOOPv2\\UkolZakladyOOP\\UkolZakladyOOP.csproj",
         "projectName": "UkolZakladyOOP",
-        "projectPath": "C:\\Users\\Denis\\Downloads\\UkolZakladyOOPv2\\UkolZakladyOOP\\UkolZakladyOOP.csproj",
+        "projectPath": "C:\\Users\\Denis\\Source\\Repos\\UkolZakladyOOPv2\\UkolZakladyOOP\\UkolZakladyOOP.csproj",
         "packagesPath": "C:\\Users\\Denis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Denis\\Downloads\\UkolZakladyOOPv2\\UkolZakladyOOP\\obj\\",
+        "outputPath": "C:\\Users\\Denis\\Source\\Repos\\UkolZakladyOOPv2\\UkolZakladyOOP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
