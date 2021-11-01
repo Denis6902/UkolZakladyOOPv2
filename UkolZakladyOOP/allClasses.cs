@@ -170,13 +170,12 @@ namespace UkolZakladyOOP
         }
 
         public void goOnLecture(List<Lecture> lectures, ref Student chosenStudent, ref Lecture chosenLecture, ref Subject chosenSubject, Subject DefaultSubject, Lecture DefaultLecture, List<Lecture> lectureList)
-        {/*
+        {
             if (chosenStudent.exerciseList.Count != 0 && chosenStudent.registredSubjects.Count != 0)
             {
                 bool end = false;
                 do
                 {
-
                     foreach (Lecture Lecture in lectureList)
                     {
                         if (chosenStudent.registredSubjects.Contains(Lecture.subject))
@@ -186,15 +185,16 @@ namespace UkolZakladyOOP
                     }
 
                     Console.WriteLine("Zadejte název přednášky");
+                    Console.ReadKey();
 
-                    // NEFUNGUJE ??
+                    chosenLecture.name = "Přednáška z češtiny";
 
                     if (chosenLecture.name == "")
                     {
                         break;
                     }
 
-                    foreach (Lecture Lecture in lectures)
+                    foreach (Lecture Lecture in lectureList)
                     {
                         if (Lecture.name.ToLower() == chosenLecture.name.ToLower() && end == false)
                         {
@@ -213,11 +213,10 @@ namespace UkolZakladyOOP
                         chosenLecture = DefaultLecture;
                     }
                 }
-                while (end == false);*/
-
-                Console.WriteLine("Nejde")
+                while (end == false);
             }
         }
+        
 
         public void endSubject(ref Student chosenStudent)
         {
