@@ -17,18 +17,19 @@ namespace UkolZakladyOOP
             List<string> averageMarksList = new();
             List<Mark_Subject> markSubjectList = new();
 
+            Semester currentSemester = Semester.Letni;
             Student DefaultStudent = new(0,"Default", "Default", new DateTime(0001, 1, 1), new DateTime(0001, 1, 1), subjects.ToList(), exercises, markSubjectList,0);
             Teacher DefaultTeacher = new("Default",0, "Default", "Default", new DateTime(0001, 1, 1), subjects.ToList(), exercises);
-            Subject DefaultSubject = new("Default", DefaultTeacher, 0, 0);
+            Subject DefaultSubject = new("Default", DefaultTeacher, 0, Semester.Letni);
             Lecture DefaultLecture = new("Default", true, 0, DefaultSubject, lectureList);
             Exercise DefaultExercise = new("Default exercise", true, 0, DefaultSubject);
             Mark_Subject DefaultMarkSubject = new(0, DefaultSubject, 0, markSubjectList);
 
             Teacher Pavel = new("Ing.",1, "Pavel", "Novotný", new DateTime(1980, 2, 9), null, exercises, teachers);
             Teacher Aneta = new("Mgr.",2, "Aneta", "Nováková", new DateTime(1987, 1, 8), null, exercises, teachers);
-            Subject English = new("English", Pavel, 50, subjects,1);
-            Subject Czech = new("Czech", Aneta, 50, subjects,1);
-            Subject x = new("x", Pavel, 0, subjects,1); // TEST_ONLY
+            Subject English = new("English", Pavel, 50, subjects,Semester.Letni);
+            Subject Czech = new("Czech", Aneta, 50, subjects,Semester.Letni);
+            Subject x = new("x", Pavel, 0, subjects,Semester.Letni); // TEST_ONLY
             Lecture c = new("c", false, 0, x, lectureList); // TEST_ONLY
 
             Pavel.subjectsToRegister = subjects.ToList();
@@ -56,7 +57,7 @@ namespace UkolZakladyOOP
             Lecture chosenLecture = DefaultLecture;
             
             Method Method = new();
-            Method.mainMenu(chosenExercise, DefaultExercise, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, chosenSubject, DefaultSubject, who, end, students, teachers, whoIAm, option, subject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects, lectureList, markSubjectList);
+            Method.mainMenu(chosenExercise, DefaultExercise, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, chosenSubject, DefaultSubject, who, end, students, teachers, whoIAm, option, subject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects, lectureList, markSubjectList, currentSemester);
         }
     }
 }

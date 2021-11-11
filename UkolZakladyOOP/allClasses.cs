@@ -454,9 +454,17 @@ namespace UkolZakladyOOP
                 Console.WriteLine("Počet kreditů k dokončení");
                 //double credits = double.Parse(Console.ReadLine());
                 double credits = 50;
+
+               /* foreach (string semestr in Enum.GetNames(typeof(Semester)))
+                {
+                    Console.WriteLine(semestr);
+                }
                 
                 Console.WriteLine("Semestr:");
-                int semester = int.Parse(Console.ReadLine());
+                string value = Console.ReadLine();
+                Semester semester = (Semester)Enum.Parse(typeof(Semester), value);*/
+
+                Semester semester = Semester.Letni;
 
                 Subject Subject = new(name, garantOfSubject, credits, subjects, semester);
 
@@ -512,8 +520,16 @@ namespace UkolZakladyOOP
                 //double credits = double.Parse(Console.ReadLine());
                 double credits = 50;
                 
+                /*foreach (string semestr in Enum.GetNames(typeof(Semester)))
+                {
+                    Console.WriteLine(semestr);
+                }
+                
                 Console.WriteLine("Semestr:");
-                int semester = int.Parse(Console.ReadLine());
+                string value = Console.ReadLine();
+                Semester semester = (Semester)Enum.Parse(typeof(Semester), value);*/
+                
+                Semester semester = Semester.Letni;
 
                 if (subject.ToLower() == "czech")
                 {
@@ -939,17 +955,16 @@ namespace UkolZakladyOOP
         }
     }
 
-
-
     public class Subject
     {
         public string name;
         public Teacher garantOfSubject;
         public double credits;
-        public int semester;
+        public Semester semester;
+       
         //public double mark;
 
-        public Subject(string name, Teacher garantOfSubject, double credits, List<Subject> subjects, int semester)
+        public Subject(string name, Teacher garantOfSubject, double credits, List<Subject> subjects, Semester semester)
         {
             this.name = name;
             this.garantOfSubject = garantOfSubject;
@@ -959,7 +974,7 @@ namespace UkolZakladyOOP
             this.semester = semester;
         }
 
-        public Subject(string name, Teacher garantOfSubject, double credits, int semester)
+        public Subject(string name, Teacher garantOfSubject, double credits, Semester semester)
         {
             this.name = name;
             this.garantOfSubject = garantOfSubject;
@@ -1019,17 +1034,17 @@ namespace UkolZakladyOOP
 
     class SubjectFactory
     {
-        public static Subject CreateMath(Teacher garantOfSubject, double credits, List<Subject> subjects, int semester)
+        public static Subject CreateMath(Teacher garantOfSubject, double credits, List<Subject> subjects, Semester semester)
         {
             return new Subject("Math", garantOfSubject, credits, subjects, semester);
         }
 
-        public static Subject CreateCzech(Teacher garantOfSubject, double credits, List<Subject> subjects, int semester)
+        public static Subject CreateCzech(Teacher garantOfSubject, double credits, List<Subject> subjects, Semester semester)
         {
             return new Subject("Czech", garantOfSubject, credits, subjects, semester);
         }
 
-        public static Subject CreateEnglish(Teacher garantOfSubject, double credits, List<Subject> subjects, int semester)
+        public static Subject CreateEnglish(Teacher garantOfSubject, double credits, List<Subject> subjects, Semester semester)
         {
             return new Subject("English", garantOfSubject, credits, subjects, semester);
         }
@@ -1084,5 +1099,11 @@ namespace UkolZakladyOOP
             markSubjectList.Add(this);
         }
     }
+    
+    public enum Semester
+    {
+        Zimni,
+        Letni
+    };
 
 }
