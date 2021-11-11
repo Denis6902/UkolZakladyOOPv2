@@ -15,32 +15,34 @@ namespace UkolZakladyOOP
             List<Teacher> teachers = new();
             List<Lecture> lectureList = new();
             List<string> averageMarksList = new();
+            List<Mark_Subject> markSubjectList = new();
 
-            Student DefaultStudent = new("Default", "Default", new DateTime(0001, 1, 1), new DateTime(0001, 1, 1), subjects.ToList(), exercises);
-            Teacher DefaultTeacher = new("Default", "Default", "Default", new DateTime(0001, 1, 1), subjects.ToList(), exercises);
+            Student DefaultStudent = new(0,"Default", "Default", new DateTime(0001, 1, 1), new DateTime(0001, 1, 1), subjects.ToList(), exercises, markSubjectList);
+            Teacher DefaultTeacher = new("Default",0, "Default", "Default", new DateTime(0001, 1, 1), subjects.ToList(), exercises);
             Subject DefaultSubject = new("Default", DefaultTeacher, 0);
             Lecture DefaultLecture = new("Default", true, 0, DefaultSubject, lectureList);
             Exercise DefaultExercise = new("Default exercise", true, 0, DefaultSubject);
+            Mark_Subject DefaultMarkSubject = new(0, DefaultSubject, 0, markSubjectList);
 
-            Teacher Pavel = new("Ing.", "Pavel", "Novotný", new DateTime(1980, 2, 9), null, exercises, teachers);
-            Teacher Aneta = new("Mgr.", "Aneta", "Nováková", new DateTime(1987, 1, 8), null, exercises, teachers);
-            Subject English = new("English", Pavel, 100, subjects);
-            Subject Czech = new("Czech", Aneta, 100, subjects);
+            Teacher Pavel = new("Ing.",1, "Pavel", "Novotný", new DateTime(1980, 2, 9), null, exercises, teachers);
+            Teacher Aneta = new("Mgr.",2, "Aneta", "Nováková", new DateTime(1987, 1, 8), null, exercises, teachers);
+            Subject English = new("English", Pavel, 50, subjects);
+            Subject Czech = new("Czech", Aneta, 50, subjects);
             Subject x = new("x", Pavel, 0, subjects); // TEST_ONLY
             Lecture c = new("c", false, 0, x, lectureList); // TEST_ONLY
 
             Pavel.subjectsToRegister = subjects.ToList();
             Aneta.subjectsToRegister = subjects.ToList();
 
-            Student Jakub = new("Jakub", "Novák", new DateTime(1999, 7, 2), new DateTime(2020, 10, 1), subjects.ToList(), exercises, students);
-            Student Pepa = new("Pepa", "Nový", new DateTime(1998, 9, 3), new DateTime(2020, 10, 2), subjects.ToList(), exercises, students);
-            Student Denis = new("Denis", "Vojtěch", new DateTime(1984, 9, 3), new DateTime(2020, 1, 2), subjects.ToList(), exercises, students);
+            Student Jakub = new(1,"Jakub", "Novák", new DateTime(1999, 7, 2), new DateTime(2020, 10, 1), subjects.ToList(), exercises, students, markSubjectList);
+            Student Pepa = new(2,"Pepa", "Nový", new DateTime(1998, 9, 3), new DateTime(2020, 10, 2), subjects.ToList(), exercises, students,markSubjectList);
+            Student Denis = new(3,"Denis", "Vojtěch", new DateTime(1984, 9, 3), new DateTime(2020, 1, 2), subjects.ToList(), exercises, students, markSubjectList);
             Exercise ExerciseFromEnglish = new("Cvičení z Angličtiny", false, 50, English, exercises);
             Exercise ExerciseFromCzech = new("Cvičení z Češtiny", false, 50, Czech, exercises);
             Lecture LectureFromEnglish = new("Přednáška z Angličtiny", false, 50, English, lectureList);
             Lecture LectureFromCzech = new("Přednáška z Češtiny", false, 50, Czech, lectureList);
 
-            Denis.registredSubjects.Add(x); // TEST_ONLY
+            Pepa.registredSubjects.Add(x); // TEST_ONLY
 
             bool end = false;
             string who = " ";
@@ -52,11 +54,9 @@ namespace UkolZakladyOOP
             Exercise chosenExercise = DefaultExercise;
             Subject chosenSubject = DefaultSubject;
             Lecture chosenLecture = DefaultLecture;
-
-
-
+            
             Method Method = new();
-            Method.mainMenu(chosenExercise, DefaultExercise, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, chosenSubject, DefaultSubject, who, end, students, teachers, whoIAm, option, subject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects, lectureList);
+            Method.mainMenu(chosenExercise, DefaultExercise, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, chosenSubject, DefaultSubject, who, end, students, teachers, whoIAm, option, subject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects, lectureList, markSubjectList);
         }
     }
 }

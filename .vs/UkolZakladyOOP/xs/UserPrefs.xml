@@ -1,0 +1,16 @@
+﻿<Properties StartupConfiguration="{16897082-4D39-4EBC-ABE9-3904E4C0F61D}|Default">
+  <MonoDevelop.Ide.ItemProperties.UkolZakladyOOP PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="UkolZakladyOOP/allFunctions.cs">
+    <Files>
+      <File FileName="UkolZakladyOOP/Program.cs" Line="57" Column="1" />
+      <File FileName="UkolZakladyOOP/allClasses.cs" Line="1076" Column="39" />
+      <File FileName="UkolZakladyOOP/allFunctions.cs" Line="93" Column="69" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
