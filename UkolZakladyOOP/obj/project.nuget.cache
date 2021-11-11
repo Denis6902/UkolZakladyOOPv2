@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "TAqjcjwYPkfA7shc3WKnVeXcAcNaJNynvIN1466Z6Em0FYbiWWJAJmKoBeLBA3uQOEVSkRkRRzfD8M75nPyfpg==",
+  "dgSpecHash": "xEic98+EQ5vT3TbHCe6R+Knvq45iKHwVfbqEBsxbXUv559keTpLQTyViFuwxPhzYf2rZZ8YnSJ4yVogn5qRmtg==",
   "success": true,
-  "projectFilePath": "/Users/denis/RiderProjects/UkolZakladyOOPv2/UkolZakladyOOP/UkolZakladyOOP.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Denis\\RiderProjects\\UkolZakladyOOPv2\\UkolZakladyOOP\\UkolZakladyOOP.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Denis\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.11\\microsoft.netcore.app.host.win-x64.5.0.11.nupkg.sha512"
+  ],
   "logs": []
 }
