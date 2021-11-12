@@ -104,24 +104,28 @@ namespace UkolZakladyOOP
             while (end == false);
         }
 
-        public void registerSubject(ref Student chosenStudent)
+        public void registerSubject(ref Student chosenStudent, Semester currentSemester)
         {
             if (chosenStudent.subjectsToRegister.Count != 0)
             {
                 foreach (Subject Subject in chosenStudent.subjectsToRegister)
                 {
-                    Console.WriteLine("Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}", Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName());
+                    if (Subject.year == this.year && Subject.semester == currentSemester)
+                    {
+                        Console.WriteLine("Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}", Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName(), Subject.semester);
+                    }
                 }
                 Console.WriteLine("Zadejte název předmětu");
                 //string subject = Console.ReadLine(); 
-                string subject = "Czech";
+                Console.ReadKey();
+                string subject = "English1";
                 Console.Clear();
 
                 foreach (Subject Subject in chosenStudent.subjectsToRegister.ToArray())
                 {
                     if ((Subject.name.ToLower()) == subject.ToLower())
                     {
-                        Console.WriteLine(chosenStudent.firstName + " jsi zapsaný do " + Subject.name + " předmětu");
+                        Console.WriteLine(chosenStudent.firstName + " jsi zapsaný do " + Subject.name + " předmětu, Semestr: " + Subject.semester);
                         Console.ReadKey();
                         chosenStudent.subjectsToRegister.Remove(Subject);
                         chosenStudent.registredSubjects.Add(Subject);
@@ -136,13 +140,14 @@ namespace UkolZakladyOOP
             }
         }
 
-        public void listAllSubjects()
+        public void listAllSubjects(Semester currentSemester)
         {
             if (registredSubjects.Count != 0)
             {
                 foreach (Subject Subject in registredSubjects.ToArray())
                 {
-                    Console.WriteLine("Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}", Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName());
+                    if(Subject.year == this.year && Subject.semester == currentSemester)
+                    Console.WriteLine("Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}", Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName(), Subject.semester);
                 }
             }
             else
@@ -361,13 +366,16 @@ namespace UkolZakladyOOP
             }
             while (end == false);
         }
-        public void registerSubject(ref Teacher chosenTeacher)
+        public void registerSubject(ref Teacher chosenTeacher, Semester currentSemester)
         {
             if (chosenTeacher.subjectsToRegister.Count != 0)
             {
                 foreach (Subject Subject in chosenTeacher.subjectsToRegister)
                 {
-                    Console.WriteLine("Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}", Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName());
+                    if (currentSemester == Subject.semester)
+                    {
+                        Console.WriteLine("Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}", Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName(), Subject.semester );
+                    }
                 }
 
                 Console.WriteLine("Zadejte název předmětu");
@@ -379,7 +387,7 @@ namespace UkolZakladyOOP
                 {
                     if ((Subject.name.ToLower()) == subject.ToLower())
                     {
-                        Console.WriteLine(chosenTeacher.firstName + " jsi zapsaný do " + Subject.name + " předmětu");
+                        Console.WriteLine(chosenTeacher.firstName + " jsi zapsaný do " + Subject.name + " předmětu, Semestr: " + Subject.semester);
                         chosenTeacher.subjectsToRegister.Remove(Subject);
                         chosenTeacher.registredSubjects.Add(Subject);
                     }
@@ -392,13 +400,13 @@ namespace UkolZakladyOOP
             }
 
         }
-        public void listAllSubjects()
+        public void listAllSubjects(Semester currentSemester)
         {
             if (registredSubjects.Count != 0)
             {
                 foreach (Subject Subject in registredSubjects.ToArray())
                 {
-                    Console.WriteLine("Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}", Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName());
+                    Console.WriteLine("Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}", Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName(), Subject.semester);
                 }
             }
             else
@@ -465,8 +473,13 @@ namespace UkolZakladyOOP
                 Semester semester = (Semester)Enum.Parse(typeof(Semester), value);*/
 
                 Semester semester = Semester.Letni;
+                
+                //int year = int.Parse(Console.ReadLine());
+                Random random = new Random();
+                int year = random.Next(1, 4);
+                
 
-                Subject Subject = new(name, garantOfSubject, credits, subjects, semester);
+                Subject Subject = new(name, garantOfSubject, credits, year ,semester, subjects);
 
                 foreach (Student Student in students)
                 {
@@ -530,23 +543,29 @@ namespace UkolZakladyOOP
                 Semester semester = (Semester)Enum.Parse(typeof(Semester), value);*/
                 
                 Semester semester = Semester.Letni;
+                
+                /*Console.WriteLine("Ročník:");
+                int year = int.Parse(Console.ReadLine());*/
+
+                Random random = new Random();
+                int year = random.Next(1, 4);
 
                 if (subject.ToLower() == "czech")
                 {
-                    Subject Czech = SubjectFactory.CreateCzech(garantOfSubject, credits, subjects, semester);
+                    Subject Czech = SubjectFactory.CreateCzech(garantOfSubject, credits, subjects,year ,semester);
                     addSubjectToList(ref teachers, ref students, ref subjects, Czech);
                 }
 
                 if (subject.ToLower() == "math")
                 {
-                    Subject Math = SubjectFactory.CreateMath(garantOfSubject, credits, subjects, semester);
+                    Subject Math = SubjectFactory.CreateMath(garantOfSubject, credits, subjects, year, semester);
                     addSubjectToList(ref teachers, ref students, ref subjects, Math);
 
                 }
 
                 if (subject.ToLower() == "english")
                 {
-                    Subject English = SubjectFactory.CreateMath(garantOfSubject, credits, subjects, semester);
+                    Subject English = SubjectFactory.CreateEnglish(garantOfSubject, credits, subjects, year, semester);
                     addSubjectToList(ref teachers, ref students, ref subjects, English);
                 }
 
@@ -960,27 +979,28 @@ namespace UkolZakladyOOP
         public string name;
         public Teacher garantOfSubject;
         public double credits;
+        public int year;
         public Semester semester;
        
         //public double mark;
 
-        public Subject(string name, Teacher garantOfSubject, double credits, List<Subject> subjects, Semester semester)
+        public Subject(string name, Teacher garantOfSubject, double credits, int year, Semester semester, List<Subject> subjects)
         {
             this.name = name;
             this.garantOfSubject = garantOfSubject;
             this.credits = credits;
-            garantOfSubject.registredSubjects.Add(this);
-            subjects.Add(this);
             this.semester = semester;
+            this.year = year;
+            subjects.Add(this);
         }
 
-        public Subject(string name, Teacher garantOfSubject, double credits, Semester semester)
+        public Subject(string name, Teacher garantOfSubject, double credits,int year, Semester semester)
         {
             this.name = name;
             this.garantOfSubject = garantOfSubject;
             this.credits = credits;
-            garantOfSubject.registredSubjects.Add(this);
             this.semester = semester;
+            this.year = year;
         }
 
     }
@@ -1034,19 +1054,19 @@ namespace UkolZakladyOOP
 
     class SubjectFactory
     {
-        public static Subject CreateMath(Teacher garantOfSubject, double credits, List<Subject> subjects, Semester semester)
+        public static Subject CreateMath(Teacher garantOfSubject, double credits, List<Subject> subjects, int year, Semester semester)
         {
-            return new Subject("Math", garantOfSubject, credits, subjects, semester);
+            return new Subject("Math",garantOfSubject, credits,year, semester, subjects);
         }
 
-        public static Subject CreateCzech(Teacher garantOfSubject, double credits, List<Subject> subjects, Semester semester)
+        public static Subject CreateCzech(Teacher garantOfSubject, double credits, List<Subject> subjects, int year, Semester semester)
         {
-            return new Subject("Czech", garantOfSubject, credits, subjects, semester);
+            return new Subject("Czech", garantOfSubject, credits,year, semester, subjects);
         }
 
-        public static Subject CreateEnglish(Teacher garantOfSubject, double credits, List<Subject> subjects, Semester semester)
+        public static Subject CreateEnglish(Teacher garantOfSubject, double credits, List<Subject> subjects, int year, Semester semester)
         {
-            return new Subject("English", garantOfSubject, credits, subjects, semester);
+            return new Subject("English", garantOfSubject, credits,year, semester, subjects);
         }
     }
 

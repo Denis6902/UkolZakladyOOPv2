@@ -64,11 +64,11 @@ namespace UkolZakladyOOP
                     switch (optionAsInt)
                     {
                         case 1:
-                            chosenStudent.registerSubject(ref chosenStudent);
+                            chosenStudent.registerSubject(ref chosenStudent, currentSemester);
                             break;
 
                         case 2:
-                            chosenStudent.listAllSubjects();
+                            chosenStudent.listAllSubjects(currentSemester);
                             break;
 
                         case 3:
@@ -135,11 +135,11 @@ namespace UkolZakladyOOP
                     switch (optionAsInt)
                     {
                         case 1:
-                            chosenTeacher.registerSubject(ref chosenTeacher);
+                            chosenTeacher.registerSubject(ref chosenTeacher, currentSemester);
                             break;
 
                         case 2:
-                            chosenTeacher.listAllSubjects();
+                            chosenTeacher.listAllSubjects(currentSemester);
                             Console.ReadKey();
                             break;
 
@@ -193,6 +193,13 @@ namespace UkolZakladyOOP
                             }
 
                             break;
+                        
+                        case 13:
+                            foreach (Student student in (students))
+                            {
+                                student.year += 1;
+                            }
+                            break;
                     }
                 }
                 else
@@ -202,13 +209,13 @@ namespace UkolZakladyOOP
                 }
 
             }
-            while (optionAsInt > 0 && optionAsInt < 13);
+            while (optionAsInt > 0 && optionAsInt < 14);
         }
 
         public void listAllChoices(string who, Semester currentSemester)
         {
             Console.Clear();
-            Console.WriteLine("Aktuální semestr: " + currentSemester); 
+            Console.WriteLine("Aktuální semestr: " + currentSemester);
             Console.WriteLine("1) Zapsat se na předmět");
             Console.WriteLine("2) Moje předměty");
             Console.WriteLine("3) Změnit osobu");
@@ -230,6 +237,7 @@ namespace UkolZakladyOOP
                     Console.WriteLine("10) Vytvořit novou přednášku");
                     Console.WriteLine("11) Seznam všech přednášek");
                     Console.WriteLine("12) Další semestr");
+                    Console.WriteLine("13) Další ročník");
                     break;
             }
         }
