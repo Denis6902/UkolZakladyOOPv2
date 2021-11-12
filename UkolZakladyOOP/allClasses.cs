@@ -116,9 +116,9 @@ namespace UkolZakladyOOP
                     }
                 }
                 Console.WriteLine("Zadejte název předmětu");
-                //string subject = Console.ReadLine(); 
+                string subject = Console.ReadLine(); 
                 Console.ReadKey();
-                string subject = "English1";
+                //string subject = "English1";
                 Console.Clear();
 
                 foreach (Subject Subject in chosenStudent.subjectsToRegister.ToArray())
@@ -366,11 +366,11 @@ namespace UkolZakladyOOP
             }
             while (end == false);
         }
-        public void registerSubject(ref Teacher chosenTeacher, Semester currentSemester)
+        public void registerSubject(ref Teacher chosenTeacher, Semester currentSemester, List<Subject> subjects)
         {
             if (chosenTeacher.subjectsToRegister.Count != 0)
             {
-                foreach (Subject Subject in chosenTeacher.subjectsToRegister)
+                foreach (Subject Subject in subjects)
                 {
                     if (currentSemester == Subject.semester)
                     {
@@ -379,8 +379,8 @@ namespace UkolZakladyOOP
                 }
 
                 Console.WriteLine("Zadejte název předmětu");
-                //string subject = Console.ReadLine(); 
-                string subject = "Czech";
+                string subject = Console.ReadLine(); 
+                //string subject = "Czech";
                 Console.Clear();
 
                 foreach (Subject Subject in chosenTeacher.subjectsToRegister.ToArray())

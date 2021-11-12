@@ -135,7 +135,7 @@ namespace UkolZakladyOOP
                     switch (optionAsInt)
                     {
                         case 1:
-                            chosenTeacher.registerSubject(ref chosenTeacher, currentSemester);
+                            chosenTeacher.registerSubject(ref chosenTeacher, currentSemester, subjects);
                             break;
 
                         case 2:
