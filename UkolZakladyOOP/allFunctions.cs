@@ -68,7 +68,7 @@ namespace UkolZakladyOOP
                             break;
 
                         case 2:
-                            chosenStudent.listAllSubjects(currentSemester);
+                            chosenStudent.listAllMySubjects(currentSemester);
                             break;
 
                         case 3:
@@ -181,24 +181,11 @@ namespace UkolZakladyOOP
                             break;
                         
                         case 12:
-                            switch (currentSemester)
-                            {
-                                case Semester.Letni:
-                                    currentSemester = Semester.Zimni;
-                                    break;
-                                
-                                case Semester.Zimni:
-                                    currentSemester = Semester.Letni;
-                                    break;
-                            }
-
+                            Student.nextSemester(ref currentSemester);
                             break;
                         
                         case 13:
-                            foreach (Student student in (students))
-                            {
-                                student.year += 1;
-                            }
+                            Student.nextYear(students);
                             break;
                     }
                 }

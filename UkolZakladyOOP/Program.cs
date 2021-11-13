@@ -20,7 +20,7 @@ namespace UkolZakladyOOP
             Semester currentSemester = Semester.Letni;
             Student DefaultStudent = new(0,"Default", "Default", new DateTime(0001, 1, 1), new DateTime(0001, 1, 1), subjects.ToList(), exercises, markSubjectList,0);
             Teacher DefaultTeacher = new("Default",0, "Default", "Default", new DateTime(0001, 1, 1), subjects.ToList(), exercises);
-            Subject DefaultSubject = new("Default", DefaultTeacher, 0, 0,Semester.Letni);
+            Subject DefaultSubject = new("Default", DefaultTeacher, 0, 0, Semester.Letni, 0);
             Lecture DefaultLecture = new("Default", true, 0, DefaultSubject, lectureList);
             Exercise DefaultExercise = new("Default exercise", true, 0, DefaultSubject);
             Mark_Subject DefaultMarkSubject = new(0, DefaultSubject, 0, markSubjectList);
@@ -28,19 +28,44 @@ namespace UkolZakladyOOP
             Teacher Pavel = new("Ing.",1, "Pavel", "Novotný", new DateTime(1980, 2, 9), null, exercises, teachers);
             Teacher Aneta = new("Mgr.",2, "Aneta", "Nováková", new DateTime(1987, 1, 8), null, exercises, teachers);
             
-            Subject English1 = new("English1", Pavel, 50,1, Semester.Letni, subjects);
-            Subject Czech1 = new("Czech1", Aneta, 50,1,Semester.Zimni,subjects);
+            Subject English1_1 = new("English1_1", Pavel, 50,1, Semester.Letni, subjects,1);
+            Subject Czech1_1 = new("Czech1_1", Aneta, 50,1,Semester.Zimni,subjects,1);
             
-            Subject English2 = new("English2", Pavel, 50,2,Semester.Letni, subjects);
-            Subject Czech2 = new("Czech2", Aneta, 50,2,Semester.Zimni, subjects);
+            Subject English2_1 = new("English2_1", Pavel, 50,2,Semester.Letni, subjects,1);
+            Subject Czech2_1 = new("Czech2_1", Aneta, 50,2,Semester.Zimni, subjects,1);
             
-            Subject English3 = new("English3", Pavel, 50,3,Semester.Letni, subjects);
-            Subject Czech3 = new("Czech3", Aneta, 50,3,Semester.Zimni, subjects);
+            Subject English3_1 = new("English3_1", Pavel, 50,3,Semester.Letni, subjects,1);
+            Subject Czech3_1 = new("Czech3_1", Aneta, 50,3,Semester.Zimni, subjects,1);
             
-            Subject English4 = new("English4", Pavel, 50,4,Semester.Letni, subjects);
-            Subject Czech4 = new("Czech4", Aneta, 50,4,Semester.Zimni, subjects);
+            Subject English4_1 = new("English4_1", Pavel, 50,4,Semester.Letni, subjects,1);
+            Subject Czech4_1 = new("Czech4_1", Aneta, 50, 4, Semester.Zimni, subjects,1);
             
-            Subject x = new("x", Pavel, 0,1,Semester.Letni, subjects); // TEST_ONLY
+            Subject English1_2 = new("English1_2", Pavel, 50,1, Semester.Letni, subjects,1);
+            Subject Czech1_2 = new("Czech1_2", Aneta, 50,1,Semester.Zimni,subjects,1);
+            
+            Subject English2_2 = new("English2_2", Pavel, 50,2,Semester.Letni, subjects,1);
+            Subject Czech2_2 = new("Czech2_2", Aneta, 50,2,Semester.Zimni, subjects,1);
+            
+            Subject English3_2 = new("English3_2", Pavel, 50,3,Semester.Letni, subjects,1);
+            Subject Czech3_2 = new("Czech3_2", Aneta, 50,3,Semester.Zimni, subjects,1);
+            
+            Subject English4_2 = new("English4_2", Pavel, 50,4,Semester.Letni, subjects,1);
+            Subject Czech4_2 = new("Czech4_2", Aneta, 50, 4, Semester.Zimni, subjects,1);
+            
+            Subject English1_3 = new("English1_3", Pavel, 50,1, Semester.Letni, subjects,1);
+            Subject Czech1_3 = new("Czech1_3", Aneta, 50,1,Semester.Zimni,subjects,1);
+            
+            Subject English2_3 = new("English2_3", Pavel, 50,2,Semester.Letni, subjects,1);
+            Subject Czech2_3 = new("Czech2_3", Aneta, 50,2,Semester.Zimni, subjects,1);
+            
+            Subject English3_3 = new("English_33", Pavel, 50,3,Semester.Letni, subjects,1);
+            Subject Czech3_3 = new("Czech3_3", Aneta, 50,3,Semester.Zimni, subjects,1);
+            
+            Subject English4_3 = new("English4_3", Pavel, 50,4,Semester.Letni, subjects,1);
+            Subject Czech4_3 = new("Czech4_3", Aneta, 50, 4, Semester.Zimni, subjects,1);
+
+
+            Subject x = new("x", Pavel, 0,1,Semester.Letni, subjects,1); // TEST_ONLY
             Lecture c = new("c", false, 0, x, lectureList); // TEST_ONLY
 
             Pavel.subjectsToRegister = subjects.ToList();
@@ -50,25 +75,65 @@ namespace UkolZakladyOOP
             Student Pepa = new(2,"Pepa", "Nový", new DateTime(1998, 9, 3), new DateTime(2020, 10, 2), subjects.ToList(), exercises, students,markSubjectList,1);
             Student Denis = new(3,"Denis", "Vojtěch", new DateTime(1984, 9, 3), new DateTime(2020, 1, 2), subjects.ToList(), exercises, students, markSubjectList,1);
             
-            Exercise ExerciseFromEnglish1 = new("Cvičení z Angličtiny", false, 50, English1, exercises);
-            Exercise ExerciseFromCzech1 = new("Cvičení z Češtiny", false, 50, Czech1, exercises);
-            Lecture LectureFromEnglish1 = new("Přednáška z Angličtiny", false, 50, English1, lectureList);
-            Lecture LectureFromCzech1 = new("Přednáška z Češtiny", false, 50, Czech1, lectureList);
+            Exercise ExerciseFromEnglish1_1 = new("Cvičení z Angličtiny", false, 50, English1_1, exercises);
+            Exercise ExerciseFromCzech1_1 = new("Cvičení z Češtiny", false, 50, Czech1_1, exercises);
+            Lecture LectureFromEnglish1_1 = new("Přednáška z Angličtiny", false, 50, English1_1, lectureList);
+            Lecture LectureFromCzech1_1 = new("Přednáška z Češtiny", false, 50, Czech1_1, lectureList);
             
-            Exercise ExerciseFromEnglish2 = new("Cvičení z Angličtiny", false, 50, English2, exercises);
-            Exercise ExerciseFromCzech2 = new("Cvičení z Češtiny", false, 50, Czech2, exercises);
-            Lecture LectureFromEnglish2 = new("Přednáška z Angličtiny", false, 50, English2, lectureList);
-            Lecture LectureFromCzech2 = new("Přednáška z Češtiny", false, 50, Czech2, lectureList);
+            Exercise ExerciseFromEnglish2_1 = new("Cvičení z Angličtiny", false, 50, English2_1, exercises);
+            Exercise ExerciseFromCzech2_1 = new("Cvičení z Češtiny", false, 50, Czech2_1, exercises);
+            Lecture LectureFromEnglish2_1 = new("Přednáška z Angličtiny", false, 50, English2_1, lectureList);
+            Lecture LectureFromCzech2_1 = new("Přednáška z Češtiny", false, 50, Czech2_1, lectureList);
             
-            Exercise ExerciseFromEnglish3 = new("Cvičení z Angličtiny", false, 50, English3, exercises);
-            Exercise ExerciseFromCzech3 = new("Cvičení z Češtiny", false, 50, Czech3, exercises);
-            Lecture LectureFromEnglish3 = new("Přednáška z Angličtiny", false, 50, English3, lectureList);
-            Lecture LectureFromCzech3 = new("Přednáška z Češtiny", false, 50, Czech3, lectureList);
+            Exercise ExerciseFromEnglish3_1 = new("Cvičení z Angličtiny", false, 50, English3_1, exercises);
+            Exercise ExerciseFromCzech3_1 = new("Cvičení z Češtiny", false, 50, Czech3_1, exercises);
+            Lecture LectureFromEnglish3_1 = new("Přednáška z Angličtiny", false, 50, English3_1, lectureList);
+            Lecture LectureFromCzech3_1 = new("Přednáška z Češtiny", false, 50, Czech3_1, lectureList);
             
-            Exercise ExerciseFromEnglish4 = new("Cvičení z Angličtiny", false, 50, English4, exercises);
-            Exercise ExerciseFromCzech4 = new("Cvičení z Češtiny", false, 50, Czech4, exercises);
-            Lecture LectureFromEnglish4 = new("Přednáška z Angličtiny", false, 50, English4, lectureList);
-            Lecture LectureFromCzech4 = new("Přednáška z Češtiny", false, 50, Czech4, lectureList);
+            Exercise ExerciseFromEnglish4_1 = new("Cvičení z Angličtiny", false, 50, English4_1, exercises);
+            Exercise ExerciseFromCzech4_1 = new("Cvičení z Češtiny", false, 50, Czech4_1, exercises);
+            Lecture LectureFromEnglish4_1 = new("Přednáška z Angličtiny", false, 50, English4_1, lectureList);
+            Lecture LectureFromCzech4_1 = new("Přednáška z Češtiny", false, 50, Czech4_1, lectureList);
+            
+            Exercise ExerciseFromEnglish1_2 = new("Cvičení z Angličtiny", false, 50, English1_2, exercises);
+            Exercise ExerciseFromCzech1_2 = new("Cvičení z Češtiny", false, 50, Czech1_2, exercises);
+            Lecture LectureFromEnglish1_2 = new("Přednáška z Angličtiny", false, 50, English1_2, lectureList);
+            Lecture LectureFromCzech1_2 = new("Přednáška z Češtiny", false, 50, Czech1_2, lectureList);
+            
+            Exercise ExerciseFromEnglish2_2 = new("Cvičení z Angličtiny", false, 50, English2_2, exercises);
+            Exercise ExerciseFromCzech2_2 = new("Cvičení z Češtiny", false, 50, Czech2_2, exercises);
+            Lecture LectureFromEnglish2_2 = new("Přednáška z Angličtiny", false, 50, English2_2, lectureList);
+            Lecture LectureFromCzech2_2 = new("Přednáška z Češtiny", false, 50, Czech2_2, lectureList);
+            
+            Exercise ExerciseFromEnglish3_2 = new("Cvičení z Angličtiny", false, 50, English3_2, exercises);
+            Exercise ExerciseFromCzech3_2 = new("Cvičení z Češtiny", false, 50, Czech3_2, exercises);
+            Lecture LectureFromEnglish3_2 = new("Přednáška z Angličtiny", false, 50, English3_2, lectureList);
+            Lecture LectureFromCzech3_2 = new("Přednáška z Češtiny", false, 50, Czech3_2, lectureList);
+            
+            Exercise ExerciseFromEnglish4_2 = new("Cvičení z Angličtiny", false, 50, English4_2, exercises);
+            Exercise ExerciseFromCzech4_2 = new("Cvičení z Češtiny", false, 50, Czech4_2, exercises);
+            Lecture LectureFromEnglish4_2 = new("Přednáška z Angličtiny", false, 50, English4_2, lectureList);
+            Lecture LectureFromCzech4_2 = new("Přednáška z Češtiny", false, 50, Czech4_2, lectureList);
+            
+            Exercise ExerciseFromEnglish1_3 = new("Cvičení z Angličtiny", false, 50, English1_3, exercises);
+            Exercise ExerciseFromCzech1_3 = new("Cvičení z Češtiny", false, 50, Czech1_3, exercises);
+            Lecture LectureFromEnglish1_3 = new("Přednáška z Angličtiny", false, 50, English1_3, lectureList);
+            Lecture LectureFromCzech1_3 = new("Přednáška z Češtiny", false, 50, Czech1_3, lectureList);
+            
+            Exercise ExerciseFromEnglish2_3 = new("Cvičení z Angličtiny", false, 50, English2_3, exercises);
+            Exercise ExerciseFromCzech2_3 = new("Cvičení z Češtiny", false, 50, Czech2_3, exercises);
+            Lecture LectureFromEnglish2_3 = new("Přednáška z Angličtiny", false, 50, English2_3, lectureList);
+            Lecture LectureFromCzech2_3 = new("Přednáška z Češtiny", false, 50, Czech2_3, lectureList);
+            
+            Exercise ExerciseFromEnglish3_3 = new("Cvičení z Angličtiny", false, 50, English3_3, exercises);
+            Exercise ExerciseFromCzech3_3 = new("Cvičení z Češtiny", false, 50, Czech3_3, exercises);
+            Lecture LectureFromEnglish3_3 = new("Přednáška z Angličtiny", false, 50, English3_3, lectureList);
+            Lecture LectureFromCzech3_3 = new("Přednáška z Češtiny", false, 50, Czech3_3, lectureList);
+            
+            Exercise ExerciseFromEnglish4_3 = new("Cvičení z Angličtiny", false, 50, English4_3, exercises);
+            Exercise ExerciseFromCzech4_3 = new("Cvičení z Češtiny", false, 50, Czech4_3, exercises);
+            Lecture LectureFromEnglish4_3 = new("Přednáška z Angličtiny", false, 50, English4_3, lectureList);
+            Lecture LectureFromCzech4_3 = new("Přednáška z Češtiny", false, 50, Czech4_3, lectureList);
 
             Pepa.registredSubjects.Add(x); // TEST_ONLY
 

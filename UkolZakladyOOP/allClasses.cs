@@ -66,6 +66,28 @@ namespace UkolZakladyOOP
             this.year = year;
         }
 
+        public static void nextYear(List<Student> students)
+        {
+            foreach (Student student in (students))
+            {
+                student.year += 1;
+            }
+        }
+
+        public static void nextSemester(ref Semester currentSemester)
+        {
+            switch (currentSemester)
+            {
+                case Semester.Letni:
+                    currentSemester = Semester.Zimni;
+                    break;
+                                
+                case Semester.Zimni:
+                    currentSemester = Semester.Letni;
+                    break;
+            }
+        }
+
         public override void aboutMe()
         {
             Console.WriteLine("Dobrý den, jmenuji se {0} {1} a narodil/narodila jsem se {2} a aktuálně studuji od {3}", firstName, lastName, birthDate.ToString("MM.dd.yyyy"), registrationDate.ToString("MM.dd.yyyy"));
@@ -110,7 +132,7 @@ namespace UkolZakladyOOP
             {
                 foreach (Subject Subject in chosenStudent.subjectsToRegister)
                 {
-                    if (Subject.year == this.year && Subject.semester == currentSemester)
+                    if (Subject.year == this.year && Subject.semester == currentSemester && Subject.completed == false)
                     {
                         Console.WriteLine("Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}", Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName(), Subject.semester);
                     }
@@ -140,7 +162,7 @@ namespace UkolZakladyOOP
             }
         }
 
-        public void listAllSubjects(Semester currentSemester)
+        public void listAllMySubjects(Semester currentSemester)
         {
             if (registredSubjects.Count != 0)
             {
@@ -250,6 +272,7 @@ namespace UkolZakladyOOP
                     Mark_Subject markSubject = new(mark, Subject, chosenStudent.id, markSubjectList);
                     chosenStudent.markSubjectList.Add(markSubject);
                     chosenStudent.registredSubjects.Remove(Subject);
+                    Subject.completed = true;
                 }
             }
         }
@@ -478,8 +501,11 @@ namespace UkolZakladyOOP
                 Random random = new Random();
                 int year = random.Next(1, 4);
                 
+                //int subjectLevel = int.Parse(Console.ReadLine());
+                int subjectLevel = random.Next(1, 3);
+                
 
-                Subject Subject = new(name, garantOfSubject, credits, year ,semester, subjects);
+                Subject Subject = new(name, garantOfSubject, credits, year ,semester, subjects,subjectLevel);
 
                 foreach (Student Student in students)
                 {
@@ -549,23 +575,26 @@ namespace UkolZakladyOOP
 
                 Random random = new Random();
                 int year = random.Next(1, 4);
+                
+                //int subjectLevel = int.Parse(Console.ReadLine());
+                int subjectLevel = random.Next(1, 3);
 
                 if (subject.ToLower() == "czech")
                 {
-                    Subject Czech = SubjectFactory.CreateCzech(garantOfSubject, credits, subjects,year ,semester);
+                    Subject Czech = SubjectFactory.CreateCzech(garantOfSubject, credits, subjects,year ,semester,subjectLevel);
                     addSubjectToList(ref teachers, ref students, ref subjects, Czech);
                 }
 
                 if (subject.ToLower() == "math")
                 {
-                    Subject Math = SubjectFactory.CreateMath(garantOfSubject, credits, subjects, year, semester);
+                    Subject Math = SubjectFactory.CreateMath(garantOfSubject, credits, subjects, year, semester,subjectLevel);
                     addSubjectToList(ref teachers, ref students, ref subjects, Math);
 
                 }
 
                 if (subject.ToLower() == "english")
                 {
-                    Subject English = SubjectFactory.CreateEnglish(garantOfSubject, credits, subjects, year, semester);
+                    Subject English = SubjectFactory.CreateEnglish(garantOfSubject, credits, subjects, year, semester,subjectLevel);
                     addSubjectToList(ref teachers, ref students, ref subjects, English);
                 }
 
@@ -981,10 +1010,12 @@ namespace UkolZakladyOOP
         public double credits;
         public int year;
         public Semester semester;
-       
+        public int level;
+        public bool completed = false;
+
         //public double mark;
 
-        public Subject(string name, Teacher garantOfSubject, double credits, int year, Semester semester, List<Subject> subjects)
+        public Subject(string name, Teacher garantOfSubject, double credits, int year, Semester semester, List<Subject> subjects, int level)
         {
             this.name = name;
             this.garantOfSubject = garantOfSubject;
@@ -992,15 +1023,17 @@ namespace UkolZakladyOOP
             this.semester = semester;
             this.year = year;
             subjects.Add(this);
+            this.level = level;
         }
 
-        public Subject(string name, Teacher garantOfSubject, double credits,int year, Semester semester)
+        public Subject(string name, Teacher garantOfSubject, double credits,int year, Semester semester, int level)
         {
             this.name = name;
             this.garantOfSubject = garantOfSubject;
             this.credits = credits;
             this.semester = semester;
             this.year = year;
+            this.level = level;
         }
 
     }
@@ -1054,19 +1087,19 @@ namespace UkolZakladyOOP
 
     class SubjectFactory
     {
-        public static Subject CreateMath(Teacher garantOfSubject, double credits, List<Subject> subjects, int year, Semester semester)
+        public static Subject CreateMath(Teacher garantOfSubject, double credits, List<Subject> subjects, int year, Semester semester, int subjectLevel)
         {
-            return new Subject("Math",garantOfSubject, credits,year, semester, subjects);
+            return new Subject("Math",garantOfSubject, credits,year, semester, subjects,subjectLevel);
         }
 
-        public static Subject CreateCzech(Teacher garantOfSubject, double credits, List<Subject> subjects, int year, Semester semester)
+        public static Subject CreateCzech(Teacher garantOfSubject, double credits, List<Subject> subjects, int year, Semester semester, int subjectLevel)
         {
-            return new Subject("Czech", garantOfSubject, credits,year, semester, subjects);
+            return new Subject("Czech", garantOfSubject, credits,year, semester, subjects,subjectLevel);
         }
 
-        public static Subject CreateEnglish(Teacher garantOfSubject, double credits, List<Subject> subjects, int year, Semester semester)
+        public static Subject CreateEnglish(Teacher garantOfSubject, double credits, List<Subject> subjects, int year, Semester semester, int subjectLevel)
         {
-            return new Subject("English", garantOfSubject, credits,year, semester, subjects);
+            return new Subject("English", garantOfSubject, credits,year, semester, subjects,subjectLevel);
         }
     }
 
