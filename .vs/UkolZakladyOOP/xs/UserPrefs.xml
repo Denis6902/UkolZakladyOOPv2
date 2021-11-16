@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{16897082-4D39-4EBC-ABE9-3904E4C0F61D}|Default">
   <MonoDevelop.Ide.ItemProperties.UkolZakladyOOP PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="UkolZakladyOOP/allClasses.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="UkolZakladyOOP/Program.cs">
     <Files>
-      <File FileName="UkolZakladyOOP/Program.cs" Line="25" Column="1" />
-      <File FileName="UkolZakladyOOP/allClasses.cs" Line="1071" Column="36" />
-      <File FileName="UkolZakladyOOP/allFunctions.cs" Line="186" Column="322" />
+      <File FileName="UkolZakladyOOP/Program.cs" Line="72" Column="89" />
+      <File FileName="UkolZakladyOOP/allClasses.cs" Line="864" Column="21" />
+      <File FileName="UkolZakladyOOP/allFunctions.cs" Line="167" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

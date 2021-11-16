@@ -5,10 +5,8 @@ namespace UkolZakladyOOP
 {
     public class Method
     {
-        public void mainMenu(Exercise chosenExercise, Exercise DefaultExercise, Student chosenStudent, Student DefaultStudent, Teacher chosenTeacher, Teacher DefaultTeacher, Subject chosenSubject, Subject DefaultSubject, string who, bool end, List<Student> students, List<Teacher> teachers, string whoIAm, string option, string subject, List<string> averageMarksList, List<Lecture> lectures, Lecture chosenLecture, Lecture DefaultLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, List<Mark_Subject> markSubjectList, Semester currentSemester)
+        public void mainMenu(Exercise chosenExercise, Student chosenStudent, Teacher chosenTeacher, Subject chosenSubject, List<Student> students, List<Teacher> teachers, string whoIAm, List<string> averageMarksList, Lecture chosenLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, Semester currentSemester)
         {
-            resetAllChosenObjects(ref chosenExercise, ref DefaultExercise, ref chosenStudent, ref DefaultStudent, ref DefaultTeacher, ref chosenTeacher, ref DefaultSubject, ref chosenSubject);
-
             do
             {
                 Console.WriteLine("Kdo jsi?");
@@ -23,25 +21,17 @@ namespace UkolZakladyOOP
             {
                 case "1":
                     Student.selectStudent(students, ref chosenStudent);
-                    studentMenu(whoIAm, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, option, subject, who, end, students, teachers, chosenExercise, DefaultExercise, chosenSubject, DefaultSubject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects, lectureList, markSubjectList, currentSemester);
+                    studentMenu(whoIAm, chosenStudent, chosenTeacher, students, teachers, chosenExercise, chosenSubject, averageMarksList, chosenLecture, exercises, subjects, lectureList, currentSemester);
                     break;
 
                 case "2":
                     Teacher.selectTeacher(teachers, ref chosenTeacher);
-                    teacherMenu(chosenStudent, DefaultStudent, whoIAm, chosenTeacher, DefaultTeacher, option, subject, who, end, chosenExercise, DefaultExercise, chosenSubject, DefaultSubject, students, teachers, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects, lectureList, markSubjectList, ref currentSemester);
+                    teacherMenu(chosenStudent, whoIAm, chosenTeacher, chosenExercise, chosenSubject, students, teachers, averageMarksList, chosenLecture, exercises, subjects, lectureList, ref currentSemester);
                     break;
             }
         }
-
-        public void resetAllChosenObjects(ref Exercise chosenExercise, ref Exercise DefaultExercise, ref Student chosenStudent, ref Student DefaultStudent, ref Teacher DefaultTeacher, ref Teacher chosenTeacher, ref Subject DefaultSubject, ref Subject chosenSubject)
-        {
-            chosenExercise = DefaultExercise;
-            chosenStudent = DefaultStudent;
-            chosenTeacher = DefaultTeacher;
-            chosenSubject = DefaultSubject;
-        }
-
-        public void studentMenu(string whoIAm, Student chosenStudent, Student DefaultStudent, Teacher chosenTeacher, Teacher DefaultTeacher, string option, string subject, string who, bool end, List<Student> students, List<Teacher> teachers, Exercise chosenExercise, Exercise DefaultExercise, Subject chosenSubject, Subject DefaultSubject, List<string> averageMarksList, List<Lecture> lectures, Lecture chosenLecture, Lecture DefaultLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, List<Mark_Subject> markSubjectList, Semester currentSemester)
+        
+        public void studentMenu(string whoIAm, Student chosenStudent, Teacher chosenTeacher, List<Student> students, List<Teacher> teachers, Exercise chosenExercise, Subject chosenSubject, List<string> averageMarksList, Lecture chosenLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, Semester currentSemester)
         {
             int optionAsInt;
             do
@@ -55,7 +45,7 @@ namespace UkolZakladyOOP
                     Console.WriteLine("10) Udělat cvičení");
                 }
 
-                option = Console.ReadLine();
+                string option = Console.ReadLine();
                 Console.Clear();
                 bool number = int.TryParse(option, out optionAsInt);
 
@@ -72,7 +62,7 @@ namespace UkolZakladyOOP
                             break;
 
                         case 3:
-                            mainMenu(chosenExercise, DefaultExercise, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, chosenSubject, DefaultSubject, who, end, students, teachers, whoIAm, option, subject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects, lectureList, markSubjectList, currentSemester);
+                            mainMenu(chosenExercise, chosenStudent, chosenTeacher, chosenSubject, students, teachers, whoIAm, averageMarksList, chosenLecture, exercises, subjects, lectureList, currentSemester);
                             break;
 
                         case 4:
@@ -95,16 +85,16 @@ namespace UkolZakladyOOP
                             break;
 
                         case 8:
-                            chosenStudent.goOnLecture(lectures, ref chosenStudent, ref chosenLecture, ref chosenSubject, DefaultSubject, DefaultLecture, lectureList);
+                            chosenStudent.goOnLecture(ref chosenStudent, ref chosenLecture, ref chosenSubject, lectureList);
                             break;
 
                         case 9:
-                            chosenStudent.endSubject(ref chosenStudent, ref markSubjectList);
+                            chosenStudent.endSubject(ref chosenStudent, ref Student.markSubjectList);
                             Console.ReadKey();
                             break;
 
                         case 10:
-                            chosenStudent.doExercise(ref chosenStudent, ref chosenExercise, DefaultExercise, ref chosenSubject, DefaultSubject);
+                            chosenStudent.doExercise(ref chosenStudent, ref chosenExercise, ref chosenSubject);
                             Console.ReadKey();
                             break;
 
@@ -113,20 +103,20 @@ namespace UkolZakladyOOP
                 else
                 {
                     Console.Clear();
-                    studentMenu(whoIAm, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, option, subject, who, end, students, teachers, chosenExercise, DefaultExercise, chosenSubject, DefaultSubject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects, lectureList, markSubjectList, currentSemester);
+                    studentMenu(whoIAm, chosenStudent, chosenTeacher, students, teachers, chosenExercise, chosenSubject, averageMarksList, chosenLecture, exercises, subjects, lectureList, currentSemester);
                 }
 
             }
             while (optionAsInt > 0 && optionAsInt < 11);
         }
 
-        public void teacherMenu(Student chosenStudent, Student DefaultStudent, string whoIAm, Teacher chosenTeacher, Teacher DefaultTeacher, string option, string subject, string who, bool end, Exercise chosenExercise, Exercise DefaultExercise, Subject chosenSubject, Subject DefaultSubject, List<Student> students, List<Teacher> teachers, List<string> averageMarksList, List<Lecture> lectures, Lecture chosenLecture, Lecture DefaultLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, List<Mark_Subject> markSubjectList, ref Semester currentSemester)
+        public void teacherMenu(Student chosenStudent, string whoIAm, Teacher chosenTeacher, Exercise chosenExercise, Subject chosenSubject, List<Student> students, List<Teacher> teachers, List<string> averageMarksList, Lecture chosenLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, ref Semester currentSemester)
         {
             int optionAsInt;
             do
             {
                 listAllChoices(whoIAm, currentSemester);
-                option = Console.ReadLine();
+                string option = Console.ReadLine();
                 Console.Clear();
                 bool number = int.TryParse(option, out optionAsInt);
 
@@ -139,12 +129,12 @@ namespace UkolZakladyOOP
                             break;
 
                         case 2:
-                            chosenTeacher.listAllSubjects(currentSemester);
+                            chosenTeacher.listAllMySubjects(currentSemester);
                             Console.ReadKey();
                             break;
 
                         case 3:
-                            mainMenu(chosenExercise, DefaultExercise, chosenStudent, DefaultStudent, chosenTeacher, DefaultTeacher, chosenSubject, DefaultSubject, who, end, students, teachers, whoIAm, option, subject, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects, lectureList, markSubjectList, currentSemester);
+                            mainMenu(chosenExercise, chosenStudent, chosenTeacher, chosenSubject, students, teachers, whoIAm, averageMarksList, chosenLecture, exercises, subjects, lectureList, currentSemester);
                             break;
 
                         case 4:
@@ -157,7 +147,7 @@ namespace UkolZakladyOOP
                             break;
 
                         case 6:
-                            chosenTeacher.createSubject(ref students, ref teachers, DefaultTeacher, subjects);
+                            chosenTeacher.createSubject(ref students, ref teachers, subjects);
                             break;
 
                         case 7:
@@ -174,7 +164,7 @@ namespace UkolZakladyOOP
                             break;
 
                         case 10:
-                            chosenTeacher.createLecture(ref chosenTeacher, ref chosenSubject, subjects);
+                            chosenTeacher.createLecture(ref chosenTeacher, ref chosenSubject, subjects, teachers);
                             break;
                         case 11:
                             chosenTeacher.listAllLecture(teachers);
@@ -192,14 +182,14 @@ namespace UkolZakladyOOP
                 else
                 {
                     Console.Clear();
-                    teacherMenu(chosenStudent, DefaultStudent, whoIAm, chosenTeacher, DefaultTeacher, option, subject, who, end, chosenExercise, DefaultExercise, chosenSubject, DefaultSubject, students, teachers, averageMarksList, lectures, chosenLecture, DefaultLecture, exercises, subjects, lectureList, markSubjectList, ref currentSemester);
+                    teacherMenu(chosenStudent, whoIAm, chosenTeacher, chosenExercise, chosenSubject, students, teachers, averageMarksList, chosenLecture, exercises, subjects, lectureList, ref currentSemester);
                 }
 
             }
             while (optionAsInt > 0 && optionAsInt < 14);
         }
 
-        public void listAllChoices(string who, Semester currentSemester)
+        public void listAllChoices(string whoIAm, Semester currentSemester)
         {
             Console.Clear();
             Console.WriteLine("Aktuální semestr: " + currentSemester);
@@ -209,7 +199,7 @@ namespace UkolZakladyOOP
             Console.WriteLine("4) Kdo jsem");
             Console.WriteLine("5) Konec programu");
 
-            switch (who)
+            switch (whoIAm)
             {
                 case "1":
                     Console.WriteLine("6) Vypsat dokončené předměty");

@@ -36,12 +36,12 @@ namespace UkolZakladyOOP
         public List<Subject> subjectsToRegister = new();
         public List<Subject> registredSubjects = new();
         public List<Exercise> exerciseList = new();
-        public List<Mark_Subject> markSubjectList = new();
+        public static List<Mark_Subject> markSubjectList = new();
         public double averageOfAllMarks;
         public int year;
 
 
-        public Student(int id,string firstName, string lastName, DateTime birthDate, DateTime registrationDate, List<Subject> subjectsToRegister, List<Exercise> exerciseList, List<Student> students, List<Mark_Subject> markSubjectList, int year) : base(id ,firstName, lastName, birthDate)
+        public Student(int id,string firstName, string lastName, DateTime birthDate, DateTime registrationDate, List<Subject> subjectsToRegister, List<Exercise> exerciseList, List<Student> students, int year) : base(id ,firstName, lastName, birthDate)
         {
             this.registrationDate = registrationDate;
             base.id = id;
@@ -109,14 +109,14 @@ namespace UkolZakladyOOP
                     Console.WriteLine(Student.firstName);
                 }
 
-                //chosenStudent.firstName = Console.ReadLine();
-                chosenStudent.firstName = "Pepa";
+                //studentName = Console.ReadLine();
+                string studentName = "Pepa";
                 Console.ReadKey();
                 Console.Clear();
 
                 foreach (Student Student in students)
                 {
-                    if (Student.firstName.ToLower() == chosenStudent.firstName.ToLower())
+                    if (Student.firstName.ToLower() == studentName.ToLower())
                     {
                         chosenStudent = Student;
                         end = true;
@@ -207,7 +207,7 @@ namespace UkolZakladyOOP
             }
         }
 
-        public void goOnLecture(List<Lecture> lectures, ref Student chosenStudent, ref Lecture chosenLecture, ref Subject chosenSubject, Subject DefaultSubject, Lecture DefaultLecture, List<Lecture> lectureList)
+        public void goOnLecture(ref Student chosenStudent, ref Lecture chosenLecture, ref Subject chosenSubject, List<Lecture> lectureList)
         {
             if (chosenStudent.exerciseList.Count != 0 && chosenStudent.registredSubjects.Count != 0)
             {
@@ -225,16 +225,17 @@ namespace UkolZakladyOOP
                     Console.WriteLine("Zadejte název přednášky");
                     Console.ReadKey();
 
-                    chosenLecture.name = "Přednáška z češtiny";
+                    //string lectureName = Console.ReadLine();
+                    string lectureName = "Přednáška z češtiny";
 
-                    if (chosenLecture.name == "")
+                    if (lectureName == "")
                     {
                         break;
                     }
 
                     foreach (Lecture Lecture in lectureList)
                     {
-                        if (Lecture.name.ToLower() == chosenLecture.name.ToLower() && end == false)
+                        if (Lecture.name.ToLower() == lectureName.ToLower() && end == false)
                         {
                             chosenLecture = Lecture;
                             chosenSubject = chosenLecture.subject;
@@ -247,8 +248,6 @@ namespace UkolZakladyOOP
                         Console.WriteLine("Šel jsi na přednášku {0} - {1} kreditů", chosenLecture.name, chosenLecture.credits);
                         Console.ReadKey();
                         chosenSubject.credits = chosenSubject.credits - chosenLecture.credits;
-                        chosenSubject = DefaultSubject;
-                        chosenLecture = DefaultLecture;
                     }
                 }
                 while (end == false);
@@ -270,14 +269,14 @@ namespace UkolZakladyOOP
                     chosenStudent.averageOfAllMarks += mark;
                     Console.WriteLine("Dokončil jsi předmět " + Subject.name + " s hodnocením " + mark);
                     Mark_Subject markSubject = new(mark, Subject, chosenStudent.id, markSubjectList);
-                    chosenStudent.markSubjectList.Add(markSubject);
+                    Student.markSubjectList.Add(markSubject);
                     chosenStudent.registredSubjects.Remove(Subject);
                     Subject.completed = true;
                 }
             }
         }
 
-        public void doExercise(ref Student chosenStudent, ref Exercise chosenExercise, Exercise DefaultExercise, ref Subject chosenSubject, Subject DefaultSubject)
+        public void doExercise(ref Student chosenStudent, ref Exercise chosenExercise, ref Subject chosenSubject)
         {
             if (chosenStudent.exerciseList.Count != 0 && chosenStudent.registredSubjects.Count != 0)
             {
@@ -294,19 +293,19 @@ namespace UkolZakladyOOP
 
                     Console.WriteLine("Zadejte název cvičení");
 
-                    //chosenExercise.name = Console.ReadLine();
-                    chosenExercise.name = "Cvičení z češtiny";
+                    //string exerciseName = Console.ReadLine();
+                    string exerciseName = "Cvičení z češtiny";
 
                     Console.Clear();
 
-                    if (chosenExercise.name == "")
+                    if (exerciseName == "")
                     {
                         break;
                     }
 
                     foreach (Exercise Exercise in chosenStudent.exerciseList)
                     {
-                        if (Exercise.name.ToLower() == chosenExercise.name.ToLower() && end == false)
+                        if (Exercise.name.ToLower() == exerciseName.ToLower() && end == false)
                         {
                             chosenExercise = Exercise;
                             chosenSubject = chosenExercise.subject;
@@ -319,8 +318,6 @@ namespace UkolZakladyOOP
                         Console.WriteLine("Dokončil jsi cvičení {0} - {1} kreditů", chosenExercise.name, chosenExercise.credits);
 
                         chosenSubject.credits = chosenSubject.credits - chosenExercise.credits;
-                        chosenSubject = DefaultSubject;
-                        chosenExercise = DefaultExercise;
                     }
                 }
                 while (end == false);
@@ -373,14 +370,14 @@ namespace UkolZakladyOOP
                     Console.WriteLine(Teacher.firstName);
                 }
 
-                //chosenTeacher.firstName = Console.ReadLine();
-                chosenTeacher.firstName = "Pavel";
+                //string teacherName = Console.ReadLine();
+                string teacherName = "Pavel";
                 Console.ReadKey();
                 Console.Clear();
 
                 foreach (Teacher Teacher in teachers)
                 {
-                    if (Teacher.firstName.ToLower() == chosenTeacher.firstName.ToLower())
+                    if (Teacher.firstName.ToLower() == teacherName.ToLower())
                     {
                         chosenTeacher = Teacher;
                         end = true;
@@ -423,7 +420,7 @@ namespace UkolZakladyOOP
             }
 
         }
-        public void listAllSubjects(Semester currentSemester)
+        public void listAllMySubjects(Semester currentSemester)
         {
             if (registredSubjects.Count != 0)
             {
@@ -439,10 +436,10 @@ namespace UkolZakladyOOP
 
             Console.ReadKey();
         }
-        public void createSubject(ref List<Student> students, ref List<Teacher> teachers, Teacher DefaultTeacher, List<Subject> subjects)
+        public void createSubject(ref List<Student> students, ref List<Teacher> teachers, List<Subject> subjects)
         {
             bool end = false;
-            Teacher garantOfSubject = DefaultTeacher;
+            Teacher garantOfSubject = null;
 
             Console.WriteLine("Jak chcete předmět vytvořit");
             Console.WriteLine("1) Nový předmět");
@@ -467,13 +464,13 @@ namespace UkolZakladyOOP
                         Console.WriteLine(Teacher.firstName);
                     }
 
-                    //garantOfSubject.firstName = Console.ReadLine();
-                    garantOfSubject.firstName = "Pavel";
+                    //string garantName = Console.ReadLine();
+                    string garantName = "Pavel";
                     Console.Clear();
 
                     foreach (Teacher Teacher in teachers)
                     {
-                        if (Teacher.firstName.ToLower() == garantOfSubject.firstName.ToLower())
+                        if (Teacher.firstName.ToLower() == garantName.ToLower())
                         {
                             garantOfSubject = Teacher;
                             end = true;
@@ -540,13 +537,13 @@ namespace UkolZakladyOOP
                         Console.WriteLine(Teacher.firstName);
                     }
 
-                    //garantOfSubject.firstName = Console.ReadLine();
-                    garantOfSubject.firstName = "Pavel";
+                    //string garantName = Console.ReadLine();
+                    string garantName = "Pavel";
                     Console.Clear();
 
                     foreach (Teacher Teacher in teachers)
                     {
-                        if (Teacher.firstName.ToLower() == garantOfSubject.firstName.ToLower())
+                        if (Teacher.firstName.ToLower() == garantName.ToLower())
                         {
                             garantOfSubject = Teacher;
                             end = true;
@@ -657,23 +654,23 @@ namespace UkolZakladyOOP
             Console.ReadKey();
         }
 
-        public void createLecture(ref Teacher chosenTeacher, ref Subject chosenSubject, List<Subject> subjects)
+        public void createLecture(ref Teacher chosenTeacher, ref Subject chosenSubject, List<Subject> subjects, List<Teacher> teachers)
         {
             Console.WriteLine("Jak chcete přednášku vytvořit");
-            Console.WriteLine("Nová přednáška");
-            Console.WriteLine("Přednáška ze šablony");
+            Console.WriteLine("1) Nová přednáška");
+            Console.WriteLine("2) Přednáška ze šablony");
             string howCreate = Console.ReadLine().ToLower();
 
             Console.Clear();
 
-            if (howCreate == "nová přednáška")
+            if (howCreate == "1")
             {
-                createNewLecture(ref chosenTeacher, ref chosenSubject);
+                createNewLecture(ref chosenTeacher, ref chosenSubject, teachers);
             }
 
-            if (howCreate == "přednáška ze šablony")
+            if (howCreate == "2")
             {
-                createLectureFromTemplate(ref chosenTeacher, ref chosenSubject, subjects);
+                createLectureFromTemplate(ref chosenTeacher, ref chosenSubject, subjects, teachers);
             }
         }
 
@@ -864,7 +861,7 @@ namespace UkolZakladyOOP
             }
         }
 
-        public void createNewLecture(ref Teacher chosenTeacher, ref Subject chosenSubject)
+        public void createNewLecture(ref Teacher chosenTeacher, ref Subject chosenSubject, List<Teacher> teachers)
         {
             Console.WriteLine("Jméno:");
             //string nameOfLecture = Console.ReadLine();
@@ -888,7 +885,7 @@ namespace UkolZakladyOOP
             }
 
             //string subject = Console.ReadLine();
-            string subject = "Czech";
+            string subject = "Czech1_1";
 
             foreach (Subject oneSubject in chosenTeacher.subjectsToRegister)
             {
@@ -898,10 +895,28 @@ namespace UkolZakladyOOP
                 }
             }
 
-            Lecture Lecture = new(nameOfLecture, computerRequired, credits, chosenSubject, lectureList);
+            Console.WriteLine("Učitel:");
+
+            foreach (Teacher Teacher in teachers)
+            {
+                Console.WriteLine(Teacher.firstName);
+            }
+
+            //string nameTeacher = Console.ReadLine();
+            string nameTeacher = "Pavel";
+
+            foreach (Teacher Teacher in teachers)
+            {
+                if (Teacher.firstName.ToLower() == nameTeacher.ToLower())
+                {
+                    chosenTeacher = Teacher;
+                }
+            }
+
+            Lecture Lecture = new(nameOfLecture, computerRequired, credits, chosenSubject, lectureList, chosenTeacher);
         }
 
-        public void createLectureFromTemplate(ref Teacher chosenTeacher, ref Subject chosenSubject, List<Subject> subjects)
+        public void createLectureFromTemplate(ref Teacher chosenTeacher, ref Subject chosenSubject, List<Subject> subjects, List<Teacher> teachers)
         {
             bool end = false;
             Console.WriteLine("Jméno:");
@@ -918,13 +933,31 @@ namespace UkolZakladyOOP
             //double credits = double.Parse(Console.ReadLine());
             double credits = 50;
 
+            Console.WriteLine("Učitel:");
+
+            foreach(Teacher Teacher in teachers)
+            {
+                Console.WriteLine(Teacher.firstName);
+            }
+
+            //string nameTeacher = Console.ReadLine();
+            string nameTeacher = "Pavel";
+
+            foreach(Teacher Teacher in teachers)
+            {
+                if(Teacher.firstName.ToLower() == nameTeacher.ToLower())
+                {
+                    chosenTeacher = Teacher;
+                }
+            }
+
             if (lecture == "přednáška z češtiny")
             {
                 if (end == false)
                 {
                     foreach (Subject Subject in subjects)
                     {
-                        if (Subject.name == "Czech")
+                        if (Subject.name == "Czech1_1")
                         {
                             chosenSubject = Subject;
                             end = true;
@@ -940,7 +973,7 @@ namespace UkolZakladyOOP
 
                 if (end == true)
                 {
-                    Lecture LectureFromCzech = LectureFactory.CreateLectureFromCzech(credits, chosenSubject, lectureList);
+                    Lecture LectureFromCzech = LectureFactory.CreateLectureFromCzech(credits, chosenSubject, lectureList, chosenTeacher);
                     addLectureToList(LectureFromCzech, ref lectureList);
                 }
             }
@@ -967,7 +1000,7 @@ namespace UkolZakladyOOP
 
                 if (end == true)
                 {
-                    Lecture LectureFromEnglish = LectureFactory.CreateLectureFromEnglish(credits, chosenSubject, lectureList);
+                    Lecture LectureFromEnglish = LectureFactory.CreateLectureFromEnglish(credits, chosenSubject, lectureList, chosenTeacher);
                     addLectureToList(LectureFromEnglish, ref lectureList);
                 }
 
@@ -995,7 +1028,7 @@ namespace UkolZakladyOOP
 
                 if (end == true)
                 {
-                    Lecture LectureFromMath = LectureFactory.CreateLectureFromMath(credits, chosenSubject, lectureList);
+                    Lecture LectureFromMath = LectureFactory.CreateLectureFromMath(credits, chosenSubject, lectureList, chosenTeacher);
                     addLectureToList(LectureFromMath, ref lectureList);
                 }
 
@@ -1044,16 +1077,16 @@ namespace UkolZakladyOOP
         public bool computerRequired;
         public double credits;
         public Subject subject;
-        public Teacher teacher;
+        public Teacher Teacher;
 
-        public Lecture(string name, bool computerRequired, double credits, Subject subject, List<Lecture> lectureList)
+        public Lecture(string name, bool computerRequired, double credits, Subject subject, List<Lecture> lectureList, Teacher Teacher)
         {
             this.name = name;
             this.computerRequired = computerRequired;
             this.credits = credits;
             this.subject = subject;
-            teacher = subject.garantOfSubject;
-            teacher.lectureList.Add(this);
+            this.Teacher = Teacher;
+            Teacher.lectureList.Add(this);
             lectureList.Add(this);
         }
     }
@@ -1123,19 +1156,19 @@ namespace UkolZakladyOOP
 
     class LectureFactory
     {
-        public static Lecture CreateLectureFromMath(double credits, Subject Math, List<Lecture> lectureList)
+        public static Lecture CreateLectureFromMath(double credits, Subject Math, List<Lecture> lectureList, Teacher Teacher)
         {
-            return new Lecture("Přednáška z Matematiky", false, credits, Math, lectureList);
+            return new Lecture("Přednáška z Matematiky", false, credits, Math, lectureList, Teacher);
         }
 
-        public static Lecture CreateLectureFromCzech(double credits, Subject Czech, List<Lecture> lectureList)
+        public static Lecture CreateLectureFromCzech(double credits, Subject Czech, List<Lecture> lectureList, Teacher Teacher)
         {
-            return new Lecture("Přednáška z Češtiny", false, credits, Czech, lectureList);
+            return new Lecture("Přednáška z Češtiny", false, credits, Czech, lectureList, Teacher);
         }
 
-        public static Lecture CreateLectureFromEnglish(double credits, Subject English, List<Lecture> lectureList)
+        public static Lecture CreateLectureFromEnglish(double credits, Subject English, List<Lecture> lectureList, Teacher Teacher)
         {
-            return new Lecture("Přednáška z Angličtiny", false, credits, English, lectureList);
+            return new Lecture("Přednáška z Angličtiny", false, credits, English, lectureList, Teacher);
         }
     }
 
