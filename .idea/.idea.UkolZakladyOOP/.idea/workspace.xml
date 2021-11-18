@@ -5,32 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19098478-080f-4966-b60f-568f81cb1271" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/UkolZakladyOOP/xs/UserPrefs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/UkolZakladyOOP/xs/UserPrefs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/allClasses.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/allClasses.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net5.0/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net5.0/UkolZakladyOOP.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net5.0/UkolZakladyOOP.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net5.0/UkolZakladyOOP.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net5.0/UkolZakladyOOP.runtimeconfig.dev.json" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net5.0/UkolZakladyOOP.runtimeconfig.dev.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net5.0/ref/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net5.0/ref/UkolZakladyOOP.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/UkolZakladyOOP.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/UkolZakladyOOP.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/UkolZakladyOOP.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/UkolZakladyOOP.assets.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/UkolZakladyOOP.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/UkolZakladyOOP.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/UkolZakladyOOP.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/UkolZakladyOOP.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/UkolZakladyOOP.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/UkolZakladyOOP.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/UkolZakladyOOP.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/UkolZakladyOOP.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/UkolZakladyOOP.genruntimeconfig.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/UkolZakladyOOP.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/UkolZakladyOOP.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/ref/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net5.0/ref/UkolZakladyOOP.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.g.targets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +83,9 @@
       <workItem from="1637077424048" duration="329000" />
       <workItem from="1637078142013" duration="114000" />
       <workItem from="1637080252108" duration="1191000" />
-      <workItem from="1637082599762" duration="50000" />
+      <workItem from="1637082599762" duration="337000" />
+      <workItem from="1637248176664" duration="67000" />
+      <workItem from="1637249140675" duration="2415000" />
     </task>
     <task id="LOCAL-00001" summary="&#10;Postupné mazání vstupů do konzole, přejmenované creditsToFinish na credits, smazání property známka u předmětu a vytvořena vazební třída Mark_Subject, změna metody selectStudent na statickou.">
       <created>1636652947400</created>
@@ -121,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636735969649</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Vymazání zbytečných proměnných, seznamů a funkcí. Přejmenování funkce listAllSubjects na listAllMySubjects a přejmenování proměnné who na whoIAm. Oprava chyb způsobených kvůli změnám v kodu.">
+      <created>1637082852707</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1637082852707</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,7 +142,8 @@
     <MESSAGE value="&#10;Postupné mazání vstupů do konzole, přejmenované creditsToFinish na credits, smazání property známka u předmětu a vytvořena vazební třída Mark_Subject, změna metody selectStudent na statickou." />
     <MESSAGE value="Postupná implementace semestru a ročníku." />
     <MESSAGE value="Opravena chyba v registrování předmětu u učitele" />
-    <option name="LAST_COMMIT_MESSAGE" value="Opravena chyba v registrování předmětu u učitele" />
+    <MESSAGE value="Vymazání zbytečných proměnných, seznamů a funkcí. Přejmenování funkce listAllSubjects na listAllMySubjects a přejmenování proměnné who na whoIAm. Oprava chyb způsobených kvůli změnám v kodu." />
+    <option name="LAST_COMMIT_MESSAGE" value="Vymazání zbytečných proměnných, seznamů a funkcí. Přejmenování funkce listAllSubjects na listAllMySubjects a přejmenování proměnné who na whoIAm. Oprava chyb způsobených kvůli změnám v kodu." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

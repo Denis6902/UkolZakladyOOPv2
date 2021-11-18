@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 
 namespace UkolZakladyOOP
@@ -21,7 +22,7 @@ namespace UkolZakladyOOP
 
         public virtual void aboutMe()
         {
-            Console.WriteLine("Dobrý den, jmenuji se {0} {1} a narodil/narodila jsem se {2} a jsem pouze obyčejná osoba", firstName, lastName, birthDate.ToString("MM.dd.yyyy"));
+            Console.WriteLine("Dobrý den, jmenuji se {0} a narodil/narodila jsem se {1} a jsem pouze obyčejná osoba", returnFullName(), birthDate.ToString("MM.dd.yyyy"));
         }
 
         public string returnFullName()
@@ -35,13 +36,14 @@ namespace UkolZakladyOOP
         public DateTime registrationDate;
         public List<Subject> subjectsToRegister = new();
         public List<Subject> registredSubjects = new();
-        public List<Exercise> exerciseList = new();
+        public List<Exercise> exercises = new();
         public static List<Mark_Subject> markSubjectList = new();
         public double averageOfAllMarks;
         public int year;
+        public int credits;
 
 
-        public Student(int id,string firstName, string lastName, DateTime birthDate, DateTime registrationDate, List<Subject> subjectsToRegister, List<Exercise> exerciseList, List<Student> students, int year) : base(id ,firstName, lastName, birthDate)
+        public Student(int id,string firstName, string lastName, DateTime birthDate, DateTime registrationDate, List<Subject> subjectsToRegister, List<Exercise> exercises, List<Student> students, int year) : base(id ,firstName, lastName, birthDate)
         {
             this.registrationDate = registrationDate;
             base.id = id;
@@ -49,23 +51,11 @@ namespace UkolZakladyOOP
             base.lastName = lastName;
             base.birthDate = birthDate;
             this.subjectsToRegister = subjectsToRegister;
-            this.exerciseList = exerciseList;
+            this.exercises = exercises;
             students.Add(this);
             this.year = year;
         }
-
-        public Student(int id,string firstName, string lastName, DateTime birthDate, DateTime registrationDate, List<Subject> subjectsToRegister, List<Exercise> exerciseList, List<Mark_Subject> markSubjectList, int year) : base(id, firstName, lastName, birthDate)
-        {
-            this.registrationDate = registrationDate;
-            base.id = id;
-            base.firstName = firstName;
-            base.lastName = lastName;
-            base.birthDate = birthDate;
-            this.subjectsToRegister = subjectsToRegister;
-            this.exerciseList = exerciseList;
-            this.year = year;
-        }
-
+        
         public static void nextYear(List<Student> students)
         {
             foreach (Student student in (students))
@@ -132,7 +122,7 @@ namespace UkolZakladyOOP
             {
                 foreach (Subject Subject in chosenStudent.subjectsToRegister)
                 {
-                    if (Subject.year == this.year && Subject.semester == currentSemester && Subject.completed == false)
+                    if (Subject.year == this.year && Subject.semester == currentSemester)
                     {
                         Console.WriteLine("Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}", Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName(), Subject.semester);
                     }
@@ -198,23 +188,15 @@ namespace UkolZakladyOOP
             }
 
         }
-
-        public void listAllTeachers(List<Teacher> teachers)
+        
+        public void goOnLecture(ref Student chosenStudent, ref Lecture chosenLecture, ref Subject chosenSubject, List<Lecture> lectures)
         {
-            foreach (Teacher Teacher in teachers)
-            {
-                Console.WriteLine("{0} - vyučuje {1} předmětů a {2} přednášky", Teacher.returnFullName(), Teacher.registredSubjects.Count, Teacher.lectureList.Count);
-            }
-        }
-
-        public void goOnLecture(ref Student chosenStudent, ref Lecture chosenLecture, ref Subject chosenSubject, List<Lecture> lectureList)
-        {
-            if (chosenStudent.exerciseList.Count != 0 && chosenStudent.registredSubjects.Count != 0)
+            if (chosenStudent.exercises.Count != 0 && chosenStudent.registredSubjects.Count != 0)
             {
                 bool end = false;
                 do
                 {
-                    foreach (Lecture Lecture in lectureList)
+                    foreach (Lecture Lecture in lectures)
                     {
                         if (chosenStudent.registredSubjects.Contains(Lecture.subject))
                         {
@@ -233,7 +215,7 @@ namespace UkolZakladyOOP
                         break;
                     }
 
-                    foreach (Lecture Lecture in lectureList)
+                    foreach (Lecture Lecture in lectures)
                     {
                         if (Lecture.name.ToLower() == lectureName.ToLower() && end == false)
                         {
@@ -269,21 +251,19 @@ namespace UkolZakladyOOP
                     chosenStudent.averageOfAllMarks += mark;
                     Console.WriteLine("Dokončil jsi předmět " + Subject.name + " s hodnocením " + mark);
                     Mark_Subject markSubject = new(mark, Subject, chosenStudent.id, markSubjectList);
-                    Student.markSubjectList.Add(markSubject);
                     chosenStudent.registredSubjects.Remove(Subject);
-                    Subject.completed = true;
                 }
             }
         }
 
         public void doExercise(ref Student chosenStudent, ref Exercise chosenExercise, ref Subject chosenSubject)
         {
-            if (chosenStudent.exerciseList.Count != 0 && chosenStudent.registredSubjects.Count != 0)
+            if (chosenStudent.exercises.Count != 0 && chosenStudent.registredSubjects.Count != 0)
             {
                 bool end = false;
                 do
                 {
-                    foreach (Exercise Exercise in chosenStudent.exerciseList)
+                    foreach (Exercise Exercise in chosenStudent.exercises)
                     {
                         if (chosenStudent.registredSubjects.Contains(Exercise.subject))
                         {
@@ -303,7 +283,7 @@ namespace UkolZakladyOOP
                         break;
                     }
 
-                    foreach (Exercise Exercise in chosenStudent.exerciseList)
+                    foreach (Exercise Exercise in chosenStudent.exercises)
                     {
                         if (Exercise.name.ToLower() == exerciseName.ToLower() && end == false)
                         {
@@ -330,33 +310,32 @@ namespace UkolZakladyOOP
         public string academicTitle;
         public List<Subject> subjectsToRegister = new();
         public List<Subject> registredSubjects = new();
-        public List<Exercise> exerciseList = new();
-        public List<Lecture> lectureList = new();
+        public List<Exercise> exercises = new();
+        public List<Lecture> lectures = new();
 
-        public Teacher(string academicTitle, int id, string firstName, string lastName, DateTime birthDate, List<Subject> subjectsToRegister, List<Exercise> exerciseList, List<Teacher> teachers) : base(id, firstName, lastName, birthDate)
+        public Teacher(string academicTitle, int id, string firstName, string lastName, DateTime birthDate, List<Subject> subjectsToRegister, List<Exercise> exercises, List<Teacher> teachers) : base(id, firstName, lastName, birthDate)
         {
             this.academicTitle = academicTitle;
             base.firstName = firstName;
             base.lastName = lastName;
             base.birthDate = birthDate;
             this.subjectsToRegister = subjectsToRegister;
-            this.exerciseList = exerciseList;
+            this.exercises = exercises;
             teachers.Add(this);
         }
-
-        public Teacher(string academicTitle, int id,string firstName, string lastName, DateTime birthDate, List<Subject> subjectsToRegister, List<Exercise> exerciseList) : base(id, firstName, lastName, birthDate)
-        {
-            this.academicTitle = academicTitle;
-            base.firstName = firstName;
-            base.lastName = lastName;
-            base.birthDate = birthDate;
-            this.subjectsToRegister = subjectsToRegister;
-            this.exerciseList = exerciseList;
-        }
-
+        
         public override void aboutMe()
         {
             Console.WriteLine("Dobrý den, jmenuji se {0} {1} {2} a narodil/narodila jsem se {3} a aktuálně učím ve škole", academicTitle, firstName, lastName, birthDate.ToString("MM.dd.yyyy"));
+        }
+        
+        
+        public static void listAllTeachers(List<Teacher> teachers)
+        {
+            foreach (Teacher Teacher in teachers)
+            {
+                Console.WriteLine("{0} - vyučuje {1} předmětů a {2} přednášky", Teacher.returnFullName(), Teacher.registredSubjects.Count, Teacher.lectures.Count);
+            }
         }
 
         public static void selectTeacher(List<Teacher> teachers, ref Teacher chosenTeacher)
@@ -622,13 +601,13 @@ namespace UkolZakladyOOP
 
         public void listAllExercise()
         {
-            if (exerciseList.Count == 0)
+            if (exercises.Count == 0)
             {
                 Console.WriteLine("Neexistuje žádné cvičení");
             }
             else
             {
-                foreach (Exercise oneExercise in exerciseList)
+                foreach (Exercise oneExercise in exercises)
                 {
                     Console.WriteLine("{0} - {1} kreditů, počítač je potřeba {2} (Předmět {3})", oneExercise.name, oneExercise.credits, oneExercise.computerRequired, oneExercise.subject.name);
 
@@ -636,19 +615,11 @@ namespace UkolZakladyOOP
             }
         }
 
-        public void listStudentsByAverageMarks(List<Student> students, ref List<string> averageMarksList)
+        public static void listStudentsByAverageMarks(List<Student> students)
         {
             foreach (Student Student in students)
             {
-                if (Student.markSubjectList.Count != 0)
-                {
-                    averageMarksList.Add(Student.calculateAverage() + " - průměrná známka ze všech předmětu studenta " + Student.returnFullName());
-                }
-            }
-
-            foreach (string averageMark in averageMarksList.OrderBy(x => x))
-            {
-                Console.WriteLine(averageMark);
+                Console.WriteLine(Student.calculateAverage() + " - průměrná známka ze všech předmětu studenta " + Student.returnFullName());
             }
 
             Console.ReadKey();
@@ -674,11 +645,11 @@ namespace UkolZakladyOOP
             }
         }
 
-        public void listAllLecture(List<Teacher> teachers)
+        public static void listAllLecture(List<Teacher> teachers)
         {
             foreach (Teacher Teacher in teachers)
             {
-                foreach (Lecture Lecture in Teacher.lectureList)
+                foreach (Lecture Lecture in Teacher.lectures)
                 {
                     Console.WriteLine("Předmět {0}, k dokončení je potřeba {1} kreditů, z {2}", Lecture.name, Lecture.credits, Lecture.subject.name);
                 }
@@ -711,14 +682,14 @@ namespace UkolZakladyOOP
             }
         }
 
-        public void addExerciseToList(Exercise exercise, ref List<Exercise> exerciseList)
+        public void addExerciseToList(Exercise exercise, ref List<Exercise> exercises)
         {
-            exerciseList.Add(exercise);
+            exercises.Add(exercise);
         }
 
-        public void addLectureToList(Lecture lecture, ref List<Lecture> lectureList)
+        public void addLectureToList(Lecture lecture, ref List<Lecture> lectures)
         {
-            lectureList.Add(lecture);
+            lectures.Add(lecture);
         }
 
         public void createNewExercise(ref Teacher chosenTeacher, ref Subject chosenSubject, List<Exercise> exercises, List<Subject> subjects)
@@ -798,8 +769,8 @@ namespace UkolZakladyOOP
 
                     if (end == true)
                     {
-                        Exercise ExerciseFromCzech = ExerciseFactory.CreateExerciseFromCzech(credits, chosenSubject);
-                        addExerciseToList(ExerciseFromCzech, ref exerciseList);
+                        Exercise ExerciseFromCzech = ExerciseFactory.CreateExerciseFromCzech(credits, chosenSubject, exercises);
+                        addExerciseToList(ExerciseFromCzech, ref this.exercises);
                     }
                 }
 
@@ -825,8 +796,8 @@ namespace UkolZakladyOOP
 
                     if (end == true)
                     {
-                        Exercise ExerciseFromEnglish = ExerciseFactory.CreateExerciseFromEnglish(credits, chosenSubject);
-                        addExerciseToList(ExerciseFromEnglish, ref exerciseList);
+                        Exercise ExerciseFromEnglish = ExerciseFactory.CreateExerciseFromEnglish(credits, chosenSubject, exercises);
+                        addExerciseToList(ExerciseFromEnglish, ref this.exercises);
                     }
 
                 }
@@ -853,8 +824,8 @@ namespace UkolZakladyOOP
 
                     if (end == true)
                     {
-                        Exercise ExerciseFromMath = ExerciseFactory.CreateExerciseFromMath(credits, chosenSubject);
-                        addExerciseToList(ExerciseFromMath, ref exerciseList);
+                        Exercise ExerciseFromMath = ExerciseFactory.CreateExerciseFromMath(credits, chosenSubject, exercises);
+                        addExerciseToList(ExerciseFromMath, ref this.exercises);
                     }
 
                 }
@@ -913,7 +884,7 @@ namespace UkolZakladyOOP
                 }
             }
 
-            Lecture Lecture = new(nameOfLecture, computerRequired, credits, chosenSubject, lectureList, chosenTeacher);
+            Lecture Lecture = new(nameOfLecture, computerRequired, credits, chosenSubject, lectures, chosenTeacher);
         }
 
         public void createLectureFromTemplate(ref Teacher chosenTeacher, ref Subject chosenSubject, List<Subject> subjects, List<Teacher> teachers)
@@ -973,8 +944,8 @@ namespace UkolZakladyOOP
 
                 if (end == true)
                 {
-                    Lecture LectureFromCzech = LectureFactory.CreateLectureFromCzech(credits, chosenSubject, lectureList, chosenTeacher);
-                    addLectureToList(LectureFromCzech, ref lectureList);
+                    Lecture LectureFromCzech = LectureFactory.CreateLectureFromCzech(credits, chosenSubject, lectures, chosenTeacher);
+                    addLectureToList(LectureFromCzech, ref lectures);
                 }
             }
 
@@ -1000,8 +971,8 @@ namespace UkolZakladyOOP
 
                 if (end == true)
                 {
-                    Lecture LectureFromEnglish = LectureFactory.CreateLectureFromEnglish(credits, chosenSubject, lectureList, chosenTeacher);
-                    addLectureToList(LectureFromEnglish, ref lectureList);
+                    Lecture LectureFromEnglish = LectureFactory.CreateLectureFromEnglish(credits, chosenSubject, lectures, chosenTeacher);
+                    addLectureToList(LectureFromEnglish, ref lectures);
                 }
 
             }
@@ -1028,8 +999,8 @@ namespace UkolZakladyOOP
 
                 if (end == true)
                 {
-                    Lecture LectureFromMath = LectureFactory.CreateLectureFromMath(credits, chosenSubject, lectureList, chosenTeacher);
-                    addLectureToList(LectureFromMath, ref lectureList);
+                    Lecture LectureFromMath = LectureFactory.CreateLectureFromMath(credits, chosenSubject, lectures, chosenTeacher);
+                    addLectureToList(LectureFromMath, ref lectures);
                 }
 
             }
@@ -1041,12 +1012,11 @@ namespace UkolZakladyOOP
         public string name;
         public Teacher garantOfSubject;
         public double credits;
+        public int exerciseCount;
+        public int lectureCount;
         public int year;
         public Semester semester;
         public int level;
-        public bool completed = false;
-
-        //public double mark;
 
         public Subject(string name, Teacher garantOfSubject, double credits, int year, Semester semester, List<Subject> subjects, int level)
         {
@@ -1058,17 +1028,6 @@ namespace UkolZakladyOOP
             subjects.Add(this);
             this.level = level;
         }
-
-        public Subject(string name, Teacher garantOfSubject, double credits,int year, Semester semester, int level)
-        {
-            this.name = name;
-            this.garantOfSubject = garantOfSubject;
-            this.credits = credits;
-            this.semester = semester;
-            this.year = year;
-            this.level = level;
-        }
-
     }
 
     public class Lecture
@@ -1079,15 +1038,16 @@ namespace UkolZakladyOOP
         public Subject subject;
         public Teacher Teacher;
 
-        public Lecture(string name, bool computerRequired, double credits, Subject subject, List<Lecture> lectureList, Teacher Teacher)
+        public Lecture(string name, bool computerRequired, double credits, Subject subject, List<Lecture> lectures, Teacher Teacher)
         {
             this.name = name;
             this.computerRequired = computerRequired;
             this.credits = credits;
             this.subject = subject;
             this.Teacher = Teacher;
-            Teacher.lectureList.Add(this);
-            lectureList.Add(this);
+            Teacher.lectures.Add(this);
+            lectures.Add(this);
+            subject.lectureCount += 1;
         }
     }
 
@@ -1107,15 +1067,9 @@ namespace UkolZakladyOOP
             this.credits = credits;
             this.subject = subject;
             exercises.Add(this);
+            subject.exerciseCount += 1;
         }
-
-        public Exercise(string name, bool computerRequired, double credits, Subject subject)
-        {
-            this.name = name;
-            this.computerRequired = computerRequired;
-            this.credits = credits;
-            this.subject = subject;
-        }
+        
     }
 
     class SubjectFactory
@@ -1138,37 +1092,38 @@ namespace UkolZakladyOOP
 
     class ExerciseFactory
     {
-        public static Exercise CreateExerciseFromMath(double credits, Subject Math)
+        public static Exercise CreateExerciseFromMath(double credits, Subject Math, List<Exercise> exercises)
         {
-            return new Exercise("Cvičení z Matematiky", false, credits, Math);
+            //return new Exercise("Cvičení z Matematiky", false, credits, Math);
+            return new Exercise("Cvičení z Matematiky", false, credits, Math, exercises);
         }
 
-        public static Exercise CreateExerciseFromCzech(double credits, Subject Czech)
+        public static Exercise CreateExerciseFromCzech(double credits, Subject Czech, List<Exercise> exercises)
         {
-            return new Exercise("Cvičení z Češtiny", false, credits, Czech);
+            return new Exercise("Cvičení z Češtiny", false, credits, Czech,exercises);
         }
 
-        public static Exercise CreateExerciseFromEnglish(double credits, Subject English)
+        public static Exercise CreateExerciseFromEnglish(double credits, Subject English, List<Exercise> exercises)
         {
-            return new Exercise("Cvičení z Angličtiny", false, credits, English);
+            return new Exercise("Cvičení z Angličtiny", false, credits, English,exercises);
         }
     }
 
     class LectureFactory
     {
-        public static Lecture CreateLectureFromMath(double credits, Subject Math, List<Lecture> lectureList, Teacher Teacher)
+        public static Lecture CreateLectureFromMath(double credits, Subject Math, List<Lecture> lectures, Teacher Teacher)
         {
-            return new Lecture("Přednáška z Matematiky", false, credits, Math, lectureList, Teacher);
+            return new Lecture("Přednáška z Matematiky", false, credits, Math, lectures, Teacher);
         }
 
-        public static Lecture CreateLectureFromCzech(double credits, Subject Czech, List<Lecture> lectureList, Teacher Teacher)
+        public static Lecture CreateLectureFromCzech(double credits, Subject Czech, List<Lecture> lectures, Teacher Teacher)
         {
-            return new Lecture("Přednáška z Češtiny", false, credits, Czech, lectureList, Teacher);
+            return new Lecture("Přednáška z Češtiny", false, credits, Czech, lectures, Teacher);
         }
 
-        public static Lecture CreateLectureFromEnglish(double credits, Subject English, List<Lecture> lectureList, Teacher Teacher)
+        public static Lecture CreateLectureFromEnglish(double credits, Subject English, List<Lecture> lectures, Teacher Teacher)
         {
-            return new Lecture("Přednáška z Angličtiny", false, credits, English, lectureList, Teacher);
+            return new Lecture("Přednáška z Angličtiny", false, credits, English, lectures, Teacher);
         }
     }
 

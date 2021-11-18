@@ -5,7 +5,7 @@ namespace UkolZakladyOOP
 {
     public class Method
     {
-        public void mainMenu(Exercise chosenExercise, Student chosenStudent, Teacher chosenTeacher, Subject chosenSubject, List<Student> students, List<Teacher> teachers, string whoIAm, List<string> averageMarksList, Lecture chosenLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, Semester currentSemester)
+        public void mainMenu(Exercise chosenExercise, Student chosenStudent, Teacher chosenTeacher, Subject chosenSubject, List<Student> students, List<Teacher> teachers, string whoIAm, Lecture chosenLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, Semester currentSemester)
         {
             do
             {
@@ -21,17 +21,17 @@ namespace UkolZakladyOOP
             {
                 case "1":
                     Student.selectStudent(students, ref chosenStudent);
-                    studentMenu(whoIAm, chosenStudent, chosenTeacher, students, teachers, chosenExercise, chosenSubject, averageMarksList, chosenLecture, exercises, subjects, lectureList, currentSemester);
+                    studentMenu(whoIAm, chosenStudent, chosenTeacher, students, teachers, chosenExercise, chosenSubject, chosenLecture, exercises, subjects, lectureList, currentSemester);
                     break;
 
                 case "2":
                     Teacher.selectTeacher(teachers, ref chosenTeacher);
-                    teacherMenu(chosenStudent, whoIAm, chosenTeacher, chosenExercise, chosenSubject, students, teachers, averageMarksList, chosenLecture, exercises, subjects, lectureList, ref currentSemester);
+                    teacherMenu(chosenStudent, whoIAm, chosenTeacher, chosenExercise, chosenSubject, students, teachers, chosenLecture, exercises, subjects, lectureList, ref currentSemester);
                     break;
             }
         }
         
-        public void studentMenu(string whoIAm, Student chosenStudent, Teacher chosenTeacher, List<Student> students, List<Teacher> teachers, Exercise chosenExercise, Subject chosenSubject, List<string> averageMarksList, Lecture chosenLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, Semester currentSemester)
+        public void studentMenu(string whoIAm, Student chosenStudent, Teacher chosenTeacher, List<Student> students, List<Teacher> teachers, Exercise chosenExercise, Subject chosenSubject, Lecture chosenLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, Semester currentSemester)
         {
             int optionAsInt;
             do
@@ -62,7 +62,7 @@ namespace UkolZakladyOOP
                             break;
 
                         case 3:
-                            mainMenu(chosenExercise, chosenStudent, chosenTeacher, chosenSubject, students, teachers, whoIAm, averageMarksList, chosenLecture, exercises, subjects, lectureList, currentSemester);
+                            mainMenu(chosenExercise, chosenStudent, chosenTeacher, chosenSubject, students, teachers, whoIAm, chosenLecture, exercises, subjects, lectureList, currentSemester);
                             break;
 
                         case 4:
@@ -80,7 +80,7 @@ namespace UkolZakladyOOP
                             break;
 
                         case 7:
-                            chosenStudent.listAllTeachers(teachers);
+                            Teacher.listAllTeachers(teachers);
                             Console.ReadKey();
                             break;
 
@@ -103,14 +103,14 @@ namespace UkolZakladyOOP
                 else
                 {
                     Console.Clear();
-                    studentMenu(whoIAm, chosenStudent, chosenTeacher, students, teachers, chosenExercise, chosenSubject, averageMarksList, chosenLecture, exercises, subjects, lectureList, currentSemester);
+                    studentMenu(whoIAm, chosenStudent, chosenTeacher, students, teachers, chosenExercise, chosenSubject, chosenLecture, exercises, subjects, lectureList, currentSemester);
                 }
 
             }
             while (optionAsInt > 0 && optionAsInt < 11);
         }
 
-        public void teacherMenu(Student chosenStudent, string whoIAm, Teacher chosenTeacher, Exercise chosenExercise, Subject chosenSubject, List<Student> students, List<Teacher> teachers, List<string> averageMarksList, Lecture chosenLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, ref Semester currentSemester)
+        public void teacherMenu(Student chosenStudent, string whoIAm, Teacher chosenTeacher, Exercise chosenExercise, Subject chosenSubject, List<Student> students, List<Teacher> teachers, Lecture chosenLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, ref Semester currentSemester)
         {
             int optionAsInt;
             do
@@ -134,7 +134,7 @@ namespace UkolZakladyOOP
                             break;
 
                         case 3:
-                            mainMenu(chosenExercise, chosenStudent, chosenTeacher, chosenSubject, students, teachers, whoIAm, averageMarksList, chosenLecture, exercises, subjects, lectureList, currentSemester);
+                            mainMenu(chosenExercise, chosenStudent, chosenTeacher, chosenSubject, students, teachers, whoIAm, chosenLecture, exercises, subjects, lectureList, currentSemester);
                             break;
 
                         case 4:
@@ -160,14 +160,14 @@ namespace UkolZakladyOOP
                             break;
 
                         case 9:
-                            chosenTeacher.listStudentsByAverageMarks(students, ref averageMarksList);
+                            Teacher.listStudentsByAverageMarks(students);
                             break;
 
                         case 10:
                             chosenTeacher.createLecture(ref chosenTeacher, ref chosenSubject, subjects, teachers);
                             break;
                         case 11:
-                            chosenTeacher.listAllLecture(teachers);
+                            Teacher.listAllLecture(teachers);
                             break;
                         
                         case 12:
@@ -182,7 +182,7 @@ namespace UkolZakladyOOP
                 else
                 {
                     Console.Clear();
-                    teacherMenu(chosenStudent, whoIAm, chosenTeacher, chosenExercise, chosenSubject, students, teachers, averageMarksList, chosenLecture, exercises, subjects, lectureList, ref currentSemester);
+                    teacherMenu(chosenStudent, whoIAm, chosenTeacher, chosenExercise, chosenSubject, students, teachers, chosenLecture, exercises, subjects, lectureList, ref currentSemester);
                 }
 
             }
