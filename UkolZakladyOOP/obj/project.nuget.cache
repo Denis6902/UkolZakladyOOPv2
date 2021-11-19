@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "TAqjcjwYPkfA7shc3WKnVeXcAcNaJNynvIN1466Z6Em0FYbiWWJAJmKoBeLBA3uQOEVSkRkRRzfD8M75nPyfpg==",
+  "dgSpecHash": "f5LNjdMyJKES1hi1uzRXU5XA6e22y4AfaPBfYwQPZitixhKMaJ8p0g7fZSRKTQOggJs6JYWLj30+kt1TVD2rSw==",
   "success": true,
-  "projectFilePath": "/Users/denis/RiderProjects/UkolZakladyOOPv2/UkolZakladyOOP/UkolZakladyOOP.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Denis\\RiderProjects\\UkolZakladyOOPv2\\UkolZakladyOOP\\UkolZakladyOOP.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Denis\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\Denis\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\Denis\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\Denis\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
+  ],
   "logs": []
 }
