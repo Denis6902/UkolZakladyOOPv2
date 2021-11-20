@@ -37,6 +37,7 @@ namespace UkolZakladyOOP
         public void studentMenu(string whoIAm, Student chosenStudent, Teacher chosenTeacher, List<Student> students, List<Teacher> teachers, Exercise chosenExercise, Subject chosenSubject, Lecture chosenLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, Semester currentSemester)
         {
             int optionAsInt = 0;
+            //int optionAsInt;
             do
             {
                 listAllChoices(whoIAm, currentSemester);

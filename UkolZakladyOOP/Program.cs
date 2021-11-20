@@ -47,7 +47,7 @@ namespace UkolZakladyOOP
             Student Pepa = new(2,"Pepa", "Nový", new DateTime(1998, 9, 3), new DateTime(2020, 10, 2), subjects.ToList(), exercises, students,1);
             Student Denis = new(3,"Denis", "Vojtěch", new DateTime(1984, 9, 3), new DateTime(2020, 1, 2), subjects.ToList(), exercises, students,1);
             
-            Pepa.registredSubjects.Add(x); // TEST_ONLY
+            //Pepa.subjects.Add(x); // TEST_ONLY
 
             Exercise ExerciseFromEnglish1_1 = new("Cvičení z Angličtiny", false, 50, English1_1, exercises);
             Exercise ExerciseFromCzech1_1 = new("Cvičení z Češtiny", false, 50, Czech1_1, exercises);
