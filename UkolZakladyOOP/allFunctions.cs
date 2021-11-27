@@ -131,9 +131,16 @@ namespace UkolZakladyOOP
                             Thread.Sleep(2500);
                             Console.Clear();
                             break;
+                        
+                        case 11:
+                            Console.WriteLine("Ukázka prerekvizit (optionAsInt = 1)");
+                            chosenStudent.registerSubject(currentSemester);
+                            Thread.Sleep(2500);
+                            Console.Clear();
+                            break;
                     }
-
-                    if (optionAsInt == 11)
+                    
+                    if (optionAsInt == 12)
                     {
                         whoIAm = "2";
                         mainMenu(chosenExercise, chosenStudent, chosenTeacher, chosenSubject, students, teachers, whoIAm, chosenLecture, exercises, subjects, lectureList, currentSemester);
@@ -146,12 +153,14 @@ namespace UkolZakladyOOP
                 }
 
             }
-            while (optionAsInt > 0 && optionAsInt < 11);
+            while (optionAsInt > 0 && optionAsInt < 12);
         }
 
         public void teacherMenu(Student chosenStudent, string whoIAm, Teacher chosenTeacher, Exercise chosenExercise, Subject chosenSubject, List<Student> students, List<Teacher> teachers, Lecture chosenLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, ref Semester currentSemester)
         {
-            int optionAsInt = 9;
+            int optionAsInt = 0;
+            //int optionAsInt;
+            
             do
             {
                 listAllChoices(whoIAm, currentSemester);
@@ -208,14 +217,14 @@ namespace UkolZakladyOOP
                         case 6:
                             Console.WriteLine("optionAsInt = 6");
                             chosenTeacher.createSubject(ref students, ref teachers, subjects);
-                            Thread.Sleep(2500);
+                            Thread.Sleep(5000);
                             Console.Clear();
                             break;
 
                         case 7:
                             Console.WriteLine("optionAsInt = 7");
                             chosenTeacher.createExercise(exercises, subjects);
-                            Thread.Sleep(2500);
+                            Thread.Sleep(5000);
                             Console.Clear();
                             break;
 
@@ -236,7 +245,7 @@ namespace UkolZakladyOOP
                         case 10:
                             Console.WriteLine("optionAsInt = 10");
                             chosenTeacher.createLecture(subjects, teachers);
-                            Thread.Sleep(2500);
+                            Thread.Sleep(5000);
                             Console.Clear();
                             break;
                         
