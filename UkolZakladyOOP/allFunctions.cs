@@ -36,24 +36,17 @@ namespace UkolZakladyOOP
         
         public void studentMenu(string whoIAm, Student chosenStudent, Teacher chosenTeacher, List<Student> students, List<Teacher> teachers, Exercise chosenExercise, Subject chosenSubject, Lecture chosenLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, Semester currentSemester)
         {
-            int optionAsInt = 0;
-            //int optionAsInt;
+            //int optionAsInt = 0;
+            int optionAsInt;
             do
             {
                 listAllChoices(whoIAm, currentSemester);
-                /*if (chosenStudent.registredSubjects.Count != 0)
-                {
-                    Console.WriteLine("7) Jít na přednášku");
-                    Console.WriteLine("8) Konec předmětu");
-                    Console.WriteLine("5) Udělat cvičení");
-                }*/
 
-                /*string option = Console.ReadLine();
+                string option = Console.ReadLine();
                 Console.Clear();
-                bool number = int.TryParse(option, out optionAsInt);*/
-                
-                bool number = true;
-                optionAsInt++;
+                bool number = int.TryParse(option, out optionAsInt);
+                //bool number = true;
+                //optionAsInt++;
                 Thread.Sleep(2500);
                 Console.Clear();
                 if (number)
@@ -76,8 +69,8 @@ namespace UkolZakladyOOP
 
                         case 3:
                             Console.WriteLine("optionAsInt = 3");
-                            //mainMenu(chosenExercise, chosenStudent, chosenTeacher, chosenSubject, students, teachers, whoIAm, chosenLecture, exercises, subjects, lectureList, currentSemester);
-                            Console.WriteLine("Spustí znovu celý program");
+                            mainMenu(chosenExercise, chosenStudent, chosenTeacher, chosenSubject, students, teachers, whoIAm, chosenLecture, exercises, subjects, lectureList, currentSemester);
+                            //Console.WriteLine("Spustí znovu celý program");
                             Thread.Sleep(2500);
                             Console.Clear();
                             break;
@@ -158,20 +151,20 @@ namespace UkolZakladyOOP
 
         public void teacherMenu(Student chosenStudent, string whoIAm, Teacher chosenTeacher, Exercise chosenExercise, Subject chosenSubject, List<Student> students, List<Teacher> teachers, Lecture chosenLecture, List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, ref Semester currentSemester)
         {
-            int optionAsInt = 0;
-            //int optionAsInt;
+            //int optionAsInt = 0;
+            int optionAsInt;
             
             do
             {
                 listAllChoices(whoIAm, currentSemester);
-                /*string option = Console.ReadLine();
+                string option = Console.ReadLine();
                 Console.Clear();
-                bool number = int.TryParse(option, out optionAsInt);*/
+                bool number = int.TryParse(option, out optionAsInt);
                 
                 
-                bool number = true;
+                /*bool number = true;
                 optionAsInt++;
-                Thread.Sleep(2500);
+                Thread.Sleep(2500);*/
                 Console.Clear();
                 if (number)
                 {

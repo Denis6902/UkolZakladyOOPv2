@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 
 
@@ -47,10 +47,6 @@ namespace UkolZakladyOOP
         public Student(int id,string firstName, string lastName, DateTime birthDate, DateTime registrationDate, List<Subject> subjects, List<Exercise> exercises, List<Student> students, int year) : base(id ,firstName, lastName, birthDate)
         {
             this.registrationDate = registrationDate;
-            base.id = id;
-            base.firstName = firstName;
-            base.lastName = lastName;
-            base.birthDate = birthDate;
             this.subjects = subjects;
             this.exercises = exercises;
             students.Add(this);
@@ -94,6 +90,7 @@ namespace UkolZakladyOOP
         {
             return averageOfAllMarks / markSubjectList.Count;
         }
+
 
         public static void selectStudent(List<Student> students, ref Student chosenStudent)
         {
@@ -192,7 +189,7 @@ namespace UkolZakladyOOP
                 {
                     if (SubjectStudent.Subject.year == this.year && SubjectStudent.Subject.semester == currentSemester && SubjectStudent.Subject.registered == true && this.firstName == SubjectStudent.Student.firstName)
                     {
-                        Console.WriteLine("Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}", SubjectStudent.Subject.name, SubjectStudent.Subject.credits, SubjectStudent.Subject.garantOfSubject.returnFullName(), SubjectStudent.Subject.semester);
+                        Console.WriteLine("Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}", SubjectStudent.Subject.name, SubjectStudent.credits, SubjectStudent.Subject.garantOfSubject.returnFullName(), SubjectStudent.Subject.semester);
                     }
                 }
             }
@@ -347,7 +344,7 @@ namespace UkolZakladyOOP
                         {
                             if (SubjectStudent.Subject == Exercise.subject && this.firstName == SubjectStudent.Student.firstName)
                             {
-                                SubjectStudent.Subject.credits = SubjectStudent.Subject.credits - Exercise.credits;
+                                SubjectStudent.credits = SubjectStudent.credits - Exercise.credits;
                                 Console.WriteLine("Dokončil jsi cvičení {0} - {1} kreditů", Exercise.name, Exercise.credits);
                             }
                         }
@@ -368,9 +365,6 @@ namespace UkolZakladyOOP
         public Teacher(string academicTitle, int id, string firstName, string lastName, DateTime birthDate, List<Subject> subjects, List<Exercise> exercises, List<Teacher> teachers) : base(id, firstName, lastName, birthDate)
         {
             this.academicTitle = academicTitle;
-            base.firstName = firstName;
-            base.lastName = lastName;
-            base.birthDate = birthDate;
             this.subjects = subjects;
             this.exercises = exercises;
             teachers.Add(this);
@@ -1213,12 +1207,14 @@ namespace UkolZakladyOOP
         public Subject Subject;
         public Student Student;
         public int level;
+        public double credits;
         
         public SubjectStudent(Subject Subject,Student Student,int level, List<SubjectStudent> subjectStudentList)
         {
             this.Subject = Subject;
             this.Student = Student;
             this.level = level;
+            this.credits = Subject.credits;
             subjectStudentList.Add(this);
         }
     }

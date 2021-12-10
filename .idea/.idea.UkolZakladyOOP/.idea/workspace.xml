@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="19098478-080f-4966-b60f-568f81cb1271" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/allClasses.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/allClasses.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" afterDir="false" />
@@ -27,6 +27,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/allClasses.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="20mKqo3NqWz9v53bS8MhlYVUT9a" />
@@ -87,7 +88,8 @@
       <workItem from="1637249140675" duration="2825000" />
       <workItem from="1637504770685" duration="174000" />
       <workItem from="1637939295188" duration="7952000" />
-      <workItem from="1638025032788" duration="7298000" />
+      <workItem from="1638025032788" duration="7460000" />
+      <workItem from="1639153753551" duration="2813000" />
     </task>
     <task id="LOCAL-00001" summary="&#10;Postupné mazání vstupů do konzole, přejmenované creditsToFinish na credits, smazání property známka u předmětu a vytvořena vazební třída Mark_Subject, změna metody selectStudent na statickou.">
       <created>1636652947400</created>
@@ -131,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637948603037</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Přidané prerekvizity. Upravená funkce nextYear (Když student nastoupní do dalšího ročníku, vynulují se mu známky a předměty. Předělaný způsob registrování předmětů u učitele. Přidaná funkce returnSubjectsCount na výpis počtu předmětů, které daný učitel učí. U předmětu přidaný atribut učitel. Vymazaný předmět, cvičení a přednáška z Matematiky. Opravené dvojí přidávání do seznamu u classy Lecture. Přidaný atribut level u classy SubjectStudent. Upravené některé funkce, kvůli již zmíněným změnám.">
+      <created>1638034464690</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1638034464690</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,26 +170,8 @@
     <MESSAGE value="Vymazání zbytečných proměnných, seznamů a funkcí. Přejmenování funkce listAllSubjects na listAllMySubjects a přejmenování proměnné who na whoIAm. Oprava chyb způsobených kvůli změnám v kodu." />
     <MESSAGE value="Přejmenování seznamu lectureList a lectures. Smazání seznamu averageMarksList. Změna několika funkcí na statické. Přejmenování seznamu exerciseList na exercises. Přidaný atribut credits u Studenta. Smazané zbytečné konstruktory. Odebraná funkce listAllTeachers u studenta a přidaná u učitele jako statická. Předělání výpisu všech studentů podle průměrných známek. Postupná změna systému předmětů, přednášek a cvičení (&quot;nezískáváš kredity, abys splnil předmět, ale dostáváš kredity, za to že jsi ten předmět splnil.&quot;)" />
     <MESSAGE value="Změna podmínky u funkce listAllMySubjects. Změna podmínek u funkce goOnLecture. Přidaný výpis u funkce goOnLecture. Změna podmínek u funkce endSubject. Přidaný výpis u funkce doExercise. Přidaná podmínka u funkce doExercise" />
-    <option name="LAST_COMMIT_MESSAGE" value="Změna podmínky u funkce listAllMySubjects. Změna podmínek u funkce goOnLecture. Přidaný výpis u funkce goOnLecture. Změna podmínek u funkce endSubject. Přidaný výpis u funkce doExercise. Přidaná podmínka u funkce doExercise" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/UkolZakladyOOP/allClasses.cs</url>
-          <line>239</line>
-          <properties documentPath="$PROJECT_DIR$/UkolZakladyOOP/allClasses.cs" initialLine="211" containingFunctionPresentation="method 'goOnLecture'">
-            <startOffsets>
-              <option value="9317" />
-            </startOffsets>
-            <endOffsets>
-              <option value="9318" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Přidané prerekvizity. Upravená funkce nextYear (Když student nastoupní do dalšího ročníku, vynulují se mu známky a předměty. Předělaný způsob registrování předmětů u učitele. Přidaná funkce returnSubjectsCount na výpis počtu předmětů, které daný učitel učí. U předmětu přidaný atribut učitel. Vymazaný předmět, cvičení a přednáška z Matematiky. Opravené dvojí přidávání do seznamu u classy Lecture. Přidaný atribut level u classy SubjectStudent. Upravené některé funkce, kvůli již zmíněným změnám." />
+    <option name="LAST_COMMIT_MESSAGE" value="Přidané prerekvizity. Upravená funkce nextYear (Když student nastoupní do dalšího ročníku, vynulují se mu známky a předměty. Předělaný způsob registrování předmětů u učitele. Přidaná funkce returnSubjectsCount na výpis počtu předmětů, které daný učitel učí. U předmětu přidaný atribut učitel. Vymazaný předmět, cvičení a přednáška z Matematiky. Opravené dvojí přidávání do seznamu u classy Lecture. Přidaný atribut level u classy SubjectStudent. Upravené některé funkce, kvůli již zmíněným změnám." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
