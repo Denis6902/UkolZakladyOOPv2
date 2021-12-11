@@ -4,25 +4,23 @@
     <projectFile>UkolZakladyOOP/UkolZakladyOOP.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19098478-080f-4966-b60f-568f81cb1271" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/UkolZakladyOOP/Exercise.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UkolZakladyOOP/Lecture.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UkolZakladyOOP/Person.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UkolZakladyOOP/Semester.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UkolZakladyOOP/Student.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UkolZakladyOOP/Subject.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UkolZakladyOOP/otherClasses.cs" afterDir="false" />
+    <list default="true" id="19098478-080f-4966-b60f-568f81cb1271" name="Changes" comment="Rozdělení všech class a enum ze souboru allClasses.cs do jednotlivých souborů.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/allClasses.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Exercise.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Exercise.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Lecture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Lecture.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Person.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Person.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Student.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Subject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Subject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/ref/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/ref/UkolZakladyOOP.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/ref/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/ref/UkolZakladyOOP.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/otherClasses.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/otherClasses.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +35,7 @@
     <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/otherClasses.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="20mKqo3NqWz9v53bS8MhlYVUT9a" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -53,6 +52,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -98,7 +98,7 @@
       <workItem from="1637939295188" duration="7952000" />
       <workItem from="1638025032788" duration="7460000" />
       <workItem from="1639153753551" duration="3068000" />
-      <workItem from="1639232676724" duration="904000" />
+      <workItem from="1639232676724" duration="7469000" />
     </task>
     <task id="LOCAL-00001" summary="&#10;Postupné mazání vstupů do konzole, přejmenované creditsToFinish na credits, smazání property známka u předmětu a vytvořena vazební třída Mark_Subject, změna metody selectStudent na statickou.">
       <created>1636652947400</created>
@@ -163,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639157100299</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Rozdělení všech class a enum ze souboru allClasses.cs do jednotlivých souborů.">
+      <created>1639233635031</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1639233635031</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,7 +203,8 @@
     <MESSAGE value="Přidané prerekvizity. Upravená funkce nextYear (Když student nastoupní do dalšího ročníku, vynulují se mu známky a předměty. Předělaný způsob registrování předmětů u učitele. Přidaná funkce returnSubjectsCount na výpis počtu předmětů, které daný učitel učí. U předmětu přidaný atribut učitel. Vymazaný předmět, cvičení a přednáška z Matematiky. Opravené dvojí přidávání do seznamu u classy Lecture. Přidaný atribut level u classy SubjectStudent. Upravené některé funkce, kvůli již zmíněným změnám." />
     <MESSAGE value="Opravení počítání kreditů u předmětů." />
     <MESSAGE value="Změna výstupu." />
-    <option name="LAST_COMMIT_MESSAGE" value="Změna výstupu." />
+    <MESSAGE value="Rozdělení všech class a enum ze souboru allClasses.cs do jednotlivých souborů." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rozdělení všech class a enum ze souboru allClasses.cs do jednotlivých souborů." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

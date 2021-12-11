@@ -5,12 +5,13 @@ using System.Threading;
 
 
 namespace UkolZakladyOOP
-{ 
+{
     public class MarkSubject
     {
         public double mark;
         public Subject subject;
         public int studentId;
+
         public MarkSubject(double mark, Subject subject, int studentId, List<MarkSubject> markSubjectList)
         {
             this.mark = mark;
@@ -26,8 +27,8 @@ namespace UkolZakladyOOP
         public Student Student;
         public int level;
         public double credits;
-        
-        public SubjectStudent(Subject Subject,Student Student,int level, List<SubjectStudent> subjectStudentList)
+
+        public SubjectStudent(Subject Subject, Student Student, int level, List<SubjectStudent> subjectStudentList)
         {
             this.Subject = Subject;
             this.Student = Student;
@@ -36,6 +37,4 @@ namespace UkolZakladyOOP
             subjectStudentList.Add(this);
         }
     }
-
-    
 }
