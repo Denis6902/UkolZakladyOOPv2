@@ -69,8 +69,8 @@ namespace UkolZakladyOOP
 
                         case 3:
                             Console.WriteLine("optionAsInt = 3");
-                            mainMenu(chosenExercise, chosenStudent, chosenTeacher, chosenSubject, students, teachers, whoIAm, chosenLecture, exercises, subjects, lectureList, currentSemester);
-                            //Console.WriteLine("Spustí znovu celý program");
+                            //mainMenu(chosenExercise, chosenStudent, chosenTeacher, chosenSubject, students, teachers, whoIAm, chosenLecture, exercises, subjects, lectureList, currentSemester);
+                            Console.WriteLine("Spustí znovu celý program");
                             Thread.Sleep(2500);
                             Console.Clear();
                             break;
