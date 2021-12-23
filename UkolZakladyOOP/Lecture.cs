@@ -9,8 +9,9 @@ namespace UkolZakladyOOP
         public double credits;
         public Subject subject;
         public Teacher Teacher;
+        public static List<Lecture> lectures = new();
 
-        public Lecture(string name, bool computerRequired, double credits, Subject subject, List<Lecture> lectures,
+        public Lecture(string name, bool computerRequired, double credits, Subject subject,
             Teacher Teacher)
         {
             this.name = name;
@@ -19,23 +20,22 @@ namespace UkolZakladyOOP
             this.subject = subject;
             this.Teacher = Teacher;
             lectures.Add(this);
-            Teacher.lectures.Add(this);
             subject.lectureCount += 1;
         }
     }
 
     class LectureFactory
     {
-        public static Lecture CreateLectureFromCzech(double credits, Subject Czech, List<Lecture> lectures,
+        public static Lecture CreateLectureFromCzech(double credits, Subject Czech,
             Teacher Teacher)
         {
-            return new Lecture("Přednáška z Češtiny", false, credits, Czech, lectures, Teacher);
+            return new Lecture("Přednáška z Češtiny", false, credits, Czech, Teacher);
         }
 
-        public static Lecture CreateLectureFromEnglish(double credits, Subject English, List<Lecture> lectures,
+        public static Lecture CreateLectureFromEnglish(double credits, Subject English,
             Teacher Teacher)
         {
-            return new Lecture("Přednáška z Angličtiny", false, credits, English, lectures, Teacher);
+            return new Lecture("Přednáška z Angličtiny", false, credits, English, Teacher);
         }
     }
 }

@@ -4,14 +4,11 @@
     <projectFile>UkolZakladyOOP/UkolZakladyOOP.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19098478-080f-4966-b60f-568f81cb1271" name="Changes" comment="Rozdělení všech class a enum ze souboru allClasses.cs do jednotlivých souborů.">
+    <list default="true" id="19098478-080f-4966-b60f-568f81cb1271" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Exercise.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Exercise.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Lecture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Lecture.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Person.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Person.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Student.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Subject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Subject.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" afterDir="false" />
@@ -20,7 +17,6 @@
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/ref/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/ref/UkolZakladyOOP.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/otherClasses.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/otherClasses.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +31,6 @@
     <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/otherClasses.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="20mKqo3NqWz9v53bS8MhlYVUT9a" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -98,7 +93,9 @@
       <workItem from="1637939295188" duration="7952000" />
       <workItem from="1638025032788" duration="7460000" />
       <workItem from="1639153753551" duration="3068000" />
-      <workItem from="1639232676724" duration="7469000" />
+      <workItem from="1639232676724" duration="8188000" />
+      <workItem from="1640188651105" duration="1237000" />
+      <workItem from="1640256588059" duration="6832000" />
     </task>
     <task id="LOCAL-00001" summary="&#10;Postupné mazání vstupů do konzole, přejmenované creditsToFinish na credits, smazání property známka u předmětu a vytvořena vazební třída Mark_Subject, změna metody selectStudent na statickou.">
       <created>1636652947400</created>
@@ -170,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639233635031</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Přidaná proměnná delay pro nastavení pauzy mezi funkcemi. Opravené přidávání přednášek do seznamu přednášek. Přenesený seznam studentů z Program.cs do classy student a převedený seznam studentů na statický. Opravené dokončení předmětu. Opravené zbytečné předávání některých parametrů. Celý kod je přeformátovaný pomocí IDE.">
+      <created>1639242086036</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1639242086036</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,7 +208,8 @@
     <MESSAGE value="Opravení počítání kreditů u předmětů." />
     <MESSAGE value="Změna výstupu." />
     <MESSAGE value="Rozdělení všech class a enum ze souboru allClasses.cs do jednotlivých souborů." />
-    <option name="LAST_COMMIT_MESSAGE" value="Rozdělení všech class a enum ze souboru allClasses.cs do jednotlivých souborů." />
+    <MESSAGE value="Přidaná proměnná delay pro nastavení pauzy mezi funkcemi. Opravené přidávání přednášek do seznamu přednášek. Přenesený seznam studentů z Program.cs do classy student a převedený seznam studentů na statický. Opravené dokončení předmětu. Opravené zbytečné předávání některých parametrů. Celý kod je přeformátovaný pomocí IDE." />
+    <option name="LAST_COMMIT_MESSAGE" value="Přidaná proměnná delay pro nastavení pauzy mezi funkcemi. Opravené přidávání přednášek do seznamu přednášek. Přenesený seznam studentů z Program.cs do classy student a převedený seznam studentů na statický. Opravené dokončení předmětu. Opravené zbytečné předávání některých parametrů. Celý kod je přeformátovaný pomocí IDE." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

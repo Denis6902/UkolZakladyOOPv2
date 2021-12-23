@@ -8,8 +8,8 @@ namespace UkolZakladyOOP
     {
         public void mainMenu(Exercise chosenExercise, Student chosenStudent, Teacher chosenTeacher,
             Subject chosenSubject, List<Teacher> teachers, string whoIAm, Lecture chosenLecture,
-            List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, Semester currentSemester,
-            int delay)
+            List<Exercise> exercises, List<Subject> subjects, Semester currentSemester,
+            in int delay)
         {
             do
             {
@@ -28,21 +28,21 @@ namespace UkolZakladyOOP
                     Student.selectStudent(ref chosenStudent);
                     studentMenu(whoIAm, chosenStudent, chosenTeacher, Student.students, teachers, chosenExercise,
                         chosenSubject,
-                        chosenLecture, exercises, subjects, lectureList, currentSemester, delay);
+                        chosenLecture, exercises, subjects, currentSemester, delay);
                     break;
 
                 case "2":
                     Teacher.selectTeacher(teachers, ref chosenTeacher);
                     teacherMenu(chosenStudent, whoIAm, chosenTeacher, chosenExercise, chosenSubject, Student.students,
                         teachers,
-                        chosenLecture, exercises, subjects, lectureList, ref currentSemester, delay);
+                        chosenLecture, exercises, subjects, ref currentSemester, delay);
                     break;
             }
         }
 
         public void studentMenu(string whoIAm, Student chosenStudent, Teacher chosenTeacher, List<Student> students,
             List<Teacher> teachers, Exercise chosenExercise, Subject chosenSubject, Lecture chosenLecture,
-            List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, Semester currentSemester,
+            List<Exercise> exercises, List<Subject> subjects, Semester currentSemester,
             int delay)
         {
             int optionAsInt = 0;
@@ -111,7 +111,7 @@ namespace UkolZakladyOOP
 
                         case 7:
                             Console.WriteLine("optionAsInt = 7");
-                            chosenStudent.goOnLecture(lectureList);
+                            chosenStudent.goOnLecture(Lecture.lectures);
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
@@ -150,21 +150,21 @@ namespace UkolZakladyOOP
                     {
                         whoIAm = "2";
                         mainMenu(chosenExercise, chosenStudent, chosenTeacher, chosenSubject, teachers,
-                            whoIAm, chosenLecture, exercises, subjects, lectureList, currentSemester, delay);
+                            whoIAm, chosenLecture, exercises, subjects, currentSemester, delay);
                     }
                 }
                 else
                 {
                     Console.Clear();
                     studentMenu(whoIAm, chosenStudent, chosenTeacher, students, teachers, chosenExercise, chosenSubject,
-                        chosenLecture, exercises, subjects, lectureList, currentSemester, delay);
+                        chosenLecture, exercises, subjects, currentSemester, delay);
                 }
             } while (optionAsInt > 0 && optionAsInt < 12);
         }
 
         public void teacherMenu(Student chosenStudent, string whoIAm, Teacher chosenTeacher, Exercise chosenExercise,
             Subject chosenSubject, List<Student> students, List<Teacher> teachers, Lecture chosenLecture,
-            List<Exercise> exercises, List<Subject> subjects, List<Lecture> lectureList, ref Semester currentSemester,
+            List<Exercise> exercises, List<Subject> subjects, ref Semester currentSemester,
             int delay)
         {
             int optionAsInt = 0;
@@ -262,7 +262,7 @@ namespace UkolZakladyOOP
 
                         case 11:
                             Console.WriteLine("optionAsInt = 11");
-                            Teacher.listAllLecture(teachers);
+                            Teacher.listAllLecture();
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
@@ -291,7 +291,7 @@ namespace UkolZakladyOOP
                 {
                     Console.Clear();
                     teacherMenu(chosenStudent, whoIAm, chosenTeacher, chosenExercise, chosenSubject, students, teachers,
-                        chosenLecture, exercises, subjects, lectureList, ref currentSemester, delay);
+                        chosenLecture, exercises, subjects, ref currentSemester, delay);
                 }
             } while (optionAsInt > 0 && optionAsInt < 14);
         }
