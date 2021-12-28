@@ -78,7 +78,7 @@ namespace UkolZakladyOOP
             Lecture LectureFromEnglish3_2 = new("Přednáška z Angličtiny", false, 50, English3_2, Pavel);
 
             //string whoIAm = null;
-            string whoIAm = "2";
+            string whoIAm = "1";
             const int delay = 2750;
             Teacher chosenTeacher = null;
             Student chosenStudent = null;
