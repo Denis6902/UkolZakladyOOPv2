@@ -8,9 +8,10 @@ namespace UkolZakladyOOP
         public bool computerRequired;
         public double credits;
         public Subject subject;
+        public static List<Exercise> exercises = new();
 
 
-        public Exercise(string name, bool computerRequired, double credits, Subject subject, List<Exercise> exercises)
+        public Exercise(string name, bool computerRequired, double credits, Subject subject)
         {
             this.name = name;
             this.computerRequired = computerRequired;
@@ -19,20 +20,19 @@ namespace UkolZakladyOOP
             exercises.Add(this);
             subject.exerciseCount += 1;
         }
-        
     }
 
 
     class ExerciseFactory
     {
-        public static Exercise CreateExerciseFromCzech(double credits, Subject Czech, List<Exercise> exercises)
+        public static Exercise CreateExerciseFromCzech(double credits, Subject Czech)
         {
-            return new Exercise("Cvičení z Češtiny", false, credits, Czech,exercises);
+            return new Exercise("Cvičení z Češtiny", false, credits, Czech);
         }
 
-        public static Exercise CreateExerciseFromEnglish(double credits, Subject English, List<Exercise> exercises)
+        public static Exercise CreateExerciseFromEnglish(double credits, Subject English)
         {
-            return new Exercise("Cvičení z Angličtiny", false, credits, English,exercises);
+            return new Exercise("Cvičení z Angličtiny", false, credits, English);
         }
     }
 }

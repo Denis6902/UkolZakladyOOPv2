@@ -15,11 +15,10 @@ namespace UkolZakladyOOP
         public int level;
         public bool registered = false;
         public bool completed = false;
-        
-
+        public static List<Subject> subjects = new();
 
         public Subject(string name, Teacher garantOfSubject, Teacher teacher, double credits, int year,
-            Semester semester, List<Subject> subjects, int level)
+            Semester semester, int level)
         {
             this.name = name;
             this.garantOfSubject = garantOfSubject;
@@ -36,15 +35,15 @@ namespace UkolZakladyOOP
     class SubjectFactory
     {
         public static Subject CreateCzech(Teacher teacher, Teacher garantOfSubject, double credits,
-            List<Subject> subjects, int year, Semester semester, int subjectLevel)
+            int year, Semester semester, int subjectLevel)
         {
-            return new Subject("Czech", teacher, garantOfSubject, credits, year, semester, subjects, subjectLevel);
+            return new Subject("Czech", teacher, garantOfSubject, credits, year, semester, subjectLevel);
         }
 
         public static Subject CreateEnglish(Teacher teacher, Teacher garantOfSubject, double credits,
-            List<Subject> subjects, int year, Semester semester, int subjectLevel)
+            int year, Semester semester, int subjectLevel)
         {
-            return new Subject("English", teacher, garantOfSubject, credits, year, semester, subjects, subjectLevel);
+            return new Subject("English", teacher, garantOfSubject, credits, year, semester, subjectLevel);
         }
     }
 }

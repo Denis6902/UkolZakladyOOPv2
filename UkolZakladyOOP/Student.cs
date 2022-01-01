@@ -7,8 +7,6 @@ namespace UkolZakladyOOP
     public class Student : Person
     {
         public DateTime registrationDate;
-        public List<Subject> subjects = new();
-        public List<Exercise> exercises = new();
         public static List<MarkSubject> markSubjectList = new();
         public List<SubjectStudent> studentSubjectList = new();
         public double averageOfAllMarks;
@@ -18,12 +16,10 @@ namespace UkolZakladyOOP
 
 
         public Student(int id, string firstName, string lastName, DateTime birthDate, DateTime registrationDate,
-            List<Subject> subjects, List<Exercise> exercises, int year) : base(id, firstName,
+            int year) : base(id, firstName,
             lastName, birthDate)
         {
             this.registrationDate = registrationDate;
-            this.subjects = subjects;
-            this.exercises = exercises;
             students.Add(this);
             this.year = year;
         }
@@ -117,9 +113,9 @@ namespace UkolZakladyOOP
                 }
             }
 
-            if (this.subjects.Count != 0)
+            if (Subject.subjects.Count != 0)
             {
-                foreach (Subject Subject in this.subjects)
+                foreach (Subject Subject in Subject.subjects)
                 {
                     if (Subject.year == this.year && Subject.semester == currentSemester)
                     {
@@ -146,7 +142,7 @@ namespace UkolZakladyOOP
                 string subject = "English1_1";
                 Console.WriteLine("subject = English1_1");
 
-                foreach (Subject Subject in this.subjects.ToArray())
+                foreach (Subject Subject in Subject.subjects.ToArray())
                 {
                     if (Subject.name.ToLower() == subject.ToLower())
                     {
@@ -154,7 +150,7 @@ namespace UkolZakladyOOP
                                           Subject.semester);
                         SubjectStudent SubjectStudent = new(Subject, this, Subject.level, this.studentSubjectList);
                         SubjectStudent.Subject.registered = true;
-                        subjects.Remove(Subject);
+                        Subject.subjects.Remove(Subject);
                     }
                 }
             }
@@ -211,7 +207,7 @@ namespace UkolZakladyOOP
         {
             Lecture Lecture = null;
             //Subject Subject = null;
-            if (this.exercises.Count != 0 && studentSubjectList.Count != 0)
+            if (Exercise.exercises.Count != 0 && studentSubjectList.Count != 0)
             {
                 bool end = false;
                 do
@@ -292,7 +288,7 @@ namespace UkolZakladyOOP
 
         public void doExercise()
         {
-            if (this.exercises.Count != 0 && this.subjects.Count != 0)
+            if (Exercise.exercises.Count != 0 && Subject.subjects.Count != 0)
             {
                 Exercise Exercise = null;
                 bool end = false;
@@ -300,7 +296,7 @@ namespace UkolZakladyOOP
                 {
                     foreach (SubjectStudent SubjectStudent in studentSubjectList)
                     {
-                        foreach (Exercise oneExercise in this.exercises)
+                        foreach (Exercise oneExercise in Exercise.exercises)
                         {
                             if (SubjectStudent.Subject.name == oneExercise.subject.name &&
                                 SubjectStudent.Subject.registered == true)
@@ -322,7 +318,7 @@ namespace UkolZakladyOOP
                         break;
                     }
 
-                    foreach (Exercise oneExercise in this.exercises)
+                    foreach (Exercise oneExercise in Exercise.exercises)
                     {
                         if (oneExercise.name.ToLower() == exerciseName.ToLower() && end == false)
                         {

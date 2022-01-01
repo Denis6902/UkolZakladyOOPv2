@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 
 namespace UkolZakladyOOP
 {
     public class Method
     {
-        public void mainMenu(Exercise chosenExercise, Student chosenStudent, Teacher chosenTeacher,
-            Subject chosenSubject, List<Teacher> teachers, string whoIAm, Lecture chosenLecture,
-            List<Exercise> exercises, List<Subject> subjects, Semester currentSemester,
-            in int delay)
+        public void mainMenu(string whoIAm, Semester currentSemester,
+            in int delay, Exercise chosenExercise = null, Teacher chosenTeacher = null, Student chosenStudent = null,
+            Subject chosenSubject = null, Lecture chosenLecture = null)
         {
             do
             {
@@ -26,23 +24,21 @@ namespace UkolZakladyOOP
             {
                 case "1":
                     Student.selectStudent(ref chosenStudent);
-                    studentMenu(whoIAm, chosenStudent, chosenTeacher, Student.students, teachers, chosenExercise,
+                    studentMenu(whoIAm, chosenStudent, chosenTeacher, chosenExercise,
                         chosenSubject,
-                        chosenLecture, exercises, subjects, currentSemester, delay);
+                        chosenLecture, currentSemester, delay);
                     break;
 
                 case "2":
-                    Teacher.selectTeacher(teachers, ref chosenTeacher);
-                    teacherMenu(chosenStudent, whoIAm, chosenTeacher, chosenExercise, chosenSubject, Student.students,
-                        teachers,
-                        chosenLecture, exercises, subjects, ref currentSemester, delay);
+                    Teacher.selectTeacher(ref chosenTeacher);
+                    teacherMenu(whoIAm, chosenTeacher, ref currentSemester, delay);
                     break;
             }
         }
 
-        public void studentMenu(string whoIAm, Student chosenStudent, Teacher chosenTeacher, List<Student> students,
-            List<Teacher> teachers, Exercise chosenExercise, Subject chosenSubject, Lecture chosenLecture,
-            List<Exercise> exercises, List<Subject> subjects, Semester currentSemester,
+        public void studentMenu(string whoIAm, Student chosenStudent, Teacher chosenTeacher,
+            Exercise chosenExercise, Subject chosenSubject, Lecture chosenLecture,
+            Semester currentSemester,
             int delay)
         {
             int optionAsInt = 0;
@@ -82,7 +78,7 @@ namespace UkolZakladyOOP
                         case 3:
                             Console.WriteLine("optionAsInt = 3");
                             //whoIAm = "2";
-                            //mainMenu(chosenExercise, chosenStudent, chosenTeacher, chosenSubject, teachers, whoIAm, chosenLecture, exercises, subjects, lectureList, currentSemester,delay);
+                            //mainMenu(whoIAm, currentSemester, delay, chosenExercise, chosenTeacher,chosenStudent,chosenSubject, chosenLecture);
                             Console.WriteLine("Spustí znovu celý program");
                             Thread.Sleep(delay);
                             Console.Clear();
@@ -104,7 +100,7 @@ namespace UkolZakladyOOP
 
                         case 6:
                             Console.WriteLine("optionAsInt = 6");
-                            Teacher.listAllTeachers(teachers);
+                            Teacher.listAllTeachers();
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
@@ -149,23 +145,21 @@ namespace UkolZakladyOOP
                     if (optionAsInt == 12)
                     {
                         whoIAm = "2";
-                        mainMenu(chosenExercise, chosenStudent, chosenTeacher, chosenSubject, teachers,
-                            whoIAm, chosenLecture, exercises, subjects, currentSemester, delay);
+                        mainMenu(whoIAm, currentSemester, delay, chosenExercise, chosenTeacher,
+                            chosenStudent,
+                            chosenSubject, chosenLecture);
                     }
                 }
                 else
                 {
                     Console.Clear();
-                    studentMenu(whoIAm, chosenStudent, chosenTeacher, students, teachers, chosenExercise, chosenSubject,
-                        chosenLecture, exercises, subjects, currentSemester, delay);
+                    studentMenu(whoIAm, chosenStudent, chosenTeacher, chosenExercise, chosenSubject,
+                        chosenLecture, currentSemester, delay);
                 }
             } while (optionAsInt > 0 && optionAsInt < 12);
         }
 
-        public void teacherMenu(Student chosenStudent, string whoIAm, Teacher chosenTeacher, Exercise chosenExercise,
-            Subject chosenSubject, List<Student> students, List<Teacher> teachers, Lecture chosenLecture,
-            List<Exercise> exercises, List<Subject> subjects, ref Semester currentSemester,
-            int delay)
+        public void teacherMenu(string whoIAm, Teacher chosenTeacher, ref Semester currentSemester, int delay)
         {
             int optionAsInt = 0;
             //int optionAsInt;
@@ -190,7 +184,7 @@ namespace UkolZakladyOOP
                     {
                         case 1:
                             Console.WriteLine("optionAsInt = 1");
-                            chosenTeacher.registerSubject(currentSemester, subjects);
+                            chosenTeacher.registerSubject(currentSemester);
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
@@ -227,14 +221,14 @@ namespace UkolZakladyOOP
 
                         case 6:
                             Console.WriteLine("optionAsInt = 6");
-                            chosenTeacher.createSubject(ref teachers, subjects);
+                            chosenTeacher.createSubject();
                             Thread.Sleep(5000);
                             Console.Clear();
                             break;
 
                         case 7:
                             Console.WriteLine("optionAsInt = 7");
-                            chosenTeacher.createExercise(exercises, subjects);
+                            chosenTeacher.createExercise();
                             Thread.Sleep(5000);
                             Console.Clear();
                             break;
@@ -255,7 +249,7 @@ namespace UkolZakladyOOP
 
                         case 10:
                             Console.WriteLine("optionAsInt = 10");
-                            chosenTeacher.createLecture(subjects, teachers);
+                            chosenTeacher.createLecture();
                             Thread.Sleep(5000);
                             Console.Clear();
                             break;
@@ -290,8 +284,7 @@ namespace UkolZakladyOOP
                 else
                 {
                     Console.Clear();
-                    teacherMenu(chosenStudent, whoIAm, chosenTeacher, chosenExercise, chosenSubject, students, teachers,
-                        chosenLecture, exercises, subjects, ref currentSemester, delay);
+                    teacherMenu(whoIAm, chosenTeacher, ref currentSemester, delay);
                 }
             } while (optionAsInt > 0 && optionAsInt < 14);
         }
