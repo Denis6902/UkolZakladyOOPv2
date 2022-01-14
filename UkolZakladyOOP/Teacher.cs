@@ -129,7 +129,7 @@ namespace UkolZakladyOOP
             {
                 foreach (Subject Subject in Subject.subjects.ToArray())
                 {
-                    if (Subject.teacher == this)
+                    if (Subject.teacher == this && Subject.semester == currentSemester)
                     {
                         Console.WriteLine(
                             "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
@@ -402,11 +402,11 @@ namespace UkolZakladyOOP
             }
         }
 
-        public static void listStudentsByAverageMarks(List<Student> students)
+        public static void listStudentsByAverageMarks()
         {
-            foreach (Student Student in students)
+            foreach (Student Student in Student.students)
             {
-                Console.WriteLine(Student.calculateAverage() + " - průměrná známka ze všech předmětu studenta " +
+                Console.WriteLine(Student.calculateAverageMark() + " - průměrná známka ze všech předmětu studenta " +
                                   Student.returnFullName());
             }
         }

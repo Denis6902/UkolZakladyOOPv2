@@ -242,7 +242,7 @@ namespace UkolZakladyOOP
 
                         case 9:
                             Console.WriteLine("optionAsInt = 9");
-                            Teacher.listStudentsByAverageMarks(Student.students);
+                            Teacher.listStudentsByAverageMarks();
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
