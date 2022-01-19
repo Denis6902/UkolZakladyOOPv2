@@ -4,32 +4,7 @@
     <projectFile>UkolZakladyOOP/UkolZakladyOOP.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19098478-080f-4966-b60f-568f81cb1271" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Student.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/ref/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/ref/UkolZakladyOOP.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.genruntimeconfig.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/ref/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/ref/UkolZakladyOOP.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/rider.project.restore.info" afterDir="false" />
-    </list>
+    <list default="true" id="19098478-080f-4966-b60f-568f81cb1271" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -145,7 +120,7 @@
       <workItem from="1640256588059" duration="6832000" />
       <workItem from="1640712338905" duration="337000" />
       <workItem from="1641053549139" duration="3077000" />
-      <workItem from="1642612987540" duration="5914000" />
+      <workItem from="1642612987540" duration="6174000" />
     </task>
     <task id="LOCAL-00001" summary="&#10;Postupné mazání vstupů do konzole, přejmenované creditsToFinish na credits, smazání property známka u předmětu a vytvořena vazební třída Mark_Subject, změna metody selectStudent na statickou.">
       <created>1636652947400</created>
@@ -231,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640712610570</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="U metod studenta doExercise() a goOnLecture() přidaný parametr currentSemester, kvůli kontrole jestli cvičení/přednáška je v aktuálním semestru.&#10;Opravena metoda studenta registerSubject().&#10;Změna výpisu u metody studenta listCompletedSubjects().">
+      <created>1642619139286</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1642619139286</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,7 +248,8 @@
     <MESSAGE value="Rozdělení všech class a enum ze souboru allClasses.cs do jednotlivých souborů." />
     <MESSAGE value="Přidaná proměnná delay pro nastavení pauzy mezi funkcemi. Opravené přidávání přednášek do seznamu přednášek. Přenesený seznam studentů z Program.cs do classy student a převedený seznam studentů na statický. Opravené dokončení předmětu. Opravené zbytečné předávání některých parametrů. Celý kod je přeformátovaný pomocí IDE." />
     <MESSAGE value="Přenastavená proměnná whoIAm na 1 (Student)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Přenastavená proměnná whoIAm na 1 (Student)." />
+    <MESSAGE value="U metod studenta doExercise() a goOnLecture() přidaný parametr currentSemester, kvůli kontrole jestli cvičení/přednáška je v aktuálním semestru.&#10;Opravena metoda studenta registerSubject().&#10;Změna výpisu u metody studenta listCompletedSubjects()." />
+    <option name="LAST_COMMIT_MESSAGE" value="U metod studenta doExercise() a goOnLecture() přidaný parametr currentSemester, kvůli kontrole jestli cvičení/přednáška je v aktuálním semestru.&#10;Opravena metoda studenta registerSubject().&#10;Změna výpisu u metody studenta listCompletedSubjects()." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

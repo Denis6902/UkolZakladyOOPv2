@@ -70,7 +70,7 @@ namespace UkolZakladyOOP
             Lecture LectureFromEnglish3_2 = new("Přednáška z Angličtiny", false, 50, English3_2, Pavel);
 
             string whoIAm = "1";
-            const int delay = 2500;
+            const int delay = 2750;
 
             Method Method = new();
             Method.mainMenu(whoIAm, currentSemester, delay);
