@@ -642,7 +642,7 @@ namespace UkolZakladyOOP
 
             //string lecture = Console.ReadLine().ToLower();
             string lecture = "Přednáška z Češtiny";
-            Console.WriteLine("lecture = Přednáška z MatČeštinyemy");
+            Console.WriteLine("lecture = Přednáška z Češtiny");
 
             Console.WriteLine("Počet kreditů k dokončení");
             //double credits = double.Parse(Console.ReadLine());

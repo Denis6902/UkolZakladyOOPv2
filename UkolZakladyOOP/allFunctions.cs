@@ -93,7 +93,7 @@ namespace UkolZakladyOOP
 
                         case 5:
                             Console.WriteLine("optionAsInt = 5");
-                            chosenStudent.doExercise();
+                            chosenStudent.doExercise(currentSemester);
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
@@ -107,7 +107,7 @@ namespace UkolZakladyOOP
 
                         case 7:
                             Console.WriteLine("optionAsInt = 7");
-                            chosenStudent.goOnLecture(Lecture.lectures);
+                            chosenStudent.goOnLecture(Lecture.lectures, currentSemester);
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;

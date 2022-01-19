@@ -13,7 +13,7 @@ namespace UkolZakladyOOP
             Teacher Aneta = new("Mgr.", 2, "Aneta", "Nováková", new DateTime(1987, 1, 8));
 
             Subject English1_1 = new("English1_1", Pavel, Pavel, 50, 1, Semester.Summer, 1);
-            Subject Czech1_1 = new("Czech1_1", Aneta, Aneta, 50, 1, Semester.Summer, 1);
+            Subject Czech1_1 = new("Czech1_1", Aneta, Aneta, 50, 1, Semester.Winter, 1);
 
             Subject English2_1 = new("English2_1", Pavel, Pavel, 50, 2, Semester.Summer, 1);
             Subject Czech2_1 = new("Czech2_1", Aneta, Aneta, 50, 2, Semester.Winter, 1);
@@ -22,7 +22,7 @@ namespace UkolZakladyOOP
             Subject Czech3_1 = new("Czech3_1", Aneta, Aneta, 50, 3, Semester.Winter, 1);
 
             Subject English1_2 = new("English1_2", Pavel, Pavel, 50, 1, Semester.Summer, 2);
-            Subject Czech1_2 = new("Czech1_2", Aneta, Aneta, 50, 1, Semester.Summer, 2);
+            Subject Czech1_2 = new("Czech1_2", Aneta, Aneta, 50, 1, Semester.Winter, 2);
 
             Subject English2_2 = new("English2_2", Pavel, Pavel, 50, 2, Semester.Summer, 2);
             Subject Czech2_2 = new("Czech2_2", Aneta, Aneta, 50, 2, Semester.Winter, 2);
