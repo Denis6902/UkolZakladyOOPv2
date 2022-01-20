@@ -11,14 +11,13 @@ namespace UkolZakladyOOP
         public Teacher Teacher;
         public static List<Lecture> lectures = new();
 
-        public Lecture(string name, bool computerRequired, double credits, Subject subject,
-            Teacher Teacher)
+        public Lecture(string name, bool computerRequired, double credits, Subject subject)
         {
             this.name = name;
             this.computerRequired = computerRequired;
             this.credits = credits;
             this.subject = subject;
-            this.Teacher = Teacher;
+            this.Teacher = this.subject.teacher;
             lectures.Add(this);
             subject.lectureCount += 1;
         }
@@ -26,16 +25,14 @@ namespace UkolZakladyOOP
 
     class LectureFactory
     {
-        public static Lecture CreateLectureFromCzech(double credits, Subject Czech,
-            Teacher Teacher)
+        public static Lecture CreateLectureFromCzech(double credits, Subject Czech)
         {
-            return new Lecture("Přednáška z Češtiny", false, credits, Czech, Teacher);
+            return new Lecture("Přednáška z Češtiny", false, credits, Czech);
         }
 
-        public static Lecture CreateLectureFromEnglish(double credits, Subject English,
-            Teacher Teacher)
+        public static Lecture CreateLectureFromEnglish(double credits, Subject English)
         {
-            return new Lecture("Přednáška z Angličtiny", false, credits, English, Teacher);
+            return new Lecture("Přednáška z Angličtiny", false, credits, English);
         }
     }
 }

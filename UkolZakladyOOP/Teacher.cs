@@ -162,7 +162,6 @@ namespace UkolZakladyOOP
                 //string name = Console.ReadLine();
                 string name = "Nový Předmět";
                 Console.WriteLine("name = Nový předmět");
-
                 do
                 {
                     //Console.WriteLine("Garant předmětu:");
@@ -626,14 +625,12 @@ namespace UkolZakladyOOP
                 }
             }
 
-            Lecture Lecture = new(nameOfLecture, computerRequired, credits, Subject, Teacher);
+            Lecture Lecture = new(nameOfLecture, computerRequired, credits, Subject);
         }
 
         public void createLectureFromTemplate()
         {
             Subject Subject = null;
-            Teacher Teacher = null;
-
             bool end = false;
             Console.WriteLine("Jméno:");
 
@@ -648,28 +645,7 @@ namespace UkolZakladyOOP
             //double credits = double.Parse(Console.ReadLine());
             double credits = 50;
             Console.WriteLine("credits = 50");
-
-            //Console.WriteLine("Učitel:");
-
-            foreach (Teacher oneTeacher in teachers)
-            {
-                Console.WriteLine(oneTeacher.firstName + " / ");
-            }
-
-            Console.WriteLine();
-
-            //string nameTeacher = Console.ReadLine();
-            string nameTeacher = "Pavel";
-            Console.WriteLine("nameTeacher = Pavel");
-
-            foreach (Teacher oneTeacher in teachers)
-            {
-                if (oneTeacher.firstName.ToLower() == nameTeacher.ToLower())
-                {
-                    Teacher = oneTeacher;
-                }
-            }
-
+            
             if (lecture == "přednáška z češtiny")
             {
                 if (end == false)
@@ -693,7 +669,7 @@ namespace UkolZakladyOOP
                 if (end == true)
                 {
                     Lecture LectureFromCzech =
-                        LectureFactory.CreateLectureFromCzech(credits, Subject, Teacher);
+                        LectureFactory.CreateLectureFromCzech(credits, Subject);
                     Lecture.lectures.Add(LectureFromCzech);
                 }
             }
@@ -721,7 +697,7 @@ namespace UkolZakladyOOP
                 if (end == true)
                 {
                     Lecture LectureFromEnglish =
-                        LectureFactory.CreateLectureFromEnglish(credits, Subject, Teacher);
+                        LectureFactory.CreateLectureFromEnglish(credits, Subject);
                     Lecture.lectures.Add(LectureFromEnglish);
                 }
             }
