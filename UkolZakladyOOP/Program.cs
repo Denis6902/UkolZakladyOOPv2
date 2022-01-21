@@ -13,7 +13,8 @@ namespace UkolZakladyOOP
             Teacher Aneta = new("Mgr.", 2, "Aneta", "Nováková", new DateTime(1987, 1, 8));
 
             Subject English1_1 = new("English1_1", Pavel, Pavel, 50, 1, Semester.Summer, 1);
-            Subject ooo1_1 = new("ooo1_1", Aneta, Aneta, 50, 1, Semester.Summer, 1); // TEST_ONLY
+            Subject xxx1_1 = new("ooo1_1", Aneta, Aneta, 50, 1, Semester.Summer, 1); // TEST_ONLY
+            //Subject aaa1_1 = new("aaa_1_1", Aneta, Aneta, 50, 1, Semester.Summer, 1); // TEST_ONLY
             Subject Czech1_1 = new("Czech1_1", Aneta, Aneta, 50, 1, Semester.Winter, 1);
 
             Subject English2_1 = new("English2_1", Pavel, Pavel, 50, 2, Semester.Summer, 1);
@@ -23,7 +24,7 @@ namespace UkolZakladyOOP
             Subject Czech3_1 = new("Czech3_1", Aneta, Aneta, 50, 3, Semester.Winter, 1);
 
             Subject English1_2 = new("English1_2", Pavel, Pavel, 50, 1, Semester.Summer, 2);
-            Subject ooo1_2 = new("ooo1_2", Aneta, Aneta, 50, 1, Semester.Summer, 2); // TEST_ONLY
+            Subject xxx_2 = new("ooo1_2", Aneta, Aneta, 50, 1, Semester.Summer, 2); // TEST_ONLY
             Subject Czech1_2 = new("Czech1_2", Aneta, Aneta, 50, 1, Semester.Winter, 2);
 
             Subject English2_2 = new("English2_2", Pavel, Pavel, 50, 2, Semester.Summer, 2);
@@ -32,10 +33,8 @@ namespace UkolZakladyOOP
             Subject English3_2 = new("English3_2", Pavel, Pavel, 50, 3, Semester.Summer, 2);
             Subject Czech3_2 = new("Czech3_2", Aneta, Aneta, 50, 3, Semester.Winter, 2);
 
-            Subject x = new("x", Pavel, null, 0, 1, Semester.Summer, 1); // TEST_ONLY
-            Lecture c = new("c", false, 0, x); // TEST_ONLY
-            Exercise o = new Exercise("o", false, 0, x); // TEST_ONLY
-            Lecture ppp1_1 = new("ppp1_1", false, 50, ooo1_1); // TEST_ONLY
+            Exercise ooo1_1 = new Exercise("o", false, 0, xxx1_1); // TEST_ONLY
+            Lecture ppp1_1 = new("ppp1_1", false, 50, xxx1_1); // TEST_ONLY
 
 
             Student Jakub = new(1, "Jakub", "Novák", new DateTime(1999, 7, 2), new DateTime(2020, 10, 1),
@@ -74,7 +73,7 @@ namespace UkolZakladyOOP
             Lecture LectureFromEnglish3_2 = new("Přednáška z Angličtiny", false, 50, English3_2);
 
             string whoIAm = "1";
-            const int delay = 2750;
+            const int delay = 2500;
 
             Method Method = new();
             Method.mainMenu(whoIAm, currentSemester, delay);

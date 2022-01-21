@@ -107,7 +107,7 @@ namespace UkolZakladyOOP
 
                         case 7:
                             Console.WriteLine("optionAsInt = 7");
-                            chosenStudent.goOnLecture(Lecture.lectures, currentSemester);
+                            chosenStudent.goOnLecture(currentSemester);
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;

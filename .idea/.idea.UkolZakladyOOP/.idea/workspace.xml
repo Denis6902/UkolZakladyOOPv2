@@ -5,19 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19098478-080f-4966-b60f-568f81cb1271" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Lecture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Lecture.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/UkolZakladyOOP/xs/UserPrefs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/UkolZakladyOOP/xs/UserPrefs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/UkolZakladyOOP/xs/project-cache/UkolZakladyOOP-Debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/UkolZakladyOOP/xs/project-cache/UkolZakladyOOP-Debug.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Student.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Subject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Subject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/ref/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/ref/UkolZakladyOOP.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.genruntimeconfig.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/ref/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/ref/UkolZakladyOOP.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,9 +48,11 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/63e5fabb426c406cb30992dab6a917512c000/6/Console.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/otherClasses.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -65,7 +79,7 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected=".NET Project.External - UkolZakladyOOP">
+  <component name="RunManager" selected=".NET Project.UkolZakladyOOP">
     <configuration name="External - UkolZakladyOOP" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -255,6 +269,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
