@@ -62,8 +62,9 @@ namespace UkolZakladyOOP
             }
         }
 
-        public static void selectTeacher(ref Teacher chosenTeacher)
+        public static Teacher selectTeacher()
         {
+            Teacher chosenTeacher = null;
             bool end = false;
             do
             {
@@ -86,6 +87,8 @@ namespace UkolZakladyOOP
                     }
                 }
             } while (end == false);
+
+            return chosenTeacher;
         }
 
         public void registerSubject(Semester currentSemester)
@@ -145,6 +148,7 @@ namespace UkolZakladyOOP
 
         public void createSubject()
         {
+            // TODO : Zkusit předělat, aby to bylo přehlednější 
             bool end = false;
             Teacher garantOfSubject = null;
             Teacher teacher = null;

@@ -12,7 +12,7 @@ namespace UkolZakladyOOP
                 Console.WriteLine("Kdo jsi?");
                 Console.WriteLine("1) Student");
                 Console.WriteLine("2) Ucitel");
-                //whoIAm = Console.ReadLine().ToLower();
+                //whoIAm = Console.ReadLine();
                 Console.WriteLine("whoIAm = " + whoIAm);
                 Thread.Sleep(delay);
                 Console.Clear();
@@ -21,14 +21,12 @@ namespace UkolZakladyOOP
             switch (whoIAm)
             {
                 case "1":
-                    Student chosenStudent = null;
-                    Student.selectStudent(ref chosenStudent);
+                    Student chosenStudent = Student.selectStudent();
                     studentMenu(whoIAm, chosenStudent, currentSemester, delay);
                     break;
 
                 case "2":
-                    Teacher chosenTeacher = null;
-                    Teacher.selectTeacher(ref chosenTeacher);
+                    Teacher chosenTeacher = Teacher.selectTeacher();
                     teacherMenu(whoIAm, chosenTeacher, currentSemester, delay);
                     break;
             }

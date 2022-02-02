@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace UkolZakladyOOP
 {
@@ -14,7 +13,6 @@ namespace UkolZakladyOOP
 
             Subject English1_1 = new("English1_1", Pavel, Pavel, 50, 1, Semester.Summer, 1);
             Subject xxx1_1 = new("xxx1_1", Aneta, Aneta, 50, 1, Semester.Summer, 1); // TEST_ONLY
-            //Subject aaa1_1 = new("aaa_1_1", Aneta, Aneta, 50, 1, Semester.Summer, 1); // TEST_ONLY
             Subject Czech1_1 = new("Czech1_1", Aneta, Aneta, 50, 1, Semester.Winter, 1);
 
             Subject English2_1 = new("English2_1", Pavel, Pavel, 50, 2, Semester.Summer, 1);
