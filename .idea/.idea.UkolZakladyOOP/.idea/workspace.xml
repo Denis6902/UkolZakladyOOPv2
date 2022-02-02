@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19098478-080f-4966-b60f-568f81cb1271" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/UkolZakladyOOP/xs/UserPrefs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/UkolZakladyOOP/xs/UserPrefs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/UkolZakladyOOP/xs/project-cache/UkolZakladyOOP-Debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/UkolZakladyOOP/xs/project-cache/UkolZakladyOOP-Debug.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Student.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/ref/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/ref/UkolZakladyOOP.dll" afterDir="false" />
@@ -48,11 +46,13 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/63e5fabb426c406cb30992dab6a917512c000/6/Console.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/otherClasses.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/otherClasses.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -79,7 +79,7 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected=".NET Project.UkolZakladyOOP">
+  <component name="RunManager" selected=".NET Project.External - UkolZakladyOOP">
     <configuration name="External - UkolZakladyOOP" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -151,6 +151,8 @@
       <workItem from="1642612987540" duration="6174000" />
       <workItem from="1642619499214" duration="459000" />
       <workItem from="1642699353059" duration="5363000" />
+      <workItem from="1642709728222" duration="247000" />
+      <workItem from="1643813248992" duration="1377000" />
     </task>
     <task id="LOCAL-00001" summary="&#10;Postupné mazání vstupů do konzole, přejmenované creditsToFinish na credits, smazání property známka u předmětu a vytvořena vazební třída Mark_Subject, změna metody selectStudent na statickou.">
       <created>1636652947400</created>
@@ -250,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642619538777</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Přidané testovací předměty a přednáška.&#10;Postupné opravení &quot;prerekvizit&quot;.&#10;Opravený výpis v metodě listCompletedSubjects().">
+      <created>1642709971328</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1642709971328</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,7 +278,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -288,7 +296,8 @@
     <MESSAGE value="Přenastavená proměnná whoIAm na 1 (Student)." />
     <MESSAGE value="U metod studenta doExercise() a goOnLecture() přidaný parametr currentSemester, kvůli kontrole jestli cvičení/přednáška je v aktuálním semestru.&#10;Opravena metoda studenta registerSubject().&#10;Změna výpisu u metody studenta listCompletedSubjects()." />
     <MESSAGE value="Změněná prodleva mezi metodama." />
-    <option name="LAST_COMMIT_MESSAGE" value="Změněná prodleva mezi metodama." />
+    <MESSAGE value="Přidané testovací předměty a přednáška.&#10;Postupné opravení &quot;prerekvizit&quot;.&#10;Opravený výpis v metodě listCompletedSubjects()." />
+    <option name="LAST_COMMIT_MESSAGE" value="Přidané testovací předměty a přednáška.&#10;Postupné opravení &quot;prerekvizit&quot;.&#10;Opravený výpis v metodě listCompletedSubjects()." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

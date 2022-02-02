@@ -111,7 +111,7 @@ namespace UkolZakladyOOP
                 {
                     if ((Subject.name.ToLower()) == subject.ToLower())
                     {
-                        Console.WriteLine(this.firstName + " jsi zapsaný do " + Subject.name + " předmětu, Semestr: " +
+                        Console.WriteLine(this.firstName + " nyní učíš " + Subject.name + " Semestr: " +
                                           Subject.semester);
                         Subject.teacher = this;
                     }

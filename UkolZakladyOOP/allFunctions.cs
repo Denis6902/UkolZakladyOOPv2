@@ -5,9 +5,7 @@ namespace UkolZakladyOOP
 {
     public class Method
     {
-        public void mainMenu(string whoIAm, Semester currentSemester,
-            in int delay, Exercise chosenExercise = null, Teacher chosenTeacher = null, Student chosenStudent = null,
-            Subject chosenSubject = null, Lecture chosenLecture = null)
+        public void mainMenu(string whoIAm, Semester currentSemester, in int delay)
         {
             do
             {
@@ -23,23 +21,20 @@ namespace UkolZakladyOOP
             switch (whoIAm)
             {
                 case "1":
+                    Student chosenStudent = null;
                     Student.selectStudent(ref chosenStudent);
-                    studentMenu(whoIAm, chosenStudent, chosenTeacher, chosenExercise,
-                        chosenSubject,
-                        chosenLecture, currentSemester, delay);
+                    studentMenu(whoIAm, chosenStudent, currentSemester, delay);
                     break;
 
                 case "2":
+                    Teacher chosenTeacher = null;
                     Teacher.selectTeacher(ref chosenTeacher);
-                    teacherMenu(whoIAm, chosenTeacher, ref currentSemester, delay);
+                    teacherMenu(whoIAm, chosenTeacher, currentSemester, delay);
                     break;
             }
         }
 
-        public void studentMenu(string whoIAm, Student chosenStudent, Teacher chosenTeacher,
-            Exercise chosenExercise, Subject chosenSubject, Lecture chosenLecture,
-            Semester currentSemester,
-            int delay)
+        public void studentMenu(string whoIAm, Student chosenStudent, Semester currentSemester, int delay)
         {
             int optionAsInt = 0;
             //int optionAsInt;
@@ -145,21 +140,18 @@ namespace UkolZakladyOOP
                     if (optionAsInt == 12)
                     {
                         whoIAm = "2";
-                        mainMenu(whoIAm, currentSemester, delay, chosenExercise, chosenTeacher,
-                            chosenStudent,
-                            chosenSubject, chosenLecture);
+                        mainMenu(whoIAm, currentSemester, delay);
                     }
                 }
                 else
                 {
                     Console.Clear();
-                    studentMenu(whoIAm, chosenStudent, chosenTeacher, chosenExercise, chosenSubject,
-                        chosenLecture, currentSemester, delay);
+                    studentMenu(whoIAm, chosenStudent, currentSemester, delay);
                 }
             } while (optionAsInt > 0 && optionAsInt < 12);
         }
 
-        public void teacherMenu(string whoIAm, Teacher chosenTeacher, ref Semester currentSemester, int delay)
+        public void teacherMenu(string whoIAm, Teacher chosenTeacher, Semester currentSemester, int delay)
         {
             int optionAsInt = 0;
             //int optionAsInt;
@@ -284,7 +276,7 @@ namespace UkolZakladyOOP
                 else
                 {
                     Console.Clear();
-                    teacherMenu(whoIAm, chosenTeacher, ref currentSemester, delay);
+                    teacherMenu(whoIAm, chosenTeacher, currentSemester, delay);
                 }
             } while (optionAsInt > 0 && optionAsInt < 14);
         }

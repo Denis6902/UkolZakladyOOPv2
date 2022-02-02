@@ -13,7 +13,7 @@ namespace UkolZakladyOOP
             Teacher Aneta = new("Mgr.", 2, "Aneta", "Nováková", new DateTime(1987, 1, 8));
 
             Subject English1_1 = new("English1_1", Pavel, Pavel, 50, 1, Semester.Summer, 1);
-            Subject xxx1_1 = new("ooo1_1", Aneta, Aneta, 50, 1, Semester.Summer, 1); // TEST_ONLY
+            Subject xxx1_1 = new("xxx1_1", Aneta, Aneta, 50, 1, Semester.Summer, 1); // TEST_ONLY
             //Subject aaa1_1 = new("aaa_1_1", Aneta, Aneta, 50, 1, Semester.Summer, 1); // TEST_ONLY
             Subject Czech1_1 = new("Czech1_1", Aneta, Aneta, 50, 1, Semester.Winter, 1);
 
@@ -24,7 +24,7 @@ namespace UkolZakladyOOP
             Subject Czech3_1 = new("Czech3_1", Aneta, Aneta, 50, 3, Semester.Winter, 1);
 
             Subject English1_2 = new("English1_2", Pavel, Pavel, 50, 1, Semester.Summer, 2);
-            Subject xxx_2 = new("ooo1_2", Aneta, Aneta, 50, 1, Semester.Summer, 2); // TEST_ONLY
+            Subject xxx_2 = new("xxx1_2", Aneta, Aneta, 50, 1, Semester.Summer, 2); // TEST_ONLY
             Subject Czech1_2 = new("Czech1_2", Aneta, Aneta, 50, 1, Semester.Winter, 2);
 
             Subject English2_2 = new("English2_2", Pavel, Pavel, 50, 2, Semester.Summer, 2);
@@ -33,7 +33,7 @@ namespace UkolZakladyOOP
             Subject English3_2 = new("English3_2", Pavel, Pavel, 50, 3, Semester.Summer, 2);
             Subject Czech3_2 = new("Czech3_2", Aneta, Aneta, 50, 3, Semester.Winter, 2);
 
-            Exercise ooo1_1 = new Exercise("o", false, 0, xxx1_1); // TEST_ONLY
+            Exercise ooo1_1 = new Exercise("ooo1_1", false, 50, xxx1_1); // TEST_ONLY
             Lecture ppp1_1 = new("ppp1_1", false, 50, xxx1_1); // TEST_ONLY
 
 
