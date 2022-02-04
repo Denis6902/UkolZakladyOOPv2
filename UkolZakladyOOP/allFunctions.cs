@@ -225,7 +225,7 @@ namespace UkolZakladyOOP
 
                         case 8:
                             Console.WriteLine("optionAsInt = 8");
-                            chosenTeacher.listAllExercise();
+                            Teacher.listAllExercise();
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
@@ -254,13 +254,6 @@ namespace UkolZakladyOOP
                         case 12:
                             Console.WriteLine("optionAsInt = 12");
                             Student.nextSemester(ref currentSemester);
-                            Thread.Sleep(delay);
-                            Console.Clear();
-                            break;
-
-                        case 13:
-                            Console.WriteLine("optionAsInt = 13");
-                            Student.nextYear();
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
@@ -313,7 +306,6 @@ namespace UkolZakladyOOP
                     Console.WriteLine("10) Vytvořit novou přednášku");
                     Console.WriteLine("11) Seznam všech přednášek");
                     Console.WriteLine("12) Další semestr");
-                    Console.WriteLine("13) Další ročník");
                     break;
             }
         }

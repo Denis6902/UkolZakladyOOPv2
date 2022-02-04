@@ -27,7 +27,7 @@ namespace UkolZakladyOOP
 
         public static void nextYear()
         {
-            foreach (Student Student in (students))
+            foreach (Student Student in students)
             {
                 Student.year += 1;
                 Console.WriteLine("Aktuální ročník studenta " + Student.returnFullName() + " je: " + Student.year);
@@ -47,6 +47,7 @@ namespace UkolZakladyOOP
 
                 case Semester.Winter:
                     currentSemester = Semester.Summer;
+                    Student.nextYear();
                     break;
             }
 
