@@ -255,10 +255,11 @@ namespace UkolZakladyOOP
 
         public void createNewSubject()
         {
+            // TODO : Metody create... jsou málo přehledné
             bool end = false;
             Teacher garantOfSubject = null;
             Teacher teacher = null;
-
+            
             //Console.WriteLine("Jméno:");
             //string name = Console.ReadLine();
             string name = "Nový Předmět";
@@ -349,7 +350,6 @@ namespace UkolZakladyOOP
 
         public void createSubject()
         {
-            // TODO : Zkusit předělat, aby to bylo přehlednější 
             Console.WriteLine("Jak chcete předmět vytvořit");
             Console.WriteLine("1) Nový předmět");
             Console.WriteLine("2) Předmět ze šablony");

@@ -12,7 +12,6 @@ namespace UkolZakladyOOP
         public List<SubjectStudent> studentSubjectList = new();
         public double averageOfAllMarks;
         public int year;
-        public int credits;
         public static List<Student> students = new();
 
 
@@ -37,7 +36,7 @@ namespace UkolZakladyOOP
             }
         }
 
-        public static void nextSemester(ref Semester currentSemester)
+        public static Semester nextSemester(Semester currentSemester)
         {
             switch (currentSemester)
             {
@@ -52,6 +51,7 @@ namespace UkolZakladyOOP
             }
 
             Console.WriteLine("Aktuální semestr je: " + currentSemester);
+            return currentSemester;
         }
 
         public override void aboutMe()
@@ -98,26 +98,15 @@ namespace UkolZakladyOOP
 
         public void registerSubject(Semester currentSemester)
         {
-            // TODO: když je dokončených více předmětů, ukazuje předmět s levelem 1 dvakrát
             if (Subject.subjects.Count != 0)
             {
                 listSubjectsForRegister(currentSemester);
 
                 Console.WriteLine("Zadejte název předmětu");
                 //string subject = Console.ReadLine();
-                string subject = "";
-                switch (currentSemester)
-                {
-                    case Semester.Summer:
-                        subject = "English1_1";
-                        Console.WriteLine("subject = English1_1");
-                        break;
-                    case Semester.Winter:
-                        subject = "Czech1_1";
-                        Console.WriteLine("subject = Czech1_1");
-                        break;
-                }
-                
+                string subject = "English1_1";
+                Console.WriteLine("subject = English1_1");
+
                 foreach (Subject Subject in Subject.subjects.ToArray())
                 {
                     if (Subject.name.ToLower() == subject.ToLower() && Subject.registered == false)
@@ -138,51 +127,46 @@ namespace UkolZakladyOOP
         public void listSubjectsForRegister(Semester currentSemester)
         {
             int subjectLevel = 1;
-            foreach (Subject Subject in Subject.subjects.Where(Subject => Subject.year == this.year && Subject.semester == currentSemester))
+            const int lengthForCompare = 3;
+            string completedSubjectName = null;
+            string nocompletedSubjectName = null;
+
+            foreach (Subject Subject in Subject.subjects.Where(Subject =>
+                             Subject.year == this.year && Subject.semester == currentSemester)
+                         .OrderBy(subject => subject.name))
+            {
+                if (Subject.registered == false && Subject.level == 1)
                 {
-                    if (markSubjectList.Count == 0 && Subject.level == 1 && Subject.registered == false &&
-                        Subject.completed == false)
-                    {
-                        Console.WriteLine(
-                            "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3} (Level {4})",
-                            Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName(),
-                            Subject.semester, Subject.level);
-                    }
+                    Console.WriteLine(
+                        "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3} (Level {4})",
+                        Subject.name, Subject.credits,
+                        Subject.garantOfSubject.returnFullName(),
+                        Subject.semester, Subject.level);
+                }
 
-                    foreach (MarkSubject markSubject in markSubjectList.Where(markSubject => markSubject.subject.completed && Subject == markSubject.subject))
+                switch (Subject.completed)
+                {
+                    case true:
+                        subjectLevel = Subject.level + 1;
+                        completedSubjectName = Subject.name.Substring(0, lengthForCompare);
+                        break;
+                    case false:
                     {
-                        subjectLevel = markSubject.subject.level + 1;
-                        int subjectNameLength = 3;
-                        string subjectName = markSubject.subject.name.Substring(0, subjectNameLength);
+                        nocompletedSubjectName = Subject.name.Substring(0, lengthForCompare);
 
-                        foreach (Subject oneSubject in Subject.subjects)
+                        if (Subject.level == subjectLevel && completedSubjectName == nocompletedSubjectName)
                         {
-                            string oneSubjectName = oneSubject.name.Substring(0, subjectNameLength);
-
-                            if (oneSubject.level == subjectLevel && oneSubject.registered == false &&
-                                oneSubject.year == this.year && oneSubject.semester == currentSemester &&
-                                subjectName == oneSubjectName && oneSubject.level != 1)
-                            {
-                                Console.WriteLine(
-                                    "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3} (Level {4})",
-                                    oneSubject.name, oneSubject.credits,
-                                    oneSubject.garantOfSubject.returnFullName(),
-                                    oneSubject.semester, oneSubject.level);
-                            }
-
-                            if (oneSubject.level == 1 && oneSubject.registered == false &&
-                                oneSubject.year == this.year && oneSubject.semester == currentSemester &&
-                                subjectName != oneSubjectName)
-                            {
-                                Console.WriteLine(
-                                    "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3} (Level {4})",
-                                    oneSubject.name, oneSubject.credits,
-                                    oneSubject.garantOfSubject.returnFullName(),
-                                    oneSubject.semester, oneSubject.level);
-                            }
+                            Console.WriteLine(
+                                "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3} (Level {4})",
+                                Subject.name, Subject.credits,
+                                Subject.garantOfSubject.returnFullName(),
+                                Subject.semester, Subject.level);
                         }
+
+                        break;
                     }
                 }
+            }
         }
 
         public void listAllMySubjects(Semester currentSemester)
@@ -193,12 +177,13 @@ namespace UkolZakladyOOP
                 {
                     if (SubjectStudent.Subject.year == this.year &&
                         SubjectStudent.Subject.semester == currentSemester &&
-                        SubjectStudent.Subject.registered == true && this == SubjectStudent.Student)
+                        SubjectStudent.Subject.registered && this == SubjectStudent.Student)
                     {
                         Console.WriteLine(
                             "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
                             SubjectStudent.Subject.name, SubjectStudent.credits,
-                            SubjectStudent.Subject.garantOfSubject.returnFullName(), SubjectStudent.Subject.semester);
+                            SubjectStudent.Subject.garantOfSubject.returnFullName(),
+                            SubjectStudent.Subject.semester);
                     }
                 }
             }
@@ -254,19 +239,8 @@ namespace UkolZakladyOOP
                     Console.WriteLine("Zadejte název přednášky");
 
                     //string lectureName = Console.ReadLine();
-                    string lectureName = "";
-
-                    if (currentSemester == Semester.Summer)
-                    {
-                        lectureName = "Přednáška z Angličtiny";
-                        Console.WriteLine("lectureName = Přednáška z Angličtiny");
-                    }
-
-                    if (currentSemester == Semester.Winter)
-                    {
-                        lectureName = "Přednáška z Češtiny";
-                        Console.WriteLine("lectureName = Přednáška z Češtiny");
-                    }
+                    string lectureName = "Přednáška z Angličtiny";
+                    Console.WriteLine("lectureName = Přednáška z Angličtiny");
 
                     if (lectureName == "")
                     {
@@ -275,10 +249,10 @@ namespace UkolZakladyOOP
 
                     foreach (SubjectStudent SubjectStudent in studentSubjectList)
                     {
-                        foreach (Lecture oneLecture in Lecture.lectures)
+                        foreach (Lecture oneLecture in Lecture.lectures.Where(oneLecture =>
+                                     SubjectStudent.Subject == oneLecture.subject))
                         {
-                            if (oneLecture.name.ToLower() == lectureName.ToLower() && end == false &&
-                                SubjectStudent.Subject == oneLecture.subject)
+                            if (oneLecture.name.ToLower() == lectureName.ToLower() && end == false)
                             {
                                 Lecture = oneLecture;
                                 end = true;
@@ -287,7 +261,8 @@ namespace UkolZakladyOOP
 
                         if (end == true)
                         {
-                            Console.WriteLine("Šel jsi na přednášku {0} - {1} kreditů", Lecture.name, Lecture.credits);
+                            Console.WriteLine("Šel jsi na přednášku {0} - {1} kreditů", Lecture.name,
+                                Lecture.credits);
                             SubjectStudent.credits = SubjectStudent.credits - Lecture.credits;
                             break;
                         }
@@ -299,22 +274,22 @@ namespace UkolZakladyOOP
 
         public void endSubject()
         {
-            foreach (SubjectStudent SubjectStudent in studentSubjectList)
+            foreach (SubjectStudent SubjectStudent in studentSubjectList.Where(SubjectStudent =>
+                         SubjectStudent.Subject.completed == false))
             {
-                if (SubjectStudent.credits > 0 && SubjectStudent.Subject.completed == false &&
-                    firstName == SubjectStudent.Student.firstName)
+                if (SubjectStudent.credits > 0 && this == SubjectStudent.Student)
                 {
                     Console.WriteLine("Do dokončení předmětu {0} zbývá {1} kreditů", SubjectStudent.Subject.name,
                         SubjectStudent.credits);
                 }
 
-                if (SubjectStudent.credits < 1 && SubjectStudent.Subject.completed == false &&
-                    firstName == SubjectStudent.Student.firstName)
+                if (SubjectStudent.credits < 1 && this == SubjectStudent.Student)
                 {
                     Random r = new();
                     double mark = r.Next(1, 5);
                     this.averageOfAllMarks += mark;
-                    Console.WriteLine("Dokončil jsi předmět " + SubjectStudent.Subject.name + " s hodnocením " + mark);
+                    Console.WriteLine("Dokončil jsi předmět " + SubjectStudent.Subject.name + " s hodnocením " +
+                                      mark);
                     MarkSubject markSubject = new(mark, SubjectStudent.Subject, this.id, markSubjectList);
                     SubjectStudent.Subject.completed = true;
                 }
@@ -349,20 +324,9 @@ namespace UkolZakladyOOP
                     Console.WriteLine("Zadejte název cvičení");
 
                     //string exerciseName = Console.ReadLine();
-                    string exerciseName = "";
+                    string exerciseName = "Cvičení z Angličtiny";
+                    Console.WriteLine("exerciseName = Cvičení z Angličtiny");
 
-                    if (currentSemester == Semester.Summer)
-                    {
-                        exerciseName = "Cvičení z Angličtiny";
-                        Console.WriteLine("exerciseName = Cvičení z Angličtiny");
-                    }
-
-                    if (currentSemester == Semester.Winter)
-                    {
-                        exerciseName = "Cvičení z Češtiny";
-                        Console.WriteLine("exerciseName = Cvičení z Češtiny");
-                    }
-                    
                     foreach (Exercise oneExercise in Exercise.exercises)
                     {
                         if (oneExercise.name.ToLower() == exerciseName.ToLower() && end == false)

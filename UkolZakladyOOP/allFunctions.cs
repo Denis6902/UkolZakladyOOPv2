@@ -212,14 +212,14 @@ namespace UkolZakladyOOP
                         case 6:
                             Console.WriteLine("optionAsInt = 6");
                             chosenTeacher.createSubject();
-                            Thread.Sleep(5000);
+                            Thread.Sleep(delay);
                             Console.Clear();
                             break;
 
                         case 7:
                             Console.WriteLine("optionAsInt = 7");
                             chosenTeacher.createExercise();
-                            Thread.Sleep(5000);
+                            Thread.Sleep(delay);
                             Console.Clear();
                             break;
 
@@ -240,7 +240,7 @@ namespace UkolZakladyOOP
                         case 10:
                             Console.WriteLine("optionAsInt = 10");
                             chosenTeacher.createLecture();
-                            Thread.Sleep(5000);
+                            Thread.Sleep(delay);
                             Console.Clear();
                             break;
 
@@ -253,7 +253,7 @@ namespace UkolZakladyOOP
 
                         case 12:
                             Console.WriteLine("optionAsInt = 12");
-                            Student.nextSemester(ref currentSemester);
+                            currentSemester = Student.nextSemester(currentSemester);
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
