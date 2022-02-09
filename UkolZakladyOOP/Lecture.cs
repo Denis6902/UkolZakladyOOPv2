@@ -21,6 +21,19 @@ namespace UkolZakladyOOP
             lectures.Add(this);
             subject.lectureCount += 1;
         }
+        public string isComputerRequired()
+        {
+            switch (computerRequired)
+            {
+                case true:
+                    return "je potřeba";
+                    break;
+                
+                case false:
+                    return "není potřeba";
+                    break;
+            }
+        }
     }
 
     class LectureFactory

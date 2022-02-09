@@ -21,12 +21,18 @@ namespace UkolZakladyOOP
             switch (whoIAm)
             {
                 case "1":
+                    Console.WriteLine("Kdo jsi?");
                     Student chosenStudent = Student.selectStudent();
+                    Console.WriteLine($"chosenStudent = {chosenStudent.returnFullName()}");
+                    Thread.Sleep(delay);
                     studentMenu(whoIAm, chosenStudent, currentSemester, delay);
                     break;
 
                 case "2":
+                    Console.WriteLine("Kdo jsi?");
                     Teacher chosenTeacher = Teacher.selectTeacher();
+                    Console.WriteLine($"chosenTeacher = {chosenTeacher.returnFullName()}");
+                    Thread.Sleep(delay);
                     teacherMenu(whoIAm, chosenTeacher, currentSemester, delay);
                     break;
             }
@@ -211,14 +217,14 @@ namespace UkolZakladyOOP
 
                         case 6:
                             Console.WriteLine("optionAsInt = 6");
-                            chosenTeacher.createSubject();
+                            Teacher.createSubject();
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
 
                         case 7:
                             Console.WriteLine("optionAsInt = 7");
-                            chosenTeacher.createExercise();
+                            Teacher.createExercise();
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
@@ -239,14 +245,14 @@ namespace UkolZakladyOOP
 
                         case 10:
                             Console.WriteLine("optionAsInt = 10");
-                            chosenTeacher.createLecture();
+                            Teacher.createLecture();
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
 
                         case 11:
                             Console.WriteLine("optionAsInt = 11");
-                            Teacher.listAllLecture();
+                            Teacher.listAllLectures();
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
@@ -254,6 +260,13 @@ namespace UkolZakladyOOP
                         case 12:
                             Console.WriteLine("optionAsInt = 12");
                             currentSemester = Student.nextSemester(currentSemester);
+                            Thread.Sleep(delay);
+                            Console.Clear();
+                            break;
+
+                        case 13:
+                            Console.WriteLine("optionAsInt = 13");
+                            Subject.listAllSubjects();
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
@@ -306,6 +319,7 @@ namespace UkolZakladyOOP
                     Console.WriteLine("10) Vytvořit novou přednášku");
                     Console.WriteLine("11) Seznam všech přednášek");
                     Console.WriteLine("12) Další semestr");
+                    Console.WriteLine("13) Seznam všech předmětů");
                     break;
             }
         }

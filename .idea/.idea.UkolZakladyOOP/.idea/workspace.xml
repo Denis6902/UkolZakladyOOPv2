@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="19098478-080f-4966-b60f-568f81cb1271" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Exercise.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Exercise.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Lecture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Lecture.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Student.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Subject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Subject.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" afterDir="false" />
@@ -59,7 +62,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Project.External - UkolZakladyOOP">
@@ -140,7 +143,9 @@
       <workItem from="1643993360176" duration="3935000" />
       <workItem from="1643998748352" duration="253000" />
       <workItem from="1644156817149" duration="1680000" />
-      <workItem from="1644160097133" duration="8095000" />
+      <workItem from="1644160097133" duration="8270000" />
+      <workItem from="1644170622354" duration="15000" />
+      <workItem from="1644412214757" duration="15083000" />
     </task>
     <task id="LOCAL-00001" summary="&#10;Postupné mazání vstupů do konzole, přejmenované creditsToFinish na credits, smazání property známka u předmětu a vytvořena vazební třída Mark_Subject, změna metody selectStudent na statickou.">
       <created>1636652947400</created>
@@ -254,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643998998210</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Odebraná zbytečná proměnná credits u studenta.&#10;Předělaná metoda nextSemester.&#10;Předělaná metoda listSubjectsForRegister.">
+      <created>1644169575359</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1644169575359</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,7 +315,8 @@
     <MESSAGE value="Změněná prodleva mezi metodama." />
     <MESSAGE value="Přidané testovací předměty a přednáška.&#10;Postupné opravení &quot;prerekvizit&quot;.&#10;Opravený výpis v metodě listCompletedSubjects()." />
     <MESSAGE value="Rozdělení metody createSubject do více metod.&#10;Rozdělení metody createLecture do více metod.&#10;Změna metody listAllExercise na statickou.&#10;Přidaná kontrola v metodě listStudentsByAverageMarks, jestli má student nějakou známku.&#10;Předělaná metoda nextSemester." />
-    <option name="LAST_COMMIT_MESSAGE" value="Rozdělení metody createSubject do více metod.&#10;Rozdělení metody createLecture do více metod.&#10;Změna metody listAllExercise na statickou.&#10;Přidaná kontrola v metodě listStudentsByAverageMarks, jestli má student nějakou známku.&#10;Předělaná metoda nextSemester." />
+    <MESSAGE value="Odebraná zbytečná proměnná credits u studenta.&#10;Předělaná metoda nextSemester.&#10;Předělaná metoda listSubjectsForRegister." />
+    <option name="LAST_COMMIT_MESSAGE" value="Odebraná zbytečná proměnná credits u studenta.&#10;Předělaná metoda nextSemester.&#10;Předělaná metoda listSubjectsForRegister." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -71,7 +71,6 @@ namespace UkolZakladyOOP
             bool end = false;
             do
             {
-                Console.WriteLine("Kdo jsi?");
                 foreach (Student Student in students)
                 {
                     Console.WriteLine(Student.firstName);
@@ -79,9 +78,6 @@ namespace UkolZakladyOOP
 
                 //string studentName = Console.ReadLine();
                 string studentName = "Pepa";
-                Console.WriteLine("chosenStudent = Pepa");
-                Thread.Sleep(1000);
-                Console.Clear();
 
                 foreach (Student Student in students)
                 {
@@ -229,8 +225,8 @@ namespace UkolZakladyOOP
                             if (SubjectStudent.Subject == oneLecture.subject &&
                                 SubjectStudent.Subject.registered && SubjectStudent.Subject.completed == false)
                             {
-                                Console.WriteLine("{0} - {1} kreditů, počítač je potřeba {2} (Předmět {3})",
-                                    oneLecture.name, oneLecture.credits, oneLecture.computerRequired,
+                                Console.WriteLine("{0} - {1} kreditů, počítač {2} (Předmět {3})",
+                                    oneLecture.name, oneLecture.credits, oneLecture.isComputerRequired(),
                                     oneLecture.subject.name);
                             }
                         }
@@ -305,8 +301,8 @@ namespace UkolZakladyOOP
                     if (SubjectStudent.Subject.name == oneExercise.subject.name &&
                         SubjectStudent.Subject.registered)
                     {
-                        Console.WriteLine("{0} - {1} kreditů, počítač je potřeba {2}", oneExercise.name,
-                            oneExercise.credits, oneExercise.computerRequired);
+                        Console.WriteLine("{0} - {1} kreditů, počítač {2}", oneExercise.name,
+                            oneExercise.credits, oneExercise.isComputerRequired());
                     }
                 }
             }

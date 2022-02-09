@@ -20,6 +20,20 @@ namespace UkolZakladyOOP
             exercises.Add(this);
             subject.exerciseCount += 1;
         }
+
+        public string isComputerRequired()
+        {
+            switch (computerRequired)
+            {
+                case true:
+                    return "je potřeba";
+                    break;
+                
+                case false:
+                    return "není potřeba";
+                    break;
+            }
+        }
     }
 
 

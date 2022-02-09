@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace UkolZakladyOOP
@@ -28,6 +29,48 @@ namespace UkolZakladyOOP
             this.year = year;
             subjects.Add(this);
             this.level = level;
+        }
+
+        public static Subject selectSubject(string subjectName)
+        {
+            Subject Subject = null;
+
+            bool end = false;
+            Subject.listAllSubjects();
+
+            do
+            {
+                foreach (Subject oneSubject in Subject.subjects)
+                {
+                    if (oneSubject.name.ToLower() == subjectName.ToLower())
+                    {
+                        Subject = oneSubject;
+                        end = true;
+                    }
+                }
+
+                if (end == false)
+                {
+                    Console.WriteLine("Neexistuje daný předmět");
+                    Console.WriteLine("Zadej název existujícího předmětu");
+                    subjectName = Console.ReadLine();
+                }
+            } while (end == false);
+
+            Console.WriteLine($"subject = {subjectName}");
+            return Subject;
+        }
+
+        public static void listAllSubjects()
+        {
+            foreach (Subject Subject in Subject.subjects)
+            {
+                Console.WriteLine(
+                    "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
+                    Subject.name, Subject.credits,
+                    Subject.garantOfSubject.returnFullName(),
+                    Subject.semester);
+            }
         }
     }
 
