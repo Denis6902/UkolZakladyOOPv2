@@ -36,7 +36,6 @@ namespace UkolZakladyOOP
             Subject Subject = null;
 
             bool end = false;
-            Subject.listAllSubjects();
 
             do
             {

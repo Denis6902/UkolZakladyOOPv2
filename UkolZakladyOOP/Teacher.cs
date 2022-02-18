@@ -91,37 +91,22 @@ namespace UkolZakladyOOP
 
         public void registerSubject(Semester currentSemester)
         {
-            if (Subject.subjects.Count != 0)
+            foreach (Subject Subject in Subject.subjects)
             {
-                foreach (Subject Subject in Subject.subjects)
+                if (currentSemester == Subject.semester && Subject.teacher == null)
                 {
-                    if (currentSemester == Subject.semester && Subject.teacher == null)
-                    {
-                        Console.WriteLine(
-                            "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
-                            Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName(), Subject.semester);
-                    }
-                }
-
-                Console.WriteLine("Zadejte název předmětu");
-                //string subject = Console.ReadLine(); 
-                string subject = "xxx1_1";
-                Console.WriteLine("subject = xxx1_1");
-
-                foreach (Subject Subject in Subject.subjects.ToArray())
-                {
-                    if ((Subject.name.ToLower()) == subject.ToLower())
-                    {
-                        Console.WriteLine(this.firstName + " nyní učíš " + Subject.name + " Semestr: " +
-                                          Subject.semester);
-                        Subject.teacher = this;
-                    }
+                    Console.WriteLine(
+                        "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
+                        Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName(), Subject.semester);
                 }
             }
-            else
-            {
-                Console.WriteLine("Nemáš žádné nedokončené předměty");
-            }
+            
+            Console.WriteLine("Zadejte název předmětu");
+            //string subjectName = Console.ReadLine();
+            string subjectName = "xxx1_1";
+            Subject SubjectForRegister = Subject.selectSubject(subjectName);
+
+            SubjectForRegister.teacher = this;
         }
 
         public void listAllMySubjects(Semester currentSemester)
@@ -308,7 +293,6 @@ namespace UkolZakladyOOP
             Subject.listAllSubjects();
             
             string subjectName = "Czech1_1";
-            Console.WriteLine("subject = Czech1_1");
             Subject subject = Subject.selectSubject(subjectName);
 
             Exercise Exercise = new(nameOfExercise, computerRequired, credits, subject);
@@ -337,7 +321,6 @@ namespace UkolZakladyOOP
                 if (exercise == "cvičení z češtiny")
                 {
                     string subjectName = "Czech3_2";
-                    Console.WriteLine("subject = Czech3_2");
                     Subject subject = Subject.selectSubject(subjectName);
 
                     Exercise ExerciseFromCzech =
@@ -347,12 +330,10 @@ namespace UkolZakladyOOP
                 if (exercise == "cvičení z angličtiny")
                 {
                     string subjectName = "English3_2";
-                    Console.WriteLine("subject = English3_2");
                     Subject subject = Subject.selectSubject(subjectName);
 
                     Exercise ExerciseFromEnglish =
                         ExerciseFactory.CreateExerciseFromEnglish(credits, subject);
-                    Exercise.exercises.Add(ExerciseFromEnglish);
                 }
             }
         }
@@ -428,8 +409,6 @@ namespace UkolZakladyOOP
 
         public static void createNewLecture()
         {
-            Subject Subject = null;
-
             Console.WriteLine("Jméno = Přednáška 1");
             //string nameOfLecture = Console.ReadLine();
             string nameOfLecture = "Přednáška 1";
@@ -442,17 +421,9 @@ namespace UkolZakladyOOP
             //double credits = double.Parse(Console.ReadLine());
             double credits = 22;
 
-            Console.WriteLine("Předmět = Czech1_1");
-            //string subject = Console.ReadLine();
-            string subject = "Czech1_1";
-
-            foreach (Subject oneSubject in Subject.subjects)
-            {
-                if (oneSubject.name.ToLower() == subject.ToLower())
-                {
-                    Subject = oneSubject;
-                }
-            }
+            //string subjectName = Console.ReadLine();
+            string subjectName = "Czech1_1";
+            Subject Subject = Subject.selectSubject(subjectName);
 
             Lecture Lecture = new(nameOfLecture, computerRequired, credits, Subject);
         }
@@ -501,7 +472,6 @@ namespace UkolZakladyOOP
             }
 
             string subjectName = "Czech3_2";
-            Console.WriteLine("subject = Czech3_2");
             Subject chosenSubject = Subject.selectSubject(subjectName);
 
             Lecture LectureFromCzech =
@@ -524,7 +494,6 @@ namespace UkolZakladyOOP
             }
 
             string subjectName = "English3_2";
-            Console.WriteLine("subject = English3_2");
             Subject chosenSubject = Subject.selectSubject(subjectName);
 
             Lecture LectureFromEnglish =
