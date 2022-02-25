@@ -109,9 +109,9 @@ namespace UkolZakladyOOP
             SubjectForRegister.teacher = this;
         }
 
-        public void listAllMySubjects(Semester currentSemester)
+        public void listAllMySubjects()
         {
-            if (this.returnSubjectsCount() != 0)
+            if (returnSubjectsCount() != 0)
             {
                 foreach (Subject Subject in Subject.subjects.ToArray())
                 {
@@ -169,7 +169,7 @@ namespace UkolZakladyOOP
             Teacher garantOfSubject = Teacher.selectTeacher();
             Console.WriteLine("garantOfSubject = Pavel");
 
-            Console.WriteLine("Učitel: ");
+            Console.WriteLine("Učitel: ");    
             Teacher teacher = Teacher.selectTeacher();
             Console.WriteLine("teacher = Pavel");
 
@@ -197,14 +197,19 @@ namespace UkolZakladyOOP
 
         public static void createSubjectFromTemplate()
         {
-            Console.WriteLine("Jméno:");
-
-            Console.WriteLine("Czech");
-            Console.WriteLine("English");
-
-            //string subject = Console.ReadLine();
-            string subject = "Czech";
-            Console.WriteLine("subject = Czech");
+            string subject = "";
+            
+            do
+            {
+                Console.WriteLine("Předmět:");
+                Console.WriteLine("Czech");
+                Console.WriteLine("English");
+                subject = Console.ReadLine();
+                //subject = "Czech";
+                Console.WriteLine("subject = " + subject);
+            } while (subject.ToLower() != "czech" && subject.ToLower() != "english");
+            
+            Console.Clear();
 
             Console.WriteLine("Garant předmětu: ");
             Teacher garantOfSubject = Teacher.selectTeacher();
@@ -230,16 +235,17 @@ namespace UkolZakladyOOP
             int subjectLevel = random.Next(1, 3);
             Console.WriteLine("subjectLevel = " + subjectLevel);
 
-            if (subject.ToLower() == "czech")
+            switch (subject.ToLower())
             {
-                Subject Czech = SubjectFactory.CreateCzech(teacher, garantOfSubject, credits, year,
-                    semester, subjectLevel);
-            }
-
-            if (subject.ToLower() == "english")
-            {
-                Subject English = SubjectFactory.CreateEnglish(teacher, garantOfSubject, credits, year,
-                    semester, subjectLevel);
+                case "czech":
+                    Subject Czech = SubjectFactory.CreateCzech(teacher, garantOfSubject, credits, year,
+                        semester, subjectLevel);
+                    break;
+                
+                case "english":
+                    Subject English = SubjectFactory.CreateEnglish(teacher, garantOfSubject, credits, year,
+                        semester, subjectLevel);
+                    break;
             }
 
             Thread.Sleep(10000);

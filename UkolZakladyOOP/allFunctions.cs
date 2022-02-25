@@ -187,7 +187,7 @@ namespace UkolZakladyOOP
 
                         case 2:
                             Console.WriteLine("optionAsInt = 2");
-                            chosenTeacher.listAllMySubjects(currentSemester);
+                            chosenTeacher.listAllMySubjects();
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
