@@ -313,39 +313,26 @@ namespace UkolZakladyOOP
             if (Exercise.exercises.Count != 0 && Subject.subjects.Count != 0)
             {
                 Exercise Exercise = null;
-                bool end = false;
-                do
+                listAllRegistredExercise();
+                Console.WriteLine("Zadejte název cvičení");
+
+                //string exerciseName = Console.ReadLine();
+                string exerciseName = "Cvičení z Angličtiny";
+                Console.WriteLine("exerciseName = Cvičení z Angličtiny");
+
+                Exercise = Exercise.selectExercise(exerciseName);
+
+
+                foreach (SubjectStudent SubjectStudent in studentSubjectList)
                 {
-                    listAllRegistredExercise();
-                    Console.WriteLine("Zadejte název cvičení");
-
-                    //string exerciseName = Console.ReadLine();
-                    string exerciseName = "Cvičení z Angličtiny";
-                    Console.WriteLine("exerciseName = Cvičení z Angličtiny");
-
-                    foreach (Exercise oneExercise in Exercise.exercises)
+                    if (SubjectStudent.Subject == Exercise.subject &&
+                        this.firstName == SubjectStudent.Student.firstName)
                     {
-                        if (oneExercise.name.ToLower() == exerciseName.ToLower() && end == false)
-                        {
-                            Exercise = oneExercise;
-                            end = true;
-                        }
+                        SubjectStudent.credits = SubjectStudent.credits - Exercise.credits;
+                        Console.WriteLine("Dokončil jsi cvičení {0} - {1} kreditů", Exercise.name,
+                            Exercise.credits);
                     }
-
-                    if (end == true)
-                    {
-                        foreach (SubjectStudent SubjectStudent in studentSubjectList)
-                        {
-                            if (SubjectStudent.Subject == Exercise.subject &&
-                                this.firstName == SubjectStudent.Student.firstName)
-                            {
-                                SubjectStudent.credits = SubjectStudent.credits - Exercise.credits;
-                                Console.WriteLine("Dokončil jsi cvičení {0} - {1} kreditů", Exercise.name,
-                                    Exercise.credits);
-                            }
-                        }
-                    }
-                } while (end == false);
+                }
             }
         }
     }

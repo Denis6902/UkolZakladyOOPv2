@@ -71,6 +71,21 @@ namespace UkolZakladyOOP
                     Subject.semester);
             }
         }
+
+        public static void listOnlyOneTypeSubjects(string subject)
+        {
+            foreach (Subject Subject in Subject.subjects)
+            {
+                if (Subject.name.Substring(0, 3) == subject.ToLower())
+                {
+                    Console.WriteLine(
+                        "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
+                        Subject.name, Subject.credits,
+                        Subject.garantOfSubject.returnFullName(),
+                        Subject.semester);
+                }
+            }
+        }
     }
 
 

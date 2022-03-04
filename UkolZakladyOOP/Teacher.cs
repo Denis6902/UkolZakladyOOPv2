@@ -204,8 +204,8 @@ namespace UkolZakladyOOP
                 Console.WriteLine("Předmět:");
                 Console.WriteLine("Czech");
                 Console.WriteLine("English");
-                subject = Console.ReadLine();
-                //subject = "Czech";
+                //subject = Console.ReadLine();
+                subject = "Czech";
                 Console.WriteLine("subject = " + subject);
             } while (subject.ToLower() != "czech" && subject.ToLower() != "english");
             
@@ -324,8 +324,12 @@ namespace UkolZakladyOOP
                 double credits = 50;
                 Console.WriteLine("credits = 50");
 
+
                 if (exercise == "cvičení z češtiny")
-                {
+                { 
+                    Console.WriteLine("Předmět?");
+                    Subject.listOnlyOneTypeSubjects("czech");
+                    //string subjectName = Console.ReadLine();
                     string subjectName = "Czech3_2";
                     Subject subject = Subject.selectSubject(subjectName);
 
@@ -335,6 +339,9 @@ namespace UkolZakladyOOP
 
                 if (exercise == "cvičení z angličtiny")
                 {
+                    Console.WriteLine("Předmět?");
+                    Subject.listOnlyOneTypeSubjects("english");
+                    //string subjectName = Console.ReadLine();
                     string subjectName = "English3_2";
                     Subject subject = Subject.selectSubject(subjectName);
 
@@ -364,7 +371,7 @@ namespace UkolZakladyOOP
         {
             foreach (Student Student in Student.students)
             {
-                if (double.IsNaN(Student.calculateAverageMark()) && Student.calculateAverageMark() == 0)
+                if (double.IsNaN(Student.calculateAverageMark()) || Student.calculateAverageMark() == 0)
                 {
                     Console.WriteLine(Student.returnFullName() + " nemá žádnou známku");
                 }
@@ -427,11 +434,13 @@ namespace UkolZakladyOOP
             //double credits = double.Parse(Console.ReadLine());
             double credits = 22;
 
+            Console.WriteLine("Předmět:");
+            Subject.listOnlyOneTypeSubjects("czech");
             //string subjectName = Console.ReadLine();
             string subjectName = "Czech1_1";
-            Subject Subject = Subject.selectSubject(subjectName);
+            Subject chosenSubject = Subject.selectSubject(subjectName);
 
-            Lecture Lecture = new(nameOfLecture, computerRequired, credits, Subject);
+            Lecture Lecture = new(nameOfLecture, computerRequired, credits, chosenSubject);
         }
 
         public static void createLectureFromTemplate()
@@ -465,18 +474,8 @@ namespace UkolZakladyOOP
         public static void createCzechSubject(double credits)
         {
             Console.WriteLine("Předmět:");
-            foreach (Subject subject in Subject.subjects)
-            {
-                if (subject.name.Substring(0, 3) == "Cze")
-                {
-                    Console.WriteLine(
-                        "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
-                        subject.name, subject.credits,
-                        subject.garantOfSubject.returnFullName(),
-                        subject.semester);
-                }
-            }
-
+            Subject.listOnlyOneTypeSubjects("czech");
+            //string subjectName = Console.ReadLine();
             string subjectName = "Czech3_2";
             Subject chosenSubject = Subject.selectSubject(subjectName);
 
@@ -487,18 +486,8 @@ namespace UkolZakladyOOP
         public static void createEnglishSubject(double credits)
         {
             Console.WriteLine("Předmět:");
-            foreach (Subject subject in Subject.subjects)
-            {
-                if (subject.name.Substring(0, 3) == "Eng")
-                {
-                    Console.WriteLine(
-                        "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
-                        subject.name, subject.credits,
-                        subject.garantOfSubject.returnFullName(),
-                        subject.semester);
-                }
-            }
-
+            Subject.listOnlyOneTypeSubjects("english");
+            //string subjectName = Console.ReadLine();
             string subjectName = "English3_2";
             Subject chosenSubject = Subject.selectSubject(subjectName);
 

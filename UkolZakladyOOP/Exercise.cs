@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 
 namespace UkolZakladyOOP
 {
@@ -33,6 +34,37 @@ namespace UkolZakladyOOP
                     return "není potřeba";
                     break;
             }
+        }
+
+        public static Exercise selectExercise(string exerciseName)
+        {
+            Exercise chosenExercise = null;
+
+            bool end = false;
+
+            do
+            {
+                foreach (Exercise oneExercise in Exercise.exercises)
+                {
+                    if (oneExercise.name.ToLower() == exerciseName.ToLower())
+                    {
+                        chosenExercise = oneExercise;
+                        end = true;
+                    }
+                }
+
+                if (end == false)
+                {
+                    Console.WriteLine("Neexistuje daný předmět");
+                    Console.WriteLine("Zadej název existujícího předmětu");
+                    exerciseName = Console.ReadLine();
+                }
+            } while (end == false);
+
+            Console.WriteLine($"exercise = {exerciseName}");
+
+
+            return chosenExercise;
         }
     }
 
