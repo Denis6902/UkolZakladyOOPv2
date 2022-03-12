@@ -6,10 +6,8 @@ namespace UkolZakladyOOP
     {
         static public void Main(string[] args)
         {
-            Semester currentSemester = Semester.Summer;
-
-            Teacher Pavel = new("Ing.", 1, "Pavel", "Novotný", new DateTime(1980, 2, 9));
-            Teacher Aneta = new("Mgr.", 2, "Aneta", "Nováková", new DateTime(1987, 1, 8));
+            Teacher Pavel = new("Ing.", "Pavel", "Novotný", new DateTime(1980, 2, 9));
+            Teacher Aneta = new("Mgr.", "Aneta", "Nováková", new DateTime(1987, 1, 8));
 
             Subject English1_1 = new("English1_1", Pavel, Pavel, 50, 1, Semester.Summer, 1);
             Subject xxx1_1 = new("xxx1_1", Aneta, null, 50, 1, Semester.Summer, 1); // TEST_ONLY
@@ -35,11 +33,11 @@ namespace UkolZakladyOOP
             Lecture ppp1_1 = new("ppp1_1", false, 50, xxx1_1); // TEST_ONLY
 
 
-            Student Jakub = new(1, "Jakub", "Novák", new DateTime(1999, 7, 2), new DateTime(2020, 10, 1),
+            Student Jakub = new("Jakub", "Novák", new DateTime(1999, 7, 2), new DateTime(2020, 10, 1),
                 1);
-            Student Pepa = new(2, "Pepa", "Nový", new DateTime(1998, 9, 3), new DateTime(2020, 10, 2),
+            Student Pepa = new("Pepa", "Nový", new DateTime(1998, 9, 3), new DateTime(2020, 10, 2),
                 1);
-            Student Denis = new(3, "Denis", "Vojtěch", new DateTime(1984, 9, 3), new DateTime(2020, 1, 2),
+            Student Denis = new("Denis", "Vojtěch", new DateTime(1984, 9, 3), new DateTime(2020, 1, 2),
                 1);
 
             Exercise ExerciseFromEnglish1_1 = new("Cvičení z Angličtiny", false, 50, English1_1);
@@ -70,11 +68,9 @@ namespace UkolZakladyOOP
             Exercise ExerciseFromEnglish3_2 = new("Cvičení z Angličtiny", false, 50, English3_2);
             Lecture LectureFromEnglish3_2 = new("Přednáška z Angličtiny", false, 50, English3_2);
 
-            string whoIAm = "1";
-            const int delay = 2500;
 
-            Method Method = new();
-            Method.mainMenu(whoIAm, currentSemester, delay);
+            SchoolSystem schoolSystem = new();
+            schoolSystem.mainMenu();
         }
     }
 }

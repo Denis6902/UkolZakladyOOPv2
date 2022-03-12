@@ -15,8 +15,8 @@ namespace UkolZakladyOOP
         public static List<Student> students = new();
 
 
-        public Student(int id, string firstName, string lastName, DateTime birthDate, DateTime registrationDate,
-            int year) : base(id, firstName,
+        public Student(string firstName, string lastName, DateTime birthDate, DateTime registrationDate,
+            int year) : base(firstName,
             lastName, birthDate)
         {
             this.registrationDate = registrationDate;
@@ -195,12 +195,12 @@ namespace UkolZakladyOOP
             {
                 foreach (MarkSubject markSubject in markSubjectList)
                 {
-                    if (this.id == markSubject.studentId)
+                    if (this == markSubject.Student)
                     {
                         Console.WriteLine(
                             "Předmět {0}, garantem je {1}, Semestr: {2} (Level {3}) - známka {4}.",
-                            markSubject.subject.name, markSubject.subject.garantOfSubject.returnFullName(),
-                            markSubject.subject.semester, markSubject.subject.level, markSubject.mark);
+                            markSubject.Subject.name, markSubject.Subject.garantOfSubject.returnFullName(),
+                            markSubject.Subject.semester, markSubject.Subject.level, markSubject.mark);
                     }
                 }
             }
@@ -286,7 +286,7 @@ namespace UkolZakladyOOP
                     this.averageOfAllMarks += mark;
                     Console.WriteLine("Dokončil jsi předmět " + SubjectStudent.Subject.name + " s hodnocením " +
                                       mark);
-                    MarkSubject markSubject = new(mark, SubjectStudent.Subject, this.id, markSubjectList);
+                    MarkSubject markSubject = new(mark, SubjectStudent.Subject, this, markSubjectList);
                     SubjectStudent.Subject.completed = true;
                 }
             }

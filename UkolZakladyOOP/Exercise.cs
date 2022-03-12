@@ -29,7 +29,7 @@ namespace UkolZakladyOOP
                 case true:
                     return "je potřeba";
                     break;
-                
+
                 case false:
                     return "není potřeba";
                     break;

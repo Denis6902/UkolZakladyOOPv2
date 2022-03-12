@@ -4,14 +4,12 @@ namespace UkolZakladyOOP
 {
     public class Person
     {
-        public int id;
         public string firstName;
         public string lastName;
         public DateTime birthDate;
 
-        public Person(int id, string firstName, string lastName, DateTime birthDate)
+        public Person(string firstName, string lastName, DateTime birthDate)
         {
-            this.id = id;
             this.firstName = firstName;
             this.lastName = lastName;
             this.birthDate = birthDate;

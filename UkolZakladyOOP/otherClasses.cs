@@ -5,14 +5,14 @@ namespace UkolZakladyOOP
     public class MarkSubject
     {
         public double mark;
-        public Subject subject;
-        public int studentId;
+        public Subject Subject;
+        public Student Student;
 
-        public MarkSubject(double mark, Subject subject, int studentId, List<MarkSubject> markSubjectList)
+        public MarkSubject(double mark, Subject Subject, Student Student, List<MarkSubject> markSubjectList)
         {
             this.mark = mark;
-            this.subject = subject;
-            this.studentId = studentId;
+            this.Subject = Subject;
+            this.Student = Student;
             markSubjectList.Add(this);
         }
     }
