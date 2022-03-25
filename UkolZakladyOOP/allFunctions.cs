@@ -3,6 +3,9 @@ using System.Threading;
 
 namespace UkolZakladyOOP
 {
+    /// <summary>
+    /// Hlavní třída celeého programu
+    /// </summary>
     public class SchoolSystem
     {
         /// <summary>

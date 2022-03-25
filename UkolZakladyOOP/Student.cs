@@ -67,28 +67,23 @@ namespace UkolZakladyOOP
 
         public static Student selectStudent()
         {
-            Student chosenStudent = null;
-            bool end = false;
-            do
+            foreach (Student Student in students)
             {
-                foreach (Student Student in students)
-                {
-                    Console.WriteLine(Student.firstName);
-                }
+                Console.WriteLine(Student.firstName);
+            }
 
-                //string studentName = Console.ReadLine();
-                string studentName = "Pepa";
+            //string studentName = Console.ReadLine();
+            string studentName = "Pepa";
+            
+            if (!students.Exists(student => student.firstName == studentName))
+            {
+                Console.WriteLine("Neexistuje daný student");
+                Console.WriteLine("Zadej jméno existujícího studenta");
+                selectStudent();
+            }
 
-                foreach (Student Student in students)
-                {
-                    if (Student.firstName.ToLower() == studentName.ToLower())
-                    {
-                        chosenStudent = Student;
-                        end = true;
-                    }
-                }
-            } while (end == false);
-
+            Student chosenStudent = students.Find(student => student.firstName.ToLower() == studentName.ToLower());
+            
             return chosenStudent;
         }
 
@@ -320,19 +315,14 @@ namespace UkolZakladyOOP
                 string exerciseName = "Cvičení z Angličtiny";
                 Console.WriteLine("exerciseName = Cvičení z Angličtiny");
 
-                Exercise = Exercise.selectExercise(exerciseName);
+                Exercise = Exercise.selectExercise(exerciseName, this);
 
+                SubjectStudent subjectStudent = studentSubjectList.Find(ss =>
+                    ss.Subject == Exercise.subject && firstName == ss.Student.firstName);
 
-                foreach (SubjectStudent SubjectStudent in studentSubjectList)
-                {
-                    if (SubjectStudent.Subject == Exercise.subject &&
-                        this.firstName == SubjectStudent.Student.firstName)
-                    {
-                        SubjectStudent.credits = SubjectStudent.credits - Exercise.credits;
-                        Console.WriteLine("Dokončil jsi cvičení {0} - {1} kreditů", Exercise.name,
-                            Exercise.credits);
-                    }
-                }
+                subjectStudent.credits -= Exercise.credits;
+                Console.WriteLine("Dokončil jsi cvičení {0} - {1} kreditů", Exercise.name,
+                    Exercise.credits);
             }
         }
     }

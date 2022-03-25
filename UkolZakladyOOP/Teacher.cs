@@ -4,6 +4,9 @@ using System.Threading;
 
 namespace UkolZakladyOOP
 {
+    /// <summary>
+    /// Třída učitele, dědí z Person
+    /// </summary>
     public class Teacher : Person
     {
         /// <summary>
@@ -535,7 +538,7 @@ namespace UkolZakladyOOP
                 Console.WriteLine("Přednáška z Češtiny");
                 Console.WriteLine("Přednáška z Angličtiny");
                 //string lecture = Console.ReadLine().ToLower();
-                lecture = "cvičení z češtiny";
+                lecture = "přednáška z češtiny";
                 Console.WriteLine("lecture = " + lecture);
             } while (lecture.ToLower() != "přednáška z češtiny" && lecture.ToLower() != "přednáška z angličtiny");
 
