@@ -5,16 +5,44 @@ using System.Threading;
 
 namespace UkolZakladyOOP
 {
+    /// <summary>
+    /// Třída studenta
+    /// </summary>
     public class Student : Person
     {
+        /// <summary>
+        /// Datum registrace
+        /// </summary>
         public DateTime registrationDate;
+        /// <summary>
+        /// Seznam předmětu a známky
+        /// </summary>
         public static List<MarkSubject> markSubjectList = new();
+        /// <summary>
+        /// Seznam studentů a jejich předmětů
+        /// </summary>
         public List<SubjectStudent> studentSubjectList = new();
+        /// <summary>
+        /// Průměr známek studenta
+        /// </summary>
         public double averageOfAllMarks;
+        /// <summary>
+        /// V jakén je student ročníku
+        /// </summary>
         public int year;
+        /// <summary>
+        /// Seznam všech studentů
+        /// </summary>
         public static List<Student> students = new();
 
-
+        /// <summary>
+        /// Konstruktor. Přidá studenta do seznamu studentů
+        /// </summary>
+        /// <param name="firstName">Jméno</param>
+        /// <param name="lastName">Příjmení</param>
+        /// <param name="birthDate">Datum narození</param>
+        /// <param name="registrationDate">Datum registrace</param>
+        /// <param name="year">Aktuální ročník</param>
         public Student(string firstName, string lastName, DateTime birthDate, DateTime registrationDate,
             int year) : base(firstName,
             lastName, birthDate)
@@ -75,7 +103,7 @@ namespace UkolZakladyOOP
             //string studentName = Console.ReadLine();
             string studentName = "Pepa";
             
-            if (!students.Exists(student => student.firstName == studentName))
+            if (!students.Exists(student => student.firstName.ToLower() == studentName.ToLower()))
             {
                 Console.WriteLine("Neexistuje daný student");
                 Console.WriteLine("Zadej jméno existujícího studenta");
@@ -164,18 +192,15 @@ namespace UkolZakladyOOP
         {
             if (studentSubjectList.Count != 0)
             {
-                foreach (SubjectStudent SubjectStudent in studentSubjectList)
+                foreach (SubjectStudent SubjectStudent in studentSubjectList.Where(SubjectStudent => SubjectStudent.Subject.year == this.year &&
+                             SubjectStudent.Subject.semester == currentSemester &&
+                             SubjectStudent.Subject.registered && this == SubjectStudent.Student))
                 {
-                    if (SubjectStudent.Subject.year == this.year &&
-                        SubjectStudent.Subject.semester == currentSemester &&
-                        SubjectStudent.Subject.registered && this == SubjectStudent.Student)
-                    {
-                        Console.WriteLine(
-                            "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
-                            SubjectStudent.Subject.name, SubjectStudent.credits,
-                            SubjectStudent.Subject.garantOfSubject.returnFullName(),
-                            SubjectStudent.Subject.semester);
-                    }
+                    Console.WriteLine(
+                        "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
+                        SubjectStudent.Subject.name, SubjectStudent.credits,
+                        SubjectStudent.Subject.garantOfSubject.returnFullName(),
+                        SubjectStudent.Subject.semester);
                 }
             }
             else
@@ -188,15 +213,12 @@ namespace UkolZakladyOOP
         {
             if (markSubjectList.Count != 0)
             {
-                foreach (MarkSubject markSubject in markSubjectList)
+                foreach (MarkSubject markSubject in markSubjectList.Where(markSubject => this == markSubject.Student))
                 {
-                    if (this == markSubject.Student)
-                    {
-                        Console.WriteLine(
-                            "Předmět {0}, garantem je {1}, Semestr: {2} (Level {3}) - známka {4}.",
-                            markSubject.Subject.name, markSubject.Subject.garantOfSubject.returnFullName(),
-                            markSubject.Subject.semester, markSubject.Subject.level, markSubject.mark);
-                    }
+                    Console.WriteLine(
+                        "Předmět {0}, garantem je {1}, Semestr: {2} (Level {3}) - známka {4}.",
+                        markSubject.Subject.name, markSubject.Subject.garantOfSubject.returnFullName(),
+                        markSubject.Subject.semester, markSubject.Subject.level, markSubject.mark);
                 }
             }
             else
@@ -291,14 +313,11 @@ namespace UkolZakladyOOP
         {
             foreach (SubjectStudent SubjectStudent in studentSubjectList)
             {
-                foreach (Exercise oneExercise in Exercise.exercises)
+                foreach (Exercise oneExercise in Exercise.exercises.Where(oneExercise => SubjectStudent.Subject.name == oneExercise.subject.name &&
+                             SubjectStudent.Subject.registered))
                 {
-                    if (SubjectStudent.Subject.name == oneExercise.subject.name &&
-                        SubjectStudent.Subject.registered)
-                    {
-                        Console.WriteLine("{0} - {1} kreditů, počítač {2}", oneExercise.name,
-                            oneExercise.credits, oneExercise.isComputerRequired());
-                    }
+                    Console.WriteLine("{0} - {1} kreditů, počítač {2}", oneExercise.name,
+                        oneExercise.credits, oneExercise.isComputerRequired());
                 }
             }
         }
