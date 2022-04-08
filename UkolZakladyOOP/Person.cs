@@ -11,10 +11,12 @@ namespace UkolZakladyOOP
         /// Jméno
         /// </summary>
         public string firstName;
+
         /// <summary>
         /// Přijmení
         /// </summary>
         public string lastName;
+
         /// <summary>
         /// Datum narození
         /// </summary>

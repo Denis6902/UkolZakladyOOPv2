@@ -71,8 +71,6 @@ namespace UkolZakladyOOP
 
             SchoolSystem schoolSystem = new();
             schoolSystem.mainMenu();
-            
-            // TODO: předělat: foreach + if -> foreach.where/find/exists, 
         }
     }
 }

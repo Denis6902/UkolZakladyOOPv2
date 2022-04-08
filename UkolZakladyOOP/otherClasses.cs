@@ -11,10 +11,12 @@ namespace UkolZakladyOOP
         /// Známka
         /// </summary>
         public double mark;
+
         /// <summary>
         /// Předmět
         /// </summary>
         public Subject Subject;
+
         /// <summary>
         /// Student
         /// </summary>
@@ -45,14 +47,17 @@ namespace UkolZakladyOOP
         /// Předmět
         /// </summary>
         public Subject Subject;
+
         /// <summary>
         /// Student
         /// </summary>
         public Student Student;
+
         /// <summary>
         /// Úroveň předmětu
         /// </summary>
         public int level;
+
         /// <summary>
         /// Počet kreditů za cvičení
         /// </summary>

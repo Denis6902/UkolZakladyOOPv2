@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace UkolZakladyOOP
 {
@@ -8,22 +11,27 @@ namespace UkolZakladyOOP
         /// Nazev přednášky
         /// </summary>
         public string name;
+
         /// <summary>
         /// Jestli je potřeba na přednášku počitač
         /// </summary>
         public bool computerRequired;
+
         /// <summary>
         /// Počet kreditů za přednášku
         /// </summary>
         public double credits;
+
         /// <summary>
         /// Předmět ke kterému je přednáška dělaná
         /// </summary>
         public Subject subject;
+
         /// <summary>
         /// Učitel přednášky
         /// </summary>
         public Teacher Teacher;
+
         /// <summary>
         /// Seznam všech přednášek
         /// </summary>
@@ -58,6 +66,22 @@ namespace UkolZakladyOOP
                 true => "je potřeba",
                 false => "není potřeba"
             };
+        }
+
+        public static Lecture selectLecture(string lectureName)
+        {
+            if (!lectures.Exists(lecture => lecture.name.ToLower() == lectureName.ToLower()))
+            {
+                Console.WriteLine("Neexistuje dané cvičení");
+                Console.WriteLine("Zadej název existujícího cvičení");
+                lectureName = Console.ReadLine();
+                Console.Clear();
+                selectLecture(lectureName);
+            }
+
+            Lecture chosenLecture = lectures.Find(lecture => lecture.name.ToLower() == lectureName.ToLower());
+
+            return chosenLecture;
         }
     }
 

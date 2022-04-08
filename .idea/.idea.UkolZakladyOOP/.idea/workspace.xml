@@ -7,9 +7,17 @@
     <list default="true" id="19098478-080f-4966-b60f-568f81cb1271" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Exercise.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Exercise.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Lecture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Lecture.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Student.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/UkolZakladyOOP.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/UkolZakladyOOP.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/allFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/SchoolSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Subject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Subject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/ref/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/ref/UkolZakladyOOP.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/refint/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/refint/UkolZakladyOOP.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +151,8 @@
       <workItem from="1644412214757" duration="15083000" />
       <workItem from="1647457050518" duration="48000" />
       <workItem from="1648225313112" duration="14709000" />
-      <workItem from="1649015585940" duration="945000" />
+      <workItem from="1649015585940" duration="1077000" />
+      <workItem from="1649429335957" duration="5637000" />
     </task>
     <task id="LOCAL-00001" summary="&#10;Postupné mazání vstupů do konzole, přejmenované creditsToFinish na credits, smazání property známka u předmětu a vytvořena vazební třída Mark_Subject, změna metody selectStudent na statickou.">
       <created>1636652947400</created>
@@ -271,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648247574713</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Opravená podmínka v metodě selectExercise(). Přejmenovaný soubor allFunctions.cs na SchoolSystem.cs. Postupné okomentování Student.cs.">
+      <created>1649017600422</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1649017600422</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,7 +338,8 @@
     <MESSAGE value="Rozdělení metody createSubject do více metod.&#10;Rozdělení metody createLecture do více metod.&#10;Změna metody listAllExercise na statickou.&#10;Přidaná kontrola v metodě listStudentsByAverageMarks, jestli má student nějakou známku.&#10;Předělaná metoda nextSemester." />
     <MESSAGE value="Odebraná zbytečná proměnná credits u studenta.&#10;Předělaná metoda nextSemester.&#10;Předělaná metoda listSubjectsForRegister." />
     <MESSAGE value="Postupné okomentování celého projektu. Upravená metoda isComputerRequired() ve třídě Lecture a Exercise. Předělaná metoda selectExercise() ve třídě Exercise. Opravená chyba v metodě createLectureFromTemplate() ve třídě Teacher. Předělané metody selectSubject() a listOnlyOneTypeSubjects() ve třídě Subject. Předělané metody selectStudent()a doExercise() ve třídě Student." />
-    <option name="LAST_COMMIT_MESSAGE" value="Postupné okomentování celého projektu. Upravená metoda isComputerRequired() ve třídě Lecture a Exercise. Předělaná metoda selectExercise() ve třídě Exercise. Opravená chyba v metodě createLectureFromTemplate() ve třídě Teacher. Předělané metody selectSubject() a listOnlyOneTypeSubjects() ve třídě Subject. Předělané metody selectStudent()a doExercise() ve třídě Student." />
+    <MESSAGE value="Opravená podmínka v metodě selectExercise(). Přejmenovaný soubor allFunctions.cs na SchoolSystem.cs. Postupné okomentování Student.cs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Opravená podmínka v metodě selectExercise(). Přejmenovaný soubor allFunctions.cs na SchoolSystem.cs. Postupné okomentování Student.cs." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -70,7 +70,8 @@ namespace UkolZakladyOOP
         /// <returns>Vybrané cvičení</returns>
         public static Exercise selectExercise(string exerciseName, Student student)
         {
-            if (!exercises.Exists(exercise => exercise.name.ToLower() == exerciseName.ToLower() && exercise.subject.year == student.year))
+            if (!exercises.Exists(exercise =>
+                    exercise.name.ToLower() == exerciseName.ToLower() && exercise.subject.year == student.year))
             {
                 Console.WriteLine("Neexistuje dané cvičení");
                 Console.WriteLine("Zadej název existujícího cvičení");

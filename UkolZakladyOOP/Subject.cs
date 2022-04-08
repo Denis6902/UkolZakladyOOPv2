@@ -108,7 +108,6 @@ namespace UkolZakladyOOP
             Subject Subject = subjects.Find(s => s.name.ToLower() == subjectName.ToLower());
 
             Console.WriteLine($"subject = {subjectName}");
-            Console.ReadKey();
             return Subject;
         }
 
