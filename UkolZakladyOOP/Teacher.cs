@@ -416,25 +416,7 @@ namespace UkolZakladyOOP
                 }
             }
         }
-
-        /// <summary>
-        /// Výpis všech cvičení
-        /// </summary>
-        public static void listAllExercise()
-        {
-            if (Exercise.exercises.Count == 0) // Jestli je počet cvičení větší než 0
-            {
-                Console.WriteLine("Neexistuje žádné cvičení");
-            }
-            else // Jinak vypíše cvičení ze seznamu cvičení
-            {
-                foreach (Exercise oneExercise in Exercise.exercises)
-                {
-                    Console.WriteLine("{0} - {1} kreditů, počítač je potřeba {2} (Předmět {3})", oneExercise.name,
-                        oneExercise.credits, oneExercise.computerRequired, oneExercise.subject.name);
-                }
-            }
-        }
+        
 
         /// <summary>
         /// Výpis studentů podle průměrných známek
@@ -485,20 +467,7 @@ namespace UkolZakladyOOP
                 createLectureFromTemplate(); // vytvoření přednášky ze šablony
             }
         }
-
-        /// <summary>
-        /// Výpis všech přednášek
-        /// </summary>
-        public static void listAllLectures()
-        {
-            foreach (Lecture Lecture in Lecture.lectures)
-            {
-                Console.WriteLine("Předmět {0}, k dokončení je potřeba {1} kreditů, z {2}", Lecture.name,
-                    Lecture.credits, Lecture.subject.name);
-            }
-        }
-
-
+        
         /// <summary>
         /// Vytvoření nové přednášky
         /// </summary>

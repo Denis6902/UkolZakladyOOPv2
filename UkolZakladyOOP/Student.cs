@@ -101,12 +101,13 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Vypočítá průměr všech známek studenta
         /// </summary>
-        /// <returns>Součet všech známek / počet známek</returns>
+        /// <returns>Součet všech známek studenta / počet známek student</returns>
         public double calculateAverageMark()
         {
             double sumOfAllMarks = markSubjectList.Where(markSubject => markSubject.Student == this)
                 .Sum(markSubject => markSubject.mark);
-            return sumOfAllMarks / markSubjectList.Count;
+            double countStudentMark = markSubjectList.Count(markSubject => markSubject.Student == this);
+            return sumOfAllMarks / countStudentMark;
         }
 
         /// <summary>
@@ -286,7 +287,7 @@ namespace UkolZakladyOOP
 
                 //string lectureName = Console.ReadLine();
                 string lectureName = "Přednáška z Angličtiny";
-                Lecture chosenLecture = Lecture.selectLecture(lectureName);
+                Lecture chosenLecture = Lecture.selectLecture(lectureName, this);
                 Console.WriteLine($"lectureName = {lectureName}");
 
                 foreach (SubjectStudent SubjectStudent in studentSubjectList)
@@ -320,7 +321,7 @@ namespace UkolZakladyOOP
                     double mark = r.Next(1, 5);
                     Console.WriteLine("Dokončil jsi předmět " + SubjectStudent.Subject.name + " s hodnocením " +
                                       mark);
-                    MarkSubject markSubject = new(mark, SubjectStudent.Subject, this, markSubjectList);
+                    MarkSubject markSubject = new(mark, SubjectStudent.Subject, this);
                     SubjectStudent.Subject.completed = true;
                 }
             }

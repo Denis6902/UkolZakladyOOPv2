@@ -28,13 +28,12 @@ namespace UkolZakladyOOP
         /// <param name="mark">Známka</param>
         /// <param name="Subject">Předmět</param>
         /// <param name="Student">Student</param>
-        /// <param name="markSubjectList">Seznam známky, předmětu a studenta</param>
-        public MarkSubject(double mark, Subject Subject, Student Student, List<MarkSubject> markSubjectList)
+        public MarkSubject(double mark, Subject Subject, Student Student)
         {
             this.mark = mark;
             this.Subject = Subject;
             this.Student = Student;
-            markSubjectList.Add(this);
+            Student.markSubjectList.Add(this);
         }
     }
 

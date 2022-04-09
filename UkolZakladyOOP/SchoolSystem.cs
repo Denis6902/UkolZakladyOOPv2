@@ -180,7 +180,7 @@ namespace UkolZakladyOOP
                         mainMenu(); // znovu spuštění hlavního menu, kvůli přepnutí na učitele
                     }
                 }
-            } while (optionAsInt > 0 && optionAsInt < 12);
+            } while (optionAsInt is > 0 and < 12);
         }
 
         /// <summary>
@@ -263,7 +263,7 @@ namespace UkolZakladyOOP
 
                         case 8:
                             Console.WriteLine("optionAsInt = 8"); // výpis všech cvičení
-                            Teacher.listAllExercise();
+                            Exercise.listAllExercise();
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
@@ -284,7 +284,7 @@ namespace UkolZakladyOOP
 
                         case 11:
                             Console.WriteLine("optionAsInt = 11"); // výpis všech přednášek
-                            Teacher.listAllLectures();
+                            Lecture.listAllLectures();
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
@@ -302,14 +302,12 @@ namespace UkolZakladyOOP
                             Thread.Sleep(delay);
                             Console.Clear();
                             break;
-                    }
-
-                    if (optionAsInt == 14)
-                    {
-                        Environment.Exit(0); // konec programu
+                        case 14:
+                            Environment.Exit(0); // konec programu
+                            break;
                     }
                 }
-            } while (optionAsInt > 0 && optionAsInt < 14);
+            } while (optionAsInt is > 0 and < 14);
         }
 
         /// <summary>

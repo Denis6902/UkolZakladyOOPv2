@@ -85,6 +85,25 @@ namespace UkolZakladyOOP
 
             return chosenExercise;
         }
+        
+        /// <summary>
+        /// Výpis všech cvičení
+        /// </summary>
+        public static void listAllExercise()
+        {
+            if (exercises.Count == 0) // Jestli je počet cvičení větší než 0
+            {
+                Console.WriteLine("Neexistuje žádné cvičení");
+            }
+            else // Jinak vypíše cvičení ze seznamu cvičení
+            {
+                foreach (Exercise exercise in exercises)
+                {
+                    Console.WriteLine("{0} - {1} kreditů, počítač je potřeba {2} (Předmět {3})", exercise.name,
+                        exercise.credits, exercise.computerRequired, exercise.subject.name);
+                }
+            }
+        }
     }
 
     /// <summary>

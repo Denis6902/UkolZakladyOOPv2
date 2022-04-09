@@ -68,21 +68,47 @@ namespace UkolZakladyOOP
             };
         }
 
-        public static Lecture selectLecture(string lectureName)
+        /// <summary>
+        /// Zvolení přednáška
+        /// </summary>
+        /// <param name="lectureName">Název</param>
+        /// <param name="student">Daný student</param>
+        /// <returns></returns>
+        public static Lecture selectLecture(string lectureName, Student student)
         {
-            if (!lectures.Exists(lecture => lecture.name.ToLower() == lectureName.ToLower()))
+            if (!lectures.Exists(lecture => lecture.name.ToLower() == lectureName.ToLower() && lecture.subject.year == student.year))
             {
                 Console.WriteLine("Neexistuje dané cvičení");
                 Console.WriteLine("Zadej název existujícího cvičení");
                 lectureName = Console.ReadLine();
                 Console.Clear();
-                selectLecture(lectureName);
+                selectLecture(lectureName, student);
             }
 
-            Lecture chosenLecture = lectures.Find(lecture => lecture.name.ToLower() == lectureName.ToLower());
+            Lecture chosenLecture = lectures.Find(lecture => lecture.name.ToLower() == lectureName.ToLower() && lecture.subject.year == student.year);
 
             return chosenLecture;
         }
+        
+        /// <summary>
+        /// Výpis všech přednášek
+        /// </summary>
+        public static void listAllLectures()
+        {
+            if (lectures.Count == 0)
+            {
+                Console.WriteLine("Neexistuje žádná přednáška");
+            }
+            else
+            {
+                foreach (Lecture Lecture in lectures)
+                {
+                    Console.WriteLine("Předmět {0}, k dokončení je potřeba {1} kreditů, z {2}", Lecture.name,
+                        Lecture.credits, Lecture.subject.name);
+                }
+            }
+        }
+
     }
 
     /// <summary>
