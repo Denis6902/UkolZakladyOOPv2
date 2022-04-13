@@ -111,7 +111,7 @@ namespace UkolZakladyOOP
 
                         case 3:
                             Console.WriteLine("optionAsInt = 3"); // Hlavní menu
-                            //mainMenu(currentSemester, delay);
+                            //mainMenu();
                             Console.WriteLine("Spustí znovu celý program");
                             Thread.Sleep(delay);
                             Console.Clear();

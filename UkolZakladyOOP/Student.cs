@@ -104,9 +104,12 @@ namespace UkolZakladyOOP
         /// <returns>Součet všech známek studenta / počet známek student</returns>
         public double calculateAverageMark()
         {
-            double sumOfAllMarks = markSubjectList.Where(markSubject => markSubject.Student == this)
-                .Sum(markSubject => markSubject.mark);
-            double countStudentMark = markSubjectList.Count(markSubject => markSubject.Student == this);
+            List<MarkSubject> chosenStudentMarks =
+                markSubjectList.FindAll(markSubject => markSubject.Student == this);
+
+            double sumOfAllMarks = chosenStudentMarks.Sum(markSubject => markSubject.mark);
+            double countStudentMark = chosenStudentMarks.Count;
+
             return sumOfAllMarks / countStudentMark;
         }
 
@@ -268,26 +271,15 @@ namespace UkolZakladyOOP
         /// <param name="currentSemester">Aktuální semestr</param>
         public void goOnLecture(Semester currentSemester)
         {
-            // TODO: Je potřeba currentSemester??
             if (Exercise.exercises.Count != 0 && studentSubjectList.Count != 0)
             {
-                foreach (SubjectStudent SubjectStudent in studentSubjectList)
-                {
-                    foreach (Lecture oneLecture in Lecture.lectures.Where(oneLecture =>
-                                 SubjectStudent.Subject == oneLecture.subject &&
-                                 SubjectStudent.Subject.registered && SubjectStudent.Subject.completed == false))
-                    {
-                        Console.WriteLine("{0} - {1} kreditů, počítač {2} (Předmět {3})",
-                            oneLecture.name, oneLecture.credits, oneLecture.isComputerRequired(),
-                            oneLecture.subject.name);
-                    }
-                }
+                Lecture.listAllRegisteredLectures(studentSubjectList);
 
                 Console.WriteLine("Zadejte název přednášky");
 
                 //string lectureName = Console.ReadLine();
-                string lectureName = "Přednáška z Angličtiny";
-                Lecture chosenLecture = Lecture.selectLecture(lectureName, this);
+                string lectureName = "Přednáška z Angličtiny1_1";
+                Lecture chosenLecture = Lecture.selectLecture(lectureName, this, currentSemester);
                 Console.WriteLine($"lectureName = {lectureName}");
 
                 foreach (SubjectStudent SubjectStudent in studentSubjectList)
@@ -350,15 +342,14 @@ namespace UkolZakladyOOP
         /// <param name="currentSemester">Aktuální semestr</param>
         public void doExercise(Semester currentSemester)
         {
-            // TODO: Je potřeba currentSemester??
             if (Exercise.exercises.Count != 0 && Subject.subjects.Count != 0)
             {
                 listAllRegistredExercise();
                 Console.WriteLine("Zadejte název cvičení");
 
                 //string exerciseName = Console.ReadLine();
-                string exerciseName = "Cvičení z Angličtiny";
-                Exercise exercise = Exercise.selectExercise(exerciseName, this);
+                string exerciseName = "Cvičení z Angličtiny1_1";
+                Exercise exercise = Exercise.selectExercise(exerciseName, this, currentSemester);
                 Console.WriteLine($"exerciseName = {exerciseName}");
 
 

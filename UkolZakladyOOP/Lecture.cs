@@ -74,18 +74,18 @@ namespace UkolZakladyOOP
         /// <param name="lectureName">Název</param>
         /// <param name="student">Daný student</param>
         /// <returns></returns>
-        public static Lecture selectLecture(string lectureName, Student student)
+        public static Lecture selectLecture(string lectureName, Student student, Semester currentSemester)
         {
-            if (!lectures.Exists(lecture => lecture.name.ToLower() == lectureName.ToLower() && lecture.subject.year == student.year))
+            if (!lectures.Exists(lecture => lecture.name.ToLower() == lectureName.ToLower() && lecture.subject.year == student.year && lecture.subject.semester == currentSemester))
             {
                 Console.WriteLine("Neexistuje dané cvičení");
                 Console.WriteLine("Zadej název existujícího cvičení");
                 lectureName = Console.ReadLine();
                 Console.Clear();
-                selectLecture(lectureName, student);
+                selectLecture(lectureName, student, currentSemester);
             }
 
-            Lecture chosenLecture = lectures.Find(lecture => lecture.name.ToLower() == lectureName.ToLower() && lecture.subject.year == student.year);
+            Lecture chosenLecture = lectures.Find(lecture => lecture.name.ToLower() == lectureName.ToLower() && lecture.subject.year == student.year && lecture.subject.semester == currentSemester);
 
             return chosenLecture;
         }
@@ -105,6 +105,21 @@ namespace UkolZakladyOOP
                 {
                     Console.WriteLine("Předmět {0}, k dokončení je potřeba {1} kreditů, z {2}", Lecture.name,
                         Lecture.credits, Lecture.subject.name);
+                }
+            }
+        }
+
+        public static void listAllRegisteredLectures(List<SubjectStudent> studentSubjectList)
+        {
+            foreach (SubjectStudent SubjectStudent in studentSubjectList)
+            {
+                foreach (Lecture oneLecture in Lecture.lectures.Where(oneLecture =>
+                             SubjectStudent.Subject == oneLecture.subject &&
+                             SubjectStudent.Subject.registered && SubjectStudent.Subject.completed == false))
+                {
+                    Console.WriteLine("{0} - {1} kreditů, počítač {2} (Předmět {3})",
+                        oneLecture.name, oneLecture.credits, oneLecture.isComputerRequired(),
+                        oneLecture.subject.name);
                 }
             }
         }

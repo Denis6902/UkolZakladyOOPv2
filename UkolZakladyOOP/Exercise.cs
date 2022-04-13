@@ -68,20 +68,20 @@ namespace UkolZakladyOOP
         /// <param name="exerciseName">Název cvičeneí</param>
         /// <param name="student">Daný student</param>
         /// <returns>Vybrané cvičení</returns>
-        public static Exercise selectExercise(string exerciseName, Student student)
+        public static Exercise selectExercise(string exerciseName, Student student, Semester currentSemester)
         {
             if (!exercises.Exists(exercise =>
-                    exercise.name.ToLower() == exerciseName.ToLower() && exercise.subject.year == student.year))
+                    exercise.name.ToLower() == exerciseName.ToLower() && exercise.subject.year == student.year && exercise.subject.semester == currentSemester))
             {
                 Console.WriteLine("Neexistuje dané cvičení");
                 Console.WriteLine("Zadej název existujícího cvičení");
                 exerciseName = Console.ReadLine();
                 Console.Clear();
-                selectExercise(exerciseName, student);
+                selectExercise(exerciseName, student, currentSemester);
             }
 
             Exercise chosenExercise = exercises.Find(exercise =>
-                exercise.name.ToLower() == exerciseName.ToLower() && exercise.subject.year == student.year);
+                exercise.name.ToLower() == exerciseName.ToLower() && exercise.subject.year == student.year && exercise.subject.semester == currentSemester);
 
             return chosenExercise;
         }

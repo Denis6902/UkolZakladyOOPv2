@@ -40,33 +40,33 @@ namespace UkolZakladyOOP
             Student Denis = new("Denis", "Vojtěch", new DateTime(1984, 9, 3), new DateTime(2020, 1, 2),
                 1);
 
-            Exercise ExerciseFromEnglish1_1 = new("Cvičení z Angličtiny", false, 50, English1_1);
-            Exercise ExerciseFromCzech1_1 = new("Cvičení z Češtiny", false, 50, Czech1_1);
-            Lecture LectureFromEnglish1_1 = new("Přednáška z Angličtiny", false, 50, English1_1);
-            Lecture LectureFromCzech1_1 = new("Přednáška z Češtiny", false, 50, Czech1_1);
+            Exercise ExerciseFromEnglish1_1 = new("Cvičení z Angličtiny1_1", false, 50, English1_1);
+            Exercise ExerciseFromCzech1_1 = new("Cvičení z Češtiny1_1", false, 50, Czech1_1);
+            Lecture LectureFromEnglish1_1 = new("Přednáška z Angličtiny1_1", false, 50, English1_1);
+            Lecture LectureFromCzech1_1 = new("Přednáška z Češtiny1_1", false, 50, Czech1_1);
 
-            Exercise ExerciseFromEnglish2_1 = new("Cvičení z Angličtiny", false, 50, English2_1);
-            Exercise ExerciseFromCzech2_1 = new("Cvičení z Češtiny", false, 50, Czech2_1);
-            Lecture LectureFromEnglish2_1 = new("Přednáška z Angličtiny", false, 50, English2_1);
-            Lecture LectureFromCzech2_1 = new("Přednáška z Češtiny", false, 50, Czech2_1);
+            Exercise ExerciseFromEnglish2_1 = new("Cvičení z Angličtiny2_1", false, 50, English2_1);
+            Exercise ExerciseFromCzech2_1 = new("Cvičení z Češtiny2_1", false, 50, Czech2_1);
+            Lecture LectureFromEnglish2_1 = new("Přednáška z Angličtiny2_1", false, 50, English2_1);
+            Lecture LectureFromCzech2_1 = new("Přednáška z Češtiny2_1", false, 50, Czech2_1);
 
-            Exercise ExerciseFromEnglish3_1 = new("Cvičení z Angličtiny", false, 50, English3_1);
-            Exercise ExerciseFromCzech3_1 = new("Cvičení z Češtiny", false, 50, Czech3_1);
-            Lecture LectureFromEnglish3_1 = new("Přednáška z Angličtiny", false, 50, English3_1);
-            Lecture LectureFromCzech3_1 = new("Přednáška z Češtiny", false, 50, Czech3_1);
+            Exercise ExerciseFromEnglish3_1 = new("Cvičení z Angličtiny3_1", false, 50, English3_1);
+            Exercise ExerciseFromCzech3_1 = new("Cvičení z Češtiny3_1", false, 50, Czech3_1);
+            Lecture LectureFromEnglish3_1 = new("Přednáška z Angličtiny3_1", false, 50, English3_1);
+            Lecture LectureFromCzech3_1 = new("Přednáška z Češtiny3_1", false, 50, Czech3_1);
 
-            Exercise ExerciseFromEnglish1_2 = new("Cvičení z Angličtiny", false, 50, English1_2);
-            Exercise ExerciseFromCzech1_2 = new("Cvičení z Češtiny", false, 50, Czech1_2);
-            Lecture LectureFromEnglish1_2 = new("Přednáška z Angličtiny", false, 50, English1_2);
-            Lecture LectureFromCzech1_2 = new("Přednáška z Češtiny", false, 50, Czech1_2);
+            Exercise ExerciseFromEnglish1_2 = new("Cvičení z Angličtiny1_2", false, 50, English1_2);
+            Exercise ExerciseFromCzech1_2 = new("Cvičení z Češtiny1_2", false, 50, Czech1_2);
+            Lecture LectureFromEnglish1_2 = new("Přednáška z Angličtiny1_2", false, 50, English1_2);
+            Lecture LectureFromCzech1_2 = new("Přednáška z Češtiny1_2", false, 50, Czech1_2);
 
-            Exercise ExerciseFromEnglish2_2 = new("Cvičení z Angličtiny", false, 50, English2_2);
-            Exercise ExerciseFromCzech2_2 = new("Cvičení z Češtiny", false, 50, Czech2_2);
-            Lecture LectureFromEnglish2_2 = new("Přednáška z Angličtiny", false, 50, English2_2);
-            Lecture LectureFromCzech2_2 = new("Přednáška z Češtiny", false, 50, Czech2_2);
+            Exercise ExerciseFromEnglish2_2 = new("Cvičení z Angličtiny2_2", false, 50, English2_2);
+            Exercise ExerciseFromCzech2_2 = new("Cvičení z Češtiny2_2", false, 50, Czech2_2);
+            Lecture LectureFromEnglish2_2 = new("Přednáška z Angličtiny2_2", false, 50, English2_2);
+            Lecture LectureFromCzech2_2 = new("Přednáška z Češtiny2_2", false, 50, Czech2_2);
 
-            Exercise ExerciseFromEnglish3_2 = new("Cvičení z Angličtiny", false, 50, English3_2);
-            Lecture LectureFromEnglish3_2 = new("Přednáška z Angličtiny", false, 50, English3_2);
+            Exercise ExerciseFromEnglish3_2 = new("Cvičení z Angličtiny3_2", false, 50, English3_2);
+            Lecture LectureFromEnglish3_2 = new("Přednáška z Angličtiny3_2", false, 50, English3_2);
 
 
             SchoolSystem schoolSystem = new();
