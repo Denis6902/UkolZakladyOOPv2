@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/denis/RiderProjects/UkolZakladyOOPv2/UkolZakladyOOP/UkolZakladyOOP.csproj": {}
+    "C:\\Users\\Denis\\RiderProjects\\UkolZakladyOOPv2\\UkolZakladyOOP\\UkolZakladyOOP.csproj": {}
   },
   "projects": {
-    "/Users/denis/RiderProjects/UkolZakladyOOPv2/UkolZakladyOOP/UkolZakladyOOP.csproj": {
+    "C:\\Users\\Denis\\RiderProjects\\UkolZakladyOOPv2\\UkolZakladyOOP\\UkolZakladyOOP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/denis/RiderProjects/UkolZakladyOOPv2/UkolZakladyOOP/UkolZakladyOOP.csproj",
+        "projectUniqueName": "C:\\Users\\Denis\\RiderProjects\\UkolZakladyOOPv2\\UkolZakladyOOP\\UkolZakladyOOP.csproj",
         "projectName": "UkolZakladyOOP",
-        "projectPath": "/Users/denis/RiderProjects/UkolZakladyOOPv2/UkolZakladyOOP/UkolZakladyOOP.csproj",
-        "packagesPath": "/Users/denis/.nuget/packages/",
-        "outputPath": "/Users/denis/RiderProjects/UkolZakladyOOPv2/UkolZakladyOOP/obj/",
+        "projectPath": "C:\\Users\\Denis\\RiderProjects\\UkolZakladyOOPv2\\UkolZakladyOOP\\UkolZakladyOOP.csproj",
+        "packagesPath": "C:\\Users\\Denis\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Denis\\RiderProjects\\UkolZakladyOOPv2\\UkolZakladyOOP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/denis/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Denis\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -52,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\Denis\\.dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

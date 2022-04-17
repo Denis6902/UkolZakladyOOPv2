@@ -105,10 +105,10 @@ namespace UkolZakladyOOP
         public double calculateAverageMark()
         {
             List<MarkSubject> chosenStudentMarks =
-                markSubjectList.FindAll(markSubject => markSubject.Student == this);
+                markSubjectList.FindAll(markSubject => markSubject.Student == this); // vytvoří nový seznam známek jenom od daného studenta
 
-            double sumOfAllMarks = chosenStudentMarks.Sum(markSubject => markSubject.mark);
-            double countStudentMark = chosenStudentMarks.Count;
+            double sumOfAllMarks = chosenStudentMarks.Sum(markSubject => markSubject.mark); // uloží do sumOfAllMarks součet všech známek
+            double countStudentMark = chosenStudentMarks.Count; // uloží do sumOfAllMarks počet všech známek
 
             return sumOfAllMarks / countStudentMark;
         }
@@ -121,20 +121,20 @@ namespace UkolZakladyOOP
         {
             foreach (Student Student in students)
             {
-                Console.WriteLine(Student.firstName);
+                Console.WriteLine(Student.firstName); // vypíše jména všech studentů ze seznamu students
             }
 
             //string studentName = Console.ReadLine();
             string studentName = "Pepa";
 
-            if (!students.Exists(student => student.firstName.ToLower() == studentName.ToLower()))
+            if (!students.Exists(student => student.firstName.ToLower() == studentName.ToLower())) // jestli neexistuje student s daným jménem, spustí znovu metodu
             {
                 Console.WriteLine("Neexistuje daný student");
                 Console.WriteLine("Zadej jméno existujícího studenta");
                 selectStudent();
             }
 
-            Student chosenStudent = students.Find(student => student.firstName.ToLower() == studentName.ToLower());
+            Student chosenStudent = students.Find(student => student.firstName.ToLower() == studentName.ToLower()); // uloží do chosenStudent daného studenta
 
             return chosenStudent;
         }
@@ -147,19 +147,19 @@ namespace UkolZakladyOOP
         {
             if (Subject.subjects.Count != 0)
             {
-                listSubjectsForRegister(currentSemester);
+                listSubjectsForRegister(currentSemester); // vypíše předměty dostupné k registraci
 
                 Console.WriteLine("Zadejte název předmětu");
                 //string subject = Console.ReadLine();
-                string subject = "English1_1";
+                string subjectName = "English1_1";
                 Console.WriteLine("subject = English1_1");
 
                 foreach (Subject Subject in Subject.subjects.Where(Subject =>
-                             Subject.name.ToLower() == subject.ToLower() && Subject.registered == false))
+                             Subject.name.ToLower() == subjectName.ToLower() && Subject.registered == false)) //  projede přeměty kde se název předmětu rovná danému názvu
                 {
                     Console.WriteLine(this.firstName + " jsi zapsaný do " + Subject.name + " předmětu, Semestr: " +
                                       Subject.semester);
-                    SubjectStudent SubjectStudent = new(Subject, this, Subject.level, this.studentSubjectList);
+                    SubjectStudent SubjectStudent = new(Subject, this, Subject.level, this.studentSubjectList); // přidá předmět se studentem do seznamu předmětů a studentů
                     SubjectStudent.Subject.registered = true;
                 }
             }
@@ -224,7 +224,7 @@ namespace UkolZakladyOOP
         /// <param name="currentSemester">Aktuální semestr</param>
         public void listAllMySubjects(Semester currentSemester)
         {
-            if (studentSubjectList.Count != 0)
+            if (studentSubjectList.Count != 0) // kontrola jestli je počet registrovaných předmětů > 0
             {
                 foreach (SubjectStudent SubjectStudent in studentSubjectList.Where(SubjectStudent =>
                              SubjectStudent.Subject.year == this.year &&
@@ -249,7 +249,7 @@ namespace UkolZakladyOOP
         /// </summary>
         public void listCompletedSubjects()
         {
-            if (markSubjectList.Count != 0)
+            if (markSubjectList.Count != 0) // kontrola jestli je počet známek > 0
             {
                 foreach (MarkSubject markSubject in markSubjectList.Where(markSubject => this == markSubject.Student))
                 {

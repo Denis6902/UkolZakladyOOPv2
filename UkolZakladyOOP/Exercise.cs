@@ -65,8 +65,9 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Vrátí dané cvičení
         /// </summary>
-        /// <param name="exerciseName">Název cvičeneí</param>
+        /// <param name="exerciseName">Název cvičení</param>
         /// <param name="student">Daný student</param>
+        /// <param name="currentSemester">Aktuánlí semestr</param>
         /// <returns>Vybrané cvičení</returns>
         public static Exercise selectExercise(string exerciseName, Student student, Semester currentSemester)
         {

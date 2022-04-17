@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 namespace UkolZakladyOOP
@@ -157,15 +158,13 @@ namespace UkolZakladyOOP
         {
             if (returnSubjectsCount() != 0) // Pokud je počet předmětů daného učitele jiný než 0 (žádný)
             {
-                foreach (Subject Subject in Subject.subjects.ToArray()) // projede seznam předmětů
+                foreach (Subject Subject in Subject.subjects.Where(subject => subject.teacher == this)) // projede seznam předmětů kde je učitel předmětu roven danému učiteli
                 {
-                    if (Subject.teacher == this) // pokud je učitel předmětu roven danému učiteli, vypíše předmět
-                    {
-                        Console.WriteLine(
-                            "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
-                            Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName(), Subject.semester);
-                    }
+                    Console.WriteLine(
+                        "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
+                        Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName(), Subject.semester);
                 }
+
             }
             else
             {

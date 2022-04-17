@@ -71,8 +71,9 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Zvolení přednáška
         /// </summary>
-        /// <param name="lectureName">Název</param>
+        /// <param name="lectureName">Název cvičení</param>
         /// <param name="student">Daný student</param>
+        /// <param name="currentSemester">Aktuální semestr</param>
         /// <returns></returns>
         public static Lecture selectLecture(string lectureName, Student student, Semester currentSemester)
         {
@@ -109,6 +110,10 @@ namespace UkolZakladyOOP
             }
         }
 
+        /// <summary>
+        /// Vypíše všechny přednášky daného studenta
+        /// </summary>
+        /// <param name="studentSubjectList">Registrované předmety daného studenta</param>
         public static void listAllRegisteredLectures(List<SubjectStudent> studentSubjectList)
         {
             foreach (SubjectStudent SubjectStudent in studentSubjectList)
