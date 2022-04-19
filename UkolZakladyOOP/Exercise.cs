@@ -57,8 +57,8 @@ namespace UkolZakladyOOP
         {
             return computerRequired switch
             {
-                true => "je potřeba",
-                false => "není potřeba"
+                true => "je potřeba", // jestli computerRequired = true vrátí "je potřeba"
+                false => "není potřeba" // jestli computerRequired = false vrátí "není potřeba"
             };
         }
 
@@ -72,7 +72,9 @@ namespace UkolZakladyOOP
         public static Exercise selectExercise(string exerciseName, Student student, Semester currentSemester)
         {
             if (!exercises.Exists(exercise =>
-                    exercise.name.ToLower() == exerciseName.ToLower() && exercise.subject.year == student.year && exercise.subject.semester == currentSemester))
+                    exercise.name.ToLower() == exerciseName.ToLower() && exercise.subject.year == student.year &&
+                    exercise.subject.semester ==
+                    currentSemester)) // kontrola jestli existuje cvičení s daným názvem v aktuálním ročníku a semestru
             {
                 Console.WriteLine("Neexistuje dané cvičení");
                 Console.WriteLine("Zadej název existujícího cvičení");
@@ -82,13 +84,15 @@ namespace UkolZakladyOOP
             }
 
             Exercise chosenExercise = exercises.Find(exercise =>
-                exercise.name.ToLower() == exerciseName.ToLower() && exercise.subject.year == student.year && exercise.subject.semester == currentSemester);
+                exercise.name.ToLower() == exerciseName.ToLower() && exercise.subject.year == student.year &&
+                exercise.subject.semester ==
+                currentSemester); // vybere existující cvičení s daným názvem v aktuálním ročníku a semestru
 
-            return chosenExercise;
+            return chosenExercise; // vratí cvičení s daným názvem v aktuálním ročníku a semestru
         }
-        
+
         /// <summary>
-        /// Výpis všech cvičení
+        /// Výpis všech cvičení ze seznamu cvičení
         /// </summary>
         public static void listAllExercise()
         {
@@ -98,7 +102,7 @@ namespace UkolZakladyOOP
             }
             else // Jinak vypíše cvičení ze seznamu cvičení
             {
-                foreach (Exercise exercise in exercises)
+                foreach (Exercise exercise in exercises) // projede všechny cvičení ze seznamu cvičení
                 {
                     Console.WriteLine("{0} - {1} kreditů, počítač je potřeba {2} (Předmět {3})", exercise.name,
                         exercise.credits, exercise.computerRequired, exercise.subject.name);

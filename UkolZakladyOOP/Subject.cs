@@ -96,7 +96,8 @@ namespace UkolZakladyOOP
         /// <returns>Vybraný předmět</returns>
         public static Subject selectSubject(string subjectName)
         {
-            if (!subjects.Exists(s => s.name.ToLower() == subjectName.ToLower()))
+            if (!subjects.Exists(s =>
+                    s.name.ToLower() == subjectName.ToLower())) // kontrola jestli existuje předmět s daným názvem
             {
                 Console.WriteLine("Neexistuje daný předmět");
                 Console.WriteLine("Zadej název existujícího předmětu");
@@ -105,10 +106,11 @@ namespace UkolZakladyOOP
                 selectSubject(subjectName);
             }
 
-            Subject Subject = subjects.Find(s => s.name.ToLower() == subjectName.ToLower());
+            Subject Subject =
+                subjects.Find(s => s.name.ToLower() == subjectName.ToLower()); // vybere předmět s daným názvem
 
             Console.WriteLine($"subject = {subjectName}");
-            return Subject;
+            return Subject; // vrátí předmět s daným názvem
         }
 
         /// <summary>
@@ -116,7 +118,7 @@ namespace UkolZakladyOOP
         /// </summary>
         public static void listAllSubjects()
         {
-            foreach (Subject Subject in Subject.subjects)
+            foreach (Subject Subject in Subject.subjects) // projede všechny předměty ze seznamu předmětů
             {
                 Console.WriteLine(
                     "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
@@ -133,7 +135,10 @@ namespace UkolZakladyOOP
         /// <param name="subject">Typ předmětu (Czech, English,...)</param>
         public static void listOnlyOneTypeSubjects(string subject)
         {
-            foreach (Subject Subject in Subject.subjects.Where(s => s.name.Substring(0, 3) == subject.ToLower()))
+            foreach (Subject Subject in
+                     Subject.subjects.Where(s =>
+                         s.name.Substring(0, 3) ==
+                         subject.ToLower())) // projede všechny předměty které začínají první tři písmena z daného slova
             {
                 Console.WriteLine(
                     "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",

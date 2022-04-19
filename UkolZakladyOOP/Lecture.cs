@@ -63,8 +63,8 @@ namespace UkolZakladyOOP
         {
             return computerRequired switch
             {
-                true => "je potřeba",
-                false => "není potřeba"
+                true => "je potřeba", // jestli computerRequired = true vrátí "je potřeba"
+                false => "není potřeba" // jestli computerRequired = false vrátí "není potřeba"
             };
         }
 
@@ -74,10 +74,13 @@ namespace UkolZakladyOOP
         /// <param name="lectureName">Název cvičení</param>
         /// <param name="student">Daný student</param>
         /// <param name="currentSemester">Aktuální semestr</param>
-        /// <returns></returns>
+        /// <returns>Danou přednášku</returns>
         public static Lecture selectLecture(string lectureName, Student student, Semester currentSemester)
         {
-            if (!lectures.Exists(lecture => lecture.name.ToLower() == lectureName.ToLower() && lecture.subject.year == student.year && lecture.subject.semester == currentSemester))
+            if (!lectures.Exists(lecture =>
+                    lecture.name.ToLower() == lectureName.ToLower() && lecture.subject.year == student.year &&
+                    lecture.subject.semester ==
+                    currentSemester)) // kontrola jestli existuje přednáška s daným názvem v aktuálním ročníku a semestru
             {
                 Console.WriteLine("Neexistuje dané cvičení");
                 Console.WriteLine("Zadej název existujícího cvičení");
@@ -86,21 +89,24 @@ namespace UkolZakladyOOP
                 selectLecture(lectureName, student, currentSemester);
             }
 
-            Lecture chosenLecture = lectures.Find(lecture => lecture.name.ToLower() == lectureName.ToLower() && lecture.subject.year == student.year && lecture.subject.semester == currentSemester);
+            Lecture chosenLecture = lectures.Find(lecture =>
+                lecture.name.ToLower() == lectureName.ToLower() && lecture.subject.year == student.year &&
+                lecture.subject.semester ==
+                currentSemester); // vybere existující přednášku s daným názvem v aktuálním ročníku a semestru
 
-            return chosenLecture;
+            return chosenLecture; // vratí přednášku s daným názvem v aktuálním ročníku a semestru
         }
-        
+
         /// <summary>
         /// Výpis všech přednášek
         /// </summary>
         public static void listAllLectures()
         {
-            if (lectures.Count == 0)
+            if (lectures.Count == 0) // Jestli je počet přednášek větší než 0
             {
                 Console.WriteLine("Neexistuje žádná přednáška");
             }
-            else
+            else // Jinak vypíše přednášku ze seznamu přednášek
             {
                 foreach (Lecture Lecture in lectures)
                 {
@@ -128,7 +134,6 @@ namespace UkolZakladyOOP
                 }
             }
         }
-
     }
 
     /// <summary>

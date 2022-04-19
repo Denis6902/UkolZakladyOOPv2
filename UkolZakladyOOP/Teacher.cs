@@ -158,13 +158,15 @@ namespace UkolZakladyOOP
         {
             if (returnSubjectsCount() != 0) // Pokud je počet předmětů daného učitele jiný než 0 (žádný)
             {
-                foreach (Subject Subject in Subject.subjects.Where(subject => subject.teacher == this)) // projede seznam předmětů kde je učitel předmětu roven danému učiteli
+                foreach (Subject Subject in
+                         Subject.subjects.Where(subject =>
+                             subject.teacher ==
+                             this)) // projede seznam předmětů kde je učitel předmětu roven danému učiteli
                 {
                     Console.WriteLine(
                         "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
                         Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName(), Subject.semester);
                 }
-
             }
             else
             {
@@ -415,7 +417,7 @@ namespace UkolZakladyOOP
                 }
             }
         }
-        
+
 
         /// <summary>
         /// Výpis studentů podle průměrných známek
@@ -466,7 +468,7 @@ namespace UkolZakladyOOP
                 createLectureFromTemplate(); // vytvoření přednášky ze šablony
             }
         }
-        
+
         /// <summary>
         /// Vytvoření nové přednášky
         /// </summary>
