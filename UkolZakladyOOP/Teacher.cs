@@ -48,36 +48,18 @@ namespace UkolZakladyOOP
         /// Vrátí počet předmetů, který daný učitel učí
         /// </summary>
         /// <returns>Počet předmetů</returns>
-        public int returnSubjectsCount()
+        private int returnSubjectsCount()
         {
-            int count = 0;
-            foreach (Subject Subject in Subject.subjects) // Projede všechny předměty
-            {
-                if (Subject.teacher == this) // Pokud se učitel předmětu rovná danému učiteli 
-                {
-                    count++; // Zvyší počet předmětu, které daný učitel učí o 1
-                }
-            }
-
-            return count;
+            return Subject.subjects.Count(Subject => Subject.teacher == this);
         }
 
         /// <summary>
         /// Vrátí počet přednášek, který daný učitel učí
         /// </summary>
         /// <returns>Počet přednášek</returns>
-        public int returnLecturesCount()
+        private int returnLecturesCount()
         {
-            int count = 0;
-            foreach (Lecture Lecture in Lecture.lectures) // Projede všechny přednášky
-            {
-                if (Lecture.Teacher == this) // Pokud se učitel přednásky rovná danému učiteli 
-                {
-                    count++; // Zvyší počet přednášek, které daný učitel učí o 1
-                }
-            }
-
-            return count;
+            return Lecture.lectures.Count(Lecture => Lecture.Teacher == this);
         }
 
 
@@ -99,28 +81,26 @@ namespace UkolZakladyOOP
         /// <returns>Daného učitele</returns>
         public static Teacher selectTeacher()
         {
-            Teacher chosenTeacher = null;
-            bool end = false;
-            do
+            foreach (Teacher Teacher in teachers)
             {
-                foreach (Teacher Teacher in teachers) // Vypíše jména všech učitelů ze seznamu učitelů
-                {
-                    Console.WriteLine(Teacher.firstName);
-                }
+                Console.WriteLine(Teacher.firstName); // vypíše jména všech učitelů ze seznamu teachers
+            }
 
-                //string teacherName = Console.ReadLine(); // načtení jména z konzole 
-                string teacherName = "Pavel";
+            //string teacherName = Console.ReadLine();
+            string teacherName = "Pavel";
 
-                foreach (Teacher Teacher in teachers) // projede seznam učitelů
-                {
-                    if (Teacher.firstName.ToLower() ==
-                        teacherName.ToLower()) // pokud se zadané jméno rovná jménu v seznamu
-                    {
-                        chosenTeacher = Teacher; // vybere zvoleného učitele
-                        end = true;
-                    }
-                }
-            } while (end == false);
+            if (!teachers.Exists(teacher =>
+                    teacher.firstName.ToLower() ==
+                    teacherName.ToLower())) // jestli neexistuje učitele s daným jménem, spustí znovu metodu
+            {
+                Console.WriteLine("Neexistuje daný učitel");
+                Console.WriteLine("Zadej jméno existujícího učitele");
+                selectTeacher();
+            }
+
+            Teacher chosenTeacher =
+                teachers.Find(teacher =>
+                    teacher.firstName.ToLower() == teacherName.ToLower()); // uloží do chosenTeacher daného učitele
 
             return chosenTeacher;
         }
@@ -131,15 +111,13 @@ namespace UkolZakladyOOP
         /// <param name="currentSemester">Aktuální semestr</param>
         public void registerSubject(Semester currentSemester)
         {
-            foreach (Subject Subject in Subject.subjects) // Projede seznam všech předmětů
+            foreach (Subject Subject in
+                     Subject.subjects.Where( // projede všechny přeměty v aktuánlím semestru, které nikdo neučí
+                         Subject => currentSemester == Subject.semester && Subject.teacher == null))
             {
-                if (currentSemester == Subject.semester &&
-                    Subject.teacher == null) // Pokud je předmět v aktuálním semestru a předmět nemá žádného učitele
-                {
-                    Console.WriteLine(
-                        "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
-                        Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName(), Subject.semester);
-                }
+                Console.WriteLine(
+                    "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
+                    Subject.name, Subject.credits, Subject.garantOfSubject.returnFullName(), Subject.semester);
             }
 
             Console.WriteLine("Zadejte název předmětu");
@@ -209,7 +187,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Vytvoření nového předmětu
         /// </summary>
-        public static void createNewSubject()
+        private static void createNewSubject()
         {
             //Console.WriteLine("Jméno:");
             //string name = Console.ReadLine();
@@ -249,7 +227,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Vytvoření předmětu ze šablony (factory)
         /// </summary>
-        public static void createSubjectFromTemplate()
+        private static void createSubjectFromTemplate()
         {
             string subject = "";
 
@@ -337,7 +315,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Vytvoření nového cvičení
         /// </summary>
-        public static void createNewExercise()
+        private static void createNewExercise()
         {
             //Console.WriteLine("Jméno:");
             //string nameOfExercise = Console.ReadLine(); // načtení z konzole názvu cvičení
@@ -368,7 +346,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Vytvoření cvičení ze šablony (factory)
         /// </summary>
-        public static void createExerciseFromTemplate()
+        private static void createExerciseFromTemplate()
         {
             {
                 string exercise = "";
@@ -378,7 +356,7 @@ namespace UkolZakladyOOP
                     Console.WriteLine("Jméno:");
                     Console.WriteLine("Cvičení z Češtiny");
                     Console.WriteLine("Cvičení z Angličtiny");
-                    //string exercise = Console.ReadLine().ToLower();
+                    //exercise = Console.ReadLine().ToLower();
                     exercise = "cvičení z češtiny";
                     Console.WriteLine("exercise = " + exercise);
                 } while (exercise.ToLower() != "cvičení z češtiny" && exercise.ToLower() != "cvičení z angličtiny");
@@ -392,26 +370,12 @@ namespace UkolZakladyOOP
                 {
                     case "cvičení z češtiny":
                     {
-                        Console.WriteLine("Předmět?");
-                        UkolZakladyOOP.Subject.listOnlyOneTypeSubjects("czech"); // výpis všech předmětů Čeština
-                        //string subjectName = Console.ReadLine();
-                        string subjectName = "Czech3_2"; // načtení názvu předmětu z konzole  
-                        Subject Subject = Subject.selectSubject(subjectName); // vybrání předmětu
-
-                        Exercise ExerciseFromCzech =
-                            ExerciseFactory.CreateExerciseFromCzech(credits, Subject); // vytvoření předmětu
+                        createCzechExercise(credits);
                         break;
                     }
                     case "cvičení z angličtiny":
                     {
-                        Console.WriteLine("Předmět?");
-                        UkolZakladyOOP.Subject.listOnlyOneTypeSubjects("english"); // výpis všech předmětů Čeština
-                        //string subjectName = Console.ReadLine();
-                        string subjectName = "English3_2"; // načtení názvu předmětu z konzole  
-                        Subject Subject = Subject.selectSubject(subjectName); // vybrání předmětu
-
-                        Exercise ExerciseFromEnglish =
-                            ExerciseFactory.CreateExerciseFromEnglish(credits, Subject); // vytvoření předmětu
+                        createEnglishExercise(credits);
                         break;
                     }
                 }
@@ -472,7 +436,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Vytvoření nové přednášky
         /// </summary>
-        public static void createNewLecture()
+        private static void createNewLecture()
         {
             Console.WriteLine("Jméno = Přednáška 1");
             //string nameOfLecture = Console.ReadLine(); // načtení z konzole názvu přednášky
@@ -498,7 +462,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Vytvoření nové přednášky ze šablony (factory)
         /// </summary>
-        public static void createLectureFromTemplate()
+        private static void createLectureFromTemplate()
         {
             string lecture = "";
 
@@ -530,17 +494,16 @@ namespace UkolZakladyOOP
             }
         }
 
-        /// <summary>
+        /// <summary>x
         /// Vytvoření přednášky z Češtiny
         /// </summary>
         /// <param name="credits">Počet kreditů</param>
-        public static void createCzechLecture(double credits)
+        private static void createCzechLecture(double credits)
         {
-            Console.WriteLine("Předmět:");
-            Subject.listOnlyOneTypeSubjects("czech"); // výpis všech předmětů Čeština
-            //string subjectName = Console.ReadLine();
-            string subjectName = "Czech3_2"; // načtení názvu předmětu z konzole
-            Subject chosenSubject = Subject.selectSubject(subjectName); // vybrání daného předmětu
+            Subject.listOnlyOneTypeSubjects("english"); // vypíše všechny češtiny
+            string subjectName = "english1_2";
+            Subject chosenSubject =
+                Subject.selectOnlyOneTypeSubject(subjectName, "english"); // výběr předmětu daného typu s daným názvem
 
             Lecture LectureFromCzech =
                 LectureFactory.CreateLectureFromCzech(credits, chosenSubject); // vytvoření přednášky z Češtiny
@@ -550,16 +513,45 @@ namespace UkolZakladyOOP
         /// Vytvoření přednášky z Angličtiny
         /// </summary>
         /// <param name="credits">Počet kreditů</param>
-        public static void createEnglishLecture(double credits)
+        private static void createEnglishLecture(double credits)
         {
-            Console.WriteLine("Předmět:");
-            Subject.listOnlyOneTypeSubjects("english"); // výpis všech předmětů Angličtina
-            //string subjectName = Console.ReadLine();
-            string subjectName = "English3_2"; // načtení názvu předmětu z konzole
-            Subject chosenSubject = Subject.selectSubject(subjectName); // vybrání daného předmětu
+            Subject.listOnlyOneTypeSubjects("english"); // vypíše všechny angličtiny
+            string subjectName = "english1_2";
+            Subject chosenSubject =
+                Subject.selectOnlyOneTypeSubject(subjectName, "english"); // výběr předmětu daného typu s daným názvem
 
             Lecture LectureFromEnglish =
                 LectureFactory.CreateLectureFromEnglish(credits, chosenSubject); // vytvoření přednášky z Angličtiny
+        }
+
+        /// <summary>
+        /// Vytvoření cvičení z předmětu čeština
+        /// </summary>
+        /// <param name="credits">Počet kreditů</param>
+        private static void createCzechExercise(double credits)
+        {
+            Subject.listOnlyOneTypeSubjects("czech"); // vypíše všechny češtiny
+            string subjectName = "czech1_2";
+            Subject chosenSubject =
+                Subject.selectOnlyOneTypeSubject(subjectName, "czech"); // výběr předmětu daného typu s daným názvem
+
+            Exercise ExerciseFromCzech =
+                ExerciseFactory.CreateExerciseFromCzech(credits, chosenSubject); // vytvoření cvičeni
+        }
+
+        /// <summary>
+        /// Vytvoření cvičení z předmětu angličtina
+        /// </summary>
+        /// <param name="credits">Počet kreditů</param>
+        private static void createEnglishExercise(double credits)
+        {
+            Subject.listOnlyOneTypeSubjects("english"); // vypíše všechny angličtiny
+            string subjectName = "english1_2";
+            Subject chosenSubject =
+                Subject.selectOnlyOneTypeSubject(subjectName, "english"); // výběr předmětu daného typu s daným názvem
+
+            Exercise ExerciseFromEnglish =
+                ExerciseFactory.CreateExerciseFromEnglish(credits, chosenSubject); // vytvoření cvičení
         }
     }
 }

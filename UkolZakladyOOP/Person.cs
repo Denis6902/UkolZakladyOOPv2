@@ -28,7 +28,7 @@ namespace UkolZakladyOOP
         /// <param name="firstName">Jméno</param>
         /// <param name="lastName">Přijmení</param>
         /// <param name="birthDate">Datum narození</param>
-        public Person(string firstName, string lastName, DateTime birthDate)
+        protected Person(string firstName, string lastName, DateTime birthDate)
         {
             this.firstName = firstName;
             this.lastName = lastName;

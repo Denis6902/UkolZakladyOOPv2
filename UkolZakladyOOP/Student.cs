@@ -55,7 +55,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Změní ročník na další 
         /// </summary>
-        public static void nextYear()
+        private static void nextYear()
         {
             foreach (Student Student in students)
             {
@@ -185,7 +185,7 @@ namespace UkolZakladyOOP
         /// Výpis všech předmětů dostupných k registraci
         /// </summary>
         /// <param name="currentSemester">Aktuální semestr</param>
-        public void listSubjectsForRegister(Semester currentSemester)
+        private void listSubjectsForRegister(Semester currentSemester)
         {
             int subjectLevel = 1;
             const int lengthForCompare = 3;
@@ -342,7 +342,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Výpis všech registrovaných cvičení
         /// </summary>
-        public void listAllAvailableExercise()
+        private void listAllAvailableExercise()
         {
             foreach (SubjectStudent SubjectStudent in studentSubjectList) // projede všechny předměty daného studenta
             {

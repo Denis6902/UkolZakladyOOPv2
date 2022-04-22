@@ -130,15 +130,16 @@ namespace UkolZakladyOOP
 
         /// <summary>
         /// Výpis všech předmětů jednoho typu
-        /// Například všech předmětů čeština
+        /// například všech předmětů čeština
         /// </summary>
-        /// <param name="subject">Typ předmětu (Czech, English,...)</param>
-        public static void listOnlyOneTypeSubjects(string subject)
+        /// <param name="subjectName">Typ předmětu (Czech, English,...)</param>
+        public static void listOnlyOneTypeSubjects(string subjectName)
         {
             foreach (Subject Subject in
                      Subject.subjects.Where(s =>
-                         s.name.Substring(0, 3) ==
-                         subject.ToLower())) // projede všechny předměty které začínají první tři písmena z daného slova
+                         s.name.Substring(0, 3).ToLower() ==
+                         subjectName.Substring(0, 3)
+                             .ToLower())) // projede všechny předměty které začínají první tři písmena z daného slova
             {
                 Console.WriteLine(
                     "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
@@ -146,6 +147,28 @@ namespace UkolZakladyOOP
                     Subject.garantOfSubject.returnFullName(),
                     Subject.semester);
             }
+        }
+
+        /// <summary>
+        /// Metoda k výběru předmětu jenom z jednoho typu (čeština, angličtina,...)
+        /// </summary>
+        /// <param name="subjectName">Název předmětu</param>
+        /// <param name="subjectType">Typ předmětu</param>
+        /// <returns>Daný předmět</returns>
+        public static Subject selectOnlyOneTypeSubject(string subjectName, string subjectType)
+        {
+            if (!Subject.subjects.Exists(subject =>
+                    subject.name.ToLower() == subjectName) ||
+                subjectName.ToLower().Substring(0, 3) !=
+                subjectType.ToLower().Substring(0, 3)) // kontrola jestli existuje předmět daného typu s daným názvem
+            {
+                Console.WriteLine("Předmět?");
+                Subject.listOnlyOneTypeSubjects(subjectType); // výpis všech předmětů daného typu
+                subjectName = Console.ReadLine();
+                selectOnlyOneTypeSubject(subjectName, subjectType);
+            }
+
+            return subjects.Find(subject => subject.name.ToLower() == subjectName.ToLower()); // vrátí předmět s daným názvem
         }
     }
 
