@@ -5,30 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19098478-080f-4966-b60f-568f81cb1271" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/ref/UkolZakladyOOP.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UkolZakladyOOP/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Exercise.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Exercise.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Lecture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Lecture.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Person.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Person.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/SchoolSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/SchoolSystem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Student.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Subject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Subject.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/Teacher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/UkolZakladyOOP.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/ref/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/bin/Debug/net6.0/ref/UkolZakladyOOP.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.genruntimeconfig.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/UkolZakladyOOP.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/ref/UkolZakladyOOP.dll" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/Debug/net6.0/ref/UkolZakladyOOP.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/UkolZakladyOOP.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UkolZakladyOOP/otherClasses.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UkolZakladyOOP/otherClasses.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +144,9 @@
       <workItem from="1643813248992" duration="1377000" />
       <workItem from="1647081109341" duration="11445000" />
       <workItem from="1649864774242" duration="3697000" />
-      <workItem from="1650636589464" duration="8183000" />
+      <workItem from="1650636589464" duration="8553000" />
+      <workItem from="1651237903416" duration="6546000" />
+      <workItem from="1651247532754" duration="3505000" />
     </task>
     <task id="LOCAL-00001" summary="&#10;Postupné mazání vstupů do konzole, přejmenované creditsToFinish na credits, smazání property známka u předmětu a vytvořena vazební třída Mark_Subject, změna metody selectStudent na statickou.">
       <created>1636652947400</created>
@@ -274,7 +267,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649519137463</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Konstruktor ve tříde Person je nyní protected. Metody které nemusí být public jsou private. Opravená metoda listOnlyOneTypeSubjects() a vytvořená metoda selectOnlyOneTypeSubject() ve tříde Subject. Upravené metody returnSubjectsCount(), returnLecturesCount(), selectTeacher(), registerSubject(), createCzechLecture(), createEnglishLecture()ve třídě Teacher. Vytvořené nové metody createCzechExercise() a createEnglishExercise() ve tříde Teacher.">
+      <created>1650645713953</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1650645713953</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,7 +314,8 @@
     <MESSAGE value="Přidané testovací předměty a přednáška.&#10;Postupné opravení &quot;prerekvizit&quot;.&#10;Opravený výpis v metodě listCompletedSubjects()." />
     <MESSAGE value="Přidaná metoda selectExercise(). Upravená metoda doExercise(). Přidaná metoda listOnlyOneTypeSubjects(). Upravené metody listStudentsByAverageMarks(), createNewLecture(), createCzechSubject(), createEnglishSubject()." />
     <MESSAGE value="Opravená metoda calculateAverageMark() ve tříde student. Přenesená metoda listAllExercise() ze třídy teacher to třídy exercise. Přenesená metoda listAllLectures() ze třída teacher to třídy lecture. Postupné okomentování kodu." />
-    <option name="LAST_COMMIT_MESSAGE" value="Opravená metoda calculateAverageMark() ve tříde student. Přenesená metoda listAllExercise() ze třídy teacher to třídy exercise. Přenesená metoda listAllLectures() ze třída teacher to třídy lecture. Postupné okomentování kodu." />
+    <MESSAGE value="Konstruktor ve tříde Person je nyní protected. Metody které nemusí být public jsou private. Opravená metoda listOnlyOneTypeSubjects() a vytvořená metoda selectOnlyOneTypeSubject() ve tříde Subject. Upravené metody returnSubjectsCount(), returnLecturesCount(), selectTeacher(), registerSubject(), createCzechLecture(), createEnglishLecture()ve třídě Teacher. Vytvořené nové metody createCzechExercise() a createEnglishExercise() ve tříde Teacher." />
+    <option name="LAST_COMMIT_MESSAGE" value="Konstruktor ve tříde Person je nyní protected. Metody které nemusí být public jsou private. Opravená metoda listOnlyOneTypeSubjects() a vytvořená metoda selectOnlyOneTypeSubject() ve tříde Subject. Upravené metody returnSubjectsCount(), returnLecturesCount(), selectTeacher(), registerSubject(), createCzechLecture(), createEnglishLecture()ve třídě Teacher. Vytvořené nové metody createCzechExercise() a createEnglishExercise() ve tříde Teacher." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

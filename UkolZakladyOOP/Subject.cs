@@ -9,62 +9,62 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Jméno 
         /// </summary>
-        public string name;
+        public string Name;
 
         /// <summary>
         /// Garant předmětu
         /// </summary>
-        public Teacher garantOfSubject;
+        public Teacher GarantOfSubject;
 
         /// <summary>
         /// Učitel
         /// </summary>
-        public Teacher teacher;
+        public Teacher Teacher;
 
         /// <summary>
         /// Počet kreditů potřeba k dokončení
         /// </summary>
-        public double credits;
+        public double Credits;
 
         /// <summary>
         /// Počet cvičení daného předmětu
         /// </summary>
-        public int exerciseCount;
+        public int ExerciseCount;
 
         /// <summary>
         /// Počet přednášek daného předmětu
         /// </summary>
-        public int lectureCount;
+        public int LectureCount;
 
         /// <summary>
         /// Ročník pro jaký je daný předmět
         /// </summary>
-        public int year;
+        public int Year;
 
         /// <summary>
         /// Semestr pro jaký je daný předmět
         /// </summary>
-        public Semester semester;
+        public Semester Semester;
 
         /// <summary>
         /// Úroveň předmětu
         /// </summary>
-        public int level;
+        public int Level;
 
         /// <summary>
         /// Jestli je předmět registrovaný
         /// </summary>
-        public bool registered = false;
+        public bool Registered = false;
 
         /// <summary>
         /// Jestli je předmět dokončený
         /// </summary>
-        public bool completed = false;
+        public bool Completed = false;
 
         /// <summary>
         /// Seznam všech předmětů
         /// </summary>
-        public static List<Subject> subjects = new();
+        public static List<Subject> Subjects = new();
 
         /// <summary>
         /// Konstruktor. Automaticky přídá předmět d  seznamu předmětů
@@ -79,14 +79,14 @@ namespace UkolZakladyOOP
         public Subject(string name, Teacher garantOfSubject, Teacher teacher, double credits, int year,
             Semester semester, int level)
         {
-            this.name = name;
-            this.garantOfSubject = garantOfSubject;
-            this.teacher = teacher;
-            this.credits = credits;
-            this.semester = semester;
-            this.year = year;
-            subjects.Add(this);
-            this.level = level;
+            Name = name;
+            GarantOfSubject = garantOfSubject;
+            Teacher = teacher;
+            Credits = credits;
+            Semester = semester;
+            Year = year;
+            Level = level;
+            Subjects.Add(this);
         }
 
         /// <summary>
@@ -96,8 +96,8 @@ namespace UkolZakladyOOP
         /// <returns>Vybraný předmět</returns>
         public static Subject selectSubject(string subjectName)
         {
-            if (!subjects.Exists(s =>
-                    s.name.ToLower() == subjectName.ToLower())) // kontrola jestli existuje předmět s daným názvem
+            if (!Subjects.Exists(s =>
+                    s.Name.ToLower() == subjectName.ToLower())) // kontrola jestli existuje předmět s daným názvem
             {
                 Console.WriteLine("Neexistuje daný předmět");
                 Console.WriteLine("Zadej název existujícího předmětu");
@@ -106,11 +106,11 @@ namespace UkolZakladyOOP
                 selectSubject(subjectName);
             }
 
-            Subject Subject =
-                subjects.Find(s => s.name.ToLower() == subjectName.ToLower()); // vybere předmět s daným názvem
+            Subject ChosenSubject =
+                Subjects.Find(s => s.Name.ToLower() == subjectName.ToLower()); // vybere předmět s daným názvem
 
-            Console.WriteLine($"subject = {subjectName}");
-            return Subject; // vrátí předmět s daným názvem
+            Console.WriteLine($"subjectName = {subjectName}");
+            return ChosenSubject; // vrátí předmět s daným názvem
         }
 
         /// <summary>
@@ -118,13 +118,10 @@ namespace UkolZakladyOOP
         /// </summary>
         public static void listAllSubjects()
         {
-            foreach (Subject Subject in Subject.subjects) // projede všechny předměty ze seznamu předmětů
+            foreach (Subject Subject in Subject.Subjects) // projede všechny předměty ze seznamu předmětů
             {
-                Console.WriteLine(
-                    "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
-                    Subject.name, Subject.credits,
-                    Subject.garantOfSubject.returnFullName(),
-                    Subject.semester);
+                Console.WriteLine($"Předmět {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů" +
+                                  $", garantem je {Subject.GarantOfSubject.returnFullName()}, semestr: {Subject.Semester}");
             }
         }
 
@@ -135,17 +132,15 @@ namespace UkolZakladyOOP
         /// <param name="subjectName">Typ předmětu (Czech, English,...)</param>
         public static void listOnlyOneTypeSubjects(string subjectName)
         {
+            // projede všechny předměty které začínají první tři písmena z daného slova
+
             foreach (Subject Subject in
-                     Subject.subjects.Where(s =>
-                         s.name.Substring(0, 3).ToLower() ==
-                         subjectName.Substring(0, 3)
-                             .ToLower())) // projede všechny předměty které začínají první tři písmena z daného slova
+                     Subject.Subjects.Where(s => s.Name.Substring(0, 3).ToLower() ==
+                                                 subjectName.Substring(0, 3).ToLower()))
             {
                 Console.WriteLine(
-                    "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
-                    Subject.name, Subject.credits,
-                    Subject.garantOfSubject.returnFullName(),
-                    Subject.semester);
+                    $"Předmět {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů," +
+                    $" garantem je {Subject.GarantOfSubject.returnFullName()}, Semestr: {Subject.Semester}");
             }
         }
 
@@ -157,8 +152,8 @@ namespace UkolZakladyOOP
         /// <returns>Daný předmět</returns>
         public static Subject selectOnlyOneTypeSubject(string subjectName, string subjectType)
         {
-            if (!Subject.subjects.Exists(subject =>
-                    subject.name.ToLower() == subjectName) ||
+            if (!Subject.Subjects.Exists(subject =>
+                    subject.Name.ToLower() == subjectName) ||
                 subjectName.ToLower().Substring(0, 3) !=
                 subjectType.ToLower().Substring(0, 3)) // kontrola jestli existuje předmět daného typu s daným názvem
             {
@@ -168,7 +163,10 @@ namespace UkolZakladyOOP
                 selectOnlyOneTypeSubject(subjectName, subjectType);
             }
 
-            return subjects.Find(subject => subject.name.ToLower() == subjectName.ToLower()); // vrátí předmět s daným názvem
+            Subject ChosenSubject = Subjects.Find(subject =>
+                subject.Name.ToLower() == subjectName.ToLower()); // vrátí předmět s daným názvem
+
+            return ChosenSubject;
         }
     }
 

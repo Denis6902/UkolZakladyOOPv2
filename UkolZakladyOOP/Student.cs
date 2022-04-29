@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 
 namespace UkolZakladyOOP
 {
@@ -13,27 +12,27 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Datum registrace
         /// </summary>
-        public DateTime registrationDate;
+        private DateTime RegistrationDate;
 
         /// <summary>
         /// Seznam předmětu a známky
         /// </summary>
-        public static List<MarkSubject> markSubjectList = new();
+        public static List<MarkSubject> MarkSubjectList = new();
 
         /// <summary>
         /// Seznam studentů a jejich předmětů
         /// </summary>
-        public List<SubjectStudent> studentSubjectList = new();
+        private List<SubjectStudent> StudentSubjectList = new();
 
         /// <summary>
         /// V jakém je student ročníku
         /// </summary>
-        public int year;
+        public int Year;
 
         /// <summary>
         /// Seznam všech studentů
         /// </summary>
-        public static List<Student> students = new();
+        public static List<Student> Students = new();
 
         /// <summary>
         /// Konstruktor. Přidá studenta do seznamu studentů
@@ -47,9 +46,9 @@ namespace UkolZakladyOOP
             int year) : base(firstName,
             lastName, birthDate)
         {
-            this.registrationDate = registrationDate;
-            students.Add(this);
-            this.year = year;
+            RegistrationDate = registrationDate;
+            Year = year;
+            Students.Add(this);
         }
 
         /// <summary>
@@ -57,38 +56,42 @@ namespace UkolZakladyOOP
         /// </summary>
         private static void nextYear()
         {
-            foreach (Student Student in students)
+            foreach (Student Student in Students)
             {
-                Student.year += 1;
-                Console.WriteLine("Aktuální ročník studenta " + Student.returnFullName() + " je: " + Student.year);
-                Student.studentSubjectList = null;
-                Student.markSubjectList = null;
+                Student.Year += 1;
+                Console.WriteLine($"Aktuální ročník studenta {Student.returnFullName()} je {Student.Year}");
+                Student.StudentSubjectList = null;
+                Student.MarkSubjectList = null;
             }
         }
 
         /// <summary>
         /// Nastaví další semestr
         /// </summary>
-        /// <param name="currentSemester">Aktuální semestr</param>
+        /// <param name="CurrentSemester">Aktuální semestr</param>
         /// <returns></returns>
-        public static Semester nextSemester(Semester currentSemester)
+        public static Semester nextSemester(Semester CurrentSemester)
         {
-            switch (currentSemester)
+            switch (CurrentSemester)
             {
                 case Semester.Summer:
-                    currentSemester =
+                    CurrentSemester =
                         Semester.Winter; // pokud je aktuální semestr Summer, nastaví aktuální semestr na Winter
                     break;
 
                 case Semester.Winter:
-                    currentSemester =
+                    CurrentSemester =
                         Semester.Summer; // pokud je aktuální semestr Winter, nastaví aktuální semestr na Summer
                     Student.nextYear(); // nastaví další ročník
                     break;
+                default:
+                    Console.WriteLine("Žádný zadaný semestr???");
+                    Environment.Exit(0);
+                    break;
             }
 
-            Console.WriteLine("Aktuální semestr je: " + currentSemester);
-            return currentSemester;
+            Console.WriteLine($"Aktuální semestr je: {CurrentSemester}");
+            return CurrentSemester;
         }
 
         /// <summary>
@@ -96,8 +99,9 @@ namespace UkolZakladyOOP
         /// </summary>
         public override void aboutMe()
         {
-            Console.WriteLine("Dobrý den, jmenuji se {0} {1} a narodil/narodila jsem se {2} a aktuálně studuji od {3}",
-                firstName, lastName, birthDate.ToString("MM.dd.yyyy"), registrationDate.ToString("MM.dd.yyyy"));
+            Console.WriteLine($"Dobrý den, jmenuji se {returnFullName()} a narodil/narodila " +
+                              $"jsem se {BirthDate:MM.dd.yyyy}" +
+                              $" a aktuálně studuji od {RegistrationDate:MM.dd.yyyy}");
         }
 
         /// <summary>
@@ -106,13 +110,13 @@ namespace UkolZakladyOOP
         /// <returns>Součet všech známek studenta / počet známek student</returns>
         public double calculateAverageMark()
         {
-            List<MarkSubject> chosenStudentMarks =
-                markSubjectList.FindAll(markSubject =>
+            List<MarkSubject> ChosenStudentMarks =
+                MarkSubjectList.FindAll(markSubject =>
                     markSubject.Student == this); // vytvoří nový seznam známek jenom od daného studenta
 
             double sumOfAllMarks =
-                chosenStudentMarks.Sum(markSubject => markSubject.mark); // uloží do sumOfAllMarks součet všech známek
-            double countStudentMark = chosenStudentMarks.Count; // uloží do sumOfAllMarks počet všech známek
+                ChosenStudentMarks.Sum(markSubject => markSubject.Mark); // uloží do sumOfAllMarks součet všech známek
+            double countStudentMark = ChosenStudentMarks.Count; // uloží do sumOfAllMarks počet všech známek
 
             return sumOfAllMarks / countStudentMark;
         }
@@ -123,16 +127,16 @@ namespace UkolZakladyOOP
         /// <returns></returns>
         public static Student selectStudent()
         {
-            foreach (Student Student in students)
+            foreach (Student Student in Students)
             {
-                Console.WriteLine(Student.firstName); // vypíše jména všech studentů ze seznamu students
+                Console.WriteLine(Student.FirstName); // vypíše jména všech studentů ze seznamu students
             }
 
             //string studentName = Console.ReadLine();
             string studentName = "Pepa";
 
-            if (!students.Exists(student =>
-                    student.firstName.ToLower() ==
+            if (!Students.Exists(student =>
+                    student.FirstName.ToLower() ==
                     studentName.ToLower())) // jestli neexistuje student s daným jménem, spustí znovu metodu
             {
                 Console.WriteLine("Neexistuje daný student");
@@ -140,39 +144,37 @@ namespace UkolZakladyOOP
                 selectStudent();
             }
 
-            Student chosenStudent =
-                students.Find(student =>
-                    student.firstName.ToLower() == studentName.ToLower()); // uloží do chosenStudent daného studenta
+            Student ChosenStudent =
+                Students.Find(student =>
+                    student.FirstName.ToLower() == studentName.ToLower()); // uloží do chosenStudent daného studenta
 
-            return chosenStudent;
+            return ChosenStudent;
         }
 
         /// <summary>
         /// Metoda k registrování předmětu
         /// </summary>
-        /// <param name="currentSemester">Aktuální semestr</param>
-        public void registerSubject(Semester currentSemester)
+        /// <param name="CurrentSemester">Aktuální semestr</param>
+        public void registerSubject(Semester CurrentSemester)
         {
-            if (Subject.subjects.Count != 0)
+            if (Subject.Subjects.Count != 0)
             {
-                listSubjectsForRegister(currentSemester); // vypíše předměty dostupné k registraci
+                listSubjectsForRegister(CurrentSemester); // vypíše předměty dostupné k registraci
 
                 Console.WriteLine("Zadejte název předmětu");
                 //string subject = Console.ReadLine();
                 string subjectName = "English1_1";
-                Console.WriteLine("subject = English1_1");
+                Console.WriteLine($"subjectName = {subjectName}");
 
-                foreach (Subject Subject in Subject.subjects.Where(Subject =>
-                             Subject.name.ToLower() == subjectName.ToLower() &&
-                             Subject.registered == false)) //  projede přeměty kde se název předmětu rovná danému názvu
+                foreach (Subject Subject in Subject.Subjects.Where(Subject =>
+                             Subject.Name.ToLower() == subjectName.ToLower() &&
+                             Subject.Registered == false)) // projede přeměty kde se název předmětu rovná danému názvu
                 {
-                    Console.WriteLine(this.firstName + " jsi zapsaný do " + Subject.name + " předmětu, Semestr: " +
-                                      Subject.semester);
-                    SubjectStudent
-                        SubjectStudent =
-                            new(Subject, this, Subject.level,
-                                this.studentSubjectList); // přidá předmět se studentem do seznamu předmětů a studentů
-                    SubjectStudent.Subject.registered = true;
+                    Console.WriteLine(
+                        $"{returnFullName()} jsi zapsaný do {Subject.Name} předmětu, semestr: {Subject.Semester}");
+                    SubjectStudent SubjectStudent = new(Subject, this, Subject.Level, StudentSubjectList);
+                    // přidá předmět se studentem do seznamu předmětů a studentů
+                    SubjectStudent.Subject.Registered = true;
                 }
             }
             else
@@ -184,44 +186,45 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Výpis všech předmětů dostupných k registraci
         /// </summary>
-        /// <param name="currentSemester">Aktuální semestr</param>
-        private void listSubjectsForRegister(Semester currentSemester)
+        /// <param name="CurrentSemester">Aktuální semestr</param>
+        private void listSubjectsForRegister(Semester CurrentSemester)
         {
+            //TODO: Vzpomenout si / Zjistit jak to funguje a okomentovat to
             int subjectLevel = 1;
             const int lengthForCompare = 3;
             string completedSubjectName = null;
             string nocompletedSubjectName = null;
 
-            foreach (Subject Subject in Subject.subjects.Where(Subject =>
-                             Subject.year == this.year && Subject.semester == currentSemester)
-                         .OrderBy(subject => subject.name))
+            foreach (Subject Subject in Subject.Subjects.Where(Subject =>
+                             Subject.Year == this.Year && Subject.Semester == CurrentSemester)
+                         .OrderBy(subject => subject.Name))
             {
-                if (Subject.registered == false && Subject.level == 1)
+                if (Subject.Registered == false && Subject.Level == 1)
                 {
                     Console.WriteLine(
                         "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3} (Level {4})",
-                        Subject.name, Subject.credits,
-                        Subject.garantOfSubject.returnFullName(),
-                        Subject.semester, Subject.level);
+                        Subject.Name, Subject.Credits,
+                        Subject.GarantOfSubject.returnFullName(),
+                        Subject.Semester, Subject.Level);
                 }
 
-                switch (Subject.completed)
+                switch (Subject.Completed)
                 {
                     case true:
-                        subjectLevel = Subject.level + 1;
-                        completedSubjectName = Subject.name.Substring(0, lengthForCompare);
+                        subjectLevel = Subject.Level + 1;
+                        completedSubjectName = Subject.Name.Substring(0, lengthForCompare);
                         break;
                     case false:
                     {
-                        nocompletedSubjectName = Subject.name.Substring(0, lengthForCompare);
+                        nocompletedSubjectName = Subject.Name.Substring(0, lengthForCompare);
 
-                        if (Subject.level == subjectLevel && completedSubjectName == nocompletedSubjectName)
+                        if (Subject.Level == subjectLevel && completedSubjectName == nocompletedSubjectName)
                         {
                             Console.WriteLine(
                                 "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3} (Level {4})",
-                                Subject.name, Subject.credits,
-                                Subject.garantOfSubject.returnFullName(),
-                                Subject.semester, Subject.level);
+                                Subject.Name, Subject.Credits,
+                                Subject.GarantOfSubject.returnFullName(),
+                                Subject.Semester, Subject.Level);
                         }
 
                         break;
@@ -233,28 +236,26 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Vypíše všechny předměty daného studenta
         /// </summary>
-        /// <param name="currentSemester">Aktuální semestr</param>
-        public void listAllMySubjects(Semester currentSemester)
+        /// <param name="CurrentSemester">Aktuální semestr</param>
+        public void listAllMySubjects(Semester CurrentSemester)
         {
-            if (studentSubjectList.Count != 0) // kontrola jestli je počet registrovaných předmětů > 0
+            if (StudentSubjectList.Count != 0) // kontrola jestli je počet registrovaných předmětů > 0
             {
-                foreach (SubjectStudent SubjectStudent in studentSubjectList.Where(SubjectStudent =>
-                             SubjectStudent.Subject.year == this.year &&
-                             SubjectStudent.Subject.semester == currentSemester &&
-                             SubjectStudent.Subject.registered &&
-                             this == SubjectStudent
-                                 .Student)) // projede registrované předměty studenta v aktuálním roce a semestru
+                foreach (SubjectStudent SubjectStudent in StudentSubjectList.Where(SS =>
+                             SS.Subject.Year == Year &&
+                             SS.Subject.Semester == CurrentSemester &&
+                             SS.Subject.Registered &&
+                             SS.Student == this)) // projede registrované předměty studenta v aktuálním roce a semestru
                 {
                     Console.WriteLine(
-                        "Předmět {0}, k dokončení je potřeba {1} kreditů, garantem je {2}, Semestr: {3}",
-                        SubjectStudent.Subject.name, SubjectStudent.credits,
-                        SubjectStudent.Subject.garantOfSubject.returnFullName(),
-                        SubjectStudent.Subject.semester);
+                        $"Předmět {SubjectStudent.Subject.Name}, k dokončení je potřeba {SubjectStudent.Credits} kreditů," +
+                        $" garantem je {SubjectStudent.Subject.GarantOfSubject.returnFullName()}," +
+                        $" Semestr: {SubjectStudent.Subject.Semester}");
                 }
             }
             else
             {
-                Console.WriteLine("Nejsi v žádném předmětu");
+                Console.WriteLine("Nemáš zaregistrovaný žádný předmět");
             }
         }
 
@@ -263,16 +264,15 @@ namespace UkolZakladyOOP
         /// </summary>
         public void listCompletedSubjects()
         {
-            if (markSubjectList.Count != 0) // kontrola jestli je počet známek > 0
+            if (MarkSubjectList.Count != 0) // kontrola jestli je počet známek > 0
             {
-                foreach (MarkSubject markSubject in
-                         markSubjectList.Where(markSubject =>
-                             this == markSubject.Student)) // projede všechny předměty daného student
+                foreach (MarkSubject MarkSubject in MarkSubjectList.Where(MarkSubject =>
+                             this == MarkSubject.Student)) // projede všechny předměty daného studenta
                 {
-                    Console.WriteLine(
-                        "Předmět {0}, garantem je {1}, Semestr: {2} (Level {3}) - známka {4}.",
-                        markSubject.Subject.name, markSubject.Subject.garantOfSubject.returnFullName(),
-                        markSubject.Subject.semester, markSubject.Subject.level, markSubject.mark);
+                    Console.WriteLine($"Předmět {MarkSubject.Subject.Name} (Level {MarkSubject.Subject.Level})" +
+                                      $" v semestru {MarkSubject.Subject.Semester}," +
+                                      $" kde je garantem {MarkSubject.Subject.GarantOfSubject.returnFullName()}" +
+                                      $" - známka {MarkSubject.Mark}");
                 }
             }
             else
@@ -284,27 +284,26 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Jít na danou přednášku
         /// </summary>
-        /// <param name="currentSemester">Aktuální semestr</param>
-        public void goOnLecture(Semester currentSemester)
+        /// <param name="CurrentSemester">Aktuální semestr</param>
+        public void goOnLecture(Semester CurrentSemester)
         {
-            if (Lecture.lectures.Count != 0 &&
-                studentSubjectList.Count !=
+            if (Lecture.Lectures.Count != 0 &&
+                StudentSubjectList.Count !=
                 0) // kontrola jestli existují nějaké přednášky a jestli má daný student nějaké registrované předměty
             {
-                Lecture.listAllRegisteredLectures(studentSubjectList); // výpis všech registrovaných přednášek
+                Lecture.listAllRegisteredLectures(StudentSubjectList); // výpis všech registrovaných přednášek
 
                 Console.WriteLine("Zadejte název přednášky");
 
                 //string lectureName = Console.ReadLine();
                 string lectureName = "Přednáška z Angličtiny1_1";
-                Lecture chosenLecture = Lecture.selectLecture(lectureName, this, currentSemester); // výběr přednášky
+                Lecture ChosenLecture = Lecture.selectLecture(lectureName, this, CurrentSemester); // výběr přednášky
                 Console.WriteLine($"lectureName = {lectureName}");
 
-                foreach (SubjectStudent SubjectStudent in studentSubjectList)
+                foreach (SubjectStudent SubjectStudent in StudentSubjectList)
                 {
-                    Console.WriteLine("Šel jsi na přednášku {0} - {1} kreditů", chosenLecture.name,
-                        chosenLecture.credits);
-                    SubjectStudent.credits -= chosenLecture.credits;
+                    Console.WriteLine($"Šel jsi na přednášku {ChosenLecture.Name} - {ChosenLecture.Credits} kreditů");
+                    SubjectStudent.Credits -= ChosenLecture.Credits;
                     break;
                 }
             }
@@ -316,25 +315,22 @@ namespace UkolZakladyOOP
         /// </summary>
         public void endSubject()
         {
-            foreach (SubjectStudent SubjectStudent in studentSubjectList.Where(SubjectStudent =>
-                         SubjectStudent.Subject.completed ==
-                         false)) // projede všechny nedokončené předměty daného studenta
+            // projede všechny nedokončené předměty daného studenta
+            foreach (SubjectStudent SubjectStudent in StudentSubjectList.Where(SubjectStudent =>
+                         SubjectStudent.Subject.Completed == false))
             {
-                if (SubjectStudent.credits > 0 &&
-                    this == SubjectStudent.Student) // kontrola jestli jde předmět dokončit
+                if (SubjectStudent.Credits > 0 && this == SubjectStudent.Student) //kontrola jestli jde předmět dokončit
                 {
-                    Console.WriteLine("Do dokončení předmětu {0} zbývá {1} kreditů", SubjectStudent.Subject.name,
-                        SubjectStudent.credits);
+                    Console.WriteLine(
+                        $"Do dokončení předmětu {SubjectStudent.Subject.Name} zbývá {SubjectStudent.Credits} kreditů");
                 }
 
-                if (SubjectStudent.credits < 1 && this == SubjectStudent.Student)
+                if (SubjectStudent.Credits < 1 && this == SubjectStudent.Student)
                 {
-                    Random r = new();
-                    double mark = r.Next(1, 5);
-                    Console.WriteLine("Dokončil jsi předmět " + SubjectStudent.Subject.name + " s hodnocením " +
-                                      mark);
-                    MarkSubject markSubject = new(mark, SubjectStudent.Subject, this);
-                    SubjectStudent.Subject.completed = true;
+                    double mark = Random.Shared.Next(1, 5);
+                    Console.WriteLine($"Dokončil jsi předmět {SubjectStudent.Subject.Name} s hodnocením {mark}");
+                    MarkSubject MarkSubject = new(mark, SubjectStudent.Subject, this);
+                    SubjectStudent.Subject.Completed = true;
                 }
             }
         }
@@ -344,15 +340,14 @@ namespace UkolZakladyOOP
         /// </summary>
         private void listAllAvailableExercise()
         {
-            foreach (SubjectStudent SubjectStudent in studentSubjectList) // projede všechny předměty daného studenta
+            foreach (SubjectStudent SubjectStudent in StudentSubjectList) // projede všechny předměty daného studenta
             {
-                foreach (Exercise oneExercise in Exercise.exercises.Where(oneExercise =>
-                             SubjectStudent.Subject.name == oneExercise.subject.name &&
-                             SubjectStudent.Subject
-                                 .registered)) // projede všechny registrované cvičení daného studenta 
+                foreach (Exercise Exercise in Exercise.Exercises.Where(Exercise =>
+                             SubjectStudent.Subject.Name == Exercise.Subject.Name &&
+                             SubjectStudent.Subject.Registered)) //projede všechny registrované cvičení daného studenta 
                 {
-                    Console.WriteLine("{0} - {1} kreditů, počítač {2}", oneExercise.name,
-                        oneExercise.credits, oneExercise.isComputerRequired());
+                    Console.WriteLine($"{Exercise.Name} - {Exercise.Credits} kreditů," +
+                                      $" počítač {Exercise.isComputerRequired()}");
                 }
             }
         }
@@ -360,28 +355,25 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Udělat cviření
         /// </summary>
-        /// <param name="currentSemester">Aktuální semestr</param>
-        public void doExercise(Semester currentSemester)
+        /// <param name="CurrentSemester">Aktuální semestr</param>
+        public void doExercise(Semester CurrentSemester)
         {
-            if (Exercise.exercises.Count != 0 &&
-                studentSubjectList.Count !=
-                0) // kontrola jestli existují nějaké předměty a jestli má daný student nějaké registrované předměty
+            // kontrola jestli existují nějaké předměty a jestli má daný student nějaké registrované předměty
+            if (Exercise.Exercises.Count != 0 && StudentSubjectList.Count != 0)
             {
                 listAllAvailableExercise(); // vypíše všechny dostupné cvičení
                 Console.WriteLine("Zadejte název cvičení");
 
                 //string exerciseName = Console.ReadLine();
                 string exerciseName = "Cvičení z Angličtiny1_1";
-                Exercise exercise = Exercise.selectExercise(exerciseName, this, currentSemester); // výběr cvičení
+                Exercise ChosenExercise = Exercise.selectExercise(exerciseName, this, CurrentSemester); // výběr cvičení
                 Console.WriteLine($"exerciseName = {exerciseName}");
 
+                SubjectStudent SubjectStudent = StudentSubjectList.Find(ss =>
+                    ss.Subject == ChosenExercise.Subject && this == ss.Student);
 
-                SubjectStudent subjectStudent = studentSubjectList.Find(ss =>
-                    ss.Subject == exercise.subject && this == ss.Student);
-
-                subjectStudent.credits -= exercise.credits;
-                Console.WriteLine("Dokončil jsi cvičení {0} - {1} kreditů", exercise.name,
-                    exercise.credits);
+                SubjectStudent.Credits -= ChosenExercise.Credits;
+                Console.WriteLine($"Dokončil jsi cvičení {ChosenExercise.Name} - {ChosenExercise.Credits} kreditů");
             }
         }
     }

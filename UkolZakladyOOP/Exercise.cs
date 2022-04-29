@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using System;
-using System.Collections.Immutable;
-using System.Linq;
 
 namespace UkolZakladyOOP
 {
@@ -10,27 +8,27 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Jméno cvičení
         /// </summary>
-        public string name;
+        public string Name;
 
         /// <summary>
         /// Jestli je potřeba na cvičení počítač
         /// </summary>
-        public bool computerRequired;
+        private bool ComputerRequired;
 
         /// <summary>
         /// Počet kreditů za cvičení
         /// </summary>
-        public double credits;
+        public double Credits;
 
         /// <summary>
         /// Předmět ke kterému je cvičení dělané
         /// </summary>
-        public Subject subject;
+        public Subject Subject;
 
         /// <summary>
         /// Seznam všech cvičení
         /// </summary>
-        public static List<Exercise> exercises = new();
+        public static List<Exercise> Exercises = new();
 
         /// <summary>
         /// Konstruktor. Přidá cvičení do seznamu cvíčení a zvyší počet cvičení u daného předmětu.
@@ -41,12 +39,12 @@ namespace UkolZakladyOOP
         /// <param name="subject">Předmět ke kterému je předmět dělaný</param>
         public Exercise(string name, bool computerRequired, double credits, Subject subject)
         {
-            this.name = name;
-            this.computerRequired = computerRequired;
-            this.credits = credits;
-            this.subject = subject;
-            exercises.Add(this);
-            subject.exerciseCount += 1;
+            Name = name;
+            ComputerRequired = computerRequired;
+            Credits = credits;
+            Subject = subject;
+            Exercises.Add(this);
+            subject.ExerciseCount += 1;
         }
 
         /// <summary>
@@ -55,7 +53,7 @@ namespace UkolZakladyOOP
         /// <returns>je potřeba/není potřeba</returns>
         public string isComputerRequired()
         {
-            return computerRequired switch
+            return ComputerRequired switch
             {
                 true => "je potřeba", // jestli computerRequired = true vrátí "je potřeba"
                 false => "není potřeba" // jestli computerRequired = false vrátí "není potřeba"
@@ -66,29 +64,29 @@ namespace UkolZakladyOOP
         /// Vrátí dané cvičení
         /// </summary>
         /// <param name="exerciseName">Název cvičení</param>
-        /// <param name="student">Daný student</param>
-        /// <param name="currentSemester">Aktuánlí semestr</param>
+        /// <param name="Student">Daný student</param>
+        /// <param name="CurrentSemester">Aktuánlí semestr</param>
         /// <returns>Vybrané cvičení</returns>
-        public static Exercise selectExercise(string exerciseName, Student student, Semester currentSemester)
+        public static Exercise selectExercise(string exerciseName, Student Student, Semester CurrentSemester)
         {
-            if (!exercises.Exists(exercise =>
-                    exercise.name.ToLower() == exerciseName.ToLower() && exercise.subject.year == student.year &&
-                    exercise.subject.semester ==
-                    currentSemester)) // kontrola jestli existuje cvičení s daným názvem v aktuálním ročníku a semestru
+            if (!Exercises.Exists(exercise =>
+                    exercise.Name.ToLower() == exerciseName.ToLower() && exercise.Subject.Year == Student.Year &&
+                    exercise.Subject.Semester ==
+                    CurrentSemester)) // kontrola jestli existuje cvičení s daným názvem v aktuálním ročníku a semestru
             {
                 Console.WriteLine("Neexistuje dané cvičení");
                 Console.WriteLine("Zadej název existujícího cvičení");
                 exerciseName = Console.ReadLine();
                 Console.Clear();
-                selectExercise(exerciseName, student, currentSemester);
+                selectExercise(exerciseName, Student, CurrentSemester);
             }
 
-            Exercise chosenExercise = exercises.Find(exercise =>
-                exercise.name.ToLower() == exerciseName.ToLower() && exercise.subject.year == student.year &&
-                exercise.subject.semester ==
-                currentSemester); // vybere existující cvičení s daným názvem v aktuálním ročníku a semestru
+            Exercise ChosenExercise = Exercises.Find(exercise =>
+                exercise.Name.ToLower() == exerciseName.ToLower() && exercise.Subject.Year == Student.Year &&
+                exercise.Subject.Semester ==
+                CurrentSemester); // vybere existující cvičení s daným názvem v aktuálním ročníku a semestru
 
-            return chosenExercise; // vratí cvičení s daným názvem v aktuálním ročníku a semestru
+            return ChosenExercise; // vratí cvičení s daným názvem v aktuálním ročníku a semestru
         }
 
         /// <summary>
@@ -96,16 +94,16 @@ namespace UkolZakladyOOP
         /// </summary>
         public static void listAllExercise()
         {
-            if (exercises.Count == 0) // Jestli je počet cvičení větší než 0
+            if (Exercises.Count == 0) // Jestli je počet cvičení větší než 0
             {
                 Console.WriteLine("Neexistuje žádné cvičení");
             }
             else // Jinak vypíše cvičení ze seznamu cvičení
             {
-                foreach (Exercise exercise in exercises) // projede všechny cvičení ze seznamu cvičení
+                foreach (Exercise Exercise in Exercises) // projede všechny cvičení ze seznamu cvičení
                 {
-                    Console.WriteLine("{0} - {1} kreditů, počítač je potřeba {2} (Předmět {3})", exercise.name,
-                        exercise.credits, exercise.computerRequired, exercise.subject.name);
+                    Console.WriteLine($"{Exercise.Name} - {Exercise.Credits} kreditů, " +
+                                      $"počítač {Exercise.isComputerRequired()} (Předmět {Exercise.Subject.Name}");
                 }
             }
         }

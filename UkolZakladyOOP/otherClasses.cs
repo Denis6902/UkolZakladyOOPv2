@@ -10,7 +10,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Známka
         /// </summary>
-        public double mark;
+        public double Mark;
 
         /// <summary>
         /// Předmět
@@ -26,14 +26,14 @@ namespace UkolZakladyOOP
         /// Konstruktor. Přidá automaticky instanci do seznamu markSubjectList.
         /// </summary>
         /// <param name="mark">Známka</param>
-        /// <param name="Subject">Předmět</param>
-        /// <param name="Student">Student</param>
-        public MarkSubject(double mark, Subject Subject, Student Student)
+        /// <param name="subject">Předmět</param>
+        /// <param name="student">Student</param>
+        public MarkSubject(double mark, Subject subject, Student student)
         {
-            this.mark = mark;
-            this.Subject = Subject;
-            this.Student = Student;
-            Student.markSubjectList.Add(this);
+            Mark = mark;
+            Subject = subject;
+            Student = student;
+            Student.MarkSubjectList.Add(this);
         }
     }
 
@@ -55,26 +55,26 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Úroveň předmětu
         /// </summary>
-        public int level;
+        private int Level;
 
         /// <summary>
         /// Počet kreditů za cvičení
         /// </summary>
-        public double credits;
+        public double Credits;
 
         /// <summary>
         /// Konstruktor. Přidá automaticky instanci do seznamu subjectStudentList.
         /// </summary>
-        /// <param name="Subject">Předmět</param>
-        /// <param name="Student">Student</param>
+        /// <param name="subject">Předmět</param>
+        /// <param name="student">Student</param>
         /// <param name="level"></param>
         /// <param name="subjectStudentList">Seznam předmětu a studenta</param>
-        public SubjectStudent(Subject Subject, Student Student, int level, List<SubjectStudent> subjectStudentList)
+        public SubjectStudent(Subject subject, Student student, int level, List<SubjectStudent> subjectStudentList)
         {
-            this.Subject = Subject;
-            this.Student = Student;
-            this.level = level;
-            this.credits = Subject.credits;
+            Subject = subject;
+            Student = student;
+            Level = level;
+            Credits = subject.Credits;
             subjectStudentList.Add(this);
         }
     }

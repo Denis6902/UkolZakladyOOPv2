@@ -10,17 +10,17 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Jméno
         /// </summary>
-        public string firstName;
+        protected string FirstName;
 
         /// <summary>
         /// Přijmení
         /// </summary>
-        public string lastName;
+        protected string LastName;
 
         /// <summary>
         /// Datum narození
         /// </summary>
-        public DateTime birthDate;
+        protected DateTime BirthDate;
 
         /// <summary>
         /// Konstruktor
@@ -30,9 +30,9 @@ namespace UkolZakladyOOP
         /// <param name="birthDate">Datum narození</param>
         protected Person(string firstName, string lastName, DateTime birthDate)
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.birthDate = birthDate;
+            FirstName = firstName;
+            LastName = lastName;
+            BirthDate = birthDate;
         }
 
         /// <summary>
@@ -40,8 +40,8 @@ namespace UkolZakladyOOP
         /// </summary>
         public virtual void aboutMe()
         {
-            Console.WriteLine("Dobrý den, jmenuji se {0} a narodil/narodila jsem se {1} a jsem pouze obyčejná osoba",
-                returnFullName(), birthDate.ToString("MM.dd.yyyy"));
+            Console.WriteLine($"Dobrý den, jmenuji se {returnFullName()}" +
+                              $" a narodil/narodila jsem se {BirthDate:MM.dd.yyyy} a jsem pouze obyčejná osoba");
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace UkolZakladyOOP
         /// <returns>firstname + lastname</returns>
         public string returnFullName()
         {
-            return firstName + " " + lastName;
+            return FirstName + " " + LastName;
         }
     }
 }
