@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace UkolZakladyOOP
 {
     /// <summary>
     /// Propojovací třída známky, předmětu a studenta
     /// </summary>
-    public class MarkSubject
+    /*public class MarkSubject
     {
         /// <summary>
         /// Známka
@@ -36,11 +37,12 @@ namespace UkolZakladyOOP
             Student.MarkSubjectList.Add(this);
         }
     }
+    */
 
     /// <summary>
     /// Propojovací třída předmětu a studenta
     /// </summary>
-    public class SubjectStudent
+    /*public class SubjectStudent
     {
         /// <summary>
         /// Předmět
@@ -76,6 +78,38 @@ namespace UkolZakladyOOP
             Level = level;
             Credits = subject.Credits;
             subjectStudentList.Add(this);
+        }
+    }*/
+
+    public class StudentSubjectMark
+    {
+        /// <summary>
+        /// Student
+        /// </summary>
+        public Student Student;
+        
+        /// <summary>
+        /// Předmět
+        /// </summary>
+        public Subject Subject;
+        
+        /// <summary>
+        /// Počet kreditů
+        /// </summary>
+        public double Credits;
+        
+        /// <summary>
+        /// Známka
+        /// </summary>
+        public double Mark;
+
+        public StudentSubjectMark(Student student, Subject subject, List<StudentSubjectMark> StudentSubjectMarkList, double mark = Double.NaN)
+        {
+            Student = student;
+            Subject = subject;
+            Credits = Subject.Credits;
+            Mark = mark;
+            StudentSubjectMarkList.Add(this);
         }
     }
 }

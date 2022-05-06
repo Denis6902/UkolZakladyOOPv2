@@ -93,8 +93,8 @@ namespace UkolZakladyOOP
             //string teacherName = Console.ReadLine();
             string teacherName = "Pavel";
 
-            if (!Teachers.Exists(teacher =>
-                    teacher.FirstName.ToLower() ==
+            if (!Teachers.Exists(Teacher =>
+                    Teacher.FirstName.ToLower() ==
                     teacherName.ToLower())) // jestli neexistuje učitele s daným jménem, spustí znovu metodu
             {
                 Console.WriteLine("Neexistuje daný učitel");
@@ -103,8 +103,8 @@ namespace UkolZakladyOOP
             }
 
             Teacher ChosenTeacher =
-                Teachers.Find(teacher =>
-                    teacher.FirstName.ToLower() == teacherName.ToLower()); // uloží do chosenTeacher daného učitele
+                Teachers.Find(Teacher =>
+                    Teacher.FirstName.ToLower() == teacherName.ToLower()); // uloží do chosenTeacher daného učitele
 
             return ChosenTeacher;
         }
@@ -119,9 +119,7 @@ namespace UkolZakladyOOP
                      Subject.Subjects.Where( // projede všechny přeměty v aktuánlím semestru, které nikdo neučí
                          Subject => CurrentSemester == Subject.Semester && Subject.Teacher == null))
             {
-                Console.WriteLine(
-                    $"Předmět {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů" +
-                    $", garantem je {Subject.GarantOfSubject.returnFullName()}, Semestr: {Subject.Semester}");
+                Subject.writeSubjectInfo(Subject); // vypíše informace o předmětu
             }
 
             Console.WriteLine("Zadejte název předmětu");
@@ -141,14 +139,12 @@ namespace UkolZakladyOOP
             if (returnSubjectsCount() != 0) // Pokud je počet předmětů daného učitele jiný než 0 (žádný)
             {
                 foreach (Subject Subject in
-                         Subject.Subjects.Where(Subject => Subject.Teacher == this)) 
+                         Subject.Subjects.Where(Subject => Subject.Teacher == this))
                     // projede seznam předmětů
                     // kde je učitel předmětu
                     // roven danému učiteli
                 {
-                    Console.WriteLine(
-                        $"Předmět {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů" +
-                        $", garantem je {Subject.GarantOfSubject.returnFullName()}, Semestr: {Subject.Semester}");
+                    Subject.writeSubjectInfo(Subject); // vypíše informace o předmětu
                 }
             }
             else
@@ -356,6 +352,7 @@ namespace UkolZakladyOOP
 
                 do // vybrání jestli daný učitel chce vytvořit cvičení z Češtiny nebo Angličtiny.
                 {
+                    // TODO: udělat automatický výpis cyklem (cvičení z ...)
                     Console.WriteLine("Jméno:");
                     Console.WriteLine("Cvičení z Češtiny");
                     Console.WriteLine("Cvičení z Angličtiny");
@@ -467,6 +464,7 @@ namespace UkolZakladyOOP
         /// </summary>
         private static void createLectureFromTemplate()
         {
+            // TODO: udělat automatický výpis cyklem (cvičení z ...)
             string lectureName = "";
 
             do // vybrání jestli daný učitel chce vytvořit přednášku z Češtiny nebo Angličtiny.
@@ -504,9 +502,10 @@ namespace UkolZakladyOOP
         /// <param name="credits">Počet kreditů</param>
         private static void createCzechLecture(double credits)
         {
-            Subject.listOnlyOneTypeSubjects("english"); // vypíše všechny češtiny
-            string subjectName = "english1_2";
-            Subject ChosenSubject = Subject.selectOnlyOneTypeSubject(subjectName, "english");
+            Subject.listOnlyOneTypeSubjects("czech"); // vypíše všechny češtiny
+            //string subjectName = Console.ReadLine();
+            string subjectName = "czech";
+            Subject ChosenSubject = Subject.selectOnlyOneTypeSubject(subjectName, "czech");
             // výběr předmětu daného typu s daným názvem
 
             Lecture LectureFromCzech = LectureFactory.CreateLectureFromCzech(credits, ChosenSubject);
@@ -520,12 +519,13 @@ namespace UkolZakladyOOP
         private static void createEnglishLecture(double credits)
         {
             Subject.listOnlyOneTypeSubjects("english"); // vypíše všechny angličtiny
+            //string subjectName = Console.ReadLine();
             string subjectName = "english1_2";
             Subject ChosenSubject = Subject.selectOnlyOneTypeSubject(subjectName, "english");
             // výběr předmětu daného typu s daným názvem
 
             Lecture LectureFromEnglish = LectureFactory.CreateLectureFromEnglish(credits, ChosenSubject);
-            // vytvoření přednášky z Angličtiny pomcé factory
+            // vytvoření přednášky z Angličtiny pomocí factory
         }
 
         /// <summary>
@@ -535,11 +535,12 @@ namespace UkolZakladyOOP
         private static void createCzechExercise(double credits)
         {
             Subject.listOnlyOneTypeSubjects("czech"); // vypíše všechny češtiny
+            //string subjectName = Console.ReadLine();
             string subjectName = "czech1_2";
             Subject ChosenSubject = Subject.selectOnlyOneTypeSubject(subjectName, "czech");
             // výběr předmětu daného typu s daným názvem
 
-            Exercise ExerciseFromCzech = ExerciseFactory.CreateExerciseFromCzech(credits, ChosenSubject); 
+            Exercise ExerciseFromCzech = ExerciseFactory.CreateExerciseFromCzech(credits, ChosenSubject);
             // vytvoření cvičeni z Češtiny pomocí factory
         }
 
@@ -550,6 +551,7 @@ namespace UkolZakladyOOP
         private static void createEnglishExercise(double credits)
         {
             Subject.listOnlyOneTypeSubjects("english"); // vypíše všechny angličtiny
+            //string subjectName = Console.ReadLine();
             string subjectName = "english1_2";
             Subject ChosenSubject = Subject.selectOnlyOneTypeSubject(subjectName, "english");
             // výběr předmětu daného typu s daným názvem

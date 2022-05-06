@@ -16,7 +16,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Délka prodlevy mezi metodama
         /// </summary>
-        private const int Delay = 2500;
+        private const int Delay = 1000; // TODO: TOTO
 
         /// <summary>
         /// Aktuální semestr
@@ -43,7 +43,7 @@ namespace UkolZakladyOOP
                         break;
                 }
 
-                //whoIAm = Console.ReadLine();
+                WhoIAm = Console.ReadLine(); // TODO: TOTO
                 Console.WriteLine($"WhoIAm = {WhoIAm}");
                 Thread.Sleep(Delay);
                 Console.Clear();
@@ -81,12 +81,13 @@ namespace UkolZakladyOOP
             {
                 listAllChoices(ChosenStudent); // výpis jednotlivých možností
 
-                /*string option = Console.ReadLine();
+                // TODO: TOTO
+                string option = Console.ReadLine();
                 Console.Clear();
-                bool number = int.TryParse(option, out optionAsInt);*/
+                bool number = int.TryParse(option, out optionAsInt);
 
-                bool number = true;
-                optionAsInt++; // automatický průchod - při každé iteraci cyklu se spustí další volba
+                //bool number = true;
+                //optionAsInt++;// automatický průchod - při každé iteraci cyklu se spustí další volba
 
 
                 Thread.Sleep(Delay);
@@ -111,7 +112,7 @@ namespace UkolZakladyOOP
 
                         case 3:
                             Console.WriteLine("optionAsInt = 3"); // Hlavní menu
-                            //mainMenu();
+                            mainMenu(); // TODO: TOTO
                             Console.WriteLine("Spustí znovu hlavní menu");
                             Thread.Sleep(Delay);
                             Console.Clear();

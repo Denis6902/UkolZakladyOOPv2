@@ -76,21 +76,22 @@ namespace UkolZakladyOOP
         /// <returns>Danou přednášku</returns>
         public static Lecture selectLecture(string lectureName, Student Student, Semester CurrentSemester)
         {
-            if (!Lectures.Exists(lecture =>
-                    lecture.Name.ToLower() == lectureName.ToLower() && lecture.Subject.Year == Student.Year &&
-                    lecture.Subject.Semester ==
+            if (!Lectures.Exists(Lecture =>
+                    Lecture.Name.ToLower() == lectureName.ToLower() && Lecture.Subject.Year == Student.Year &&
+                    Lecture.Subject.Semester ==
                     CurrentSemester)) // kontrola jestli existuje přednáška s daným názvem v aktuálním ročníku a semestru
             {
                 Console.WriteLine("Neexistuje dané cvičení");
                 Console.WriteLine("Zadej název existujícího cvičení");
                 lectureName = Console.ReadLine();
                 Console.Clear();
-                selectLecture(lectureName, Student, CurrentSemester);
+                selectLecture(lectureName, Student,
+                    CurrentSemester); // pokud neexistuje, spustí znovu celou metodu s novým vstupem od uživatele
             }
 
-            Lecture ChosenLecture = Lectures.Find(lecture =>
-                lecture.Name.ToLower() == lectureName.ToLower() && lecture.Subject.Year == Student.Year &&
-                lecture.Subject.Semester ==
+            Lecture ChosenLecture = Lectures.Find(Lecture =>
+                Lecture.Name.ToLower() == lectureName.ToLower() && Lecture.Subject.Year == Student.Year &&
+                Lecture.Subject.Semester ==
                 CurrentSemester); // vybere existující přednášku s daným názvem v aktuálním ročníku a semestru
 
             return ChosenLecture; // vratí přednášku s daným názvem v aktuálním ročníku a semestru
@@ -118,14 +119,15 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Vypíše všechny přednášky daného studenta
         /// </summary>
-        /// <param name="StudentSubjectList">Registrované předmety daného studenta</param>
-        public static void listAllRegisteredLectures(List<SubjectStudent> StudentSubjectList)
+        /// <param name="StudentSubjectMarkList">Registrované předmety daného studenta</param>
+        public static void listAllRegisteredLectures(List<StudentSubjectMark> StudentSubjectMarkList)
         {
-            foreach (SubjectStudent SubjectStudent in StudentSubjectList)
+            foreach (StudentSubjectMark StudentSubjectMark in StudentSubjectMarkList) // projede předměty daného studenta
             {
-                foreach (Lecture Lecture in Lecture.Lectures.Where(Lecture =>
-                             SubjectStudent.Subject == Lecture.Subject &&
-                             SubjectStudent.Subject.Registered && SubjectStudent.Subject.Completed == false))
+                foreach (Lecture Lecture in Lecture.Lectures.Where(
+                             Lecture => // projede přednášky předmětů, které má daný student registrované a nedokončelé
+                                 StudentSubjectMark.Subject == Lecture.Subject &&
+                                 StudentSubjectMark.Subject.Registered && StudentSubjectMark.Subject.Completed == false))
                 {
                     Console.WriteLine(
                         $"{Lecture.Name} - {Lecture.Credits} kreditů, počítač {Lecture.isComputerRequired()}" +

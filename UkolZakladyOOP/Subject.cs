@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace UkolZakladyOOP
 {
@@ -96,18 +97,19 @@ namespace UkolZakladyOOP
         /// <returns>Vybraný předmět</returns>
         public static Subject selectSubject(string subjectName)
         {
-            if (!Subjects.Exists(s =>
-                    s.Name.ToLower() == subjectName.ToLower())) // kontrola jestli existuje předmět s daným názvem
+            if (!Subjects.Exists(Subject =>
+                    Subject.Name.ToLower() == subjectName.ToLower())) // kontrola jestli existuje předmět s daným názvem
             {
                 Console.WriteLine("Neexistuje daný předmět");
                 Console.WriteLine("Zadej název existujícího předmětu");
                 subjectName = Console.ReadLine();
                 Console.Clear();
-                selectSubject(subjectName);
+                selectSubject(subjectName); // pokud neexistuje, spustí znovu celou metodu s novým vstupem od uživatele
             }
 
             Subject ChosenSubject =
-                Subjects.Find(s => s.Name.ToLower() == subjectName.ToLower()); // vybere předmět s daným názvem
+                Subjects.Find(Subject =>
+                    Subject.Name.ToLower() == subjectName.ToLower()); // vybere předmět s daným názvem
 
             Console.WriteLine($"subjectName = {subjectName}");
             return ChosenSubject; // vrátí předmět s daným názvem
@@ -135,8 +137,8 @@ namespace UkolZakladyOOP
             // projede všechny předměty které začínají první tři písmena z daného slova
 
             foreach (Subject Subject in
-                     Subject.Subjects.Where(s => s.Name.Substring(0, 3).ToLower() ==
-                                                 subjectName.Substring(0, 3).ToLower()))
+                     Subject.Subjects.Where(Subject => Subject.Name.Substring(0, 3).ToLower() ==
+                                                       subjectName.Substring(0, 3).ToLower()))
             {
                 Console.WriteLine(
                     $"Předmět {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů," +
@@ -152,21 +154,44 @@ namespace UkolZakladyOOP
         /// <returns>Daný předmět</returns>
         public static Subject selectOnlyOneTypeSubject(string subjectName, string subjectType)
         {
-            if (!Subject.Subjects.Exists(subject =>
-                    subject.Name.ToLower() == subjectName) ||
+            if (!Subject.Subjects.Exists(Subject =>
+                    Subject.Name.ToLower() == subjectName) ||
                 subjectName.ToLower().Substring(0, 3) !=
                 subjectType.ToLower().Substring(0, 3)) // kontrola jestli existuje předmět daného typu s daným názvem
             {
                 Console.WriteLine("Předmět?");
                 Subject.listOnlyOneTypeSubjects(subjectType); // výpis všech předmětů daného typu
+
+                Console.WriteLine("Neexistuje daný předmět");
+                Console.WriteLine("Zadej název existujícího předmětu");
                 subjectName = Console.ReadLine();
-                selectOnlyOneTypeSubject(subjectName, subjectType);
+                Console.Clear();
+                selectOnlyOneTypeSubject(subjectName,
+                    subjectType); // pokud neexistuje, spustí znovu celou metodu s novým vstupem od uživatele
             }
 
-            Subject ChosenSubject = Subjects.Find(subject =>
-                subject.Name.ToLower() == subjectName.ToLower()); // vrátí předmět s daným názvem
+            Subject ChosenSubject = Subjects.Find(Subject =>
+                Subject.Name.ToLower() == subjectName.ToLower()); // vrátí předmět s daným názvem
 
             return ChosenSubject;
+        }
+
+        /// <summary>
+        /// Výpis informací o předmětu
+        /// </summary>
+        /// <param name="Subject">Daný předmět k výpisu</param>
+        /// <param name="credits">Počet kreditů</param>
+        public static void writeSubjectInfo(Subject Subject, double credits = Double.NaN)
+        {
+            if (Double.IsNaN(credits))
+            {
+                credits = Subject.Credits;
+            }
+            Console.WriteLine(
+                $"Předmět {Subject.Name}" +
+                $", k dokončení je potřeba {credits} kreditů," +
+                $" garantem je {Subject.GarantOfSubject.returnFullName()}," +
+                $" Semestr: {Subject.Semester} (Level {Subject.Level})");
         }
     }
 

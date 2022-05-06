@@ -78,7 +78,8 @@ namespace UkolZakladyOOP
                 Console.WriteLine("Zadej název existujícího cvičení");
                 exerciseName = Console.ReadLine();
                 Console.Clear();
-                selectExercise(exerciseName, Student, CurrentSemester);
+                selectExercise(exerciseName, Student,
+                    CurrentSemester); // pokud neexistuje, spustí znovu celou metodu s novým vstupem od uživatele
             }
 
             Exercise ChosenExercise = Exercises.Find(exercise =>
