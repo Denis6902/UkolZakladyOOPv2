@@ -24,7 +24,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Předmět ke kterému je přednáška dělaná
         /// </summary>
-        private Subject Subject;
+        public Subject Subject;
 
         /// <summary>
         /// Učitel přednášky
@@ -117,17 +117,17 @@ namespace UkolZakladyOOP
         }
 
         /// <summary>
-        /// Vypíše všechny přednášky daného studenta
+        /// Vypíše všechny přednášky dostupné pro registrované předměty daného studenta
         /// </summary>
-        /// <param name="StudentSubjectMarkList">Registrované předmety daného studenta</param>
-        public static void listAllRegisteredLectures(List<StudentSubjectMark> StudentSubjectMarkList)
+        /// <param name="SubjectMarkList">Registrované předmety daného studenta</param>
+        public static void listAllAvailableLectures(List<SubjectMark> SubjectMarkList)
         {
-            foreach (StudentSubjectMark StudentSubjectMark in StudentSubjectMarkList) // projede předměty daného studenta
+            foreach (SubjectMark SubjectMark in SubjectMarkList) // projede předměty daného studenta
             {
                 foreach (Lecture Lecture in Lecture.Lectures.Where(
                              Lecture => // projede přednášky předmětů, které má daný student registrované a nedokončelé
-                                 StudentSubjectMark.Subject == Lecture.Subject &&
-                                 StudentSubjectMark.Subject.Registered && StudentSubjectMark.Subject.Completed == false))
+                                 SubjectMark.Subject == Lecture.Subject &&
+                                 SubjectMark.Registered && SubjectMark.Completed == false))
                 {
                     Console.WriteLine(
                         $"{Lecture.Name} - {Lecture.Credits} kreditů, počítač {Lecture.isComputerRequired()}" +

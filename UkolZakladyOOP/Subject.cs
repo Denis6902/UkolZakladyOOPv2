@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace UkolZakladyOOP
 {
@@ -51,16 +50,6 @@ namespace UkolZakladyOOP
         /// Úroveň předmětu
         /// </summary>
         public int Level;
-
-        /// <summary>
-        /// Jestli je předmět registrovaný
-        /// </summary>
-        public bool Registered = false;
-
-        /// <summary>
-        /// Jestli je předmět dokončený
-        /// </summary>
-        public bool Completed = false;
 
         /// <summary>
         /// Seznam všech předmětů
@@ -187,6 +176,7 @@ namespace UkolZakladyOOP
             {
                 credits = Subject.Credits;
             }
+
             Console.WriteLine(
                 $"Předmět {Subject.Name}" +
                 $", k dokončení je potřeba {credits} kreditů," +
