@@ -144,11 +144,12 @@ namespace UkolZakladyOOP
         public static Subject selectOnlyOneTypeSubject(string subjectName, string subjectType)
         {
             if (!Subject.Subjects.Exists(Subject =>
-                    Subject.Name.ToLower() == subjectName) ||
+                    Subject.Name.ToLower() == subjectName.ToLower()) ||
                 subjectName.ToLower().Substring(0, 3) !=
                 subjectType.ToLower().Substring(0, 3)) // kontrola jestli existuje předmět daného typu s daným názvem
             {
-                Console.WriteLine("Předmět?");
+                Console.WriteLine(subjectName);
+                Console.WriteLine("Zvolte předmět");
                 Subject.listOnlyOneTypeSubjects(subjectType); // výpis všech předmětů daného typu
 
                 Console.WriteLine("Neexistuje daný předmět");

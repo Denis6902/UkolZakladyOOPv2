@@ -67,7 +67,12 @@ namespace UkolZakladyOOP
 
             Exercise ExerciseFromEnglish3_2 = new("Cvičení z Angličtiny3_2", false, 50, English3_2);
             Lecture LectureFromEnglish3_2 = new("Přednáška z Angličtiny3_2", false, 50, English3_2);
-
+            
+            Lecture.LecturesTypes.Add(new LectureType("Přednáška z Češtiny", true));
+            Lecture.LecturesTypes.Add(new LectureType("Přednáška z Angličtiny", true));
+            
+            Exercise.ExercisesTypes.Add(new ExerciseType("Cvičení z Češtiny", true));
+            Exercise.ExercisesTypes.Add(new ExerciseType("Cvičení z Angličtiny", true));
 
             SchoolSystem schoolSystem = new();
             schoolSystem.mainMenu();

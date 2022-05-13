@@ -353,14 +353,20 @@ namespace UkolZakladyOOP
                 do // vybrání jestli daný učitel chce vytvořit cvičení z Češtiny nebo Angličtiny.
                 {
                     // TODO: udělat automatický výpis cyklem (cvičení z ...)
-                    Console.WriteLine("Jméno:");
-                    Console.WriteLine("Cvičení z Češtiny");
-                    Console.WriteLine("Cvičení z Angličtiny");
+                    Console.WriteLine("Jakou přednášku chcete vytvořit?");
+
+                    foreach (ExerciseType exerciseType in Exercise.ExercisesTypes)
+                    {
+                        Console.WriteLine(exerciseType.Name);
+                    }
+
                     //exercise = Console.ReadLine().ToLower();
                     exerciseName = "cvičení z češtiny";
                     Console.WriteLine($"exerciseName = {exerciseName}");
-                } while (exerciseName.ToLower() != "cvičení z češtiny" &&
-                         exerciseName.ToLower() != "cvičení z angličtiny");
+                } while (!Exercise.ExercisesTypes.Exists(ET => ET.Name.ToLower() == exerciseName && ET.HasFactory == true));
+
+                Console.ReadKey();
+                
 
                 //Console.WriteLine("Počet kreditů k dokončení");
                 //double credits = double.Parse(Console.ReadLine()); // načtení počtu kreditl z konzole
@@ -379,6 +385,9 @@ namespace UkolZakladyOOP
                         createEnglishExercise(credits);
                         break;
                     }
+                    default:
+                        Console.WriteLine("Dané cvičení nejde vytvořit pomocí factory");
+                        break;
                 }
             }
         }
@@ -464,21 +473,22 @@ namespace UkolZakladyOOP
         /// </summary>
         private static void createLectureFromTemplate()
         {
-            // TODO: udělat automatický výpis cyklem (cvičení z ...)
             string lectureName = "";
 
             do // vybrání jestli daný učitel chce vytvořit přednášku z Češtiny nebo Angličtiny.
             {
                 Console.WriteLine("Jméno:");
-                Console.WriteLine("Přednáška z Češtiny");
-                Console.WriteLine("Přednáška z Angličtiny");
+
+                foreach (LectureType lectureType in Lecture.LecturesTypes.Where(LT => LT.HasFactory == true))
+                {
+                    Console.WriteLine(lectureType.Name);
+                }
+                
                 //string lecture = Console.ReadLine().ToLower();
                 lectureName = "přednáška z češtiny";
                 Console.WriteLine($"lectureName = {lectureName}");
-            } while (lectureName.ToLower() != "přednáška z češtiny" &&
-                     lectureName.ToLower() != "přednáška z angličtiny");
-
-
+            } while (!Lecture.LecturesTypes.Exists(LT => LT.Name.ToLower() == lectureName && LT.HasFactory == true));
+            
             //Console.WriteLine("Počet kreditů k dokončení");
             //double credits = double.Parse(Console.ReadLine()); // načtení počtu krreditů z konzole
             double credits = 50;
@@ -493,6 +503,9 @@ namespace UkolZakladyOOP
                 case "přednáška z angličtiny":
                     createEnglishLecture(credits); // vytvoření přednášky z angličtiny
                     break;
+                default:
+                    Console.WriteLine("Daná přednáška nejde vytvořit pomocí factory");
+                    break;
             }
         }
 
@@ -504,7 +517,8 @@ namespace UkolZakladyOOP
         {
             Subject.listOnlyOneTypeSubjects("czech"); // vypíše všechny češtiny
             //string subjectName = Console.ReadLine();
-            string subjectName = "czech";
+            string subjectName = "Czech1_1";
+            Console.Clear();
             Subject ChosenSubject = Subject.selectOnlyOneTypeSubject(subjectName, "czech");
             // výběr předmětu daného typu s daným názvem
 

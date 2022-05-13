@@ -31,6 +31,11 @@ namespace UkolZakladyOOP
         public static List<Exercise> Exercises = new();
 
         /// <summary>
+        /// Seznam všech druhů cvičení
+        /// </summary>
+        public static List<ExerciseType> ExercisesTypes = new();
+
+        /// <summary>
         /// Konstruktor. Přidá cvičení do seznamu cvíčení a zvyší počet cvičení u daného předmětu.
         /// </summary>
         /// <param name="name">Název cvičení</param>
@@ -123,6 +128,18 @@ namespace UkolZakladyOOP
         public static Exercise CreateExerciseFromEnglish(double credits, Subject English)
         {
             return new Exercise("Cvičení z Angličtiny", false, credits, English);
+        }
+    }
+
+    public class ExerciseType
+    {
+        public string Name;
+        public bool HasFactory;
+
+        public ExerciseType(string name, bool hasFactory)
+        {
+            Name = name;
+            HasFactory = hasFactory;
         }
     }
 }

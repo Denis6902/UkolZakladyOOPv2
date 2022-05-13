@@ -37,6 +37,11 @@ namespace UkolZakladyOOP
         public static List<Lecture> Lectures = new();
 
         /// <summary>
+        /// Seznam všech druhů přednášek
+        /// </summary>
+        public static List<LectureType> LecturesTypes = new();
+
+        /// <summary>
         /// Konstruktor. Přidá cvičení do seznamu přednášek a zvyší počet přednášek u daného předmětu.
         /// </summary>
         /// <param name="name">Nazev přednášky</param>
@@ -150,6 +155,18 @@ namespace UkolZakladyOOP
         public static Lecture CreateLectureFromEnglish(double credits, Subject English)
         {
             return new Lecture("Přednáška z Angličtiny", false, credits, English);
+        }
+    }
+
+    public class LectureType
+    {
+        public string Name;
+        public bool HasFactory;
+
+        public LectureType(string name, bool hasFactory)
+        {
+            Name = name;
+            HasFactory = hasFactory;
         }
     }
 }
