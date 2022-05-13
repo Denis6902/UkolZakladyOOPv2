@@ -12,6 +12,11 @@ namespace UkolZakladyOOP
         public string Name;
 
         /// <summary>
+        /// Typ předmětu
+        /// </summary>
+        public SubjectType SubjectType;
+
+        /// <summary>
         /// Garant předmětu
         /// </summary>
         public Teacher GarantOfSubject;
@@ -57,19 +62,27 @@ namespace UkolZakladyOOP
         public static List<Subject> Subjects = new();
 
         /// <summary>
+        /// Seznam všech druhů předmětu
+        /// </summary>
+        public static List<SubjectType> SubjectsTypes = new();
+
+        /// <summary>
         /// Konstruktor. Automaticky přídá předmět d  seznamu předmětů
         /// </summary>
         /// <param name="name">Název</param>
+        /// <param name="subjectType">Typ předmětu</param>
         /// <param name="garantOfSubject">Garant předmětu</param>
         /// <param name="teacher">Učitel předmětu</param>
         /// <param name="credits">Počet kreditů potřeba k dokončení</param>
         /// <param name="year">Ročník pro jaký je daný předmět</param>
         /// <param name="semester">Semestr pro jaký je daný předmět</param>
         /// <param name="level">Úroveň předmětu</param>
-        public Subject(string name, Teacher garantOfSubject, Teacher teacher, double credits, int year,
+        public Subject(string name, SubjectType subjectType, Teacher garantOfSubject, Teacher teacher, double credits,
+            int year,
             Semester semester, int level)
         {
             Name = name;
+            SubjectType = subjectType;
             GarantOfSubject = garantOfSubject;
             Teacher = teacher;
             Credits = credits;
@@ -86,8 +99,8 @@ namespace UkolZakladyOOP
         /// <returns>Vybraný předmět</returns>
         public static Subject selectSubject(string subjectName)
         {
-            if (!Subjects.Exists(Subject =>
-                    Subject.Name.ToLower() == subjectName.ToLower())) // kontrola jestli existuje předmět s daným názvem
+            // kontrola jestli existuje předmět s daným názvem
+            if (!Subjects.Exists(Subject => Subject.Name.ToLower() == subjectName.ToLower()))
             {
                 Console.WriteLine("Neexistuje daný předmět");
                 Console.WriteLine("Zadej název existujícího předmětu");
@@ -96,9 +109,8 @@ namespace UkolZakladyOOP
                 selectSubject(subjectName); // pokud neexistuje, spustí znovu celou metodu s novým vstupem od uživatele
             }
 
-            Subject ChosenSubject =
-                Subjects.Find(Subject =>
-                    Subject.Name.ToLower() == subjectName.ToLower()); // vybere předmět s daným názvem
+            Subject ChosenSubject = Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower());
+            // vybere předmět s daným názvem
 
             Console.WriteLine($"subjectName = {subjectName}");
             return ChosenSubject; // vrátí předmět s daným názvem
@@ -111,8 +123,9 @@ namespace UkolZakladyOOP
         {
             foreach (Subject Subject in Subject.Subjects) // projede všechny předměty ze seznamu předmětů
             {
-                Console.WriteLine($"Předmět {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů" +
-                                  $", garantem je {Subject.GarantOfSubject.returnFullName()}, semestr: {Subject.Semester}");
+                Console.WriteLine(
+                    $"Předmět typu {Subject.SubjectType.Name} s názvem {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů" +
+                    $", garantem je {Subject.GarantOfSubject.returnFullName()}, semestr: {Subject.Semester}");
             }
         }
 
@@ -120,17 +133,14 @@ namespace UkolZakladyOOP
         /// Výpis všech předmětů jednoho typu
         /// například všech předmětů čeština
         /// </summary>
-        /// <param name="subjectName">Typ předmětu (Czech, English,...)</param>
-        public static void listOnlyOneTypeSubjects(string subjectName)
+        /// <param name="subjectType">Typ předmětu (Czech, English,...)</param>
+        public static void listOnlyOneTypeSubjects(SubjectType subjectType)
         {
-            // projede všechny předměty které začínají první tři písmena z daného slova
-
-            foreach (Subject Subject in
-                     Subject.Subjects.Where(Subject => Subject.Name.Substring(0, 3).ToLower() ==
-                                                       subjectName.Substring(0, 3).ToLower()))
+            // projede všechny předměty daného typu
+            foreach (Subject Subject in Subject.Subjects.Where(Subject => Subject.SubjectType == subjectType))
             {
                 Console.WriteLine(
-                    $"Předmět {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů," +
+                    $"Předmět typu {Subject.SubjectType.Name} s názvem {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů," +
                     $" garantem je {Subject.GarantOfSubject.returnFullName()}, Semestr: {Subject.Semester}");
             }
         }
@@ -141,14 +151,11 @@ namespace UkolZakladyOOP
         /// <param name="subjectName">Název předmětu</param>
         /// <param name="subjectType">Typ předmětu</param>
         /// <returns>Daný předmět</returns>
-        public static Subject selectOnlyOneTypeSubject(string subjectName, string subjectType)
+        public static Subject selectOnlyOneTypeSubject(string subjectName, SubjectType subjectType)
         {
-            if (!Subject.Subjects.Exists(Subject =>
-                    Subject.Name.ToLower() == subjectName.ToLower()) ||
-                subjectName.ToLower().Substring(0, 3) !=
-                subjectType.ToLower().Substring(0, 3)) // kontrola jestli existuje předmět daného typu s daným názvem
+            // kontrola jestli existuje předmět daného typu s daným názvem
+            if (!Subject.Subjects.Exists(Subject => Subject.SubjectType == subjectType))
             {
-                Console.WriteLine(subjectName);
                 Console.WriteLine("Zvolte předmět");
                 Subject.listOnlyOneTypeSubjects(subjectType); // výpis všech předmětů daného typu
 
@@ -156,8 +163,8 @@ namespace UkolZakladyOOP
                 Console.WriteLine("Zadej název existujícího předmětu");
                 subjectName = Console.ReadLine();
                 Console.Clear();
-                selectOnlyOneTypeSubject(subjectName,
-                    subjectType); // pokud neexistuje, spustí znovu celou metodu s novým vstupem od uživatele
+                selectOnlyOneTypeSubject(subjectName, subjectType);
+                // pokud neexistuje, spustí znovu celou metodu s novým vstupem od uživatele
             }
 
             Subject ChosenSubject = Subjects.Find(Subject =>
@@ -179,7 +186,7 @@ namespace UkolZakladyOOP
             }
 
             Console.WriteLine(
-                $"Předmět {Subject.Name}" +
+                $"Předmět typu {Subject.SubjectType.Name} s názvem {Subject.Name}" +
                 $", k dokončení je potřeba {credits} kreditů," +
                 $" garantem je {Subject.GarantOfSubject.returnFullName()}," +
                 $" Semestr: {Subject.Semester} (Level {Subject.Level})");
@@ -192,16 +199,32 @@ namespace UkolZakladyOOP
     /// </summary>
     class SubjectFactory
     {
-        public static Subject CreateCzech(Teacher teacher, Teacher garantOfSubject, double credits,
+        public static Subject CreateCzech(string subjectName, Teacher teacher, Teacher garantOfSubject, double credits,
             int year, Semester semester, int subjectLevel)
         {
-            return new Subject("Czech", teacher, garantOfSubject, credits, year, semester, subjectLevel);
+            return new Subject(subjectName, Subject.SubjectsTypes.Find(ST => ST.Name == "Czech"), teacher,
+                garantOfSubject,
+                credits, year, semester, subjectLevel);
         }
 
-        public static Subject CreateEnglish(Teacher teacher, Teacher garantOfSubject, double credits,
+        public static Subject CreateEnglish(string subjectName, Teacher teacher, Teacher garantOfSubject,
+            double credits,
             int year, Semester semester, int subjectLevel)
         {
-            return new Subject("English", teacher, garantOfSubject, credits, year, semester, subjectLevel);
+            return new Subject(subjectName, Subject.SubjectsTypes.Find(ST => ST.Name == "English"), teacher,
+                garantOfSubject, credits, year, semester, subjectLevel);
+        }
+    }
+
+    public class SubjectType
+    {
+        public string Name;
+        public bool HasFactory;
+
+        public SubjectType(string name, bool hasFactory)
+        {
+            Name = name;
+            HasFactory = hasFactory;
         }
     }
 }

@@ -12,6 +12,11 @@ namespace UkolZakladyOOP
         public string Name;
 
         /// <summary>
+        /// Typ přednášky
+        /// </summary>
+        public LectureType LectureType;
+
+        /// <summary>
         /// Jestli je potřeba na přednášku počitač
         /// </summary>
         private bool ComputerRequired;
@@ -45,12 +50,14 @@ namespace UkolZakladyOOP
         /// Konstruktor. Přidá cvičení do seznamu přednášek a zvyší počet přednášek u daného předmětu.
         /// </summary>
         /// <param name="name">Nazev přednášky</param>
+        /// <param name="lectureType">Typ přednášky</param>
         /// <param name="computerRequired">Jestli je potřeba na přednášku počitač</param>
         /// <param name="credits">Počet kreditů za přednášku</param>
         /// <param name="subject">Předmět ke kterému je přednáška dělaná</param>
-        public Lecture(string name, bool computerRequired, double credits, Subject subject)
+        public Lecture(string name, LectureType lectureType, bool computerRequired, double credits, Subject subject)
         {
             Name = name;
+            LectureType = lectureType;
             ComputerRequired = computerRequired;
             Credits = credits;
             Subject = subject;
@@ -81,23 +88,23 @@ namespace UkolZakladyOOP
         /// <returns>Danou přednášku</returns>
         public static Lecture selectLecture(string lectureName, Student Student, Semester CurrentSemester)
         {
+            // kontrola jestli existuje přednáška s daným názvem v aktuálním ročníku a semestru
             if (!Lectures.Exists(Lecture =>
                     Lecture.Name.ToLower() == lectureName.ToLower() && Lecture.Subject.Year == Student.Year &&
-                    Lecture.Subject.Semester ==
-                    CurrentSemester)) // kontrola jestli existuje přednáška s daným názvem v aktuálním ročníku a semestru
+                    Lecture.Subject.Semester == CurrentSemester)) 
             {
                 Console.WriteLine("Neexistuje dané cvičení");
                 Console.WriteLine("Zadej název existujícího cvičení");
                 lectureName = Console.ReadLine();
                 Console.Clear();
-                selectLecture(lectureName, Student,
-                    CurrentSemester); // pokud neexistuje, spustí znovu celou metodu s novým vstupem od uživatele
+                selectLecture(lectureName, Student, CurrentSemester);
+                // pokud neexistuje, spustí znovu celou metodu s novým vstupem od uživatele
             }
 
             Lecture ChosenLecture = Lectures.Find(Lecture =>
                 Lecture.Name.ToLower() == lectureName.ToLower() && Lecture.Subject.Year == Student.Year &&
-                Lecture.Subject.Semester ==
-                CurrentSemester); // vybere existující přednášku s daným názvem v aktuálním ročníku a semestru
+                Lecture.Subject.Semester == CurrentSemester);
+            // vybere existující přednášku s daným názvem v aktuálním ročníku a semestru
 
             return ChosenLecture; // vratí přednášku s daným názvem v aktuálním ročníku a semestru
         }
@@ -129,13 +136,12 @@ namespace UkolZakladyOOP
         {
             foreach (SubjectMark SubjectMark in SubjectMarkList) // projede předměty daného studenta
             {
+                // projede přednášky předmětů, které má daný student nedokončené
                 foreach (Lecture Lecture in Lecture.Lectures.Where(
-                             Lecture => // projede přednášky předmětů, které má daný student registrované a nedokončelé
-                                 SubjectMark.Subject == Lecture.Subject &&
-                                 SubjectMark.Registered && SubjectMark.Completed == false))
+                             Lecture => SubjectMark.Subject == Lecture.Subject && SubjectMark.Completed == false))
                 {
                     Console.WriteLine(
-                        $"{Lecture.Name} - {Lecture.Credits} kreditů, počítač {Lecture.isComputerRequired()}" +
+                        $"Přednáška typu {Lecture.LectureType.Name} s názvem {Lecture.Name} - {Lecture.Credits} kreditů, počítač {Lecture.isComputerRequired()}" +
                         $" (Předmět {Lecture.Subject.Name})");
                 }
             }
@@ -147,14 +153,15 @@ namespace UkolZakladyOOP
     /// </summary>
     class LectureFactory
     {
-        public static Lecture CreateLectureFromCzech(double credits, Subject Czech)
+        public static Lecture CreateLectureFromCzech(string name, double credits, Subject Czech)
         {
-            return new Lecture("Přednáška z Češtiny", false, credits, Czech);
+            return new Lecture(name, Lecture.LecturesTypes.Find(LT => LT.Name == "Czech"), false, credits, Czech);
         }
 
-        public static Lecture CreateLectureFromEnglish(double credits, Subject English)
+        public static Lecture CreateLectureFromEnglish(string name, double credits, Subject English)
         {
-            return new Lecture("Přednáška z Angličtiny", false, credits, English);
+            return new Lecture(name, Lecture.LecturesTypes.Find(LT => LT.Name == "Czech"), false,
+                credits, English);
         }
     }
 

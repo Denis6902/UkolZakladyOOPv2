@@ -11,6 +11,11 @@ namespace UkolZakladyOOP
         public string Name;
 
         /// <summary>
+        /// Typ cvičení
+        /// </summary>
+        public ExerciseType ExerciseType;
+
+        /// <summary>
         /// Jestli je potřeba na cvičení počítač
         /// </summary>
         private bool ComputerRequired;
@@ -39,12 +44,14 @@ namespace UkolZakladyOOP
         /// Konstruktor. Přidá cvičení do seznamu cvíčení a zvyší počet cvičení u daného předmětu.
         /// </summary>
         /// <param name="name">Název cvičení</param>
+        /// <param name="exerciseType">Typ cvičení</param>
         /// <param name="computerRequired">Jestli je potřeba na cvičení počítač</param>
         /// <param name="credits">Počet kreditů za cvičení</param>
         /// <param name="subject">Předmět ke kterému je předmět dělaný</param>
-        public Exercise(string name, bool computerRequired, double credits, Subject subject)
+        public Exercise(string name, ExerciseType exerciseType, bool computerRequired, double credits, Subject subject)
         {
             Name = name;
+            ExerciseType = exerciseType;
             ComputerRequired = computerRequired;
             Credits = credits;
             Subject = subject;
@@ -74,23 +81,23 @@ namespace UkolZakladyOOP
         /// <returns>Vybrané cvičení</returns>
         public static Exercise selectExercise(string exerciseName, Student Student, Semester CurrentSemester)
         {
+            // kontrola jestli existuje cvičení s daným názvem v aktuálním ročníku a semestru
             if (!Exercises.Exists(exercise =>
                     exercise.Name.ToLower() == exerciseName.ToLower() && exercise.Subject.Year == Student.Year &&
-                    exercise.Subject.Semester ==
-                    CurrentSemester)) // kontrola jestli existuje cvičení s daným názvem v aktuálním ročníku a semestru
+                    exercise.Subject.Semester == CurrentSemester))
             {
                 Console.WriteLine("Neexistuje dané cvičení");
                 Console.WriteLine("Zadej název existujícího cvičení");
                 exerciseName = Console.ReadLine();
                 Console.Clear();
-                selectExercise(exerciseName, Student,
-                    CurrentSemester); // pokud neexistuje, spustí znovu celou metodu s novým vstupem od uživatele
+                selectExercise(exerciseName, Student, CurrentSemester);
+                // pokud neexistuje, spustí znovu celou metodu s novým vstupem od uživatele
             }
 
             Exercise ChosenExercise = Exercises.Find(exercise =>
                 exercise.Name.ToLower() == exerciseName.ToLower() && exercise.Subject.Year == Student.Year &&
-                exercise.Subject.Semester ==
-                CurrentSemester); // vybere existující cvičení s daným názvem v aktuálním ročníku a semestru
+                exercise.Subject.Semester == CurrentSemester);
+            // vybere existující cvičení s daným názvem v aktuálním ročníku a semestru
 
             return ChosenExercise; // vratí cvičení s daným názvem v aktuálním ročníku a semestru
         }
@@ -108,8 +115,9 @@ namespace UkolZakladyOOP
             {
                 foreach (Exercise Exercise in Exercises) // projede všechny cvičení ze seznamu cvičení
                 {
-                    Console.WriteLine($"{Exercise.Name} - {Exercise.Credits} kreditů, " +
-                                      $"počítač {Exercise.isComputerRequired()} (Předmět {Exercise.Subject.Name}");
+                    Console.WriteLine(
+                        $"Cvičení typu {Exercise.ExerciseType.Name} s názvem {Exercise.Name} - {Exercise.Credits} kreditů, " +
+                        $"počítač {Exercise.isComputerRequired()} (Předmět {Exercise.Subject.Name}");
                 }
             }
         }
@@ -120,14 +128,14 @@ namespace UkolZakladyOOP
     /// </summary>
     class ExerciseFactory
     {
-        public static Exercise CreateExerciseFromCzech(double credits, Subject Czech)
+        public static Exercise CreateExerciseFromCzech(string name, double credits, Subject Czech)
         {
-            return new Exercise("Cvičení z Češtiny", false, credits, Czech);
+            return new Exercise(name, Exercise.ExercisesTypes.Find(ET => ET.Name == "Czech"), false, credits, Czech);
         }
 
-        public static Exercise CreateExerciseFromEnglish(double credits, Subject English)
+        public static Exercise CreateExerciseFromEnglish(string name, double credits, Subject English)
         {
-            return new Exercise("Cvičení z Angličtiny", false, credits, English);
+            return new Exercise(name, Exercise.ExercisesTypes.Find(ET => ET.Name == "Czech"), false, credits, English);
         }
     }
 
