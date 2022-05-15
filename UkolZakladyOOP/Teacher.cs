@@ -87,23 +87,24 @@ namespace UkolZakladyOOP
         {
             foreach (Teacher Teacher in Teachers)
             {
-                Console.WriteLine(Teacher.FirstName); // vypíše jména všech učitelů ze seznamu teachers
+                Console.WriteLine(Teacher.returnFullName()); // vypíše celé jména všech učitelů ze seznamu teachers
             }
 
-            //string teacherName = Console.ReadLine();
-            string teacherName = "Pavel";
+            //string teacherFullName = Console.ReadLine();
+            string teacherFullName = "Pavel Novotný";
 
             // jestli neexistuje učitele s daným jménem, spustí znovu metodu
-            if (!Teachers.Exists(Teacher => Teacher.FirstName.ToLower() == teacherName.ToLower()))
+            while (!Teachers.Exists(Teacher => Teacher.returnFullName().ToLower() == teacherFullName.ToLower()))
             {
                 Console.WriteLine("Neexistuje daný učitel");
                 Console.WriteLine("Zadej jméno existujícího učitele");
-                selectTeacher();
+                teacherFullName = Console.ReadLine();
             }
 
             Teacher ChosenTeacher =
                 Teachers.Find(Teacher =>
-                    Teacher.FirstName.ToLower() == teacherName.ToLower()); // uloží do chosenTeacher daného učitele
+                    Teacher.returnFullName().ToLower() ==
+                    teacherFullName.ToLower()); // uloží do chosenTeacher daného učitele
 
             return ChosenTeacher;
         }
@@ -191,11 +192,23 @@ namespace UkolZakladyOOP
             string subjectName = "Nový Předmět"; // načtení z konzole názvu nového předmětu
             Console.WriteLine($"subjectName = {subjectName}");
 
-            Console.WriteLine("Typ předmětu:");
-            //string name = Console.ReadLine();
-            SubjectType subjectType = Subject.SubjectsTypes.Find(SM => SM.Name == "Czech");
-            // načtení z konzole názvu nového předmětu
-            Console.WriteLine($"subjectType = {subjectType.Name}");
+            foreach (SubjectType SType in Subject.SubjectsTypes)
+            {
+                Console.WriteLine(SType.Name);
+            }
+
+            SubjectType SubjectType = null;
+
+            do
+            {
+                Console.WriteLine("Zvolte typ předmětu");
+
+                //string subjectTypeName = Console.ReadLine();
+                string subjectTypeName = "Czech";
+                SubjectType = Subject.SubjectsTypes.Find(ST => ST.Name.ToLower() == subjectTypeName.ToLower());
+            } while (SubjectType == null);
+
+            Console.WriteLine($"SubjectType = {SubjectType.Name}");
 
             Console.WriteLine("Garant předmětu: ");
             Teacher GarantOfSubject = Teacher.selectTeacher(); // vybrání garanta předmětu
@@ -220,7 +233,7 @@ namespace UkolZakladyOOP
             int subjectLevel = Random.Shared.Next(1, 3);
             Console.WriteLine($"subjectLevel = {subjectLevel}");
 
-            Subject NewSubject = new(subjectName, subjectType, GarantOfSubject, ChosenTeacher, credits, year, Semester,
+            Subject NewSubject = new(subjectName, SubjectType, GarantOfSubject, ChosenTeacher, credits, year, Semester,
                 subjectLevel);
 
             Thread.Sleep(10000);
@@ -332,17 +345,29 @@ namespace UkolZakladyOOP
         /// </summary>
         private static void createNewExercise()
         {
-            //Console.WriteLine("Jméno:");
+            // TODO: možná přenést metody typu createNew do daných tříd?
             //string nameOfExercise = Console.ReadLine(); // načtení z konzole názvu cvičení
             string exerciseName = "Cvičení1";
             Console.WriteLine($"exerciseName = {exerciseName}");
 
-            Console.WriteLine("Typ cvičení:");
-            //string exerciseTypeName = Console.ReadLine();
-            string exerciseTypeName = "Cvičení z Angličtiny";
-            ExerciseType ExerciseType =
-                Exercise.ExercisesTypes.Find(ET => ET.Name.ToLower() == exerciseTypeName.ToLower());
+            foreach (ExerciseType EType in Exercise.ExercisesTypes)
+            {
+                Console.WriteLine(EType.Name);
+            }
+
+            ExerciseType ExerciseType = null;
+
+            do
+            {
+                Console.WriteLine("Zvolte typ cvičení");
+
+                //string exerciseTypeName = Console.ReadLine();
+                string exerciseTypeName = "Cvičení z Češtiny";
+                ExerciseType = Exercise.ExercisesTypes.Find(ET => ET.Name.ToLower() == exerciseTypeName.ToLower());
+            } while (ExerciseType == null);
+
             Console.WriteLine($"ExerciseType = {ExerciseType.Name}");
+
 
             //Console.WriteLine("Nutnost PC? (true/false)");
             //bool computerRequired = bool.Parse(Console.ReadLine()); // načtení z konzole jestli je potřeba PC
@@ -474,9 +499,22 @@ namespace UkolZakladyOOP
             string lectureName = "Přednáška 1";
             Console.WriteLine($"lectureName = {lectureName}");
 
-            //string lectureTypeName = Console.ReadLine();
-            string lectureTypeName = "Czech";
-            LectureType LectureType = Lecture.LecturesTypes.Find(LT => LT.Name == lectureTypeName);
+            foreach (LectureType LType in Lecture.LecturesTypes)
+            {
+                Console.WriteLine(LType.Name);
+            }
+
+            LectureType LectureType = null;
+
+            do
+            {
+                Console.WriteLine("Zvolte typ přednášky");
+
+                //string lectureTypeName = Console.ReadLine();
+                string lectureTypeName = "Přednáška z Češtiny";
+                LectureType = Lecture.LecturesTypes.Find(LT => LT.Name.ToLower() == lectureTypeName.ToLower());
+            } while (LectureType == null);
+
             Console.WriteLine($"LectureType = {LectureType.Name}");
 
             //bool computerRequired = bool.Parse(Console.ReadLine()); načtení z konzole jestli je potřeba PC
@@ -527,7 +565,7 @@ namespace UkolZakladyOOP
             double credits = 50;
             Console.WriteLine($"credits = {credits}");
 
-            switch (lectureName.ToLower())
+            switch (lectureType.ToLower())
             {
                 case "přednáška z češtiny":
                     createCzechLecture(lectureName, credits); // vyvtoření přednášky z češtiny

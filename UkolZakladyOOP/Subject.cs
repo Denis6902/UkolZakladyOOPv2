@@ -14,7 +14,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Typ předmětu
         /// </summary>
-        public SubjectType SubjectType;
+        private SubjectType SubjectType;
 
         /// <summary>
         /// Garant předmětu
@@ -100,14 +100,15 @@ namespace UkolZakladyOOP
         public static Subject selectSubject(string subjectName)
         {
             // kontrola jestli existuje předmět s daným názvem
-            if (!Subjects.Exists(Subject => Subject.Name.ToLower() == subjectName.ToLower()))
+            while (!Subjects.Exists(Subject => Subject.Name.ToLower() == subjectName.ToLower()))
             {
                 Console.WriteLine("Neexistuje daný předmět");
                 Console.WriteLine("Zadej název existujícího předmětu");
                 subjectName = Console.ReadLine();
                 Console.Clear();
-                selectSubject(subjectName); // pokud neexistuje, spustí znovu celou metodu s novým vstupem od uživatele
+                // pokud neexistuje, spustí znovu celý cyklus s novým vstupem od uživatele
             }
+
 
             Subject ChosenSubject = Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower());
             // vybere předmět s daným názvem
@@ -216,9 +217,17 @@ namespace UkolZakladyOOP
         }
     }
 
+
     public class SubjectType
     {
+        /// <summary>
+        /// Název typu předmětu
+        /// </summary>
         public string Name;
+
+        /// <summary>
+        /// Jestli jde vytvořit předmět daného typu pomocí Factory
+        /// </summary>
         public bool HasFactory;
 
         public SubjectType(string name, bool hasFactory)

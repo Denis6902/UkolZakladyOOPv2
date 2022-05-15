@@ -33,7 +33,7 @@ namespace UkolZakladyOOP
             ExerciseType ExerciseTypeEnglish = Exercise.ExercisesTypes.Find(LT => LT.Name == "Cvičení z Angličtiny");
             ExerciseType ExerciseTypePpp = Exercise.ExercisesTypes.Find(LT => LT.Name == "ooo");
 
-            Subject English1_1 = new("English1_1", SubjectTypeCzech, Pavel, Pavel, 50, 1, Semester.Summer, 1);
+            Subject English1_1 = new("English1_1", SubjectTypeEnglish, Pavel, Pavel, 50, 1, Semester.Summer, 1);
             Subject xxx1_1 = new("xxx1_1", SubjectTypeXxx, Aneta, null, 50, 1, Semester.Summer, 1); // TEST_ONLY
             Subject Czech1_1 = new("Czech1_1", SubjectTypeCzech, Aneta, Aneta, 50, 1, Semester.Winter, 1);
 
@@ -44,7 +44,7 @@ namespace UkolZakladyOOP
             Subject Czech3_1 = new("Czech3_1", SubjectTypeCzech, Aneta, Aneta, 50, 3, Semester.Winter, 1);
 
             Subject English1_2 = new("English1_2", SubjectTypeEnglish, Pavel, Pavel, 50, 1, Semester.Summer, 2);
-            Subject xxx_2 = new("xxx1_2", null, Aneta, Aneta, 50, 1, Semester.Summer, 2); // TEST_ONLY
+            Subject xxx_2 = new("xxx1_2", SubjectTypeXxx, Aneta, Aneta, 50, 1, Semester.Summer, 2); // TEST_ONLY
             Subject Czech1_2 = new("Czech1_2", SubjectTypeCzech, Aneta, Aneta, 50, 1, Semester.Winter, 2);
 
             Subject English2_2 = new("English2_2", SubjectTypeEnglish, Pavel, Pavel, 50, 2, Semester.Summer, 2);

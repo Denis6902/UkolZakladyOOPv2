@@ -78,10 +78,6 @@ namespace UkolZakladyOOP
                         Semester.Summer; // pokud je aktuální semestr Winter, nastaví aktuální semestr na Summer
                     Student.nextYear(); // nastaví další ročník
                     break;
-                default:
-                    Console.WriteLine("Žádný zadaný semestr???");
-                    Environment.Exit(0);
-                    break;
             }
 
             Console.WriteLine($"Aktuální semestr je: {CurrentSemester}");
@@ -125,24 +121,25 @@ namespace UkolZakladyOOP
             // projede všechny studenty
             foreach (Student Student in Students)
             {
-                Console.WriteLine(Student.FirstName); // vypíše jména všech studentů ze seznamu students
+                Console.WriteLine(Student.returnFullName()); // vypíše celé jména všech studentů ze seznamu students
             }
 
-            //string studentName = Console.ReadLine();
-            string studentName = "Pepa";
+            //string studentFullName = Console.ReadLine();
+            string studentFullName = "Pepa Nový";
 
-            if (!Students.Exists(Student =>
-                    Student.FirstName.ToLower() ==
-                    studentName.ToLower())) // jestli neexistuje student s daným jménem, spustí znovu metodu
+            // jestli neexistuje student s daným celým jménem, spustí znovu cyklus
+            while (!Students.Exists(Student => Student.returnFullName().ToLower() == studentFullName.ToLower()))
             {
                 Console.WriteLine("Neexistuje daný student");
-                Console.WriteLine("Zadej jméno existujícího studenta");
-                selectStudent();
+                Console.WriteLine("Zadej celé jméno existujícího studenta");
+                studentFullName = Console.ReadLine();
             }
+
 
             Student ChosenStudent =
                 Students.Find(Student =>
-                    Student.FirstName.ToLower() == studentName.ToLower()); // uloží do chosenStudent daného studenta
+                    Student.returnFullName().ToLower() ==
+                    studentFullName.ToLower()); // uloží do chosenStudent daného studenta
 
             return ChosenStudent;
         }
@@ -153,7 +150,10 @@ namespace UkolZakladyOOP
         /// <param name="CurrentSemester">Aktuální semestr</param>
         public void registerSubject(Semester CurrentSemester)
         {
-            if (Subject.Subjects.Count != SubjectMarkList.Count)
+            //kontola jestli existuje nějaký neregistrovaný předmět v aktuánlím ročníku a semestru
+            if (Subject.Subjects.Any(Subject =>
+                    Subject.Year == Year && Subject.Semester == CurrentSemester &&
+                    !SubjectMarkList.Exists(SM => SM.Subject == Subject)))
             {
                 listSubjectsForRegister(CurrentSemester); // vypíše předměty dostupné k registraci
 
@@ -165,7 +165,8 @@ namespace UkolZakladyOOP
                 foreach (Subject Subject in Subject.Subjects.Where(Subject =>
                              Subject.Name.ToLower() == subjectName.ToLower() && Subject.Year == Year &&
                              Subject.Semester == CurrentSemester && !SubjectMarkList.Exists(SM =>
-                                 SM.Subject == Subject))) // projede neregistrované přeměty v aktuálním roce a semestru kde se název předmětu rovná danému názvu
+                                 SM.Subject ==
+                                 Subject))) // projede neregistrované přeměty v aktuálním roce a semestru kde se název předmětu rovná danému názvu
                 {
                     Console.WriteLine(
                         $"{returnFullName()} jsi zapsaný do {Subject.Name} předmětu, semestr: {Subject.Semester}");
@@ -175,7 +176,7 @@ namespace UkolZakladyOOP
             }
             else
             {
-                Console.WriteLine("Nemáš žádné nedokončené předměty");
+                Console.WriteLine("Nemáš žádné neregistrované předměty v aktuálním ročníku a semestru");
             }
         }
 
@@ -235,13 +236,13 @@ namespace UkolZakladyOOP
             // uloží do seznamu myNoCompletedSubjects všechny registrované nedokončené předměty
             // v aktuálním semestru ze seznamu SubjectMark
             List<SubjectMark> myNoCompletedSubjects = SubjectMarkList.FindAll(SM =>
-                SM.Completed == false &&
-                SM.Subject.Semester == CurrentSemester);
+                SM.Completed == false && SM.Subject.Semester == CurrentSemester && SM.Subject.Year == Year);
 
-            if (myNoCompletedSubjects.Count != 0) // kontrola jestli není počet nedokončených registrovaných předmětů v aktuálním semestru 0
+            if (myNoCompletedSubjects
+                .Any()) // kontrola jestli existují nějaké nedokončené registrované předměty v aktuálním roce a semestru
             {
                 foreach (SubjectMark SubjectMark in
-                         myNoCompletedSubjects) // projede nedokončené a registrované předměty v aktuálním semestru studenta
+                         myNoCompletedSubjects) // projede nedokončené a registrované předměty v aktuálním ročnííku a semestru studenta
                 {
                     Subject.writeSubjectInfo(SubjectMark.Subject, SubjectMark.Credits);
                 }
@@ -260,7 +261,7 @@ namespace UkolZakladyOOP
             //uloží do seznamu myCompletedSubjects všechny dokončené předměty
             List<SubjectMark> myCompletedSubjects = SubjectMarkList.FindAll(SM => SM.Completed);
 
-            if (myCompletedSubjects.Count != 0) // kontrola jestli není počet dokončených předmětů 0
+            if (myCompletedSubjects.Any()) // kontrola jestli existují nějaké dokončené předměty
             {
                 foreach (SubjectMark SubjectMark in
                          myCompletedSubjects) // projede všechny dokončené předměty daného studenta
@@ -285,7 +286,7 @@ namespace UkolZakladyOOP
         public void goOnLecture(Semester CurrentSemester)
         {
             // kontrola jestli existují nějaké přednášky a jestli má daný student nějaké registrované a nedokončené předměty
-            if (Lecture.Lectures.Count != 0 && SubjectMarkList.FindAll(SM => SM.Completed == false).Count != 0)
+            if (Lecture.Lectures.Any() && SubjectMarkList.FindAll(SM => SM.Completed == false).Any())
             {
                 Lecture.listAllAvailableLectures(SubjectMarkList); // výpis všech registrovatelných přednášek
 
@@ -295,15 +296,23 @@ namespace UkolZakladyOOP
                 string lectureName = "Přednáška z Angličtiny1_1";
                 Lecture ChosenLecture = Lecture.selectLecture(lectureName, this, CurrentSemester); // výběr přednášky
                 Console.WriteLine($"lectureName = {lectureName}");
+                
+                SubjectMark SubjectMark = null;
 
-                // projede všechny registrované předměty, kde se název předmětu rovná názvu předmětu vybrané přednášky
-                foreach (SubjectMark SubjectMark in
-                         SubjectMarkList.Where(SM => SM.Subject == ChosenLecture.Subject))
+                if (!SubjectMarkList.Exists(SM => SM.Subject == ChosenLecture.Subject))
                 {
-                    Console.WriteLine($"Šel jsi na přednášku {ChosenLecture.Name} - {ChosenLecture.Credits} kreditů");
-                    SubjectMark.Credits -= ChosenLecture.Credits;
-                    break;
+                    Console.WriteLine("Předmět dané přednášky nemáš zaregistrovaný");
+                    Console.WriteLine("Zadej název přednášky jehož předmět máš zaregistrovaný:");
+                    lectureName = Console.ReadLine();
+                    ChosenLecture = Lecture.selectLecture(lectureName, this, CurrentSemester); // výběr cvičení
+                    Console.WriteLine($"lectureName = {lectureName}");
                 }
+
+                SubjectMark = SubjectMarkList.Find(SM =>
+                    SM.Subject == ChosenLecture.Subject);
+                
+                Console.WriteLine($"Šel jsi na přednášku {ChosenLecture.Name} - {ChosenLecture.Credits} kreditů");
+                SubjectMark.Credits -= ChosenLecture.Credits;
             }
             else // pokud ne, tak...    
             {
@@ -345,7 +354,8 @@ namespace UkolZakladyOOP
             {
                 foreach (Exercise Exercise in Exercise.Exercises.Where(Exercise =>
                              StudentSubjectMark.Subject == Exercise.Subject &&
-                             StudentSubjectMark.Completed == false)) //projede všechny dostupné cvičení daného studenta (cvičení jejichž předmět mají registrovaný a nedokončený)
+                             StudentSubjectMark.Completed ==
+                             false)) //projede všechny dostupné cvičení daného studenta (cvičení jejichž předmět mají registrovaný a nedokončený)
                 {
                     Console.WriteLine($"{Exercise.Name} - {Exercise.Credits} kreditů," +
                                       $" počítač {Exercise.isComputerRequired()}");
@@ -360,8 +370,7 @@ namespace UkolZakladyOOP
         public void doExercise(Semester CurrentSemester)
         {
             // kontrola jestli existují nějaké předměty a jestli má daný student nějaké registrované předměty
-            if (Exercise.Exercises.Count != 0 &&
-                SubjectMarkList.FindAll(SM => SM.Completed == false).Count != 0)
+            if (Exercise.Exercises.Any() && SubjectMarkList.FindAll(SM => SM.Completed == false).Any())
             {
                 listAllAvailableExercise(); // vypíše všechny dostupné cvičení
                 Console.WriteLine("Zadejte název cvičení");
@@ -372,19 +381,18 @@ namespace UkolZakladyOOP
                 Console.WriteLine($"exerciseName = {exerciseName}");
 
                 SubjectMark SubjectMark = null;
-                
-                // TODO: možná udělat novou metodu
-                if (SubjectMarkList.Exists(SM => SM.Subject == ChosenExercise.Subject))
+
+                if (!SubjectMarkList.Exists(SM => SM.Subject == ChosenExercise.Subject))
                 {
-                    SubjectMark = SubjectMarkList.Find(SM =>
-                        SM.Subject == ChosenExercise.Subject);
+                    Console.WriteLine("Předmět daného cvičení nemáš zaregistrovaný");
+                    Console.WriteLine("Zadej název cvičení jehož předmět máš zaregistrovaný:");
+                    exerciseName = Console.ReadLine();
+                    ChosenExercise = Exercise.selectExercise(exerciseName, this, CurrentSemester); // výběr cvičení
+                    Console.WriteLine($"exerciseName = {exerciseName}");
                 }
-                else
-                {
-                    Console.WriteLine("Předmět daného cvičení není v seznamu SubjectMark");
-                    doExercise(CurrentSemester);
-                }
-                
+
+                SubjectMark = SubjectMarkList.Find(SM =>
+                    SM.Subject == ChosenExercise.Subject);
 
                 SubjectMark.Credits -= ChosenExercise.Credits;
                 Console.WriteLine($"Dokončil jsi cvičení {ChosenExercise.Name} - {ChosenExercise.Credits} kreditů");

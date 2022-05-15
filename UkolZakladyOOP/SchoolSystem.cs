@@ -4,7 +4,7 @@ using System.Threading;
 namespace UkolZakladyOOP
 {
     /// <summary>
-    /// Hlavní třída celeého programu
+    /// Hlavní třída celého programu
     /// </summary>
     public class SchoolSystem
     {

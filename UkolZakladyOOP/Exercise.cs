@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace UkolZakladyOOP
 {
@@ -13,7 +14,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Typ cvičení
         /// </summary>
-        public ExerciseType ExerciseType;
+        private ExerciseType ExerciseType;
 
         /// <summary>
         /// Jestli je potřeba na cvičení počítač
@@ -47,7 +48,7 @@ namespace UkolZakladyOOP
         /// <param name="exerciseType">Typ cvičení</param>
         /// <param name="computerRequired">Jestli je potřeba na cvičení počítač</param>
         /// <param name="credits">Počet kreditů za cvičení</param>
-        /// <param name="subject">Předmět ke kterému je předmět dělaný</param>
+        /// <param name="subject">Předmět ke kterému je cvičení dělané</param>
         public Exercise(string name, ExerciseType exerciseType, bool computerRequired, double credits, Subject subject)
         {
             Name = name;
@@ -82,16 +83,15 @@ namespace UkolZakladyOOP
         public static Exercise selectExercise(string exerciseName, Student Student, Semester CurrentSemester)
         {
             // kontrola jestli existuje cvičení s daným názvem v aktuálním ročníku a semestru
-            if (!Exercises.Exists(exercise =>
-                    exercise.Name.ToLower() == exerciseName.ToLower() && exercise.Subject.Year == Student.Year &&
-                    exercise.Subject.Semester == CurrentSemester))
+            while (!Exercises.Exists(exercise =>
+                       exercise.Name.ToLower() == exerciseName.ToLower() && exercise.Subject.Year == Student.Year &&
+                       exercise.Subject.Semester == CurrentSemester))
             {
                 Console.WriteLine("Neexistuje dané cvičení");
                 Console.WriteLine("Zadej název existujícího cvičení");
                 exerciseName = Console.ReadLine();
                 Console.Clear();
-                selectExercise(exerciseName, Student, CurrentSemester);
-                // pokud neexistuje, spustí znovu celou metodu s novým vstupem od uživatele
+                // pokud neexistuje, spustí znovu celý cyklus s novým vstupem od uživatele
             }
 
             Exercise ChosenExercise = Exercises.Find(exercise =>
@@ -107,11 +107,7 @@ namespace UkolZakladyOOP
         /// </summary>
         public static void listAllExercise()
         {
-            if (Exercises.Count == 0) // Jestli je počet cvičení větší než 0
-            {
-                Console.WriteLine("Neexistuje žádné cvičení");
-            }
-            else // Jinak vypíše cvičení ze seznamu cvičení
+            if (Exercises.Any()) // Kontrola jestli existuje nějaké cvičení v seznamu
             {
                 foreach (Exercise Exercise in Exercises) // projede všechny cvičení ze seznamu cvičení
                 {
@@ -119,6 +115,10 @@ namespace UkolZakladyOOP
                         $"Cvičení typu {Exercise.ExerciseType.Name} s názvem {Exercise.Name} - {Exercise.Credits} kreditů, " +
                         $"počítač {Exercise.isComputerRequired()} (Předmět {Exercise.Subject.Name}");
                 }
+            }
+            else // Pokud ne, tak ...
+            {
+                Console.WriteLine("Neexistuje žádné cvičení");
             }
         }
     }
@@ -130,18 +130,27 @@ namespace UkolZakladyOOP
     {
         public static Exercise CreateExerciseFromCzech(string name, double credits, Subject Czech)
         {
-            return new Exercise(name, Exercise.ExercisesTypes.Find(ET => ET.Name == "Czech"), false, credits, Czech);
+            return new Exercise(name, Exercise.ExercisesTypes.Find(ET => ET.Name == "Cvičení z Češtiny"), false,
+                credits, Czech);
         }
 
         public static Exercise CreateExerciseFromEnglish(string name, double credits, Subject English)
         {
-            return new Exercise(name, Exercise.ExercisesTypes.Find(ET => ET.Name == "Czech"), false, credits, English);
+            return new Exercise(name, Exercise.ExercisesTypes.Find(ET => ET.Name == "Cvičení z Angličtiny"), false,
+                credits, English);
         }
     }
 
     public class ExerciseType
     {
+        /// <summary>
+        /// Název typu cvičení
+        /// </summary>
         public string Name;
+
+        /// <summary>
+        /// Jestli jde vytvořit cvičení daného typu pomocí Factory
+        /// </summary>
         public bool HasFactory;
 
         public ExerciseType(string name, bool hasFactory)

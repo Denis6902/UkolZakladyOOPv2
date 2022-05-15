@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace UkolZakladyOOP
 {
@@ -24,11 +23,6 @@ namespace UkolZakladyOOP
         public double Mark;
 
         /// <summary>
-        /// Jestli je předmět registrovaný 
-        /// </summary>
-        public bool Registered = true;
-        
-        /// <summary>
         /// Jestli je předmět dokončený 
         /// </summary>
         public bool Completed = false;
@@ -37,13 +31,11 @@ namespace UkolZakladyOOP
         /// Konstruktor. Přidá automaticky instanci do seznamu SubjectMarkList.
         /// </summary>
         /// <param name="subject">Předmět</param>
-        /// <param name="SubjectMarkList">List SubjectMarkList</param>
-        /// <param name="mark">Známka (není povinná)</param>
-        public SubjectMark(Subject subject, List<SubjectMark> SubjectMarkList, double mark = Double.NaN)
+        /// <param name="SubjectMarkList">Seznam předmětů a známek studenta</param>
+        public SubjectMark(Subject subject, List<SubjectMark> SubjectMarkList)
         {
             Subject = subject;
             Credits = Subject.Credits;
-            Mark = mark;
             SubjectMarkList.Add(this);
         }
     }

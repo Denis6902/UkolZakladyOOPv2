@@ -14,7 +14,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Typ přednášky
         /// </summary>
-        public LectureType LectureType;
+        private LectureType LectureType;
 
         /// <summary>
         /// Jestli je potřeba na přednášku počitač
@@ -80,7 +80,7 @@ namespace UkolZakladyOOP
         }
 
         /// <summary>
-        /// Zvolení přednáška
+        /// Zvolení přednášky
         /// </summary>
         /// <param name="lectureName">Název cvičení</param>
         /// <param name="Student">Daný student</param>
@@ -89,16 +89,15 @@ namespace UkolZakladyOOP
         public static Lecture selectLecture(string lectureName, Student Student, Semester CurrentSemester)
         {
             // kontrola jestli existuje přednáška s daným názvem v aktuálním ročníku a semestru
-            if (!Lectures.Exists(Lecture =>
-                    Lecture.Name.ToLower() == lectureName.ToLower() && Lecture.Subject.Year == Student.Year &&
-                    Lecture.Subject.Semester == CurrentSemester)) 
+            while (!Lectures.Exists(Lecture =>
+                       Lecture.Name.ToLower() == lectureName.ToLower() && Lecture.Subject.Year == Student.Year &&
+                       Lecture.Subject.Semester == CurrentSemester))
             {
                 Console.WriteLine("Neexistuje dané cvičení");
                 Console.WriteLine("Zadej název existujícího cvičení");
                 lectureName = Console.ReadLine();
                 Console.Clear();
-                selectLecture(lectureName, Student, CurrentSemester);
-                // pokud neexistuje, spustí znovu celou metodu s novým vstupem od uživatele
+                // pokud neexistuje, spustí znovu celý cyklus s novým vstupem od uživatele
             }
 
             Lecture ChosenLecture = Lectures.Find(Lecture =>
@@ -114,17 +113,17 @@ namespace UkolZakladyOOP
         /// </summary>
         public static void listAllLectures()
         {
-            if (Lectures.Count == 0) // Jestli je počet přednášek větší než 0
-            {
-                Console.WriteLine("Neexistuje žádná přednáška");
-            }
-            else // Jinak vypíše přednášku ze seznamu přednášek
+            if (Lectures.Any()) // Kontrola jestli existují nějaké přednášky
             {
                 foreach (Lecture Lecture in Lectures)
                 {
                     Console.WriteLine($"Předmět {Lecture.Name}, k dokončení je potřeba {Lecture.Credits} kreditů," +
                                       $" z {Lecture.Subject.Name}");
                 }
+            }
+            else // Pokud ne, tak...
+            {
+                Console.WriteLine("Neexistuje žádná přednáška");
             }
         }
 
@@ -167,7 +166,14 @@ namespace UkolZakladyOOP
 
     public class LectureType
     {
+        /// <summary>
+        /// Název typu přednášky
+        /// </summary>
         public string Name;
+
+        /// <summary>
+        /// Jestli jde vytvořit přednáška daného typu pomocí Factory
+        /// </summary>
         public bool HasFactory;
 
         public LectureType(string name, bool hasFactory)
