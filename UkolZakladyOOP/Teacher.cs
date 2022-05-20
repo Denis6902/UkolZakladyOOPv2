@@ -188,6 +188,8 @@ namespace UkolZakladyOOP
         /// </summary>
         private static void createNewSubject()
         {
+            SubjectType SubjectType = null;
+
             Console.WriteLine("Název předmětu:");
             //string name = Console.ReadLine();
             string subjectName = "Nový Předmět"; // načtení z konzole názvu nového předmětu
@@ -198,19 +200,36 @@ namespace UkolZakladyOOP
                 Console.WriteLine(SType.Name); // výpis všech typů předmětů
             }
 
+            Console.WriteLine("Vlastní");
+
             Console.WriteLine("Zvolte typ předmětu");
-            string subjectTypeName = "Czech";
+            string subjectTypeName = "vlastní";
+            Console.WriteLine($"subjectTypeName = {subjectTypeName}");
+
+            if (subjectTypeName.ToLower() == "vlastní")
+            {
+                Console.WriteLine("Zadejte název nového typu předmětu:");
+                string newSubjectTypeName = Console.ReadLine();
+                Subject.createNewSubjectType(newSubjectTypeName);
+                SubjectType = Subject.SubjectsTypes.Find(ST => ST.Name.ToLower() == newSubjectTypeName.ToLower());
+                Console.WriteLine($"SubjectType = {SubjectType.Name}");
+            }
 
             // kontrola jestli existuje typ předmětu s daným názvem
-            while (!Subject.SubjectsTypes.Exists(ST => ST.Name.ToLower() == subjectTypeName.ToLower()))
+            while (!Subject.SubjectsTypes.Exists(ST => ST.Name.ToLower() == subjectTypeName.ToLower()) &&
+                   subjectTypeName != "vlastní")
             {
                 Console.WriteLine("Nesprávný typ předmětu");
                 Console.WriteLine("Zvolte správný typ předmětu");
                 subjectTypeName = Console.ReadLine();
             }
 
-            SubjectType SubjectType = Subject.SubjectsTypes.Find(ST => ST.Name.ToLower() == subjectTypeName.ToLower());
-            Console.WriteLine($"SubjectType = {SubjectType.Name}");
+            if (subjectTypeName.ToLower() != "vlastní")
+            {
+                SubjectType = Subject.SubjectsTypes.Find(ST => ST.Name.ToLower() == subjectTypeName.ToLower());
+                Console.WriteLine($"SubjectType = {SubjectType.Name}");
+            }
+
 
             Console.WriteLine("Garant předmětu: ");
             Teacher GarantOfSubject = Teacher.selectTeacher(); // vybrání garanta předmětu
@@ -221,7 +240,6 @@ namespace UkolZakladyOOP
             //double credits = double.Parse(Console.ReadLine());
             double credits = 50; // načtení počtu kreditů z konzole 
             Console.WriteLine($"credits = {credits}");
-
 
             Semester Semester = Semester.Summer; // načtení z konzole semestru 
             Console.WriteLine($"Semester = {Semester}");
@@ -253,17 +271,17 @@ namespace UkolZakladyOOP
                 Console.WriteLine(SType.Name); // výpis všech typů předmětů
             }
 
-            string subjectType = "Czech";
+            string subjectTypeName = "Czech";
 
             // kontrola jestli existuje typ předmětu s daným názvem co má factory
-            while (!Subject.SubjectsTypes.Exists(ST => ST.Name.ToLower() == subjectType.ToLower() && ST.HasFactory))
+            while (!Subject.SubjectsTypes.Exists(ST => ST.Name.ToLower() == subjectTypeName.ToLower() && ST.HasFactory))
             {
                 Console.WriteLine("Nesprávný typ předmětu");
                 Console.WriteLine("Zadejte správný typ předmětu");
-                subjectType = Console.ReadLine();
+                subjectTypeName = Console.ReadLine();
             }
 
-            Console.WriteLine($"subjectType = {subjectType}");
+            Console.WriteLine($"subjectTypeName = {subjectTypeName}");
 
 
             //string subjectName = Console.ReadLine();
@@ -289,7 +307,7 @@ namespace UkolZakladyOOP
             int subjectLevel = Random.Shared.Next(1, 3);
             Console.WriteLine($"$subjectLevel = {subjectLevel}");
 
-            switch (subjectType.ToLower()) // podle zvoleného předmětu vytvoří daný předmět
+            switch (subjectTypeName.ToLower()) // podle zvoleného předmětu vytvoří daný předmět
             {
                 case "czech":
                     Subject Czech = SubjectFactory.CreateCzech(subjectName, ChosenTeacher, GarantOfSubject, credits,
@@ -356,8 +374,6 @@ namespace UkolZakladyOOP
             Console.WriteLine("Zvolte typ cvičení");
             string exerciseTypeName = "Cvičení z Češtiny";
 
-            // TODO: přidat možnost přidaní vlastního typu cvičení (to samé i u přednášek a cvičení)
-
             // kontrola jestli existuje typ cvičení s daným názvem
             while (!Exercise.ExercisesTypes.Exists(ET => ET.Name.ToLower() == exerciseTypeName.ToLower()))
             {
@@ -378,9 +394,11 @@ namespace UkolZakladyOOP
             double credits = 22;
             Console.WriteLine($"credits = {credits}");
 
-            Subject.listAllSubjects(); // výpis všech předmětů
+            Subject.listSubjectsWithOnlyOneType(ExerciseType.SubjectType); // výpis všech předmětů daného typu
             string subjectName = "Czech1_1";
-            Subject ChosenSubject = Subject.selectSubject(subjectName); // vybrání předmětu
+            Subject ChosenSubject =
+                Subject.selectSubjectsWithOnlyOneType(subjectName,
+                    ExerciseType.SubjectType); // vybrání předmětu daného typu
 
             Exercise NewExercise = new(exerciseName, ExerciseType, computerRequired, credits, ChosenSubject);
             // vytvoření nového předmětu
@@ -412,12 +430,9 @@ namespace UkolZakladyOOP
             }
 
             Console.WriteLine($"exerciseType = {exerciseType}");
-
-
             //string exerciseName = Console.ReadLine();
             string exerciseName = "exercisee name";
             Console.WriteLine($"exerciseName = {exerciseName}");
-
 
             //double credits = double.Parse(Console.ReadLine()); // načtení počtu kreditl z konzole
             double credits = 50;
@@ -528,11 +543,13 @@ namespace UkolZakladyOOP
             Console.WriteLine($"credits = {credits}");
 
             Console.WriteLine("Předmět:");
-            Subject.listAllSubjects(); // výpis všech předmětů 
+            Subject.listSubjectsWithOnlyOneType(LectureType.SubjectType); // výpis všech předmětů daného typu
 
             //string subjectName = Console.ReadLine(); // načtení z konzole názvu předmětu
             string subjectName = "Czech1_1";
-            Subject ChosenSubject = Subject.selectSubject(subjectName); // vybrání předmětů
+            Subject ChosenSubject =
+                Subject.selectSubjectsWithOnlyOneType(subjectName,
+                    LectureType.SubjectType); // vybrání předmětů daného typu
 
             Lecture NewLecture = new(lectureName, LectureType, computerRequired, credits, ChosenSubject);
             // vytvoření nové přednášky

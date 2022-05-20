@@ -149,13 +149,19 @@ namespace UkolZakladyOOP
         public string Name;
 
         /// <summary>
+        /// Typ předmětu daného cvičení
+        /// </summary>
+        public SubjectType SubjectType;
+
+        /// <summary>
         /// Jestli jde vytvořit cvičení daného typu pomocí Factory
         /// </summary>
         public bool HasFactory;
 
-        public ExerciseType(string name, bool hasFactory)
+        public ExerciseType(string name, SubjectType subjectType, bool hasFactory)
         {
             Name = name;
+            SubjectType = subjectType;
             HasFactory = hasFactory;
         }
     }

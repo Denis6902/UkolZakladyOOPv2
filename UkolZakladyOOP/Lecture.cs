@@ -172,13 +172,19 @@ namespace UkolZakladyOOP
         public string Name;
 
         /// <summary>
+        /// Typ předmětu dané přednášky
+        /// </summary>
+        public SubjectType SubjectType;
+
+        /// <summary>
         /// Jestli jde vytvořit přednáška daného typu pomocí Factory
         /// </summary>
         public bool HasFactory;
 
-        public LectureType(string name, bool hasFactory)
+        public LectureType(string name, SubjectType subjectType, bool hasFactory)
         {
             Name = name;
+            SubjectType = subjectType;
             HasFactory = hasFactory;
         }
     }

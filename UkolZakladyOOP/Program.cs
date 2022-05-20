@@ -10,28 +10,12 @@ namespace UkolZakladyOOP
             Subject.SubjectsTypes.Add(new SubjectType("English", true));
             Subject.SubjectsTypes.Add(new SubjectType("xxx", false));
 
-            Lecture.LecturesTypes.Add(new LectureType("Přednáška z Češtiny", true));
-            Lecture.LecturesTypes.Add(new LectureType("Přednáška z Angličtiny", true));
-            Lecture.LecturesTypes.Add(new LectureType("ppp", false));
-
-            Exercise.ExercisesTypes.Add(new ExerciseType("Cvičení z Češtiny", true));
-            Exercise.ExercisesTypes.Add(new ExerciseType("Cvičení z Angličtiny", true));
-            Exercise.ExercisesTypes.Add(new ExerciseType("ooo", false));
-
             Teacher Pavel = new("Ing.", "Pavel", "Novotný", new DateTime(1980, 2, 9));
             Teacher Aneta = new("Mgr.", "Aneta", "Nováková", new DateTime(1987, 1, 8));
 
             SubjectType SubjectTypeCzech = Subject.SubjectsTypes.Find(ST => ST.Name == "Czech");
             SubjectType SubjectTypeEnglish = Subject.SubjectsTypes.Find(ST => ST.Name == "English");
             SubjectType SubjectTypeXxx = Subject.SubjectsTypes.Find(ST => ST.Name == "xxx");
-
-            LectureType LectureTypeCzech = Lecture.LecturesTypes.Find(LT => LT.Name == "Přednáška z Češtiny");
-            LectureType LectureTypeEnglish = Lecture.LecturesTypes.Find(LT => LT.Name == "Přednáška z Angličtiny");
-            LectureType LectureTypePpp = Lecture.LecturesTypes.Find(LT => LT.Name == "ppp");
-
-            ExerciseType ExerciseTypeCzech = Exercise.ExercisesTypes.Find(LT => LT.Name == "Cvičení z Češtiny");
-            ExerciseType ExerciseTypeEnglish = Exercise.ExercisesTypes.Find(LT => LT.Name == "Cvičení z Angličtiny");
-            ExerciseType ExerciseTypePpp = Exercise.ExercisesTypes.Find(LT => LT.Name == "ooo");
 
             Subject English1_1 = new("English1_1", SubjectTypeEnglish, Pavel, Pavel, 50, 1, Semester.Summer, 1);
             Subject xxx1_1 = new("xxx1_1", SubjectTypeXxx, Aneta, null, 50, 1, Semester.Summer, 1); // TEST_ONLY
@@ -52,6 +36,22 @@ namespace UkolZakladyOOP
 
             Subject English3_2 = new("English3_2", SubjectTypeEnglish, Pavel, Pavel, 50, 3, Semester.Summer, 2);
             Subject Czech3_2 = new("Czech3_2", SubjectTypeCzech, Aneta, Aneta, 50, 3, Semester.Winter, 2);
+
+            Lecture.LecturesTypes.Add(new LectureType("Přednáška z Češtiny", SubjectTypeCzech, true));
+            Lecture.LecturesTypes.Add(new LectureType("Přednáška z Angličtiny", SubjectTypeEnglish, true));
+            Lecture.LecturesTypes.Add(new LectureType("ppp", SubjectTypeXxx, false));
+
+            Exercise.ExercisesTypes.Add(new ExerciseType("Cvičení z Češtiny", SubjectTypeCzech, true));
+            Exercise.ExercisesTypes.Add(new ExerciseType("Cvičení z Angličtiny", SubjectTypeEnglish, true));
+            Exercise.ExercisesTypes.Add(new ExerciseType("ooo", SubjectTypeXxx, false));
+
+            LectureType LectureTypeCzech = Lecture.LecturesTypes.Find(LT => LT.Name == "Přednáška z Češtiny");
+            LectureType LectureTypeEnglish = Lecture.LecturesTypes.Find(LT => LT.Name == "Přednáška z Angličtiny");
+            LectureType LectureTypePpp = Lecture.LecturesTypes.Find(LT => LT.Name == "ppp");
+
+            ExerciseType ExerciseTypeCzech = Exercise.ExercisesTypes.Find(LT => LT.Name == "Cvičení z Češtiny");
+            ExerciseType ExerciseTypeEnglish = Exercise.ExercisesTypes.Find(LT => LT.Name == "Cvičení z Angličtiny");
+            ExerciseType ExerciseTypePpp = Exercise.ExercisesTypes.Find(LT => LT.Name == "ooo");
 
             Exercise ooo1_1 = new Exercise("ooo1_1", ExerciseTypePpp, false, 50, xxx1_1); // TEST_ONLY
             Lecture ppp1_1 = new("ppp1_1", LectureTypePpp, false, 50, xxx1_1); // TEST_ONLY
