@@ -42,7 +42,7 @@ namespace UkolZakladyOOP
                         WhoIAm = "2";
                         break;
                 }
-                
+
                 Console.WriteLine($"WhoIAm = {WhoIAm}");
                 Thread.Sleep(Delay);
                 Console.Clear();
@@ -53,7 +53,6 @@ namespace UkolZakladyOOP
                 case "1": // výběr studenta
                     Console.WriteLine("Kdo jsi?");
                     Student ChosenStudent = Student.selectStudent();
-                    Console.WriteLine($"ChosenStudent = {ChosenStudent.returnFullName()}");
                     Thread.Sleep(Delay);
                     studentMenu(ChosenStudent);
                     break;
@@ -61,7 +60,6 @@ namespace UkolZakladyOOP
                 case "2": // výběr učitele
                     Console.WriteLine("Kdo jsi?");
                     Teacher ChosenTeacher = Teacher.selectTeacher();
-                    Console.WriteLine($"chosenTeacher = {ChosenTeacher.returnFullName()}");
                     Thread.Sleep(Delay);
                     teacherMenu(ChosenTeacher);
                     break;
@@ -79,13 +77,13 @@ namespace UkolZakladyOOP
             do
             {
                 listAllChoices(ChosenStudent); // výpis jednotlivých možností
-                
+
                 /*string option = Console.ReadLine();
                 Console.Clear();
                 bool number = int.TryParse(option, out optionAsInt);*/
 
                 bool number = true;
-                optionAsInt++;// automatický průchod - při každé iteraci cyklu se spustí další volba
+                optionAsInt++; // automatický průchod - při každé iteraci cyklu se spustí další volba
 
 
                 Thread.Sleep(Delay);

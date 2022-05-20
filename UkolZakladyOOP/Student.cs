@@ -47,15 +47,15 @@ namespace UkolZakladyOOP
         }
 
         /// <summary>
-        /// Změní ročník na další 
+        /// Změní ročník všech studentů ze seznamu Students na následující
         /// </summary>
         private static void nextYear()
         {
             foreach (Student Student in Students)
             {
-                Student.Year += 1;
+                Student.Year += 1; // zvýšení ročníku daného studenta na následující
                 Console.WriteLine($"Aktuální ročník studenta {Student.returnFullName()} je {Student.Year}");
-                Student.SubjectMarkList = null;
+                Student.SubjectMarkList = null; // vynulování seznamu daného studenta
             }
         }
 
@@ -135,12 +135,12 @@ namespace UkolZakladyOOP
                 studentFullName = Console.ReadLine();
             }
 
-
             Student ChosenStudent =
                 Students.Find(Student =>
                     Student.returnFullName().ToLower() ==
                     studentFullName.ToLower()); // uloží do chosenStudent daného studenta
 
+            Console.WriteLine($"ChosenStudent = {ChosenStudent.returnFullName()}");
             return ChosenStudent;
         }
 
@@ -296,7 +296,7 @@ namespace UkolZakladyOOP
                 string lectureName = "Přednáška z Angličtiny1_1";
                 Lecture ChosenLecture = Lecture.selectLecture(lectureName, this, CurrentSemester); // výběr přednášky
                 Console.WriteLine($"lectureName = {lectureName}");
-                
+
                 SubjectMark SubjectMark = null;
 
                 if (!SubjectMarkList.Exists(SM => SM.Subject == ChosenLecture.Subject))
@@ -310,7 +310,7 @@ namespace UkolZakladyOOP
 
                 SubjectMark = SubjectMarkList.Find(SM =>
                     SM.Subject == ChosenLecture.Subject);
-                
+
                 Console.WriteLine($"Šel jsi na přednášku {ChosenLecture.Name} - {ChosenLecture.Credits} kreditů");
                 SubjectMark.Credits -= ChosenLecture.Credits;
             }
@@ -377,21 +377,20 @@ namespace UkolZakladyOOP
 
                 //string exerciseName = Console.ReadLine();
                 string exerciseName = "Cvičení z Angličtiny1_1";
-                Exercise ChosenExercise = Exercise.selectExercise(exerciseName, this, CurrentSemester); // výběr cvičení
                 Console.WriteLine($"exerciseName = {exerciseName}");
 
-                SubjectMark SubjectMark = null;
-
-                if (!SubjectMarkList.Exists(SM => SM.Subject == ChosenExercise.Subject))
+                while (!SubjectMarkList.Exists(SM => SM.Subject == Exercise.Exercises.Find(
+                           Exercise => Exercise.Name.ToLower() == exerciseName.ToLower()).Subject))
                 {
                     Console.WriteLine("Předmět daného cvičení nemáš zaregistrovaný");
                     Console.WriteLine("Zadej název cvičení jehož předmět máš zaregistrovaný:");
                     exerciseName = Console.ReadLine();
-                    ChosenExercise = Exercise.selectExercise(exerciseName, this, CurrentSemester); // výběr cvičení
                     Console.WriteLine($"exerciseName = {exerciseName}");
                 }
 
-                SubjectMark = SubjectMarkList.Find(SM =>
+                Exercise ChosenExercise = Exercise.selectExercise(exerciseName, this, CurrentSemester); // výběr cvičení
+
+                SubjectMark SubjectMark = SubjectMarkList.Find(SM =>
                     SM.Subject == ChosenExercise.Subject);
 
                 SubjectMark.Credits -= ChosenExercise.Credits;

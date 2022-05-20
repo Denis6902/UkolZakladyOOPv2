@@ -14,7 +14,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Typ přednášky
         /// </summary>
-        private LectureType LectureType;
+        private LectureType Type;
 
         /// <summary>
         /// Jestli je potřeba na přednášku počitač
@@ -50,14 +50,14 @@ namespace UkolZakladyOOP
         /// Konstruktor. Přidá cvičení do seznamu přednášek a zvyší počet přednášek u daného předmětu.
         /// </summary>
         /// <param name="name">Nazev přednášky</param>
-        /// <param name="lectureType">Typ přednášky</param>
+        /// <param name="type">Typ přednášky</param>
         /// <param name="computerRequired">Jestli je potřeba na přednášku počitač</param>
         /// <param name="credits">Počet kreditů za přednášku</param>
         /// <param name="subject">Předmět ke kterému je přednáška dělaná</param>
-        public Lecture(string name, LectureType lectureType, bool computerRequired, double credits, Subject subject)
+        public Lecture(string name, LectureType type, bool computerRequired, double credits, Subject subject)
         {
             Name = name;
-            LectureType = lectureType;
+            Type = type;
             ComputerRequired = computerRequired;
             Credits = credits;
             Subject = subject;
@@ -140,7 +140,7 @@ namespace UkolZakladyOOP
                              Lecture => SubjectMark.Subject == Lecture.Subject && SubjectMark.Completed == false))
                 {
                     Console.WriteLine(
-                        $"Přednáška typu {Lecture.LectureType.Name} s názvem {Lecture.Name} - {Lecture.Credits} kreditů, počítač {Lecture.isComputerRequired()}" +
+                        $"Přednáška typu {Lecture.Type.Name} s názvem {Lecture.Name} - {Lecture.Credits} kreditů, počítač {Lecture.isComputerRequired()}" +
                         $" (Předmět {Lecture.Subject.Name})");
                 }
             }

@@ -14,7 +14,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Typ cvičení
         /// </summary>
-        private ExerciseType ExerciseType;
+        private ExerciseType Type;
 
         /// <summary>
         /// Jestli je potřeba na cvičení počítač
@@ -45,14 +45,14 @@ namespace UkolZakladyOOP
         /// Konstruktor. Přidá cvičení do seznamu cvíčení a zvyší počet cvičení u daného předmětu.
         /// </summary>
         /// <param name="name">Název cvičení</param>
-        /// <param name="exerciseType">Typ cvičení</param>
+        /// <param name="type">Typ cvičení</param>
         /// <param name="computerRequired">Jestli je potřeba na cvičení počítač</param>
         /// <param name="credits">Počet kreditů za cvičení</param>
         /// <param name="subject">Předmět ke kterému je cvičení dělané</param>
-        public Exercise(string name, ExerciseType exerciseType, bool computerRequired, double credits, Subject subject)
+        public Exercise(string name, ExerciseType type, bool computerRequired, double credits, Subject subject)
         {
             Name = name;
-            ExerciseType = exerciseType;
+            Type = type;
             ComputerRequired = computerRequired;
             Credits = credits;
             Subject = subject;
@@ -112,7 +112,7 @@ namespace UkolZakladyOOP
                 foreach (Exercise Exercise in Exercises) // projede všechny cvičení ze seznamu cvičení
                 {
                     Console.WriteLine(
-                        $"Cvičení typu {Exercise.ExerciseType.Name} s názvem {Exercise.Name} - {Exercise.Credits} kreditů, " +
+                        $"Cvičení typu {Exercise.Type.Name} s názvem {Exercise.Name} - {Exercise.Credits} kreditů, " +
                         $"počítač {Exercise.isComputerRequired()} (Předmět {Exercise.Subject.Name}");
                 }
             }

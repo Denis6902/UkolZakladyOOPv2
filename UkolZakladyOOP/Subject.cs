@@ -14,7 +14,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Typ předmětu
         /// </summary>
-        private SubjectType SubjectType;
+        private SubjectType Type;
 
         /// <summary>
         /// Garant předmětu
@@ -70,19 +70,19 @@ namespace UkolZakladyOOP
         /// Konstruktor. Automaticky přídá předmět d  seznamu předmětů
         /// </summary>
         /// <param name="name">Název</param>
-        /// <param name="subjectType">Typ předmětu</param>
+        /// <param name="type">Typ předmětu</param>
         /// <param name="garantOfSubject">Garant předmětu</param>
         /// <param name="teacher">Učitel předmětu</param>
         /// <param name="credits">Počet kreditů potřeba k dokončení</param>
         /// <param name="year">Ročník pro jaký je daný předmět</param>
         /// <param name="semester">Semestr pro jaký je daný předmět</param>
         /// <param name="level">Úroveň předmětu</param>
-        public Subject(string name, SubjectType subjectType, Teacher garantOfSubject, Teacher teacher, double credits,
+        public Subject(string name, SubjectType type, Teacher garantOfSubject, Teacher teacher, double credits,
             int year,
             Semester semester, int level)
         {
             Name = name;
-            SubjectType = subjectType;
+            Type = type;
             GarantOfSubject = garantOfSubject;
             Teacher = teacher;
             Credits = credits;
@@ -109,7 +109,6 @@ namespace UkolZakladyOOP
                 // pokud neexistuje, spustí znovu celý cyklus s novým vstupem od uživatele
             }
 
-
             Subject ChosenSubject = Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower());
             // vybere předmět s daným názvem
 
@@ -125,7 +124,7 @@ namespace UkolZakladyOOP
             foreach (Subject Subject in Subject.Subjects) // projede všechny předměty ze seznamu předmětů
             {
                 Console.WriteLine(
-                    $"Předmět typu {Subject.SubjectType.Name} s názvem {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů" +
+                    $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů" +
                     $", garantem je {Subject.GarantOfSubject.returnFullName()}, semestr: {Subject.Semester}");
             }
         }
@@ -135,13 +134,13 @@ namespace UkolZakladyOOP
         /// například všech předmětů čeština
         /// </summary>
         /// <param name="subjectType">Typ předmětu (Czech, English,...)</param>
-        public static void listOnlyOneTypeSubjects(SubjectType subjectType)
+        public static void listSubjectsWithOnlyOneType(SubjectType subjectType)
         {
             // projede všechny předměty daného typu
-            foreach (Subject Subject in Subject.Subjects.Where(Subject => Subject.SubjectType == subjectType))
+            foreach (Subject Subject in Subject.Subjects.Where(Subject => Subject.Type == subjectType))
             {
                 Console.WriteLine(
-                    $"Předmět typu {Subject.SubjectType.Name} s názvem {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů," +
+                    $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů," +
                     $" garantem je {Subject.GarantOfSubject.returnFullName()}, Semestr: {Subject.Semester}");
             }
         }
@@ -152,21 +151,20 @@ namespace UkolZakladyOOP
         /// <param name="subjectName">Název předmětu</param>
         /// <param name="subjectType">Typ předmětu</param>
         /// <returns>Daný předmět</returns>
-        public static Subject selectOnlyOneTypeSubject(string subjectName, SubjectType subjectType)
+        public static Subject selectSubjectsWithOnlyOneType(string subjectName, SubjectType subjectType)
         {
             // kontrola jestli existuje předmět daného typu s daným názvem
-            if (!Subject.Subjects.Exists(Subject => Subject.SubjectType == subjectType))
+            while (!Subject.Subjects.Exists(Subject =>
+                       Subject.Name.ToLower() == subjectName.ToLower() && Subject.Type == subjectType))
             {
-                Console.WriteLine("Zvolte předmět");
-                Subject.listOnlyOneTypeSubjects(subjectType); // výpis všech předmětů daného typu
-
-                Console.WriteLine("Neexistuje daný předmět");
-                Console.WriteLine("Zadej název existujícího předmětu");
+                Console.WriteLine("Neexistuje (Nelze zvolit) daný předmět");
+                Console.WriteLine("Zadej název existujícího předmětu daného typu");
+                Subject.listSubjectsWithOnlyOneType(subjectType); // výpis všech předmětů daného typu
                 subjectName = Console.ReadLine();
                 Console.Clear();
-                selectOnlyOneTypeSubject(subjectName, subjectType);
-                // pokud neexistuje, spustí znovu celou metodu s novým vstupem od uživatele
             }
+
+            Console.WriteLine($"subjectName = {subjectName}");
 
             Subject ChosenSubject = Subjects.Find(Subject =>
                 Subject.Name.ToLower() == subjectName.ToLower()); // vrátí předmět s daným názvem
@@ -178,17 +176,23 @@ namespace UkolZakladyOOP
         /// Výpis informací o předmětu
         /// </summary>
         /// <param name="Subject">Daný předmět k výpisu</param>
-        /// <param name="credits">Počet kreditů</param>
-        public static void writeSubjectInfo(Subject Subject, double credits = Double.NaN)
+        /// <param name="creditsToFinish">Počet zbývajících kreditů</param>
+        public static void writeSubjectInfo(Subject Subject, double creditsToFinish = Double.NaN)
         {
-            if (Double.IsNaN(credits))
+            // v případě že předmět není registrovaný,
+            // tak se zavolá metoda bez parametru creditsToFinish
+            // a tím pádem je parametr creditsToFinish NaN
+
+            // pokud je creditsToFinish NaN, nastaví se daná proměnná na Subject.Credits
+            if (Double.IsNaN(creditsToFinish))
             {
-                credits = Subject.Credits;
+                creditsToFinish = Subject.Credits;
             }
 
+            // výpis informací o předmětu
             Console.WriteLine(
-                $"Předmět typu {Subject.SubjectType.Name} s názvem {Subject.Name}" +
-                $", k dokončení je potřeba {credits} kreditů," +
+                $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}" +
+                $", k dokončení je potřeba {creditsToFinish} kreditů," +
                 $" garantem je {Subject.GarantOfSubject.returnFullName()}," +
                 $" Semestr: {Subject.Semester} (Level {Subject.Level})");
         }
