@@ -93,8 +93,8 @@ namespace UkolZakladyOOP
                        Lecture.Name.ToLower() == lectureName.ToLower() && Lecture.Subject.Year == Student.Year &&
                        Lecture.Subject.Semester == CurrentSemester))
             {
-                Console.WriteLine("Neexistuje dané cvičení");
-                Console.WriteLine("Zadej název existujícího cvičení");
+                Console.WriteLine("Neexistuje dané cvičení / Předmět dané přednášky nemáš zaregistrovaný");
+                Console.WriteLine("Zadej název platného cvičení");
                 lectureName = Console.ReadLine();
                 Console.Clear();
                 // pokud neexistuje, spustí znovu celý cyklus s novým vstupem od uživatele
@@ -133,16 +133,13 @@ namespace UkolZakladyOOP
         /// <param name="SubjectMarkList">Registrované předmety daného studenta</param>
         public static void listAllAvailableLectures(List<SubjectMark> SubjectMarkList)
         {
-            foreach (SubjectMark SubjectMark in SubjectMarkList) // projede předměty daného studenta
+            foreach (Lecture Lecture in Lecture.Lectures.Where(
+                         Lecture => Lecture.Subject == SubjectMarkList
+                             .Find(SM => SM.Subject == Lecture.Subject && !SM.Completed)?.Subject))
             {
-                // projede přednášky předmětů, které má daný student nedokončené
-                foreach (Lecture Lecture in Lecture.Lectures.Where(
-                             Lecture => SubjectMark.Subject == Lecture.Subject && SubjectMark.Completed == false))
-                {
-                    Console.WriteLine(
-                        $"Přednáška typu {Lecture.Type.Name} s názvem {Lecture.Name} - {Lecture.Credits} kreditů, počítač {Lecture.isComputerRequired()}" +
-                        $" (Předmět {Lecture.Subject.Name})");
-                }
+                Console.WriteLine(
+                    $"Přednáška typu {Lecture.Type.Name} s názvem {Lecture.Name} - {Lecture.Credits} kreditů, počítač {Lecture.isComputerRequired()}" +
+                    $" (Předmět {Lecture.Subject.Name})");
             }
         }
     }

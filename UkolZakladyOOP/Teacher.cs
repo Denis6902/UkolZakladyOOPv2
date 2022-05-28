@@ -203,33 +203,29 @@ namespace UkolZakladyOOP
             Console.WriteLine("Vlastní");
 
             Console.WriteLine("Zvolte typ předmětu");
-            string subjectTypeName = "vlastní";
+            string subjectTypeName = "Czech";
             Console.WriteLine($"subjectTypeName = {subjectTypeName}");
 
+            // vytvoření nového typu předmětu
             if (subjectTypeName.ToLower() == "vlastní")
             {
                 Console.WriteLine("Zadejte název nového typu předmětu:");
-                string newSubjectTypeName = Console.ReadLine();
-                Subject.createNewSubjectType(newSubjectTypeName);
-                SubjectType = Subject.SubjectsTypes.Find(ST => ST.Name.ToLower() == newSubjectTypeName.ToLower());
+                subjectTypeName = Console.ReadLine();
+                Subject.createNewSubjectType(subjectTypeName);
+                SubjectType = Subject.SubjectsTypes.Find(ST => ST.Name.ToLower() == subjectTypeName.ToLower());
                 Console.WriteLine($"SubjectType = {SubjectType.Name}");
             }
 
             // kontrola jestli existuje typ předmětu s daným názvem
-            while (!Subject.SubjectsTypes.Exists(ST => ST.Name.ToLower() == subjectTypeName.ToLower()) &&
-                   subjectTypeName != "vlastní")
+            while (!Subject.SubjectsTypes.Exists(ST => ST.Name.ToLower() == subjectTypeName.ToLower()))
             {
                 Console.WriteLine("Nesprávný typ předmětu");
                 Console.WriteLine("Zvolte správný typ předmětu");
                 subjectTypeName = Console.ReadLine();
             }
 
-            if (subjectTypeName.ToLower() != "vlastní")
-            {
-                SubjectType = Subject.SubjectsTypes.Find(ST => ST.Name.ToLower() == subjectTypeName.ToLower());
-                Console.WriteLine($"SubjectType = {SubjectType.Name}");
-            }
-
+            SubjectType = Subject.SubjectsTypes.Find(ST => ST.Name.ToLower() == subjectTypeName.ToLower());
+            Console.WriteLine($"SubjectType = {SubjectType.Name}");
 
             Console.WriteLine("Garant předmětu: ");
             Teacher GarantOfSubject = Teacher.selectTeacher(); // vybrání garanta předmětu
@@ -256,7 +252,6 @@ namespace UkolZakladyOOP
                 subjectLevel);
 
             Thread.Sleep(10000);
-            Console.Clear();
         }
 
         /// <summary>
@@ -431,7 +426,7 @@ namespace UkolZakladyOOP
 
             Console.WriteLine($"exerciseType = {exerciseType}");
             //string exerciseName = Console.ReadLine();
-            string exerciseName = "exercisee name";
+            string exerciseName = "Angličtina";
             Console.WriteLine($"exerciseName = {exerciseName}");
 
             //double credits = double.Parse(Console.ReadLine()); // načtení počtu kreditl z konzole
@@ -643,7 +638,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Vytvoření cvičení z předmětu čeština
         /// </summary>
-        /// <param name="exerciseName">Typ cvičení</param>
+        /// <param name="exerciseName">Název cvičení</param>
         /// <param name="credits">Počet kreditů</param>
         private static void createCzechExercise(string exerciseName, double credits)
         {
@@ -663,7 +658,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Vytvoření cvičení z předmětu angličtina
         /// </summary>
-        /// <param name="exerciseName">Typ cvičení</param>
+        /// <param name="exerciseName">Název cvičení</param>
         /// <param name="credits">Počet kreditů</param>
         private static void createEnglishExercise(string exerciseName, double credits)
         {
