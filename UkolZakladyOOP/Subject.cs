@@ -27,7 +27,7 @@ namespace UkolZakladyOOP
         public Teacher Teacher;
 
         /// <summary>
-        /// Počet kreditů potřeba k dokončení
+        /// Počet kreditů získaných za dokončení
         /// </summary>
         public double Credits;
 
@@ -124,7 +124,7 @@ namespace UkolZakladyOOP
             foreach (Subject Subject in Subject.Subjects) // projede všechny předměty ze seznamu předmětů
             {
                 Console.WriteLine(
-                    $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů" +
+                    $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}, za dokončení získá {Subject.Credits} kreditů" +
                     $", garantem je {Subject.GarantOfSubject.returnFullName()}, semestr: {Subject.Semester}");
             }
         }
@@ -176,7 +176,7 @@ namespace UkolZakladyOOP
         /// Výpis informací o předmětu
         /// </summary>
         /// <param name="Subject">Daný předmět k výpisu</param>
-        /// <param name="creditsToFinish">Počet zbývajících kreditů</param>
+        /// <param name="creditsToFinish">Počet kreditů, kolik za dokončení získá</param>
         public static void writeSubjectInfo(Subject Subject, double creditsToFinish = Double.NaN)
         {
             // v případě že předmět není registrovaný,
@@ -192,7 +192,7 @@ namespace UkolZakladyOOP
             // výpis informací o předmětu
             Console.WriteLine(
                 $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}" +
-                $", k dokončení je potřeba {creditsToFinish} kreditů," +
+                $", za dokončení {creditsToFinish} kreditů," +
                 $" garantem je {Subject.GarantOfSubject.returnFullName()}," +
                 $" Semestr: {Subject.Semester} (Level {Subject.Level})");
         }

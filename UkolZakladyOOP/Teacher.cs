@@ -385,17 +385,13 @@ namespace UkolZakladyOOP
             bool computerRequired = false;
             Console.WriteLine($"computerRequired = {computerRequired}");
 
-            //double credits = double.Parse(Console.ReadLine()); // načtení počtu kreditů z konzole
-            double credits = 22;
-            Console.WriteLine($"credits = {credits}");
-
             Subject.listSubjectsWithOnlyOneType(ExerciseType.SubjectType); // výpis všech předmětů daného typu
             string subjectName = "Czech1_1";
             Subject ChosenSubject =
                 Subject.selectSubjectsWithOnlyOneType(subjectName,
                     ExerciseType.SubjectType); // vybrání předmětu daného typu
 
-            Exercise NewExercise = new(exerciseName, ExerciseType, computerRequired, credits, ChosenSubject);
+            Exercise NewExercise = new(exerciseName, ExerciseType, computerRequired, ChosenSubject);
             // vytvoření nového předmětu
 
             Thread.Sleep(10000);
@@ -429,20 +425,16 @@ namespace UkolZakladyOOP
             string exerciseName = "Angličtina";
             Console.WriteLine($"exerciseName = {exerciseName}");
 
-            //double credits = double.Parse(Console.ReadLine()); // načtení počtu kreditl z konzole
-            double credits = 50;
-            Console.WriteLine($"credits = {credits}");
-
             switch (exerciseType.ToLower()) // vytvoření zvoleného cvičení 
             {
                 case "cvičení z češtiny":
                 {
-                    createCzechExercise(exerciseName, credits);
+                    createCzechExercise(exerciseName);
                     break;
                 }
                 case "cvičení z angličtiny":
                 {
-                    createEnglishExercise(exerciseName, credits);
+                    createEnglishExercise(exerciseName);
                     break;
                 }
                 default:
@@ -533,10 +525,6 @@ namespace UkolZakladyOOP
             bool computerRequired = false;
             Console.WriteLine($"computerRequired = {computerRequired}");
 
-            //double credits = double.Parse(Console.ReadLine()); // načtení počtu kreditů z konzole 
-            double credits = 22;
-            Console.WriteLine($"credits = {credits}");
-
             Console.WriteLine("Předmět:");
             Subject.listSubjectsWithOnlyOneType(LectureType.SubjectType); // výpis všech předmětů daného typu
 
@@ -546,7 +534,7 @@ namespace UkolZakladyOOP
                 Subject.selectSubjectsWithOnlyOneType(subjectName,
                     LectureType.SubjectType); // vybrání předmětů daného typu
 
-            Lecture NewLecture = new(lectureName, LectureType, computerRequired, credits, ChosenSubject);
+            Lecture NewLecture = new(lectureName, LectureType, computerRequired, ChosenSubject);
             // vytvoření nové přednášky
         }
 
@@ -577,17 +565,13 @@ namespace UkolZakladyOOP
             string lectureName = "Nová czech prednaska";
             Console.WriteLine($"lectureName = {lectureName}");
 
-            //double credits = double.Parse(Console.ReadLine()); // načtení počtu krreditů z konzole
-            double credits = 50;
-            Console.WriteLine($"credits = {credits}");
-
             switch (lectureType.ToLower())
             {
                 case "přednáška z češtiny":
-                    createCzechLecture(lectureName, credits); // vytvoření přednášky z češtiny
+                    createCzechLecture(lectureName); // vytvoření přednášky z češtiny
                     break;
                 case "přednáška z angličtiny":
-                    createEnglishLecture(lectureName, credits); // vytvoření přednášky z angličtiny
+                    createEnglishLecture(lectureName); // vytvoření přednášky z angličtiny
                     break;
                 default:
                     Console.WriteLine("Daná přednáška nejde vytvořit pomocí factory");
@@ -599,8 +583,7 @@ namespace UkolZakladyOOP
         /// Vytvoření přednášky z Češtiny
         /// </summary>
         /// <param name="lectureName">Název přednášky</param>
-        /// <param name="credits">Počet kreditů</param>
-        private static void createCzechLecture(string lectureName, double credits)
+        private static void createCzechLecture(string lectureName)
         {
             SubjectType SubjectTypeCzech =
                 Subject.SubjectsTypes.Find(ST => ST.Name == "Czech"); // najde typ předmětu čeština
@@ -611,7 +594,7 @@ namespace UkolZakladyOOP
             Subject ChosenSubject = Subject.selectSubjectsWithOnlyOneType(subjectName, SubjectTypeCzech);
             // výběr předmětu daného typu s daným názvem
 
-            Lecture LectureFromCzech = LectureFactory.CreateLectureFromCzech(lectureName, credits, ChosenSubject);
+            Lecture LectureFromCzech = LectureFactory.CreateLectureFromCzech(lectureName, ChosenSubject);
             // vytvoření přednášky z Češtiny pomocí factory
         }
 
@@ -619,8 +602,7 @@ namespace UkolZakladyOOP
         /// Vytvoření přednášky z Angličtiny
         /// </summary>
         /// <param name="lectureName">Název přednášky</param>
-        /// <param name="credits">Počet kreditů</param>
-        private static void createEnglishLecture(string lectureName, double credits)
+        private static void createEnglishLecture(string lectureName)
         {
             SubjectType SubjectTypeEnglish =
                 Subject.SubjectsTypes.Find(ST => ST.Name == "English"); // najde typ předmětu angličtina
@@ -631,7 +613,7 @@ namespace UkolZakladyOOP
             Subject ChosenSubject = Subject.selectSubjectsWithOnlyOneType(subjectName, SubjectTypeEnglish);
             // výběr předmětu daného typu s daným názvem
 
-            Lecture LectureFromEnglish = LectureFactory.CreateLectureFromEnglish(lectureName, credits, ChosenSubject);
+            Lecture LectureFromEnglish = LectureFactory.CreateLectureFromEnglish(lectureName, ChosenSubject);
             // vytvoření přednášky z Angličtiny pomocí factory
         }
 
@@ -639,8 +621,7 @@ namespace UkolZakladyOOP
         /// Vytvoření cvičení z předmětu čeština
         /// </summary>
         /// <param name="exerciseName">Název cvičení</param>
-        /// <param name="credits">Počet kreditů</param>
-        private static void createCzechExercise(string exerciseName, double credits)
+        private static void createCzechExercise(string exerciseName)
         {
             SubjectType SubjectTypeCzech =
                 Subject.SubjectsTypes.Find(ST => ST.Name == "Czech"); // najde typ předmětu čeština
@@ -651,7 +632,7 @@ namespace UkolZakladyOOP
             Subject ChosenSubject = Subject.selectSubjectsWithOnlyOneType(subjectName, SubjectTypeCzech);
             // výběr předmětu daného typu s daným názvem
 
-            Exercise ExerciseFromCzech = ExerciseFactory.CreateExerciseFromCzech(exerciseName, credits, ChosenSubject);
+            Exercise ExerciseFromCzech = ExerciseFactory.CreateExerciseFromCzech(exerciseName, ChosenSubject);
             // vytvoření cvičeni z Češtiny pomocí factory
         }
 
@@ -659,8 +640,7 @@ namespace UkolZakladyOOP
         /// Vytvoření cvičení z předmětu angličtina
         /// </summary>
         /// <param name="exerciseName">Název cvičení</param>
-        /// <param name="credits">Počet kreditů</param>
-        private static void createEnglishExercise(string exerciseName, double credits)
+        private static void createEnglishExercise(string exerciseName)
         {
             SubjectType SubjectTypeEnglish =
                 Subject.SubjectsTypes.Find(ST => ST.Name == "English"); // najde typ předmětu angičtina
@@ -672,8 +652,43 @@ namespace UkolZakladyOOP
             // výběr předmětu daného typu s daným názvem
 
             Exercise ExerciseFromEnglish =
-                ExerciseFactory.CreateExerciseFromEnglish(exerciseName, credits, ChosenSubject);
+                ExerciseFactory.CreateExerciseFromEnglish(exerciseName, ChosenSubject);
             // vytvoření cvičení z Angličtiny  pomocí factory
+        }
+
+        /// <summary>
+        /// Nastaví další semestr
+        /// </summary>
+        /// <param name="CurrentSemester">Aktuální semestr</param>
+        /// <param name="creditsToAdvancement">Počet kreditů potřeba k dokončení semestru</param>
+        /// <returns></returns>
+        public static Semester nextSemester(Semester CurrentSemester, int creditsToAdvancement)
+        {
+            foreach (Student Student in Student.Students.Where(Student => !Student.CanAdvancement))
+            {
+                Console.WriteLine(
+                    $"Student {Student.returnFullName()} nemá dostatek kreditů k dokončení. Potřebuje ještě {creditsToAdvancement - Student.Credits} kreditů");
+            }
+
+            if (!Student.Students.Exists(Student => !Student.CanAdvancement))
+            {
+                switch (CurrentSemester)
+                {
+                    case Semester.Summer:
+                        CurrentSemester =
+                            Semester.Winter; // pokud je aktuální semestr Summer, nastaví aktuální semestr na Winter
+                        break;
+
+                    case Semester.Winter:
+                        CurrentSemester =
+                            Semester.Summer; // pokud je aktuální semestr Winter, nastaví aktuální semestr na Summer
+                        Student.nextYear(); // nastaví další ročník
+                        break;
+                }
+            }
+
+            Console.WriteLine($"Aktuální semestr je: {CurrentSemester}");
+            return CurrentSemester;
         }
     }
 }

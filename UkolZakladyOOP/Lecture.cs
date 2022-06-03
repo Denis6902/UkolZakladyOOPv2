@@ -22,11 +22,6 @@ namespace UkolZakladyOOP
         private bool ComputerRequired;
 
         /// <summary>
-        /// Počet kreditů za přednášku
-        /// </summary>
-        public double Credits;
-
-        /// <summary>
         /// Předmět ke kterému je přednáška dělaná
         /// </summary>
         public Subject Subject;
@@ -52,14 +47,12 @@ namespace UkolZakladyOOP
         /// <param name="name">Nazev přednášky</param>
         /// <param name="type">Typ přednášky</param>
         /// <param name="computerRequired">Jestli je potřeba na přednášku počitač</param>
-        /// <param name="credits">Počet kreditů za přednášku</param>
         /// <param name="subject">Předmět ke kterému je přednáška dělaná</param>
-        public Lecture(string name, LectureType type, bool computerRequired, double credits, Subject subject)
+        public Lecture(string name, LectureType type, bool computerRequired, Subject subject)
         {
             Name = name;
             Type = type;
             ComputerRequired = computerRequired;
-            Credits = credits;
             Subject = subject;
             Teacher = Subject.Teacher;
             Lectures.Add(this);
@@ -117,7 +110,7 @@ namespace UkolZakladyOOP
             {
                 foreach (Lecture Lecture in Lectures)
                 {
-                    Console.WriteLine($"Předmět {Lecture.Name}, k dokončení je potřeba {Lecture.Credits} kreditů," +
+                    Console.WriteLine($"Přednáška {Lecture.Name}," +
                                       $" z {Lecture.Subject.Name}");
                 }
             }
@@ -138,7 +131,7 @@ namespace UkolZakladyOOP
                              .Find(SM => SM.Subject == Lecture.Subject && !SM.Completed)?.Subject))
             {
                 Console.WriteLine(
-                    $"Přednáška typu {Lecture.Type.Name} s názvem {Lecture.Name} - {Lecture.Credits} kreditů, počítač {Lecture.isComputerRequired()}" +
+                    $"Přednáška typu {Lecture.Type.Name} s názvem {Lecture.Name}, počítač {Lecture.isComputerRequired()}" +
                     $" (Předmět {Lecture.Subject.Name})");
             }
         }
@@ -149,15 +142,14 @@ namespace UkolZakladyOOP
     /// </summary>
     class LectureFactory
     {
-        public static Lecture CreateLectureFromCzech(string name, double credits, Subject Czech)
+        public static Lecture CreateLectureFromCzech(string name, Subject Czech)
         {
-            return new Lecture(name, Lecture.LecturesTypes.Find(LT => LT.Name == "Czech"), false, credits, Czech);
+            return new Lecture(name, Lecture.LecturesTypes.Find(LT => LT.Name == "Czech"), false, Czech);
         }
 
-        public static Lecture CreateLectureFromEnglish(string name, double credits, Subject English)
+        public static Lecture CreateLectureFromEnglish(string name, Subject English)
         {
-            return new Lecture(name, Lecture.LecturesTypes.Find(LT => LT.Name == "Czech"), false,
-                credits, English);
+            return new Lecture(name, Lecture.LecturesTypes.Find(LT => LT.Name == "Czech"), false, English);
         }
     }
 
