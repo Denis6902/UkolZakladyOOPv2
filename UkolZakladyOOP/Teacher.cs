@@ -234,7 +234,7 @@ namespace UkolZakladyOOP
             Teacher ChosenTeacher = Teacher.selectTeacher(); // vybrání učitele 
 
             //double credits = double.Parse(Console.ReadLine());
-            double credits = 50; // načtení počtu kreditů z konzole 
+            int credits = 50; // načtení počtu kreditů z konzole 
             Console.WriteLine($"credits = {credits}");
 
             Semester Semester = Semester.Summer; // načtení z konzole semestru 
@@ -288,7 +288,7 @@ namespace UkolZakladyOOP
             Teacher ChosenTeacher = Teacher.selectTeacher(); // vybrání učitele 
 
             //double credits = double.Parse(Console.ReadLine()); // načtení počtu kreditů z konzole
-            double credits = 50;
+            int credits = 50;
             Console.WriteLine($"credits = {credits}");
 
             Semester Semester = Semester.Winter; // načtení semestru z konzole
@@ -668,6 +668,7 @@ namespace UkolZakladyOOP
             {
                 Console.WriteLine(
                     $"Student {Student.returnFullName()} nemá dostatek kreditů k dokončení. Potřebuje ještě {creditsToAdvancement - Student.Credits} kreditů");
+                // TODO: i když student podle metody check... může dokončit, tak tady ukazuje ze ne...
             }
 
             if (!Student.Students.Exists(Student => !Student.CanAdvancement))

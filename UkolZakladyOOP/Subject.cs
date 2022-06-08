@@ -29,7 +29,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Počet kreditů získaných za dokončení
         /// </summary>
-        public double Credits;
+        public int Credits;
 
         /// <summary>
         /// Počet cvičení daného předmětu
@@ -77,7 +77,7 @@ namespace UkolZakladyOOP
         /// <param name="year">Ročník pro jaký je daný předmět</param>
         /// <param name="semester">Semestr pro jaký je daný předmět</param>
         /// <param name="level">Úroveň předmětu</param>
-        public Subject(string name, SubjectType type, Teacher garantOfSubject, Teacher teacher, double credits,
+        public Subject(string name, SubjectType type, Teacher garantOfSubject, Teacher teacher, int credits,
             int year,
             Semester semester, int level)
         {
@@ -209,7 +209,7 @@ namespace UkolZakladyOOP
     /// </summary>
     class SubjectFactory
     {
-        public static Subject CreateCzech(string subjectName, Teacher teacher, Teacher garantOfSubject, double credits,
+        public static Subject CreateCzech(string subjectName, Teacher teacher, Teacher garantOfSubject, int credits,
             int year, Semester semester, int subjectLevel)
         {
             return new Subject(subjectName, Subject.SubjectsTypes.Find(ST => ST.Name == "Czech"), teacher,
@@ -218,7 +218,7 @@ namespace UkolZakladyOOP
         }
 
         public static Subject CreateEnglish(string subjectName, Teacher teacher, Teacher garantOfSubject,
-            double credits,
+            int credits,
             int year, Semester semester, int subjectLevel)
         {
             return new Subject(subjectName, Subject.SubjectsTypes.Find(ST => ST.Name == "English"), teacher,

@@ -16,13 +16,16 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Délka prodlevy mezi metodama
         /// </summary>
-        private const int Delay = 2500;
+        private const int Delay = 0;
 
         /// <summary>
         /// Aktuální semestr
         /// </summary>
         private Semester CurrentSemester = Semester.Summer;
 
+        /// <summary>
+        /// Počet kreditů potřeba k postupu do dalšího ročníku
+        /// </summary>
         private int CreditsToAdvancement = 50;
 
         public SchoolSystem()
@@ -115,7 +118,7 @@ namespace UkolZakladyOOP
 
                         case 3:
                             Console.WriteLine("optionAsInt = 3"); // Hlavní menu
-                            //mainMenu();
+                            mainMenu();
                             Console.WriteLine("Spustí znovu hlavní menu");
                             Thread.Sleep(Delay);
                             Console.Clear();
@@ -165,15 +168,15 @@ namespace UkolZakladyOOP
 
                         case 10:
                             Console.WriteLine("optionAsInt = 10"); // konec programu
-                            //Environment.Exit(0);
-                            Console.WriteLine("Ukončí program");
+                            ChosenStudent.checkNextSemester(CreditsToAdvancement);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
-
+                        
                         case 11:
-                            Console.WriteLine("Další semestr"); // Další ročník
-                            ChosenStudent.checkNextSemester(CreditsToAdvancement);
+                            Console.WriteLine("optionAsInt = 11"); // konec programu
+                            //Environment.Exit(0);
+                            Console.WriteLine("Ukončí program");
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
@@ -460,6 +463,17 @@ namespace UkolZakladyOOP
             Exercise ExerciseFromEnglish3_2 =
                 new("Cvičení z Angličtiny3_2", ExerciseTypeEnglish, false, English3_2);
             Lecture LectureFromEnglish3_2 = new("Přednáška z Angličtiny3_2", LectureTypeEnglish, false, English3_2);
+
+            
+            foreach (Lecture Lecture in Lecture.Lectures)
+            {
+                Subject.Subjects.Find(Subject => Subject == Lecture.Subject).LectureCount += 1;
+            }
+            
+            foreach (Exercise Exercise in Exercise.Exercises)
+            {
+                Subject.Subjects.Find(Subject => Subject == Exercise.Subject).ExerciseCount += 1;
+            }
         }
     }
 }
