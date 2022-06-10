@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 
 namespace UkolZakladyOOP
 {
@@ -34,11 +33,6 @@ namespace UkolZakladyOOP
         /// Kredity získané za předměty
         /// </summary>
         public int Credits;
-
-        /// <summary>
-        /// Může postoupit?
-        /// </summary>
-        public bool CanAdvancement = false;
 
         /// <summary>
         /// Seznam dokončených cvičení
@@ -76,27 +70,19 @@ namespace UkolZakladyOOP
             {
                 Student.Year += 1; // zvýšení ročníku daného studenta na následující
                 Console.WriteLine($"Aktuální ročník studenta {Student.returnFullName()} je {Student.Year}");
-                Student.SubjectMarkList = null; // vynulování seznamu daného studenta
+                Student.SubjectMarkList = null; // vynulování seznamu známek daného studenta
             }
         }
 
         /// <summary>
         /// Zjištění jestli můžu postoupit do dalšího semestru
         /// </summary>
-        /// <param name="creditsToAdvancement">Kolik krediů je potřeba k dokočeni</param>
+        /// <param name="creditsToAdvancement">Kolik kreditů je potřeba k dokončení</param>
         public void checkNextSemester(int creditsToAdvancement)
         {
-            if (Credits >= creditsToAdvancement)
-            {
-                CanAdvancement = true;
-                Console.WriteLine("Máš všechno splněno v aktuálním semestru");
-            }
-            else
-            {
-                Console.WriteLine($"Nemůžeš postoupit, potřebuješ ještě {creditsToAdvancement} kreditů");
-            }
-
-            Thread.Sleep(2000);
+            Console.WriteLine(Credits >= creditsToAdvancement
+                ? "Máš všechno splněno v aktuálním semestru"
+                : $"Nemůžeš postoupit, potřebuješ ještě {creditsToAdvancement - Credits} kreditů");
         }
 
         /// <summary>
@@ -340,8 +326,6 @@ namespace UkolZakladyOOP
 
                 CompletedLectures.Add(ChosenLecture);
 
-                SubjectMarkList.Find(SM => SM.Subject == ChosenLecture.Subject).Subject.LectureCount -= 1;
-
                 Console.WriteLine($"Šel jsi na přednášku {ChosenLecture.Name}");
             }
             else // pokud ne, tak...    
@@ -370,20 +354,12 @@ namespace UkolZakladyOOP
                     SubjectMark.Mark = mark;
                     SubjectMark.Completed = true;
                     Credits += SubjectMark.Subject.Credits;
-
                 }
                 else // pokud ne, tak...
                 {
                     Console.WriteLine(
                         $"Pro dokončení předmětu {SubjectMark.Subject.Name} potřebuješ dokončit ještě {SubjectMark.Subject.ExerciseCount} cvičení " +
                         $"a {SubjectMark.Subject.LectureCount} přednášek, za dokončení získáš {SubjectMark.Credits} kreditů");
-                    Console.WriteLine(SubjectMark.Subject.LectureCount);
-                    Console.WriteLine(CompletedLectures.FindAll(Lecture => Lecture.Subject == SubjectMark.Subject).Count);
-                    Console.WriteLine(SubjectMark.Subject.ExerciseCount);
-                    Console.WriteLine(CompletedExercises
-                        .FindAll(Exercise => Exercise.Subject == SubjectMark.Subject)
-                        .Count);
-                    Console.ReadKey();
                 }
             }
         }
@@ -435,8 +411,6 @@ namespace UkolZakladyOOP
                 Exercise ChosenExercise = Exercise.selectExercise(exerciseName, this, CurrentSemester); // výběr cvičení
 
                 CompletedExercises.Add(ChosenExercise);
-                SubjectMarkList.Find(SM => SM.Subject == ChosenExercise.Subject).Subject.ExerciseCount -= 1;
-
 
                 Console.WriteLine($"Dokončil jsi cvičení {ChosenExercise.Name}");
             }

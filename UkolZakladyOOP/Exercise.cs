@@ -50,7 +50,7 @@ namespace UkolZakladyOOP
             ComputerRequired = computerRequired;
             Subject = subject;
             Exercises.Add(this);
-            subject.ExerciseCount += 1;
+            Subject.ExerciseCount += 1;
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace UkolZakladyOOP
         /// </summary>
         /// <param name="exerciseName">Název cvičení</param>
         /// <param name="Student">Daný student</param>
-        /// <param name="CurrentSemester">Aktuánlí semestr</param>
+        /// <param name="CurrentSemester">Aktuální semestr</param>
         /// <returns>Vybrané cvičení</returns>
         public static Exercise selectExercise(string exerciseName, Student Student, Semester CurrentSemester)
         {

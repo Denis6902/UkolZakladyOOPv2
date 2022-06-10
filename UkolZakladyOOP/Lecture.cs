@@ -7,7 +7,7 @@ namespace UkolZakladyOOP
     public class Lecture
     {
         /// <summary>
-        /// Nazev přednášky
+        /// Název přednášky
         /// </summary>
         public string Name;
 
@@ -56,7 +56,7 @@ namespace UkolZakladyOOP
             Subject = subject;
             Teacher = Subject.Teacher;
             Lectures.Add(this);
-            subject.LectureCount += 1;
+            Subject.LectureCount += 1;
         }
 
         /// <summary>

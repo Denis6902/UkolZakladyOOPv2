@@ -73,7 +73,7 @@ namespace UkolZakladyOOP
         /// <param name="type">Typ předmětu</param>
         /// <param name="garantOfSubject">Garant předmětu</param>
         /// <param name="teacher">Učitel předmětu</param>
-        /// <param name="credits">Počet kreditů potřeba k dokončení</param>
+        /// <param name="credits">Počet kreditů získaných za dokončení</param>
         /// <param name="year">Ročník pro jaký je daný předmět</param>
         /// <param name="semester">Semestr pro jaký je daný předmět</param>
         /// <param name="level">Úroveň předmětu</param>
@@ -112,7 +112,7 @@ namespace UkolZakladyOOP
             Subject ChosenSubject = Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower());
             // vybere předmět s daným názvem
 
-            Console.WriteLine($"subjectName = {subjectName}");
+            Console.WriteLine($"ChosenSubject = {ChosenSubject.Name}");
             return ChosenSubject; // vrátí předmět s daným názvem
         }
 
@@ -164,10 +164,10 @@ namespace UkolZakladyOOP
                 Console.Clear();
             }
 
-            Console.WriteLine($"subjectName = {subjectName}");
-
             Subject ChosenSubject = Subjects.Find(Subject =>
                 Subject.Name.ToLower() == subjectName.ToLower()); // vrátí předmět s daným názvem
+
+            Console.WriteLine($"ChosenSubject = {ChosenSubject.Name}");
 
             return ChosenSubject;
         }

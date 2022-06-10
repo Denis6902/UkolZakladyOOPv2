@@ -26,7 +26,7 @@ namespace UkolZakladyOOP
         /// Jestli je předmět dokončený 
         /// </summary>
         public bool Completed = false;
-        
+
         /*/// <summary>
         /// Jestli jsou všechny cvičení daného předmětu dokončené
         /// </summary>

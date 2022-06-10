@@ -154,7 +154,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Vytvoření nového předmětu
         /// </summary>
-        public static void createSubject()
+        public static void createSubject(int delay)
         {
             Console.WriteLine("Jak chcete předmět vytvořit");
             Console.WriteLine("1) Nový předmět");
@@ -163,30 +163,30 @@ namespace UkolZakladyOOP
             string howCreate = "1"; // načtení z konzole jak chce daný učitel předmět vytvořit
             Console.WriteLine("howCreate = 1");
 
-            Thread.Sleep(1000);
+            Thread.Sleep(delay);
             Console.Clear();
 
             if (howCreate == "1")
             {
-                createNewSubject(); // vytvoření úplně nového předmětu
+                createNewSubject(delay); // vytvoření úplně nového předmětu
             }
 
             howCreate = "2";
             Console.WriteLine("howCreate = 2");
 
-            Thread.Sleep(1000);
+            Thread.Sleep(delay);
             Console.Clear();
 
             if (howCreate == "2")
             {
-                createSubjectFromTemplate(); // vytvoření předmětu ze šablony
+                createSubjectFromTemplate(delay); // vytvoření předmětu ze šablony
             }
         }
 
         /// <summary>
         /// Vytvoření nového předmětu
         /// </summary>
-        private static void createNewSubject()
+        private static void createNewSubject(int delay)
         {
             SubjectType SubjectType = null;
 
@@ -251,13 +251,13 @@ namespace UkolZakladyOOP
             Subject NewSubject = new(subjectName, SubjectType, GarantOfSubject, ChosenTeacher, credits, year, Semester,
                 subjectLevel);
 
-            Thread.Sleep(10000);
+            Thread.Sleep(delay * 4);
         }
 
         /// <summary>
         /// Vytvoření předmětu ze šablony (factory)
         /// </summary>
-        private static void createSubjectFromTemplate()
+        private static void createSubjectFromTemplate(int delay)
         {
             Console.WriteLine("Předmět jakého typu chcete vytvořit:");
 
@@ -321,13 +321,13 @@ namespace UkolZakladyOOP
                     break;
             }
 
-            Thread.Sleep(10000);
+            Thread.Sleep(delay * 4);
         }
 
         /// <summary>
         /// Vytvoření cvičení
         /// </summary>
-        public static void createExercise()
+        public static void createExercise(int delay)
         {
             Console.WriteLine("Jak chcete cvičení vytvořit");
             Console.WriteLine("1) Nové cvičení");
@@ -338,11 +338,11 @@ namespace UkolZakladyOOP
 
             if (howCreate == "1")
             {
-                createNewExercise(); // vytvoření nového cvičení
+                createNewExercise(delay); // vytvoření nového cvičení
             }
 
             Console.Clear();
-            Thread.Sleep(1000);
+            Thread.Sleep(delay);
 
             howCreate = "2";
             Console.WriteLine("howCreate = 2");
@@ -356,7 +356,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Vytvoření nového cvičení
         /// </summary>
-        private static void createNewExercise()
+        private static void createNewExercise(int delay)
         {
             string exerciseName = "Cvičení1";
             Console.WriteLine($"exerciseName = {exerciseName}");
@@ -394,7 +394,7 @@ namespace UkolZakladyOOP
             Exercise NewExercise = new(exerciseName, ExerciseType, computerRequired, ChosenSubject);
             // vytvoření nového předmětu
 
-            Thread.Sleep(10000);
+            Thread.Sleep(delay * 4);
             Console.Clear();
         }
 
@@ -467,7 +467,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Vytvoření přednášky
         /// </summary>
-        public static void createLecture()
+        public static void createLecture(int delay)
         {
             Console.WriteLine("Jak chcete přednášku vytvořit");
             Console.WriteLine("1) Nová přednáška");
@@ -481,7 +481,7 @@ namespace UkolZakladyOOP
                 createNewLecture(); // vytvoření nové přednášky
             }
 
-            Thread.Sleep(10000);
+            Thread.Sleep(delay * 4);
             Console.Clear();
 
             howCreate = "2";
@@ -657,21 +657,31 @@ namespace UkolZakladyOOP
         }
 
         /// <summary>
-        /// Nastaví další semestr
+        /// Nastaví další semestr, pokud mají všichni studenti dostatek kreditů
         /// </summary>
         /// <param name="CurrentSemester">Aktuální semestr</param>
         /// <param name="creditsToAdvancement">Počet kreditů potřeba k dokončení semestru</param>
         /// <returns></returns>
         public static Semester nextSemester(Semester CurrentSemester, int creditsToAdvancement)
         {
-            foreach (Student Student in Student.Students.Where(Student => !Student.CanAdvancement))
+            bool CanAdvancement = true;
+
+            foreach (Student Student in Student.Students)
             {
-                Console.WriteLine(
-                    $"Student {Student.returnFullName()} nemá dostatek kreditů k dokončení. Potřebuje ještě {creditsToAdvancement - Student.Credits} kreditů");
-                // TODO: i když student podle metody check... může dokončit, tak tady ukazuje ze ne...
+                if (Student.Credits >= creditsToAdvancement)
+                {
+                    Console.WriteLine(
+                        $"Student {Student.returnFullName()} má dostatek kreditů k dokončení. Může jít dál");
+                }
+                else
+                {
+                    Console.WriteLine(
+                        $"Student {Student.returnFullName()} nemá dostatek kreditů k dokončení. Potřebuje ještě {creditsToAdvancement - Student.Credits} kreditů");
+                    CanAdvancement = false;
+                }
             }
 
-            if (!Student.Students.Exists(Student => !Student.CanAdvancement))
+            if (CanAdvancement)
             {
                 switch (CurrentSemester)
                 {
@@ -686,9 +696,17 @@ namespace UkolZakladyOOP
                         Student.nextYear(); // nastaví další ročník
                         break;
                 }
+
+                Student.Students.ForEach((Student) => Student.Credits = 0);
+                Console.WriteLine(
+                    $"Všichni studenti mají v aktuálním semestru splněno, nový semestr je: {CurrentSemester}");
+            }
+            else
+            {
+                Console.WriteLine(
+                    $"Někteří studenti nemají v aktuálním semestru všechno splněno, semestr je stále {CurrentSemester}");
             }
 
-            Console.WriteLine($"Aktuální semestr je: {CurrentSemester}");
             return CurrentSemester;
         }
     }

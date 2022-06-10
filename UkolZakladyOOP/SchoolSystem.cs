@@ -16,7 +16,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Délka prodlevy mezi metodama
         /// </summary>
-        private const int Delay = 0;
+        private const int Delay = 2500;
 
         /// <summary>
         /// Aktuální semestr
@@ -118,7 +118,7 @@ namespace UkolZakladyOOP
 
                         case 3:
                             Console.WriteLine("optionAsInt = 3"); // Hlavní menu
-                            mainMenu();
+                            //mainMenu();
                             Console.WriteLine("Spustí znovu hlavní menu");
                             Thread.Sleep(Delay);
                             Console.Clear();
@@ -172,7 +172,7 @@ namespace UkolZakladyOOP
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
-                        
+
                         case 11:
                             Console.WriteLine("optionAsInt = 11"); // konec programu
                             //Environment.Exit(0);
@@ -264,14 +264,14 @@ namespace UkolZakladyOOP
 
                         case 6:
                             Console.WriteLine($"optionAsInt = {optionAsInt}"); // vytvoření nového předmmětu
-                            Teacher.createSubject();
+                            Teacher.createSubject(Delay);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 7:
                             Console.WriteLine($"optionAsInt = {optionAsInt}"); // vytvoření nového cvíčení
-                            Teacher.createExercise();
+                            Teacher.createExercise(Delay);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
@@ -292,7 +292,7 @@ namespace UkolZakladyOOP
 
                         case 10:
                             Console.WriteLine($"optionAsInt = {optionAsInt}"); // vytvoření nové přednášky
-                            Teacher.createLecture();
+                            Teacher.createLecture(Delay);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
@@ -463,17 +463,6 @@ namespace UkolZakladyOOP
             Exercise ExerciseFromEnglish3_2 =
                 new("Cvičení z Angličtiny3_2", ExerciseTypeEnglish, false, English3_2);
             Lecture LectureFromEnglish3_2 = new("Přednáška z Angličtiny3_2", LectureTypeEnglish, false, English3_2);
-
-            
-            foreach (Lecture Lecture in Lecture.Lectures)
-            {
-                Subject.Subjects.Find(Subject => Subject == Lecture.Subject).LectureCount += 1;
-            }
-            
-            foreach (Exercise Exercise in Exercise.Exercises)
-            {
-                Subject.Subjects.Find(Subject => Subject == Exercise.Subject).ExerciseCount += 1;
-            }
         }
     }
 }
