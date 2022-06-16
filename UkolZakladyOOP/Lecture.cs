@@ -144,12 +144,12 @@ namespace UkolZakladyOOP
     {
         public static Lecture CreateLectureFromCzech(string name, Subject Czech)
         {
-            return new Lecture(name, Lecture.LecturesTypes.Find(LT => LT.Name == "Czech"), false, Czech);
+            return new Lecture(name, Lecture.LecturesTypes.Find(LT => LT.Name.ToLower() == "přednáška z češtiny"), false, Czech);
         }
 
         public static Lecture CreateLectureFromEnglish(string name, Subject English)
         {
-            return new Lecture(name, Lecture.LecturesTypes.Find(LT => LT.Name == "Czech"), false, English);
+            return new Lecture(name, Lecture.LecturesTypes.Find(LT => LT.Name.ToLower() == "přednáška z angličtiny"), false, English);
         }
     }
 

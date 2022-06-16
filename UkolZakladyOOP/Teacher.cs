@@ -204,7 +204,6 @@ namespace UkolZakladyOOP
 
             Console.WriteLine("Zvolte typ předmětu");
             string subjectTypeName = "Czech";
-            Console.WriteLine($"subjectTypeName = {subjectTypeName}");
 
             // vytvoření nového typu předmětu
             if (subjectTypeName.ToLower() == "vlastní")
@@ -386,7 +385,10 @@ namespace UkolZakladyOOP
             Console.WriteLine($"computerRequired = {computerRequired}");
 
             Subject.listSubjectsWithOnlyOneType(ExerciseType.SubjectType); // výpis všech předmětů daného typu
+            
+            //string subjectName = Console.ReadLine();
             string subjectName = "Czech1_1";
+            
             Subject ChosenSubject =
                 Subject.selectSubjectsWithOnlyOneType(subjectName,
                     ExerciseType.SubjectType); // vybrání předmětu daného typu
@@ -409,7 +411,7 @@ namespace UkolZakladyOOP
                 Console.WriteLine(EType.Name); // výpis všech typů cvičení
             }
 
-            string exerciseType = "cvičení z češtiny";
+            string exerciseType = "cvičení z angličtiny";
 
             // kontrola jestli existuje typ cvičení s daným názvem co má factory
             while (!Exercise.ExercisesTypes.Exists(ET =>
@@ -419,28 +421,44 @@ namespace UkolZakladyOOP
                 Console.WriteLine("Zadejte správný typ cvičení");
                 exerciseType = Console.ReadLine();
             }
+            
+            ExerciseType ChosenExerciseType =
+                Exercise.ExercisesTypes.Find(ET => ET.Name.ToLower() == exerciseType.ToLower()); // zvolení typu přednášky s daným názvemn
 
-            Console.WriteLine($"exerciseType = {exerciseType}");
+            Console.WriteLine($"ChosenExerciseType = {ChosenExerciseType.Name}");
+
             //string exerciseName = Console.ReadLine();
             string exerciseName = "Angličtina";
             Console.WriteLine($"exerciseName = {exerciseName}");
+            
+            SubjectType ChosenSubjectType =
+                Subject.SubjectsTypes.Find(ST => ST.Name == "English");  // zvolení typu předmětu podle cvičení
+            Subject.listSubjectsWithOnlyOneType(ChosenSubjectType); // vypíše všechny předměty daného typu
 
-            switch (exerciseType.ToLower()) // vytvoření zvoleného cvičení 
+            //string subjectName = Console.ReadLine();
+            string subjectName = "english1_2"; // zadané jméno předmětu ke kterému je cvičení dělané 
+            Subject ChosenSubject = Subject.selectSubjectsWithOnlyOneType(subjectName, ChosenSubjectType);
+            // výběr předmětu daného typu s daným názvem
+
+            // vytvoření cvičení z pomocí factory podle názvu zvoleného typu cvičení
+            switch (ChosenExerciseType.Name.ToLower()) // vytvoření zvoleného cvičení 
             {
                 case "cvičení z češtiny":
                 {
-                    createCzechExercise(exerciseName);
+                    ExerciseFactory.CreateExerciseFromCzech(exerciseName, ChosenSubject);
                     break;
                 }
                 case "cvičení z angličtiny":
                 {
-                    createEnglishExercise(exerciseName);
+                    ExerciseFactory.CreateExerciseFromEnglish(exerciseName, ChosenSubject);
                     break;
                 }
                 default:
                     Console.WriteLine("Dané cvičení nejde vytvořit pomocí factory");
                     break;
             }
+            
+            Console.WriteLine($"Je vytvořené nové cvičení typu {ChosenExerciseType.Name}, k předmětu {ChosenSubject.Name} typu {ChosenSubjectType.Name}");
         }
 
 
@@ -543,9 +561,9 @@ namespace UkolZakladyOOP
         /// </summary>
         private static void createLectureFromTemplate()
         {
-            foreach (LectureType lType in Lecture.LecturesTypes.Where(LT => LT.HasFactory))
+            foreach (LectureType LType in Lecture.LecturesTypes.Where(LT => LT.HasFactory))
             {
-                Console.WriteLine(lType.Name); // výpis všech typů přednášek
+                Console.WriteLine(LType.Name); // výpis všech typů přednášek
             }
 
             Console.WriteLine("Jaký typ přednášky chcete vytvořit:");
@@ -559,101 +577,38 @@ namespace UkolZakladyOOP
                 lectureType = Console.ReadLine();
             }
 
-            Console.WriteLine($"lectureType = {lectureType}");
+            LectureType ChosenLectureType =
+                Lecture.LecturesTypes.Find(LT => LT.Name.ToLower() == lectureType.ToLower()); // zvolení typu přednášky s daným názvemn
+
+            Console.WriteLine($"ChosenLectureType = {ChosenLectureType.Name}");
 
             //string lectureName = Console.ReadLine();
-            string lectureName = "Nová czech prednaska";
+            string lectureName = "Nová czech prednaska"; // zadané jméno přednášky 
             Console.WriteLine($"lectureName = {lectureName}");
+            
+            SubjectType ChosenSubjectType =
+                Subject.SubjectsTypes.Find(ST => ST.Name == ChosenLectureType.SubjectType.Name); // zvolení typu předmětu podle přednášky
+            Subject.listSubjectsWithOnlyOneType(ChosenSubjectType); // vypíše všechny předměty daného typu
 
-            switch (lectureType.ToLower())
+            //string subjectName = Console.ReadLine();
+            string subjectName = "Czech1_1"; // zadané jméno předmětu ke kterému je přednáška dělaná 
+            Subject ChosenSubject = Subject.selectSubjectsWithOnlyOneType(subjectName, ChosenSubjectType); // zvolení předmětu ke kterému je přednáška dělaná 
+
+            // vytvoření přednášky z pomocí factory podle názvu zvoleného typu přednášky
+            switch (ChosenLectureType.Name.ToLower())
             {
                 case "přednáška z češtiny":
-                    createCzechLecture(lectureName); // vytvoření přednášky z češtiny
+                    LectureFactory.CreateLectureFromCzech(lectureName, ChosenSubject);
                     break;
                 case "přednáška z angličtiny":
-                    createEnglishLecture(lectureName); // vytvoření přednášky z angličtiny
+                    LectureFactory.CreateLectureFromEnglish(lectureName, ChosenSubject);
                     break;
                 default:
                     Console.WriteLine("Daná přednáška nejde vytvořit pomocí factory");
                     break;
             }
-        }
-
-        /// <summary>x
-        /// Vytvoření přednášky z Češtiny
-        /// </summary>
-        /// <param name="lectureName">Název přednášky</param>
-        private static void createCzechLecture(string lectureName)
-        {
-            SubjectType SubjectTypeCzech =
-                Subject.SubjectsTypes.Find(ST => ST.Name == "Czech"); // najde typ předmětu čeština
-            Subject.listSubjectsWithOnlyOneType(SubjectTypeCzech); // vypíše všechny češtiny
-
-            //string subjectName = Console.ReadLine();
-            string subjectName = "Czech1_1";
-            Subject ChosenSubject = Subject.selectSubjectsWithOnlyOneType(subjectName, SubjectTypeCzech);
-            // výběr předmětu daného typu s daným názvem
-
-            Lecture LectureFromCzech = LectureFactory.CreateLectureFromCzech(lectureName, ChosenSubject);
-            // vytvoření přednášky z Češtiny pomocí factory
-        }
-
-        /// <summary>
-        /// Vytvoření přednášky z Angličtiny
-        /// </summary>
-        /// <param name="lectureName">Název přednášky</param>
-        private static void createEnglishLecture(string lectureName)
-        {
-            SubjectType SubjectTypeEnglish =
-                Subject.SubjectsTypes.Find(ST => ST.Name == "English"); // najde typ předmětu angličtina
-            Subject.listSubjectsWithOnlyOneType(SubjectTypeEnglish); // vypíše všechny angličtiny
-
-            //string subjectName = Console.ReadLine();
-            string subjectName = "english1_2";
-            Subject ChosenSubject = Subject.selectSubjectsWithOnlyOneType(subjectName, SubjectTypeEnglish);
-            // výběr předmětu daného typu s daným názvem
-
-            Lecture LectureFromEnglish = LectureFactory.CreateLectureFromEnglish(lectureName, ChosenSubject);
-            // vytvoření přednášky z Angličtiny pomocí factory
-        }
-
-        /// <summary>
-        /// Vytvoření cvičení z předmětu čeština
-        /// </summary>
-        /// <param name="exerciseName">Název cvičení</param>
-        private static void createCzechExercise(string exerciseName)
-        {
-            SubjectType SubjectTypeCzech =
-                Subject.SubjectsTypes.Find(ST => ST.Name == "Czech"); // najde typ předmětu čeština
-            Subject.listSubjectsWithOnlyOneType(SubjectTypeCzech); // vypíše všechny češtiny
-
-            //string subjectName = Console.ReadLine();
-            string subjectName = "czech1_2";
-            Subject ChosenSubject = Subject.selectSubjectsWithOnlyOneType(subjectName, SubjectTypeCzech);
-            // výběr předmětu daného typu s daným názvem
-
-            Exercise ExerciseFromCzech = ExerciseFactory.CreateExerciseFromCzech(exerciseName, ChosenSubject);
-            // vytvoření cvičeni z Češtiny pomocí factory
-        }
-
-        /// <summary>
-        /// Vytvoření cvičení z předmětu angličtina
-        /// </summary>
-        /// <param name="exerciseName">Název cvičení</param>
-        private static void createEnglishExercise(string exerciseName)
-        {
-            SubjectType SubjectTypeEnglish =
-                Subject.SubjectsTypes.Find(ST => ST.Name == "English"); // najde typ předmětu angičtina
-            Subject.listSubjectsWithOnlyOneType(SubjectTypeEnglish); // vypíše všechny angličtiny
-
-            //string subjectName = Console.ReadLine();
-            string subjectName = "english1_2";
-            Subject ChosenSubject = Subject.selectSubjectsWithOnlyOneType(subjectName, SubjectTypeEnglish);
-            // výběr předmětu daného typu s daným názvem
-
-            Exercise ExerciseFromEnglish =
-                ExerciseFactory.CreateExerciseFromEnglish(exerciseName, ChosenSubject);
-            // vytvoření cvičení z Angličtiny  pomocí factory
+            
+            Console.WriteLine($"Je vytvořená nová přednáška typu {ChosenLectureType.Name}, k předmětu {ChosenSubject.Name} typu {ChosenSubjectType.Name}");
         }
 
         /// <summary>

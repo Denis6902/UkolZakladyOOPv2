@@ -312,9 +312,7 @@ namespace UkolZakladyOOP
                 string lectureName = "Přednáška z Angličtiny1_1";
                 Lecture ChosenLecture = Lecture.selectLecture(lectureName, this, CurrentSemester); // výběr přednášky
                 Console.WriteLine($"lectureName = {lectureName}");
-
-                SubjectMark SubjectMark = null;
-
+                
                 if (!SubjectMarkList.Exists(SM => SM.Subject == ChosenLecture.Subject))
                 {
                     Console.WriteLine("Předmět dané přednášky nemáš zaregistrovaný");
