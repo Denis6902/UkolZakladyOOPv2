@@ -27,6 +27,16 @@ namespace UkolZakladyOOP
         /// </summary>
         public bool Completed = false;
 
+        /*/// <summary>
+        /// Jestli jsou všechny cvičení daného předmětu dokončené
+        /// </summary>
+        public bool AllExercisesDone = false;
+        
+        /// <summary>
+        /// Jestli jsou všechny přednášky daného předmětu dokončené
+        /// </summary>
+        public bool AllLecturesDone = false;*/
+
         /// <summary>
         /// Konstruktor. Přidá automaticky instanci do seznamu SubjectMarkList.
         /// </summary>

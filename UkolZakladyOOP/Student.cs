@@ -30,6 +30,21 @@ namespace UkolZakladyOOP
         public static List<Student> Students = new();
 
         /// <summary>
+        /// Kredity získané za předměty
+        /// </summary>
+        public int Credits;
+
+        /// <summary>
+        /// Seznam dokončených cvičení
+        /// </summary>
+        public List<Exercise> CompletedExercises = new();
+
+        /// <summary>
+        /// Seznam dokončených přednášek
+        /// </summary>
+        public List<Lecture> CompletedLectures = new();
+
+        /// <summary>
         /// Konstruktor. Přidá studenta do seznamu studentů
         /// </summary>
         /// <param name="firstName">Jméno</param>
@@ -49,39 +64,25 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Změní ročník všech studentů ze seznamu Students na následující
         /// </summary>
-        private static void nextYear()
+        public static void nextYear()
         {
             foreach (Student Student in Students)
             {
                 Student.Year += 1; // zvýšení ročníku daného studenta na následující
                 Console.WriteLine($"Aktuální ročník studenta {Student.returnFullName()} je {Student.Year}");
-                Student.SubjectMarkList = null; // vynulování seznamu daného studenta
+                Student.SubjectMarkList = null; // vynulování seznamu známek daného studenta
             }
         }
 
         /// <summary>
-        /// Nastaví další semestr
+        /// Zjištění jestli můžu postoupit do dalšího semestru
         /// </summary>
-        /// <param name="CurrentSemester">Aktuální semestr</param>
-        /// <returns></returns>
-        public static Semester nextSemester(Semester CurrentSemester)
+        /// <param name="creditsToAdvancement">Kolik kreditů je potřeba k dokončení</param>
+        public void checkNextSemester(int creditsToAdvancement)
         {
-            switch (CurrentSemester)
-            {
-                case Semester.Summer:
-                    CurrentSemester =
-                        Semester.Winter; // pokud je aktuální semestr Summer, nastaví aktuální semestr na Winter
-                    break;
-
-                case Semester.Winter:
-                    CurrentSemester =
-                        Semester.Summer; // pokud je aktuální semestr Winter, nastaví aktuální semestr na Summer
-                    Student.nextYear(); // nastaví další ročník
-                    break;
-            }
-
-            Console.WriteLine($"Aktuální semestr je: {CurrentSemester}");
-            return CurrentSemester;
+            Console.WriteLine(Credits >= creditsToAdvancement
+                ? "Máš všechno splněno v aktuálním semestru"
+                : $"Nemůžeš postoupit, potřebuješ ještě {creditsToAdvancement - Credits} kreditů");
         }
 
         /// <summary>
@@ -323,11 +324,9 @@ namespace UkolZakladyOOP
                     Console.WriteLine($"lectureName = {lectureName}");
                 }
 
-                SubjectMark = SubjectMarkList.Find(SM =>
-                    SM.Subject == ChosenLecture.Subject);
+                CompletedLectures.Add(ChosenLecture);
 
-                Console.WriteLine($"Šel jsi na přednášku {ChosenLecture.Name} - {ChosenLecture.Credits} kreditů");
-                SubjectMark.Credits -= ChosenLecture.Credits;
+                Console.WriteLine($"Šel jsi na přednášku {ChosenLecture.Name}");
             }
             else // pokud ne, tak...    
             {
@@ -344,17 +343,23 @@ namespace UkolZakladyOOP
             // projede všechny nedokončené a registrované předměty daného studenta
             foreach (SubjectMark SubjectMark in SubjectMarkList.FindAll(SM => !SM.Completed))
             {
-                if (SubjectMark.Credits > 0) // kontrola jestli jde předmět dokončit
-                {
-                    Console.WriteLine(
-                        $"Do dokončení předmětu {SubjectMark.Subject.Name} zbývá {SubjectMark.Credits} kreditů");
-                }
-                else // pokud ne, tak...
+                if (SubjectMark.Subject.LectureCount ==
+                    CompletedLectures.FindAll(Lecture => Lecture.Subject == SubjectMark.Subject).Count &&
+                    SubjectMark.Subject.ExerciseCount == CompletedExercises
+                        .FindAll(Exercise => Exercise.Subject == SubjectMark.Subject)
+                        .Count) // kontrola jestli jde předmět dokončit
                 {
                     double mark = Random.Shared.Next(1, 5);
                     Console.WriteLine($"Dokončil jsi předmět {SubjectMark.Subject.Name} s hodnocením {mark}");
                     SubjectMark.Mark = mark;
                     SubjectMark.Completed = true;
+                    Credits += SubjectMark.Subject.Credits;
+                }
+                else // pokud ne, tak...
+                {
+                    Console.WriteLine(
+                        $"Pro dokončení předmětu {SubjectMark.Subject.Name} potřebuješ dokončit ještě {SubjectMark.Subject.ExerciseCount} cvičení " +
+                        $"a {SubjectMark.Subject.LectureCount} přednášek, za dokončení získáš {SubjectMark.Credits} kreditů");
                 }
             }
         }
@@ -372,7 +377,7 @@ namespace UkolZakladyOOP
                              SubjectMark.Completed ==
                              false)) //projede všechny dostupné cvičení daného studenta (cvičení jejichž předmět mají registrovaný a nedokončený)
                 {
-                    Console.WriteLine($"{Exercise.Name} - {Exercise.Credits} kreditů," +
+                    Console.WriteLine($"{Exercise.Name}," +
                                       $" počítač {Exercise.isComputerRequired()}");
                 }
             }
@@ -405,11 +410,9 @@ namespace UkolZakladyOOP
 
                 Exercise ChosenExercise = Exercise.selectExercise(exerciseName, this, CurrentSemester); // výběr cvičení
 
-                SubjectMark SubjectMark = SubjectMarkList.Find(SM =>
-                    SM.Subject == ChosenExercise.Subject);
+                CompletedExercises.Add(ChosenExercise);
 
-                SubjectMark.Credits -= ChosenExercise.Credits;
-                Console.WriteLine($"Dokončil jsi cvičení {ChosenExercise.Name} - {ChosenExercise.Credits} kreditů");
+                Console.WriteLine($"Dokončil jsi cvičení {ChosenExercise.Name}");
             }
             else
             {

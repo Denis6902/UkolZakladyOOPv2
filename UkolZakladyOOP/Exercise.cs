@@ -22,11 +22,6 @@ namespace UkolZakladyOOP
         private bool ComputerRequired;
 
         /// <summary>
-        /// Počet kreditů za cvičení
-        /// </summary>
-        public double Credits;
-
-        /// <summary>
         /// Předmět ke kterému je cvičení dělané
         /// </summary>
         public Subject Subject;
@@ -47,17 +42,15 @@ namespace UkolZakladyOOP
         /// <param name="name">Název cvičení</param>
         /// <param name="type">Typ cvičení</param>
         /// <param name="computerRequired">Jestli je potřeba na cvičení počítač</param>
-        /// <param name="credits">Počet kreditů za cvičení</param>
         /// <param name="subject">Předmět ke kterému je cvičení dělané</param>
-        public Exercise(string name, ExerciseType type, bool computerRequired, double credits, Subject subject)
+        public Exercise(string name, ExerciseType type, bool computerRequired, Subject subject)
         {
             Name = name;
             Type = type;
             ComputerRequired = computerRequired;
-            Credits = credits;
             Subject = subject;
             Exercises.Add(this);
-            subject.ExerciseCount += 1;
+            Subject.ExerciseCount += 1;
         }
 
         /// <summary>
@@ -78,7 +71,7 @@ namespace UkolZakladyOOP
         /// </summary>
         /// <param name="exerciseName">Název cvičení</param>
         /// <param name="Student">Daný student</param>
-        /// <param name="CurrentSemester">Aktuánlí semestr</param>
+        /// <param name="CurrentSemester">Aktuální semestr</param>
         /// <returns>Vybrané cvičení</returns>
         public static Exercise selectExercise(string exerciseName, Student Student, Semester CurrentSemester)
         {
@@ -112,7 +105,7 @@ namespace UkolZakladyOOP
                 foreach (Exercise Exercise in Exercises) // projede všechny cvičení ze seznamu cvičení
                 {
                     Console.WriteLine(
-                        $"Cvičení typu {Exercise.Type.Name} s názvem {Exercise.Name} - {Exercise.Credits} kreditů, " +
+                        $"Cvičení typu {Exercise.Type.Name} s názvem {Exercise.Name}, " +
                         $"počítač {Exercise.isComputerRequired()} (Předmět {Exercise.Subject.Name}");
                 }
             }
@@ -128,16 +121,15 @@ namespace UkolZakladyOOP
     /// </summary>
     class ExerciseFactory
     {
-        public static Exercise CreateExerciseFromCzech(string name, double credits, Subject Czech)
+        public static Exercise CreateExerciseFromCzech(string name, Subject Czech)
         {
-            return new Exercise(name, Exercise.ExercisesTypes.Find(ET => ET.Name == "Cvičení z Češtiny"), false,
-                credits, Czech);
+            return new Exercise(name, Exercise.ExercisesTypes.Find(ET => ET.Name == "Cvičení z Češtiny"), false, Czech);
         }
 
-        public static Exercise CreateExerciseFromEnglish(string name, double credits, Subject English)
+        public static Exercise CreateExerciseFromEnglish(string name, Subject English)
         {
             return new Exercise(name, Exercise.ExercisesTypes.Find(ET => ET.Name == "Cvičení z Angličtiny"), false,
-                credits, English);
+                English);
         }
     }
 

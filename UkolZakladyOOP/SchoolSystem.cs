@@ -23,6 +23,11 @@ namespace UkolZakladyOOP
         /// </summary>
         private Semester CurrentSemester = Semester.Summer;
 
+        /// <summary>
+        /// Počet kreditů potřeba k postupu do dalšího ročníku
+        /// </summary>
+        private int CreditsToAdvancement = 50;
+
         public SchoolSystem()
         {
             fillLists(); // naplnění seznamů daty
@@ -163,26 +168,33 @@ namespace UkolZakladyOOP
 
                         case 10:
                             Console.WriteLine("optionAsInt = 10"); // konec programu
+                            ChosenStudent.checkNextSemester(CreditsToAdvancement);
+                            Thread.Sleep(Delay);
+                            Console.Clear();
+                            break;
+
+                        case 11:
+                            Console.WriteLine("optionAsInt = 11"); // konec programu
                             //Environment.Exit(0);
                             Console.WriteLine("Ukončí program");
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
-                        case 11:
+                        case 12:
                             Console.WriteLine("Ukázka prerekvizit (optionAsInt = 1)"); // Ukázka prerekvizit
                             ChosenStudent.registerSubject(CurrentSemester);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
-                    }
 
-                    if (optionAsInt == 12)
-                    {
-                        mainMenu(); // znovu spuštění hlavního menu, kvůli přepnutí na učitele
+                        case 13:
+                            Console.Clear();
+                            mainMenu(); // znovu spuštění hlavního menu, kvůli přepnutí na učitele
+                            break;
                     }
                 }
-            } while (optionAsInt is > 0 and < 12);
+            } while (optionAsInt is > 0 and < 13);
         }
 
         /// <summary>
@@ -252,14 +264,14 @@ namespace UkolZakladyOOP
 
                         case 6:
                             Console.WriteLine($"optionAsInt = {optionAsInt}"); // vytvoření nového předmmětu
-                            Teacher.createSubject();
+                            Teacher.createSubject(Delay);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 7:
                             Console.WriteLine($"optionAsInt = {optionAsInt}"); // vytvoření nového cvíčení
-                            Teacher.createExercise();
+                            Teacher.createExercise(Delay);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
@@ -280,7 +292,7 @@ namespace UkolZakladyOOP
 
                         case 10:
                             Console.WriteLine($"optionAsInt = {optionAsInt}"); // vytvoření nové přednášky
-                            Teacher.createLecture();
+                            Teacher.createLecture(Delay);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
@@ -294,7 +306,7 @@ namespace UkolZakladyOOP
 
                         case 12:
                             Console.WriteLine($"optionAsInt = {optionAsInt}"); // další semestr
-                            CurrentSemester = Student.nextSemester(CurrentSemester);
+                            CurrentSemester = Teacher.nextSemester(CurrentSemester, CreditsToAdvancement);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
@@ -334,7 +346,8 @@ namespace UkolZakladyOOP
                     Console.WriteLine("7) Jít na přednášku");
                     Console.WriteLine("8) Konec předmětu");
                     Console.WriteLine("9) Vypsat dokončené předměty");
-                    Console.WriteLine("10) Konec programu");
+                    Console.WriteLine("10) Další semestr");
+                    Console.WriteLine("11) Konec programu");
                     break;
 
                 case Teacher: // pokud metodu zavolá učitel
@@ -407,8 +420,8 @@ namespace UkolZakladyOOP
             ExerciseType ExerciseTypeEnglish = Exercise.ExercisesTypes.Find(LT => LT.Name == "Cvičení z Angličtiny");
             ExerciseType ExerciseTypePpp = Exercise.ExercisesTypes.Find(LT => LT.Name == "ooo");
 
-            Exercise ooo1_1 = new Exercise("ooo1_1", ExerciseTypePpp, false, 50, xxx1_1); // TEST_ONLY
-            Lecture ppp1_1 = new("ppp1_1", LectureTypePpp, false, 50, xxx1_1); // TEST_ONLY
+            Exercise ooo1_1 = new Exercise("ooo1_1", ExerciseTypePpp, false, xxx1_1); // TEST_ONLY
+            Lecture ppp1_1 = new("ppp1_1", LectureTypePpp, false, xxx1_1); // TEST_ONLY
 
             Student Jakub = new("Jakub", "Novák", new DateTime(1999, 7, 2), new DateTime(2020, 10, 1),
                 1);
@@ -418,38 +431,38 @@ namespace UkolZakladyOOP
                 1);
 
             Exercise ExerciseFromEnglish1_1 =
-                new("Cvičení z Angličtiny1_1", ExerciseTypeEnglish, false, 50, English1_1);
-            Exercise ExerciseFromCzech1_1 = new("Cvičení z Češtiny1_1", ExerciseTypeCzech, false, 50, Czech1_1);
-            Lecture LectureFromEnglish1_1 = new("Přednáška z Angličtiny1_1", LectureTypeEnglish, false, 50, English1_1);
-            Lecture LectureFromCzech1_1 = new("Přednáška z Češtiny1_1", LectureTypeCzech, false, 50, Czech1_1);
+                new("Cvičení z Angličtiny1_1", ExerciseTypeEnglish, false, English1_1);
+            Exercise ExerciseFromCzech1_1 = new("Cvičení z Češtiny1_1", ExerciseTypeCzech, false, Czech1_1);
+            Lecture LectureFromEnglish1_1 = new("Přednáška z Angličtiny1_1", LectureTypeEnglish, false, English1_1);
+            Lecture LectureFromCzech1_1 = new("Přednáška z Češtiny1_1", LectureTypeCzech, false, Czech1_1);
 
             Exercise ExerciseFromEnglish2_1 =
-                new("Cvičení z Angličtiny2_1", ExerciseTypeEnglish, false, 50, English2_1);
-            Exercise ExerciseFromCzech2_1 = new("Cvičení z Češtiny2_1", ExerciseTypeCzech, false, 50, Czech2_1);
-            Lecture LectureFromEnglish2_1 = new("Přednáška z Angličtiny2_1", LectureTypeEnglish, false, 50, English2_1);
-            Lecture LectureFromCzech2_1 = new("Přednáška z Češtiny2_1", LectureTypeEnglish, false, 50, Czech2_1);
+                new("Cvičení z Angličtiny2_1", ExerciseTypeEnglish, false, English2_1);
+            Exercise ExerciseFromCzech2_1 = new("Cvičení z Češtiny2_1", ExerciseTypeCzech, false, Czech2_1);
+            Lecture LectureFromEnglish2_1 = new("Přednáška z Angličtiny2_1", LectureTypeEnglish, false, English2_1);
+            Lecture LectureFromCzech2_1 = new("Přednáška z Češtiny2_1", LectureTypeEnglish, false, Czech2_1);
 
             Exercise ExerciseFromEnglish3_1 =
-                new("Cvičení z Angličtiny3_1", ExerciseTypeEnglish, false, 50, English3_1);
-            Exercise ExerciseFromCzech3_1 = new("Cvičení z Češtiny3_1", ExerciseTypeCzech, false, 50, Czech3_1);
-            Lecture LectureFromEnglish3_1 = new("Přednáška z Angličtiny3_1", LectureTypeEnglish, false, 50, English3_1);
-            Lecture LectureFromCzech3_1 = new("Přednáška z Češtiny3_1", LectureTypeEnglish, false, 50, Czech3_1);
+                new("Cvičení z Angličtiny3_1", ExerciseTypeEnglish, false, English3_1);
+            Exercise ExerciseFromCzech3_1 = new("Cvičení z Češtiny3_1", ExerciseTypeCzech, false, Czech3_1);
+            Lecture LectureFromEnglish3_1 = new("Přednáška z Angličtiny3_1", LectureTypeEnglish, false, English3_1);
+            Lecture LectureFromCzech3_1 = new("Přednáška z Češtiny3_1", LectureTypeEnglish, false, Czech3_1);
 
             Exercise ExerciseFromEnglish1_2 =
-                new("Cvičení z Angličtiny1_2", ExerciseTypeEnglish, false, 50, English1_2);
-            Exercise ExerciseFromCzech1_2 = new("Cvičení z Češtiny1_2", ExerciseTypeCzech, false, 50, Czech1_2);
-            Lecture LectureFromEnglish1_2 = new("Přednáška z Angličtiny1_2", LectureTypeEnglish, false, 50, English1_2);
-            Lecture LectureFromCzech1_2 = new("Přednáška z Češtiny1_2", LectureTypeEnglish, false, 50, Czech1_2);
+                new("Cvičení z Angličtiny1_2", ExerciseTypeEnglish, false, English1_2);
+            Exercise ExerciseFromCzech1_2 = new("Cvičení z Češtiny1_2", ExerciseTypeCzech, false, Czech1_2);
+            Lecture LectureFromEnglish1_2 = new("Přednáška z Angličtiny1_2", LectureTypeEnglish, false, English1_2);
+            Lecture LectureFromCzech1_2 = new("Přednáška z Češtiny1_2", LectureTypeEnglish, false, Czech1_2);
 
             Exercise ExerciseFromEnglish2_2 =
-                new("Cvičení z Angličtiny2_2", ExerciseTypeEnglish, false, 50, English2_2);
-            Exercise ExerciseFromCzech2_2 = new("Cvičení z Češtiny2_2", ExerciseTypeCzech, false, 50, Czech2_2);
-            Lecture LectureFromEnglish2_2 = new("Přednáška z Angličtiny2_2", LectureTypeEnglish, false, 50, English2_2);
-            Lecture LectureFromCzech2_2 = new("Přednáška z Češtiny2_2", LectureTypeEnglish, false, 50, Czech2_2);
+                new("Cvičení z Angličtiny2_2", ExerciseTypeEnglish, false, English2_2);
+            Exercise ExerciseFromCzech2_2 = new("Cvičení z Češtiny2_2", ExerciseTypeCzech, false, Czech2_2);
+            Lecture LectureFromEnglish2_2 = new("Přednáška z Angličtiny2_2", LectureTypeEnglish, false, English2_2);
+            Lecture LectureFromCzech2_2 = new("Přednáška z Češtiny2_2", LectureTypeEnglish, false, Czech2_2);
 
             Exercise ExerciseFromEnglish3_2 =
-                new("Cvičení z Angličtiny3_2", ExerciseTypeEnglish, false, 50, English3_2);
-            Lecture LectureFromEnglish3_2 = new("Přednáška z Angličtiny3_2", LectureTypeEnglish, false, 50, English3_2);
+                new("Cvičení z Angličtiny3_2", ExerciseTypeEnglish, false, English3_2);
+            Lecture LectureFromEnglish3_2 = new("Přednáška z Angličtiny3_2", LectureTypeEnglish, false, English3_2);
         }
     }
 }

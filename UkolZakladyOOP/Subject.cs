@@ -27,9 +27,9 @@ namespace UkolZakladyOOP
         public Teacher Teacher;
 
         /// <summary>
-        /// Počet kreditů potřeba k dokončení
+        /// Počet kreditů získaných za dokončení
         /// </summary>
-        public double Credits;
+        public int Credits;
 
         /// <summary>
         /// Počet cvičení daného předmětu
@@ -73,11 +73,11 @@ namespace UkolZakladyOOP
         /// <param name="type">Typ předmětu</param>
         /// <param name="garantOfSubject">Garant předmětu</param>
         /// <param name="teacher">Učitel předmětu</param>
-        /// <param name="credits">Počet kreditů potřeba k dokončení</param>
+        /// <param name="credits">Počet kreditů získaných za dokončení</param>
         /// <param name="year">Ročník pro jaký je daný předmět</param>
         /// <param name="semester">Semestr pro jaký je daný předmět</param>
         /// <param name="level">Úroveň předmětu</param>
-        public Subject(string name, SubjectType type, Teacher garantOfSubject, Teacher teacher, double credits,
+        public Subject(string name, SubjectType type, Teacher garantOfSubject, Teacher teacher, int credits,
             int year,
             Semester semester, int level)
         {
@@ -112,7 +112,7 @@ namespace UkolZakladyOOP
             Subject ChosenSubject = Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower());
             // vybere předmět s daným názvem
 
-            Console.WriteLine($"subjectName = {subjectName}");
+            Console.WriteLine($"ChosenSubject = {ChosenSubject.Name}");
             return ChosenSubject; // vrátí předmět s daným názvem
         }
 
@@ -124,7 +124,7 @@ namespace UkolZakladyOOP
             foreach (Subject Subject in Subject.Subjects) // projede všechny předměty ze seznamu předmětů
             {
                 Console.WriteLine(
-                    $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů" +
+                    $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}, za dokončení získá {Subject.Credits} kreditů" +
                     $", garantem je {Subject.GarantOfSubject.returnFullName()}, semestr: {Subject.Semester}");
             }
         }
@@ -164,10 +164,10 @@ namespace UkolZakladyOOP
                 Console.Clear();
             }
 
-            Console.WriteLine($"subjectName = {subjectName}");
-
             Subject ChosenSubject = Subjects.Find(Subject =>
                 Subject.Name.ToLower() == subjectName.ToLower()); // vrátí předmět s daným názvem
+
+            Console.WriteLine($"ChosenSubject = {ChosenSubject.Name}");
 
             return ChosenSubject;
         }
@@ -176,7 +176,7 @@ namespace UkolZakladyOOP
         /// Výpis informací o předmětu
         /// </summary>
         /// <param name="Subject">Daný předmět k výpisu</param>
-        /// <param name="creditsToFinish">Počet zbývajících kreditů</param>
+        /// <param name="creditsToFinish">Počet kreditů, kolik za dokončení získá</param>
         public static void writeSubjectInfo(Subject Subject, double creditsToFinish = Double.NaN)
         {
             // v případě že předmět není registrovaný,
@@ -192,7 +192,7 @@ namespace UkolZakladyOOP
             // výpis informací o předmětu
             Console.WriteLine(
                 $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}" +
-                $", k dokončení je potřeba {creditsToFinish} kreditů," +
+                $", za dokončení {creditsToFinish} kreditů," +
                 $" garantem je {Subject.GarantOfSubject.returnFullName()}," +
                 $" Semestr: {Subject.Semester} (Level {Subject.Level})");
         }
@@ -209,7 +209,7 @@ namespace UkolZakladyOOP
     /// </summary>
     class SubjectFactory
     {
-        public static Subject CreateCzech(string subjectName, Teacher teacher, Teacher garantOfSubject, double credits,
+        public static Subject CreateCzech(string subjectName, Teacher teacher, Teacher garantOfSubject, int credits,
             int year, Semester semester, int subjectLevel)
         {
             return new Subject(subjectName, Subject.SubjectsTypes.Find(ST => ST.Name == "Czech"), teacher,
@@ -218,7 +218,7 @@ namespace UkolZakladyOOP
         }
 
         public static Subject CreateEnglish(string subjectName, Teacher teacher, Teacher garantOfSubject,
-            double credits,
+            int credits,
             int year, Semester semester, int subjectLevel)
         {
             return new Subject(subjectName, Subject.SubjectsTypes.Find(ST => ST.Name == "English"), teacher,
