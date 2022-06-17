@@ -302,23 +302,27 @@ namespace UkolZakladyOOP
         public void goOnLecture(Semester CurrentSemester)
         {
             // kontrola jestli existují nějaké přednášky a jestli má daný student nějaké registrované a nedokončené předměty
-            if (Lecture.Lectures.Any() && SubjectMarkList.FindAll(SM => !SM.Completed).Any())
+            if (Lecture.Lectures.Any() && SubjectMarkList.FindAll(SM => !SM.Completed).Any()
+                                       && Lecture.CheckAvailableLecturesCount(SubjectMarkList, CompletedLectures))
             {
-                Lecture.listAllAvailableLectures(SubjectMarkList); // výpis všech registrovatelných přednášek
+                Lecture.listAllAvailableLectures(SubjectMarkList,
+                    CompletedLectures); // výpis všech registrovatelných přednášek
 
                 Console.WriteLine("Zadejte název přednášky");
 
                 //string lectureName = Console.ReadLine();
                 string lectureName = "Přednáška z Angličtiny1_1";
-                Lecture ChosenLecture = Lecture.selectLecture(lectureName, this, CurrentSemester); // výběr přednášky
+                Lecture ChosenLecture =
+                    Lecture.selectLecture(lectureName, this, CurrentSemester, CompletedLectures); // výběr přednášky
                 Console.WriteLine($"lectureName = {lectureName}");
-                
-                if (!SubjectMarkList.Exists(SM => SM.Subject == ChosenLecture.Subject))
+
+                if (!SubjectMarkList.Exists(SM => SM.Subject == ChosenLecture.Subject && !SM.Completed))
                 {
                     Console.WriteLine("Předmět dané přednášky nemáš zaregistrovaný");
                     Console.WriteLine("Zadej název přednášky jehož předmět máš zaregistrovaný:");
                     lectureName = Console.ReadLine();
-                    ChosenLecture = Lecture.selectLecture(lectureName, this, CurrentSemester); // výběr cvičení
+                    ChosenLecture =
+                        Lecture.selectLecture(lectureName, this, CurrentSemester, CompletedLectures); // výběr cvičení
                     Console.WriteLine($"lectureName = {lectureName}");
                 }
 
@@ -363,34 +367,17 @@ namespace UkolZakladyOOP
         }
 
         /// <summary>
-        /// Výpis všech registrovaných cvičení
-        /// </summary>
-        private void listAllAvailableExercise()
-        {
-            foreach (SubjectMark SubjectMark in
-                     SubjectMarkList) // projede všechny předměty daného studenta
-            {
-                foreach (Exercise Exercise in Exercise.Exercises.Where(Exercise =>
-                             SubjectMark.Subject == Exercise.Subject &&
-                             SubjectMark.Completed ==
-                             false)) //projede všechny dostupné cvičení daného studenta (cvičení jejichž předmět mají registrovaný a nedokončený)
-                {
-                    Console.WriteLine($"{Exercise.Name}," +
-                                      $" počítač {Exercise.isComputerRequired()}");
-                }
-            }
-        }
-
-        /// <summary>
         /// Udělat cviření
         /// </summary>
         /// <param name="CurrentSemester">Aktuální semestr</param>
         public void doExercise(Semester CurrentSemester)
         {
             // kontrola jestli existují nějaké předměty a jestli má daný student nějaké registrované předměty
-            if (Exercise.Exercises.Any() && SubjectMarkList.FindAll(SM => !SM.Completed).Any())
+            if (Exercise.Exercises.Any() && SubjectMarkList.FindAll(SM => !SM.Completed).Any()
+                                         && Exercise.CheckAvailableExercisesCount(SubjectMarkList, CompletedExercises))
             {
-                listAllAvailableExercise(); // vypíše všechny dostupné cvičení
+                Exercise.listAllAvailableExercise(SubjectMarkList,
+                    CompletedExercises); // vypíše všechny dostupné cvičení
                 Console.WriteLine("Zadejte název cvičení");
 
                 //string exerciseName = Console.ReadLine();
@@ -398,7 +385,7 @@ namespace UkolZakladyOOP
                 Console.WriteLine($"exerciseName = {exerciseName}");
 
                 while (!SubjectMarkList.Exists(SM => SM.Subject == Exercise.Exercises.Find(
-                           Exercise => Exercise.Name.ToLower() == exerciseName.ToLower()).Subject))
+                           Exercise => Exercise.Name.ToLower() == exerciseName.ToLower()).Subject && !SM.Completed))
                 {
                     Console.WriteLine("Předmět daného cvičení nemáš zaregistrovaný");
                     Console.WriteLine("Zadej název cvičení jehož předmět máš zaregistrovaný:");
@@ -406,7 +393,8 @@ namespace UkolZakladyOOP
                     Console.WriteLine($"exerciseName = {exerciseName}");
                 }
 
-                Exercise ChosenExercise = Exercise.selectExercise(exerciseName, this, CurrentSemester); // výběr cvičení
+                Exercise ChosenExercise =
+                    Exercise.selectExercise(exerciseName, this, CurrentSemester, CompletedExercises); // výběr cvičení
 
                 CompletedExercises.Add(ChosenExercise);
 

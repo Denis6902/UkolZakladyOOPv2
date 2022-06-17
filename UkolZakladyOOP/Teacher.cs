@@ -385,10 +385,10 @@ namespace UkolZakladyOOP
             Console.WriteLine($"computerRequired = {computerRequired}");
 
             Subject.listSubjectsWithOnlyOneType(ExerciseType.SubjectType); // výpis všech předmětů daného typu
-            
+
             //string subjectName = Console.ReadLine();
             string subjectName = "Czech1_1";
-            
+
             Subject ChosenSubject =
                 Subject.selectSubjectsWithOnlyOneType(subjectName,
                     ExerciseType.SubjectType); // vybrání předmětu daného typu
@@ -421,18 +421,19 @@ namespace UkolZakladyOOP
                 Console.WriteLine("Zadejte správný typ cvičení");
                 exerciseType = Console.ReadLine();
             }
-            
+
             ExerciseType ChosenExerciseType =
-                Exercise.ExercisesTypes.Find(ET => ET.Name.ToLower() == exerciseType.ToLower()); // zvolení typu přednášky s daným názvemn
+                Exercise.ExercisesTypes.Find(ET =>
+                    ET.Name.ToLower() == exerciseType.ToLower()); // zvolení typu přednášky s daným názvemn
 
             Console.WriteLine($"ChosenExerciseType = {ChosenExerciseType.Name}");
 
             //string exerciseName = Console.ReadLine();
             string exerciseName = "Angličtina";
             Console.WriteLine($"exerciseName = {exerciseName}");
-            
+
             SubjectType ChosenSubjectType =
-                Subject.SubjectsTypes.Find(ST => ST.Name == "English");  // zvolení typu předmětu podle cvičení
+                Subject.SubjectsTypes.Find(ST => ST.Name == "English"); // zvolení typu předmětu podle cvičení
             Subject.listSubjectsWithOnlyOneType(ChosenSubjectType); // vypíše všechny předměty daného typu
 
             //string subjectName = Console.ReadLine();
@@ -457,8 +458,9 @@ namespace UkolZakladyOOP
                     Console.WriteLine("Dané cvičení nejde vytvořit pomocí factory");
                     break;
             }
-            
-            Console.WriteLine($"Je vytvořené nové cvičení typu {ChosenExerciseType.Name}, k předmětu {ChosenSubject.Name} typu {ChosenSubjectType.Name}");
+
+            Console.WriteLine(
+                $"Je vytvořené nové cvičení typu {ChosenExerciseType.Name}, k předmětu {ChosenSubject.Name} typu {ChosenSubjectType.Name}");
         }
 
 
@@ -578,21 +580,25 @@ namespace UkolZakladyOOP
             }
 
             LectureType ChosenLectureType =
-                Lecture.LecturesTypes.Find(LT => LT.Name.ToLower() == lectureType.ToLower()); // zvolení typu přednášky s daným názvemn
+                Lecture.LecturesTypes.Find(LT =>
+                    LT.Name.ToLower() == lectureType.ToLower()); // zvolení typu přednášky s daným názvemn
 
             Console.WriteLine($"ChosenLectureType = {ChosenLectureType.Name}");
 
             //string lectureName = Console.ReadLine();
             string lectureName = "Nová czech prednaska"; // zadané jméno přednášky 
             Console.WriteLine($"lectureName = {lectureName}");
-            
+
             SubjectType ChosenSubjectType =
-                Subject.SubjectsTypes.Find(ST => ST.Name == ChosenLectureType.SubjectType.Name); // zvolení typu předmětu podle přednášky
+                Subject.SubjectsTypes.Find(ST =>
+                    ST.Name == ChosenLectureType.SubjectType.Name); // zvolení typu předmětu podle přednášky
             Subject.listSubjectsWithOnlyOneType(ChosenSubjectType); // vypíše všechny předměty daného typu
 
             //string subjectName = Console.ReadLine();
             string subjectName = "Czech1_1"; // zadané jméno předmětu ke kterému je přednáška dělaná 
-            Subject ChosenSubject = Subject.selectSubjectsWithOnlyOneType(subjectName, ChosenSubjectType); // zvolení předmětu ke kterému je přednáška dělaná 
+            Subject ChosenSubject =
+                Subject.selectSubjectsWithOnlyOneType(subjectName,
+                    ChosenSubjectType); // zvolení předmětu ke kterému je přednáška dělaná 
 
             // vytvoření přednášky z pomocí factory podle názvu zvoleného typu přednášky
             switch (ChosenLectureType.Name.ToLower())
@@ -607,8 +613,9 @@ namespace UkolZakladyOOP
                     Console.WriteLine("Daná přednáška nejde vytvořit pomocí factory");
                     break;
             }
-            
-            Console.WriteLine($"Je vytvořená nová přednáška typu {ChosenLectureType.Name}, k předmětu {ChosenSubject.Name} typu {ChosenSubjectType.Name}");
+
+            Console.WriteLine(
+                $"Je vytvořená nová přednáška typu {ChosenLectureType.Name}, k předmětu {ChosenSubject.Name} typu {ChosenSubjectType.Name}");
         }
 
         /// <summary>

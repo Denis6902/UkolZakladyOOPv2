@@ -78,13 +78,15 @@ namespace UkolZakladyOOP
         /// <param name="lectureName">Název cvičení</param>
         /// <param name="Student">Daný student</param>
         /// <param name="CurrentSemester">Aktuální semestr</param>
+        /// <param name="CompletedLectures">Seznam dokončených přednášek</param>
         /// <returns>Danou přednášku</returns>
-        public static Lecture selectLecture(string lectureName, Student Student, Semester CurrentSemester)
+        public static Lecture selectLecture(string lectureName, Student Student, Semester CurrentSemester,
+            List<Lecture> CompletedLectures)
         {
             // kontrola jestli existuje přednáška s daným názvem v aktuálním ročníku a semestru
             while (!Lectures.Exists(Lecture =>
                        Lecture.Name.ToLower() == lectureName.ToLower() && Lecture.Subject.Year == Student.Year &&
-                       Lecture.Subject.Semester == CurrentSemester))
+                       Lecture.Subject.Semester == CurrentSemester && !CompletedLectures.Contains(Lecture)))
             {
                 Console.WriteLine("Neexistuje dané cvičení / Předmět dané přednášky nemáš zaregistrovaný");
                 Console.WriteLine("Zadej název platného cvičení");
@@ -124,16 +126,31 @@ namespace UkolZakladyOOP
         /// Vypíše všechny přednášky dostupné pro registrované předměty daného studenta
         /// </summary>
         /// <param name="SubjectMarkList">Registrované předmety daného studenta</param>
-        public static void listAllAvailableLectures(List<SubjectMark> SubjectMarkList)
+        /// <param name="CompletedLectures">Seznam dokončených přednášek</param>
+        public static void listAllAvailableLectures(List<SubjectMark> SubjectMarkList, List<Lecture> CompletedLectures)
         {
             foreach (Lecture Lecture in Lecture.Lectures.Where(
                          Lecture => Lecture.Subject == SubjectMarkList
-                             .Find(SM => SM.Subject == Lecture.Subject && !SM.Completed)?.Subject))
+                                        .Find(SM => SM.Subject == Lecture.Subject && !SM.Completed)?.Subject &&
+                                    !CompletedLectures.Contains(Lecture)))
             {
                 Console.WriteLine(
                     $"Přednáška typu {Lecture.Type.Name} s názvem {Lecture.Name}, počítač {Lecture.isComputerRequired()}" +
                     $" (Předmět {Lecture.Subject.Name})");
             }
+        }
+
+        /// <summary>
+        /// Vrátí jestli jsou dostupně nějaké přednášky
+        /// </summary>
+        /// <param name="SubjectMarkList">Registrované předmety daného studenta</param>
+        /// <param name="CompletedLectures">Seznam dokončených přednášek</param>
+        /// <returns></returns>
+        public static bool CheckAvailableLecturesCount(List<SubjectMark> SubjectMarkList,
+            List<Lecture> CompletedLectures)
+        {
+            return SubjectMarkList.Where(SM => !SM.Completed).Any(SubjectMark =>
+                SubjectMark.Subject.LectureCount != CompletedLectures.Count(CL => CL.Subject == SubjectMark.Subject));
         }
     }
 
@@ -144,12 +161,14 @@ namespace UkolZakladyOOP
     {
         public static Lecture CreateLectureFromCzech(string name, Subject Czech)
         {
-            return new Lecture(name, Lecture.LecturesTypes.Find(LT => LT.Name.ToLower() == "přednáška z češtiny"), false, Czech);
+            return new Lecture(name, Lecture.LecturesTypes.Find(LT => LT.Name.ToLower() == "přednáška z češtiny"),
+                false, Czech);
         }
 
         public static Lecture CreateLectureFromEnglish(string name, Subject English)
         {
-            return new Lecture(name, Lecture.LecturesTypes.Find(LT => LT.Name.ToLower() == "přednáška z angličtiny"), false, English);
+            return new Lecture(name, Lecture.LecturesTypes.Find(LT => LT.Name.ToLower() == "přednáška z angličtiny"),
+                false, English);
         }
     }
 

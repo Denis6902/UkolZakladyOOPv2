@@ -72,13 +72,15 @@ namespace UkolZakladyOOP
         /// <param name="exerciseName">Název cvičení</param>
         /// <param name="Student">Daný student</param>
         /// <param name="CurrentSemester">Aktuální semestr</param>
+        /// <param name="CompletedExercises">Seznam dokončených cvičení</param>
         /// <returns>Vybrané cvičení</returns>
-        public static Exercise selectExercise(string exerciseName, Student Student, Semester CurrentSemester)
+        public static Exercise selectExercise(string exerciseName, Student Student, Semester CurrentSemester,
+            List<Exercise> CompletedExercises)
         {
             // kontrola jestli existuje cvičení s daným názvem v aktuálním ročníku a semestru
-            while (!Exercises.Exists(exercise =>
-                       exercise.Name.ToLower() == exerciseName.ToLower() && exercise.Subject.Year == Student.Year &&
-                       exercise.Subject.Semester == CurrentSemester))
+            while (!Exercises.Exists(Exercise =>
+                       Exercise.Name.ToLower() == exerciseName.ToLower() && Exercise.Subject.Year == Student.Year &&
+                       Exercise.Subject.Semester == CurrentSemester && !CompletedExercises.Contains(Exercise)))
             {
                 Console.WriteLine("Neexistuje dané cvičení");
                 Console.WriteLine("Zadej název existujícího cvičení");
@@ -87,9 +89,9 @@ namespace UkolZakladyOOP
                 // pokud neexistuje, spustí znovu celý cyklus s novým vstupem od uživatele
             }
 
-            Exercise ChosenExercise = Exercises.Find(exercise =>
-                exercise.Name.ToLower() == exerciseName.ToLower() && exercise.Subject.Year == Student.Year &&
-                exercise.Subject.Semester == CurrentSemester);
+            Exercise ChosenExercise = Exercises.Find(Exercise =>
+                Exercise.Name.ToLower() == exerciseName.ToLower() && Exercise.Subject.Year == Student.Year &&
+                Exercise.Subject.Semester == CurrentSemester);
             // vybere existující cvičení s daným názvem v aktuálním ročníku a semestru
 
             return ChosenExercise; // vratí cvičení s daným názvem v aktuálním ročníku a semestru
@@ -113,6 +115,43 @@ namespace UkolZakladyOOP
             {
                 Console.WriteLine("Neexistuje žádné cvičení");
             }
+        }
+
+        /// <summary>
+        /// Výpis všech registrovaných cvičení
+        /// </summary>
+        /// <param name="SubjectMarkList">Registrované předmety daného studenta</param>
+        /// <param name="CompletedExercises">Seznam dokončených cvičení</param>
+        public static void listAllAvailableExercise(List<SubjectMark> SubjectMarkList,
+            List<Exercise> CompletedExercises)
+        {
+            foreach (SubjectMark SubjectMark in
+                     SubjectMarkList) // projede všechny předměty daného studenta
+            {
+                foreach (Exercise Exercise in Exercise.Exercises.Where(Exercise =>
+                             SubjectMark.Subject == Exercise.Subject &&
+                             !SubjectMark.Completed &&
+                             !CompletedExercises
+                                 .Contains(
+                                     Exercise))) //projede všechny dostupné cvičení daného studenta (cvičení jejichž předmět mají registrovaný a nedokončený)
+                {
+                    Console.WriteLine($"{Exercise.Name}," +
+                                      $" počítač {Exercise.isComputerRequired()}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Vrátí jestli jsou dostupně nějaké cvičení
+        /// </summary>
+        /// <param name="SubjectMarkList">Registrované předmety daného studenta</param>
+        /// <param name="CompletedExercises">Seznam dokončených cvičení</param>
+        /// <returns></returns>
+        public static bool CheckAvailableExercisesCount(List<SubjectMark> SubjectMarkList,
+            List<Exercise> CompletedExercises)
+        {
+            return SubjectMarkList.Where(SM => !SM.Completed).Any(SubjectMark =>
+                SubjectMark.Subject.ExerciseCount != CompletedExercises.Count(CE => CE.Subject == SubjectMark.Subject));
         }
     }
 
