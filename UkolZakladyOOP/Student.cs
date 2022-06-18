@@ -64,13 +64,20 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Změní ročník všech studentů ze seznamu Students na následující
         /// </summary>
-        public static void nextYear()
+        public static void nextYear(int maxYear)
         {
             foreach (Student Student in Students)
             {
-                Student.Year += 1; // zvýšení ročníku daného studenta na následující
-                Console.WriteLine($"Aktuální ročník studenta {Student.returnFullName()} je {Student.Year}");
-                Student.SubjectMarkList = null; // vynulování seznamu známek daného studenta
+                if (Student.Year >= maxYear)
+                {
+                    Console.WriteLine($"Student {Student.returnFullName()} dokončíl tuto školu {Student.Year}");
+                }
+                else
+                {
+                    Student.Year += 1; // zvýšení ročníku daného studenta na následující
+                    Console.WriteLine($"Aktuální ročník studenta {Student.returnFullName()} je {Student.Year}");
+                    Student.SubjectMarkList = null; // vynulování seznamu známek daného studenta
+                }
             }
         }
 

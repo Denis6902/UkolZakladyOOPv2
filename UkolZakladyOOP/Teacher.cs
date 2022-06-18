@@ -623,8 +623,9 @@ namespace UkolZakladyOOP
         /// </summary>
         /// <param name="CurrentSemester">Aktuální semestr</param>
         /// <param name="creditsToAdvancement">Počet kreditů potřeba k dokončení semestru</param>
+        /// <param name="maxYear">Maximální ročník studenta</param>
         /// <returns></returns>
-        public static Semester nextSemester(Semester CurrentSemester, int creditsToAdvancement)
+        public static Semester nextSemester(Semester CurrentSemester, int creditsToAdvancement, int maxYear)
         {
             bool CanAdvancement = true;
 
@@ -655,7 +656,7 @@ namespace UkolZakladyOOP
                     case Semester.Winter:
                         CurrentSemester =
                             Semester.Summer; // pokud je aktuální semestr Winter, nastaví aktuální semestr na Summer
-                        Student.nextYear(); // nastaví další ročník
+                        Student.nextYear(maxYear); // nastaví další ročník
                         break;
                 }
 

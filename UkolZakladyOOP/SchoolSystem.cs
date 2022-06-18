@@ -28,6 +28,11 @@ namespace UkolZakladyOOP
         /// </summary>
         private int CreditsToAdvancement = 50;
 
+        /// <summary>
+        /// Maximální možný ročník studenta
+        /// </summary>
+        private int MaxYear = 3;
+
         public SchoolSystem()
         {
             fillLists(); // naplnění seznamů daty
@@ -306,7 +311,7 @@ namespace UkolZakladyOOP
 
                         case 12:
                             Console.WriteLine($"optionAsInt = {optionAsInt}"); // další semestr
-                            CurrentSemester = Teacher.nextSemester(CurrentSemester, CreditsToAdvancement);
+                            CurrentSemester = Teacher.nextSemester(CurrentSemester, CreditsToAdvancement, MaxYear);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
@@ -331,16 +336,17 @@ namespace UkolZakladyOOP
         /// <param name="ChosenPerson">Daná osoba, která metodu volá</param>
         private void listAllChoices(Person ChosenPerson)
         {
+            // toto se zavolá vždycky
             Console.Clear();
             Console.WriteLine($"Aktuální semestr: {CurrentSemester}");
-
+            Console.WriteLine("1) Zapsat se na předmět");
+            Console.WriteLine("2) Moje předměty");
+            Console.WriteLine("3) Změnit osobu / Hlavní menu");
+            Console.WriteLine("4) Kdo jsem");
+            
             switch (ChosenPerson) // podle toho kdo zavolá metodu, vypíše jednotlivé možnosti
             {
                 case Student: //pokud metodu zavolá student
-                    Console.WriteLine("1) Zapsat se na předmět");
-                    Console.WriteLine("2) Moje předměty");
-                    Console.WriteLine("3) Změnit osobu / Hlavní menu");
-                    Console.WriteLine("4) Kdo jsem");
                     Console.WriteLine("5) Udělat cvičení");
                     Console.WriteLine("6) Seznam všech učitelů");
                     Console.WriteLine("7) Jít na přednášku");
@@ -351,10 +357,6 @@ namespace UkolZakladyOOP
                     break;
 
                 case Teacher: // pokud metodu zavolá učitel
-                    Console.WriteLine("1) Zapsat se na předmět");
-                    Console.WriteLine("2) Moje předměty");
-                    Console.WriteLine("3) Změnit osobu / Hlavní menu");
-                    Console.WriteLine("4) Kdo jsem");
                     Console.WriteLine("5) Konec programu");
                     Console.WriteLine("6) Vytvořit nový předmět");
                     Console.WriteLine("7) Vytvořit nové cvičení");
