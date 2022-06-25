@@ -57,6 +57,16 @@ namespace UkolZakladyOOP
         public int Level;
 
         /// <summary>
+        /// Maximální počet skupin
+        /// </summary>
+        public int MaxGroupCount = 2;
+
+        /// <summary>
+        /// Maximální počet studentů v jedné skupině
+        /// </summary>  
+        public int MaxStudentsInGroup = 20;
+
+        /// <summary>
         /// Seznam všech předmětů
         /// </summary>
         public static List<Subject> Subjects = new();
@@ -200,6 +210,14 @@ namespace UkolZakladyOOP
         public static void createNewSubjectType(string subjectTypeName)
         {
             SubjectsTypes.Add(new SubjectType(subjectTypeName, false));
+        }
+
+        public int returnAvailableStudentCount()
+        {
+            return
+                MaxGroupCount *
+                (MaxStudentsInGroup -
+                 1); // TODO: dodělat odečtení od již počtu registrovaných studentů v daném předmětu
         }
     }
 
