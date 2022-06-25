@@ -222,7 +222,7 @@ namespace UkolZakladyOOP
                 // pokud je úroveň předmětu 1 a není v seznamu registrovaných předmětů a známek
                 if (Subject.Level == 1 && !SubjectMarkList.Exists(SM => SM.Subject == Subject))
                 {
-                    Subject.writeSubjectInfo(Subject); // vypíše informace o předmětu
+                    Subject.writeSubjectInfo(); // vypíše informace o předmětu
                 }
 
                 // projede seznam registrovaných předmětů a známek kde se předmět (z prvního Foreach) rovná předmětu v seznamu (SubjectMark)
@@ -245,7 +245,7 @@ namespace UkolZakladyOOP
                 if (subjectLevel == Subject.Level && !SubjectMarkList.Exists(SM => SM.Subject == Subject) &&
                     Subject.Name.Substring(0, lengthForCompare) == completedSubjectName)
                 {
-                    Subject.writeSubjectInfo(Subject); // vypíše inforace o předmětu
+                    Subject.writeSubjectInfo(); // vypíše inforace o předmětu
                 }
             }
         }
@@ -267,7 +267,7 @@ namespace UkolZakladyOOP
                 foreach (SubjectMark SubjectMark in
                          myNoCompletedSubjects) // projede nedokončené a registrované předměty v aktuálním ročnííku a semestru studenta
                 {
-                    Subject.writeSubjectInfo(SubjectMark.Subject, SubjectMark.Credits);
+                    SubjectMark.Subject.writeSubjectInfo(SubjectMark.Credits);
                 }
             }
             else // jestli ne, tak...

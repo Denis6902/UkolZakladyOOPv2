@@ -177,7 +177,7 @@ namespace UkolZakladyOOP
         /// </summary>
         /// <param name="Subject">Daný předmět k výpisu</param>
         /// <param name="creditsToFinish">Počet kreditů, kolik za dokončení získá</param>
-        public static void writeSubjectInfo(Subject Subject, double creditsToFinish = Double.NaN)
+        public void writeSubjectInfo(double creditsToFinish = Double.NaN)
         {
             // v případě že předmět není registrovaný,
             // tak se zavolá metoda bez parametru creditsToFinish
@@ -186,15 +186,15 @@ namespace UkolZakladyOOP
             // pokud je creditsToFinish NaN, nastaví se daná proměnná na Subject.Credits
             if (Double.IsNaN(creditsToFinish))
             {
-                creditsToFinish = Subject.Credits;
+                creditsToFinish = Credits;
             }
 
             // výpis informací o předmětu
             Console.WriteLine(
-                $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}" +
+                $"Předmět typu {Type.Name} s názvem {Name}" +
                 $", za dokončení {creditsToFinish} kreditů," +
-                $" garantem je {Subject.GarantOfSubject.returnFullName()}," +
-                $" Semestr: {Subject.Semester} (Level {Subject.Level})");
+                $" garantem je {GarantOfSubject.returnFullName()}," +
+                $" Semestr: {Semester} (Level {Level})");
         }
 
         public static void createNewSubjectType(string subjectTypeName)
