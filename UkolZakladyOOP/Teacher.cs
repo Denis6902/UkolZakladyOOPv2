@@ -120,7 +120,7 @@ namespace UkolZakladyOOP
             foreach (Subject Subject in
                      Subject.Subjects.Where(Subject => CurrentSemester == Subject.Semester && Subject.Teacher == null))
             {
-                Subject.writeSubjectInfo(Subject); // vypíše informace o předmětu
+                Subject.writeSubjectInfo(); // vypíše informace o předmětu
             }
 
             Console.WriteLine("Zadejte název předmětu");
@@ -142,7 +142,7 @@ namespace UkolZakladyOOP
                 // projede seznam předmětů, kde je učitel předmětu roven danému učiteli
                 foreach (Subject Subject in Subject.Subjects.Where(Subject => Subject.Teacher == this))
                 {
-                    Subject.writeSubjectInfo(Subject); // vypíše informace o předmětu
+                    Subject.writeSubjectInfo(); // vypíše informace o předmětu
                 }
             }
             else

@@ -17,7 +17,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Seznam registrovaných předmětů a známek studenta
         /// </summary>
-        private List<SubjectMark> SubjectMarkList = new();
+        public List<SubjectMark> SubjectMarkList = new();
 
         /// <summary>
         /// V jakém je student ročníku
@@ -163,7 +163,9 @@ namespace UkolZakladyOOP
                     Subject.Year == Year && Subject.Semester == CurrentSemester &&
                     !SubjectMarkList.Exists(SM => SM.Subject == Subject)))
             {
-                listSubjectsForRegister(CurrentSemester); // vypíše předměty dostupné k registraci
+                List<Subject>
+                    availableSubjects =
+                        returnAndWriteAvailableSubjects(CurrentSemester); // vypíše předměty dostupné k registraci
 
                 Console.WriteLine("Zadejte název předmětu");
                 //string subjectName = Console.ReadLine();
@@ -181,7 +183,7 @@ namespace UkolZakladyOOP
                 while (!Subject.Subjects.Exists(Subject =>
                            Subject.Name.ToLower() == subjectName.ToLower() && Subject.Year == Year &&
                            Subject.Semester == CurrentSemester && !SubjectMarkList.Exists(SM =>
-                               SM.Subject == Subject)))
+                               SM.Subject == Subject) && availableSubjects.Contains(Subject)))
                 {
                     Console.WriteLine("Neexistuje daný předmět");
                     Console.WriteLine("Zadej název existujícího předmětu");
@@ -192,10 +194,17 @@ namespace UkolZakladyOOP
                 Subject ChosenSubject =
                     Subject.Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower());
 
-                SubjectMark SubjectMark = new(ChosenSubject, SubjectMarkList);
+                if (ChosenSubject.returnRemainingStudentCount() <= 0)
+                {
+                    Console.WriteLine($"Nelze zaregistrovat předmět, je již plno");
+                }
+                else
+                {
+                    SubjectMark SubjectMark = new(ChosenSubject, SubjectMarkList);
 
-                Console.WriteLine(
-                    $"{returnFullName()} jsi zapsaný do {SubjectMark.Subject.Name} předmětu, semestr: {SubjectMark.Subject.Semester}");
+                    Console.WriteLine(
+                        $"{returnFullName()} jsi zapsaný do {SubjectMark.Subject.Name} předmětu, semestr: {SubjectMark.Subject.Semester}");
+                }
             }
             else
             {
@@ -207,12 +216,13 @@ namespace UkolZakladyOOP
         /// Výpis všech předmětů dostupných k registraci
         /// </summary>
         /// <param name="CurrentSemester">Aktuální semestr</param>
-        private void listSubjectsForRegister(Semester CurrentSemester)
+        private List<Subject> returnAndWriteAvailableSubjects(Semester CurrentSemester)
         {
-            int maxSubjectLevel = 2; // maximální úroveň předmětu
+            List<Subject> availableSubjects = new();
+
+            int maxSubjectLevel = Subject.Subjects.MaxBy(subject => subject.Level)!.Level; // maximální úroveň předmětu
             int subjectLevel = 1; // aktuální hledaná úroveň předmětu
-            const int lengthForCompare = 3; // počet znaků, podle kterých bude porovnávat předměty
-            string completedSubjectName = null; // ořezaný název dokončeného předmětuc 
+            SubjectType SType = null; // typ předmětu
 
             // projede všechny předměty a aktuálním semestru a ročníku a seřadí je podle názvu
             foreach (Subject Subject in Subject.Subjects.Where(Subject =>
@@ -222,7 +232,8 @@ namespace UkolZakladyOOP
                 // pokud je úroveň předmětu 1 a není v seznamu registrovaných předmětů a známek
                 if (Subject.Level == 1 && !SubjectMarkList.Exists(SM => SM.Subject == Subject))
                 {
-                    Subject.writeSubjectInfo(Subject); // vypíše informace o předmětu
+                    Subject.writeSubjectInfo(); // vypíše informace o předmětu
+                    availableSubjects.Add(Subject);
                 }
 
                 // projede seznam registrovaných předmětů a známek kde se předmět (z prvního Foreach) rovná předmětu v seznamu (SubjectMark)
@@ -234,20 +245,21 @@ namespace UkolZakladyOOP
                         subjectLevel += 1; // zvyší úroveň předmětu, kterou hledáme o 1
                     }
 
-                    completedSubjectName =
-                        Subject.Name.Substring(0,
-                            lengthForCompare); // uloží první (lengthForCompare) znaky do proměnné completedSubjectName
+                    SType = SubjectMark.Subject.Type; // uloží typ předmětu
                 }
 
                 // pokud se úroveň předmětu který hledáme (subjectLevel)
                 // rovná úrovni předmětu z foreach a daný předmět není v seznamu registrovaných předmětů a známek
-                // a název předmětu se rovná názvu předmětu který hledáme (completedSubjectName)
+                // a typ předmětu se rovná typu předmětu který hledáme (SType)
                 if (subjectLevel == Subject.Level && !SubjectMarkList.Exists(SM => SM.Subject == Subject) &&
-                    Subject.Name.Substring(0, lengthForCompare) == completedSubjectName)
+                    Subject.Type == SType)
                 {
-                    Subject.writeSubjectInfo(Subject); // vypíše inforace o předmětu
+                    Subject.writeSubjectInfo(); // vypíše inforace o předmětu
+                    availableSubjects.Add(Subject);
                 }
             }
+
+            return availableSubjects;
         }
 
         /// <summary>
@@ -267,7 +279,7 @@ namespace UkolZakladyOOP
                 foreach (SubjectMark SubjectMark in
                          myNoCompletedSubjects) // projede nedokončené a registrované předměty v aktuálním ročnííku a semestru studenta
                 {
-                    Subject.writeSubjectInfo(SubjectMark.Subject, SubjectMark.Credits);
+                    SubjectMark.Subject.writeSubjectInfo(SubjectMark.Credits);
                 }
             }
             else // jestli ne, tak...

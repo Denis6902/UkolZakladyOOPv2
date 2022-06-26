@@ -14,7 +14,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Typ předmětu
         /// </summary>
-        private SubjectType Type;
+        public SubjectType Type;
 
         /// <summary>
         /// Garant předmětu
@@ -133,9 +133,7 @@ namespace UkolZakladyOOP
         {
             foreach (Subject Subject in Subject.Subjects) // projede všechny předměty ze seznamu předmětů
             {
-                Console.WriteLine(
-                    $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}, za dokončení získá {Subject.Credits} kreditů" +
-                    $", garantem je {Subject.GarantOfSubject.returnFullName()}, semestr: {Subject.Semester}");
+                Subject.writeSubjectInfo();
             }
         }
 
@@ -149,9 +147,7 @@ namespace UkolZakladyOOP
             // projede všechny předměty daného typu
             foreach (Subject Subject in Subject.Subjects.Where(Subject => Subject.Type == subjectType))
             {
-                Console.WriteLine(
-                    $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů," +
-                    $" garantem je {Subject.GarantOfSubject.returnFullName()}, Semestr: {Subject.Semester}");
+                Subject.writeSubjectInfo();
             }
         }
 
@@ -187,7 +183,7 @@ namespace UkolZakladyOOP
         /// </summary>
         /// <param name="Subject">Daný předmět k výpisu</param>
         /// <param name="creditsToFinish">Počet kreditů, kolik za dokončení získá</param>
-        public static void writeSubjectInfo(Subject Subject, double creditsToFinish = Double.NaN)
+        public void writeSubjectInfo(double creditsToFinish = Double.NaN)
         {
             // v případě že předmět není registrovaný,
             // tak se zavolá metoda bez parametru creditsToFinish
@@ -196,15 +192,16 @@ namespace UkolZakladyOOP
             // pokud je creditsToFinish NaN, nastaví se daná proměnná na Subject.Credits
             if (Double.IsNaN(creditsToFinish))
             {
-                creditsToFinish = Subject.Credits;
+                creditsToFinish = Credits;
             }
 
             // výpis informací o předmětu
             Console.WriteLine(
-                $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}" +
+                $"Předmět typu {Type.Name} s názvem {Name}" +
                 $", za dokončení {creditsToFinish} kreditů," +
-                $" garantem je {Subject.GarantOfSubject.returnFullName()}," +
-                $" Semestr: {Subject.Semester} (Level {Subject.Level})");
+                $" garantem je {GarantOfSubject.returnFullName()}," +
+                $" Semestr: {Semester} (Level {Level})" +
+                $", zbýva {returnRemainingStudentCount()} míst");
         }
 
         public static void createNewSubjectType(string subjectTypeName)
@@ -212,12 +209,34 @@ namespace UkolZakladyOOP
             SubjectsTypes.Add(new SubjectType(subjectTypeName, false));
         }
 
-        public int returnAvailableStudentCount()
+        /// <summary>
+        /// Vrátí počet volných míst daného předmětu
+        /// </summary>
+        /// <returns>Počet volných míst</returns>
+        public int returnRemainingStudentCount()
         {
-            return
-                MaxGroupCount *
-                (MaxStudentsInGroup -
-                 1); // TODO: dodělat odečtení od již počtu registrovaných studentů v daném předmětu
+            int count = 0;
+            
+            // projede všechny studenty
+            Student.Students.ForEach(
+                (OneStudent) =>
+                {
+                    // projede všechny registrované předměty
+                    OneStudent.SubjectMarkList.ForEach(
+                        (SM) =>
+                        {
+                            // pokud najde daný předmět, zvyší count o 1
+                            if (SM.Subject == this)
+                            {
+                                count++;
+                            }
+                        }
+                    );
+                }
+            );
+            
+            // vrátí násobek počtu skupin a maximálního počtu studentů v jedné skupině, odečtený od již obsazených míst
+            return (MaxGroupCount * MaxStudentsInGroup) - count;
         }
     }
 
