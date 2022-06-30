@@ -386,25 +386,25 @@ namespace UkolZakladyOOP
             SubjectType SubjectTypeEnglish = Subject.SubjectsTypes.Find(ST => ST.Name == "English");
             SubjectType SubjectTypeXxx = Subject.SubjectsTypes.Find(ST => ST.Name == "xxx");
 
-            Subject English1_1 = new("English1_1", SubjectTypeEnglish, Pavel, Pavel, 50, 1, Semester.Summer, 1);
-            Subject xxx1_1 = new("xxx1_1", SubjectTypeXxx, Aneta, null, 50, 1, Semester.Summer, 1); // TEST_ONLY
-            Subject Czech1_1 = new("Czech1_1", SubjectTypeCzech, Aneta, Aneta, 50, 1, Semester.Winter, 1);
+            Subject English1_1 = new("English1_1", SubjectTypeEnglish, Pavel, Pavel, 50, 1, Semester.Summer, 1, 2, 20);
+            Subject xxx1_1 = new("xxx1_1", SubjectTypeXxx, Aneta, null, 50, 1, Semester.Summer, 1, 2, 20); // TEST_ONLY
+            Subject Czech1_1 = new("Czech1_1", SubjectTypeCzech, Aneta, Aneta, 50, 1, Semester.Winter, 1, 2, 20);
 
-            Subject English2_1 = new("English2_1", SubjectTypeEnglish, Pavel, Pavel, 50, 2, Semester.Summer, 1);
-            Subject Czech2_1 = new("Czech2_1", SubjectTypeCzech, Aneta, Aneta, 50, 2, Semester.Winter, 1);
+            Subject English2_1 = new("English2_1", SubjectTypeEnglish, Pavel, Pavel, 50, 2, Semester.Summer, 1, 2, 20);
+            Subject Czech2_1 = new("Czech2_1", SubjectTypeCzech, Aneta, Aneta, 50, 2, Semester.Winter, 1, 2, 20);
 
-            Subject English3_1 = new("English3_1", SubjectTypeEnglish, Pavel, Pavel, 50, 3, Semester.Summer, 1);
-            Subject Czech3_1 = new("Czech3_1", SubjectTypeCzech, Aneta, Aneta, 50, 3, Semester.Winter, 1);
+            Subject English3_1 = new("English3_1", SubjectTypeEnglish, Pavel, Pavel, 50, 3, Semester.Summer, 1, 2, 20);
+            Subject Czech3_1 = new("Czech3_1", SubjectTypeCzech, Aneta, Aneta, 50, 3, Semester.Winter, 1, 2, 20);
 
-            Subject English1_2 = new("English1_2", SubjectTypeEnglish, Pavel, Pavel, 50, 1, Semester.Summer, 2);
-            Subject xxx_2 = new("xxx1_2", SubjectTypeXxx, Aneta, Aneta, 50, 1, Semester.Summer, 2); // TEST_ONLY
-            Subject Czech1_2 = new("Czech1_2", SubjectTypeCzech, Aneta, Aneta, 50, 1, Semester.Winter, 2);
+            Subject English1_2 = new("English1_2", SubjectTypeEnglish, Pavel, Pavel, 50, 1, Semester.Summer, 2, 2, 20);
+            Subject xxx_2 = new("xxx1_2", SubjectTypeXxx, Aneta, Aneta, 50, 1, Semester.Summer, 2, 2, 20); // TEST_ONLY
+            Subject Czech1_2 = new("Czech1_2", SubjectTypeCzech, Aneta, Aneta, 50, 1, Semester.Winter, 2, 2, 20);
 
-            Subject English2_2 = new("English2_2", SubjectTypeEnglish, Pavel, Pavel, 50, 2, Semester.Summer, 2);
-            Subject Czech2_2 = new("Czech2_2", SubjectTypeCzech, Aneta, Aneta, 50, 2, Semester.Winter, 2);
+            Subject English2_2 = new("English2_2", SubjectTypeEnglish, Pavel, Pavel, 50, 2, Semester.Summer, 2, 2, 20);
+            Subject Czech2_2 = new("Czech2_2", SubjectTypeCzech, Aneta, Aneta, 50, 2, Semester.Winter, 2, 2, 20);
 
-            Subject English3_2 = new("English3_2", SubjectTypeEnglish, Pavel, Pavel, 50, 3, Semester.Summer, 2);
-            Subject Czech3_2 = new("Czech3_2", SubjectTypeCzech, Aneta, Aneta, 50, 3, Semester.Winter, 2);
+            Subject English3_2 = new("English3_2", SubjectTypeEnglish, Pavel, Pavel, 50, 3, Semester.Summer, 2, 2, 20);
+            Subject Czech3_2 = new("Czech3_2", SubjectTypeCzech, Aneta, Aneta, 50, 3, Semester.Winter, 2, 2, 20);
 
             Lecture.LecturesTypes.Add(new LectureType("Přednáška z Češtiny", SubjectTypeCzech, true));
             Lecture.LecturesTypes.Add(new LectureType("Přednáška z Angličtiny", SubjectTypeEnglish, true));

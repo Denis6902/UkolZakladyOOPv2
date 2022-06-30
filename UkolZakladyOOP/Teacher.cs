@@ -247,8 +247,14 @@ namespace UkolZakladyOOP
             int subjectLevel = Random.Shared.Next(1, 3);
             Console.WriteLine($"subjectLevel = {subjectLevel}");
 
+            int maxGroupCount = 2; // maximální počet skupin
+            Console.WriteLine($"maxGroupCount = {maxGroupCount}");
+
+            int maxStudentsInGroup = 20; // maximální počet studentů v jedné skupině
+            Console.WriteLine($"maxStudentsInGroup = {maxStudentsInGroup}");
+
             Subject NewSubject = new(subjectName, SubjectType, GarantOfSubject, ChosenTeacher, credits, year, Semester,
-                subjectLevel);
+                subjectLevel, maxGroupCount, maxStudentsInGroup);
 
             Thread.Sleep(delay * 4);
         }
@@ -301,18 +307,22 @@ namespace UkolZakladyOOP
             int subjectLevel = Random.Shared.Next(1, 3);
             Console.WriteLine($"$subjectLevel = {subjectLevel}");
 
+            int maxGroupCount = 2; // maximální počet skupin
+            Console.WriteLine($"maxGroupCount = {maxGroupCount}");
+
+            int maxStudentsInGroup = 20; // maximální počet studentů v jedné skupině
+            Console.WriteLine($"maxStudentsInGroup = {maxStudentsInGroup}");
+
             switch (subjectTypeName.ToLower()) // podle zvoleného předmětu vytvoří daný předmět
             {
                 case "czech":
                     Subject Czech = SubjectFactory.CreateCzech(subjectName, ChosenTeacher, GarantOfSubject, credits,
-                        year,
-                        Semester, subjectLevel);
+                        year, Semester, subjectLevel, maxGroupCount, maxStudentsInGroup);
                     break;
 
                 case "english":
                     Subject English = SubjectFactory.CreateEnglish(subjectName, ChosenTeacher, GarantOfSubject, credits,
-                        year,
-                        Semester, subjectLevel);
+                        year, Semester, subjectLevel, maxGroupCount, maxStudentsInGroup);
                     break;
 
                 default:

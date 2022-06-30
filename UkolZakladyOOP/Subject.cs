@@ -59,12 +59,12 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Maximální počet skupin
         /// </summary>
-        public int MaxGroupCount = 2;
+        public int MaxGroupCount;
 
         /// <summary>
         /// Maximální počet studentů v jedné skupině
         /// </summary>  
-        public int MaxStudentsInGroup = 20;
+        public int MaxStudentsInGroup;
 
         /// <summary>
         /// Seznam všech předmětů
@@ -87,9 +87,10 @@ namespace UkolZakladyOOP
         /// <param name="year">Ročník pro jaký je daný předmět</param>
         /// <param name="semester">Semestr pro jaký je daný předmět</param>
         /// <param name="level">Úroveň předmětu</param>
+        /// <param name="maxGroupCount">Maximální počet skupin</param>
+        /// <param name="maxStudentsInGroup">Maximální počet studentů v jedné skupině</param>
         public Subject(string name, SubjectType type, Teacher garantOfSubject, Teacher teacher, int credits,
-            int year,
-            Semester semester, int level)
+            int year, Semester semester, int level, int maxGroupCount, int maxStudentsInGroup)
         {
             Name = name;
             Type = type;
@@ -99,6 +100,8 @@ namespace UkolZakladyOOP
             Semester = semester;
             Year = year;
             Level = level;
+            MaxGroupCount = maxGroupCount;
+            MaxStudentsInGroup = maxStudentsInGroup;
             Subjects.Add(this);
         }
 
@@ -179,26 +182,14 @@ namespace UkolZakladyOOP
         }
 
         /// <summary>
-        /// Výpis informací o předmětu
+        /// Výpis informací o neregistrovaném předmětu
         /// </summary>
-        /// <param name="Subject">Daný předmět k výpisu</param>
-        /// <param name="creditsToFinish">Počet kreditů, kolik za dokončení získá</param>
-        public void writeSubjectInfo(double creditsToFinish = Double.NaN)
+        public void writeSubjectInfo()
         {
-            // v případě že předmět není registrovaný,
-            // tak se zavolá metoda bez parametru creditsToFinish
-            // a tím pádem je parametr creditsToFinish NaN
-
-            // pokud je creditsToFinish NaN, nastaví se daná proměnná na Subject.Credits
-            if (Double.IsNaN(creditsToFinish))
-            {
-                creditsToFinish = Credits;
-            }
-
             // výpis informací o předmětu
             Console.WriteLine(
                 $"Předmět typu {Type.Name} s názvem {Name}" +
-                $", za dokončení {creditsToFinish} kreditů," +
+                $", za dokončení {Credits} kreditů," +
                 $" garantem je {GarantOfSubject.returnFullName()}," +
                 $" Semestr: {Semester} (Level {Level})" +
                 $", zbýva {returnRemainingStudentCount()} míst");
@@ -216,7 +207,7 @@ namespace UkolZakladyOOP
         public int returnRemainingStudentCount()
         {
             int count = 0;
-            
+
             // projede všechny studenty
             Student.Students.ForEach(
                 (OneStudent) =>
@@ -234,7 +225,7 @@ namespace UkolZakladyOOP
                     );
                 }
             );
-            
+
             // vrátí násobek počtu skupin a maximálního počtu studentů v jedné skupině, odečtený od již obsazených míst
             return (MaxGroupCount * MaxStudentsInGroup) - count;
         }
@@ -247,19 +238,17 @@ namespace UkolZakladyOOP
     class SubjectFactory
     {
         public static Subject CreateCzech(string subjectName, Teacher teacher, Teacher garantOfSubject, int credits,
-            int year, Semester semester, int subjectLevel)
+            int year, Semester semester, int subjectLevel, int maxGroupCount, int maxStudentsInGroup)
         {
             return new Subject(subjectName, Subject.SubjectsTypes.Find(ST => ST.Name == "Czech"), teacher,
-                garantOfSubject,
-                credits, year, semester, subjectLevel);
+                garantOfSubject, credits, year, semester, subjectLevel, maxGroupCount, maxStudentsInGroup);
         }
 
         public static Subject CreateEnglish(string subjectName, Teacher teacher, Teacher garantOfSubject,
-            int credits,
-            int year, Semester semester, int subjectLevel)
+            int credits, int year, Semester semester, int subjectLevel, int maxGroupCount, int maxStudentsInGroup)
         {
             return new Subject(subjectName, Subject.SubjectsTypes.Find(ST => ST.Name == "English"), teacher,
-                garantOfSubject, credits, year, semester, subjectLevel);
+                garantOfSubject, credits, year, semester, subjectLevel, maxGroupCount, maxGroupCount);
         }
     }
 

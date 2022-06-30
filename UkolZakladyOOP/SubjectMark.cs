@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace UkolZakladyOOP
 {
@@ -27,26 +28,54 @@ namespace UkolZakladyOOP
         /// </summary>
         public bool Completed = false;
 
-        /*/// <summary>
-        /// Jestli jsou všechny cvičení daného předmětu dokončené
-        /// </summary>
-        public bool AllExercisesDone = false;
-        
         /// <summary>
-        /// Jestli jsou všechny přednášky daného předmětu dokončené
+        /// Číslo skupiny
         /// </summary>
-        public bool AllLecturesDone = false;*/
+        public int GroupNumber;
 
         /// <summary>
         /// Konstruktor. Přidá automaticky instanci do seznamu SubjectMarkList.
         /// </summary>
         /// <param name="subject">Předmět</param>
         /// <param name="SubjectMarkList">Seznam předmětů a známek studenta</param>
-        public SubjectMark(Subject subject, List<SubjectMark> SubjectMarkList)
+        /// <param name="groupNumber">Číslo skupiny</param>
+        public SubjectMark(Subject subject, List<SubjectMark> SubjectMarkList, int groupNumber)
         {
             Subject = subject;
             Credits = Subject.Credits;
+            GroupNumber = (groupNumber <= Subject.MaxGroupCount && groupNumber > 0)
+                ? groupNumber
+                : returnRandomGroupNumber();
             SubjectMarkList.Add(this);
+        }
+
+        /// <summary>
+        /// Metoda k vygenerování náhodného čísla, které je validní pro daný předmět.
+        /// </summary>
+        /// <returns>Náhodně validní číslo skupiny pro daný předmět</returns>
+        private int returnRandomGroupNumber()
+        {
+            Console.WriteLine("Nesprávné číslo skupiny");
+            Console.WriteLine("Generuji náhodné číslo");
+
+            int number = Random.Shared.Next(1, Subject.MaxGroupCount + 1);
+            Console.WriteLine($"number = {number}");
+
+            return number;
+        }
+
+        /// <summary>
+        /// Výpis informací o registrrovaném předmětu
+        /// </summary>
+        public void writeSubjectMarkInfo()
+        {
+            // výpis informací o předmětu
+            Console.WriteLine(
+                $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}" +
+                $", za dokončení {Credits} kreditů," +
+                $" garantem je {Subject.GarantOfSubject.returnFullName()}," +
+                $" Semestr: {Subject.Semester} (Level {Subject.Level})" +
+                $", jsi ve skupině {GroupNumber}.");
         }
     }
 }
