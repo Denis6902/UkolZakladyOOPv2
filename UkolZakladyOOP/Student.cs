@@ -191,7 +191,7 @@ namespace UkolZakladyOOP
                     Subject.Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower());
 
                 SubjectMark SubjectMark = new(ChosenSubject, SubjectMarkList,
-                    Random.Shared.Next(1, ChosenSubject.MaxGroupCount + 1));
+                    Random.Shared.Next(1, ChosenSubject.MaxGroupCount + 1), this);
 
                 Console.WriteLine(
                     $"{returnFullName()} jsi zapsaný do {SubjectMark.Subject.Name} předmětu, semestr: {SubjectMark.Subject.Semester}");
