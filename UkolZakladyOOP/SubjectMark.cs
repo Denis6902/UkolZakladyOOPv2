@@ -32,6 +32,11 @@ namespace UkolZakladyOOP
         /// Číslo skupiny
         /// </summary>
         public int GroupNumber;
+        
+        /// <summary>
+        /// Skupina
+        /// </summary>
+        public SubjectGroup Group;
 
         /// <summary>
         /// Konstruktor. Přidá automaticky instanci do seznamu SubjectMarkList.
@@ -39,13 +44,28 @@ namespace UkolZakladyOOP
         /// <param name="subject">Předmět</param>
         /// <param name="SubjectMarkList">Seznam předmětů a známek studenta</param>
         /// <param name="groupNumber">Číslo skupiny</param>
-        public SubjectMark(Subject subject, List<SubjectMark> SubjectMarkList, int groupNumber)
+        /// <param name="student">Daný student</param>
+        public SubjectMark(Subject subject, List<SubjectMark> SubjectMarkList, int groupNumber, Student student)
         {
             Subject = subject;
             Credits = Subject.Credits;
             GroupNumber = (groupNumber <= Subject.MaxGroupCount && groupNumber > 0)
                 ? groupNumber
                 : returnRandomGroupNumber();
+            // najde skupinu podle ID
+            Group = SubjectGroup.SubjectGroups.Find(SG => SG.Id == GroupNumber);
+            
+            // pokud je volné místo
+            if (Group.canIJoinGroup())
+            {
+                // přidá studenta to skupiny
+                Group?.addToGroup(student);
+            }
+            else
+            {
+                // vybere náhodně skupinu
+                Group = SubjectGroup.SubjectGroups.Find(SG => SG.Id == returnRandomGroupNumber());
+            }
             SubjectMarkList.Add(this);
         }
 
