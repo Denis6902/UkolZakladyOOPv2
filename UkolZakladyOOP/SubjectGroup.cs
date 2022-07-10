@@ -28,6 +28,11 @@ public class SubjectGroup
     private int RemainingInGroup;
 
     /// <summary>
+    /// Seznam všech skupin
+    /// </summary>
+    public static List<SubjectGroup> SubjectGroups = new();
+
+    /// <summary>
     /// Konstruktor
     /// </summary>
     /// <param name="id"></param>
@@ -38,15 +43,25 @@ public class SubjectGroup
         Id = id;
         Teacher = teacher;
         RemainingInGroup = remainingInGroup;
+        SubjectGroups.Add(this);
     }
 
     /// <summary>
     /// Metoda k přidaní do skupiny
     /// </summary>
-    /// <param name="student"></param>
+    /// <param name="student">Student, kterého chceme přidat</param>
     public void addToGroup(Student student)
     {
-        Students.Add(student);
-        RemainingInGroup = RemainingInGroup - 1;
+        Students.Add(student); // přidá studenta do skupiny
+        RemainingInGroup = RemainingInGroup - 1; // změní počet volných míst
+    }
+
+    /// <summary>
+    /// Je ve skupině ještě volné místo??
+    /// </summary>
+    /// <returns>Je/Není volné místo (true/false)</returns>
+    public bool canIJoinGroup()
+    {
+        return RemainingInGroup > 0;
     }
 }
