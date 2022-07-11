@@ -103,6 +103,12 @@ namespace UkolZakladyOOP
             MaxGroupCount = maxGroupCount;
             MaxStudentsInGroup = maxStudentsInGroup;
             Subjects.Add(this);
+            
+            // Vytvoření skupin
+            for (int i = 0; i < maxGroupCount; i++)
+            {
+                SubjectGroup SG = new(Teacher, maxStudentsInGroup);
+            }
         }
 
         /// <summary>
