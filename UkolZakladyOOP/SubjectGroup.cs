@@ -35,12 +35,11 @@ public class SubjectGroup
     /// <summary>
     /// Konstruktor
     /// </summary>
-    /// <param name="id"></param>
-    /// <param name="teacher"></param>
+    /// <param name="teacher">Učitel, který učí v dané skupině</param>
     /// <param name="remainingInGroup"></param>
-    public SubjectGroup(int id, Teacher teacher, int remainingInGroup)
+    public SubjectGroup(Teacher teacher, int remainingInGroup)
     {
-        Id = id;
+        Id = SubjectGroups.Count + 1;
         Teacher = teacher;
         RemainingInGroup = remainingInGroup;
         SubjectGroups.Add(this);
