@@ -196,11 +196,6 @@ namespace UkolZakladyOOP
                 $" garantem je {GarantOfSubject.returnFullName()}," +
                 $" Semestr: {Semester} (Level {Level})");
         }
-
-        public static void createNewSubjectType(string subjectTypeName)
-        {
-            SubjectsTypes.Add(new SubjectType(subjectTypeName, false));
-        }
     }
 
 
@@ -243,6 +238,12 @@ namespace UkolZakladyOOP
         {
             Name = name;
             HasFactory = hasFactory;
+        }
+        
+        
+        public static void createNewSubjectType(string subjectTypeName)
+        {
+            Subject.SubjectsTypes.Add(new SubjectType(subjectTypeName, false));
         }
     }
 }

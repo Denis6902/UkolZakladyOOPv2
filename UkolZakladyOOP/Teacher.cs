@@ -210,7 +210,7 @@ namespace UkolZakladyOOP
             {
                 Console.WriteLine("Zadejte název nového typu předmětu:");
                 subjectTypeName = Console.ReadLine();
-                Subject.createNewSubjectType(subjectTypeName);
+                SubjectType.createNewSubjectType(subjectTypeName);
                 SubjectType = Subject.SubjectsTypes.Find(ST => ST.Name.ToLower() == subjectTypeName.ToLower());
                 Console.WriteLine($"SubjectType = {SubjectType.Name}");
             }
