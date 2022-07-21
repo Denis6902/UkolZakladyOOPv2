@@ -156,7 +156,7 @@ namespace UkolZakladyOOP
         /// Metoda k registrování předmětu
         /// </summary>
         /// <param name="CurrentSemester">Aktuální semestr</param>
-        public void registerSubject(Semester CurrentSemester)
+        public void Type(Semester CurrentSemester)
         {
             //kontola jestli existuje nějaký neregistrovaný předmět v aktuánlím ročníku a semestru
             if (Subject.Subjects.Any(Subject =>
@@ -177,11 +177,21 @@ namespace UkolZakladyOOP
 
                 Console.WriteLine($"subjectName = {subjectName}");
 
+                // TODO: dodělat zrušení funkce, jestli je subjectName -> ""
+                // TODO: zjednodušit podmínku...
+
                 // kontrola jestli existuje neregistrovaný přemět v aktuálním roce a semestru s daným názvem
                 while (!Subject.Subjects.Exists(Subject =>
                            Subject.Name.ToLower() == subjectName.ToLower() && Subject.Year == Year &&
                            Subject.Semester == CurrentSemester && !SubjectMarkList.Exists(SM =>
-                               SM.Subject == Subject)))
+                               SM.Subject == Subject)) ||
+                       (!SubjectMarkList.Exists(SM => SM.Completed && SM.Subject.Type == Subject.Subjects.Find(
+                               Subject =>
+                                   Subject.Name.ToLower() == subjectName.ToLower())!.Type && SM.Subject.Level + 1 ==
+                           Subject.Subjects.Find(Subject =>
+                               Subject.Name.ToLower() == subjectName.ToLower())!.Level) && Subject.Subjects.Find(
+                           Subject =>
+                               Subject.Name.ToLower() == subjectName.ToLower())!.Level != 1))
                 {
                     Console.WriteLine("Neexistuje daný předmět");
                     Console.WriteLine("Zadej název existujícího předmětu");
