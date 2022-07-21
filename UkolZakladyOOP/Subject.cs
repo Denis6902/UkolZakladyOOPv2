@@ -14,7 +14,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Typ předmětu
         /// </summary>
-        private SubjectType Type;
+        public SubjectType Type;
 
         /// <summary>
         /// Garant předmětu
