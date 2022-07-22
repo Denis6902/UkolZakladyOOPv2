@@ -176,8 +176,8 @@ namespace UkolZakladyOOP
                 }
 
                 Console.WriteLine($"subjectName = {subjectName}");
-                
-                
+
+
                 // kontrola jestli existuje neregistrovaný přemět v aktuálním roce a semestru s daným názvem,
                 // který je pro něj dostupný
                 while ((!Subject.Subjects.Exists(Subject =>
@@ -395,12 +395,13 @@ namespace UkolZakladyOOP
                     CompletedExercises); // vypíše všechny dostupné cvičení
                 Console.WriteLine("Zadejte název cvičení");
 
-                //string exerciseName = Console.ReadLine();
-                string exerciseName = "Cvičení z Angličtiny1_1";
+                string exerciseName = Console.ReadLine();
+                //string exerciseName = "Cvičení z Angličtiny1_1";
                 Console.WriteLine($"exerciseName = {exerciseName}");
 
-                while (!SubjectMarkList.Exists(SM => SM.Subject == Exercise.Exercises.Find(
-                           Exercise => Exercise.Name.ToLower() == exerciseName.ToLower()).Subject && !SM.Completed))
+                while ((!SubjectMarkList.Exists(SM => SM.Subject == Exercise.Exercises.Find(
+                           Exercise => Exercise.Name.ToLower() == exerciseName?.ToLower())?.Subject && !SM.Completed)) &&
+                       exerciseName != "")
                 {
                     Console.WriteLine("Předmět daného cvičení nemáš zaregistrovaný");
                     Console.WriteLine("Zadej název cvičení jehož předmět máš zaregistrovaný:");
@@ -408,12 +409,17 @@ namespace UkolZakladyOOP
                     Console.WriteLine($"exerciseName = {exerciseName}");
                 }
 
-                Exercise ChosenExercise =
-                    Exercise.selectExercise(exerciseName, this, CurrentSemester, CompletedExercises); // výběr cvičení
+                // pokud uživatel něco zadal
+                if (exerciseName != "")
+                {
+                    Exercise ChosenExercise =
+                        Exercise.selectExercise(exerciseName, this, CurrentSemester,
+                            CompletedExercises); // výběr cvičení
 
-                CompletedExercises.Add(ChosenExercise);
+                    CompletedExercises.Add(ChosenExercise);
 
-                Console.WriteLine($"Dokončil jsi cvičení {ChosenExercise.Name}");
+                    Console.WriteLine($"Dokončil jsi cvičení {ChosenExercise.Name}");
+                }
             }
             else
             {
