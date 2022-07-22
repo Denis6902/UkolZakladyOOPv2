@@ -156,7 +156,7 @@ namespace UkolZakladyOOP
         /// Metoda k registrování předmětu
         /// </summary>
         /// <param name="CurrentSemester">Aktuální semestr</param>
-        public void Type(Semester CurrentSemester)
+        public void registerSubject(Semester CurrentSemester)
         {
             //kontola jestli existuje nějaký neregistrovaný předmět v aktuánlím ročníku a semestru
             if (Subject.Subjects.Any(Subject =>
