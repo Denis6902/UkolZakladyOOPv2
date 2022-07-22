@@ -181,10 +181,10 @@ namespace UkolZakladyOOP
                 // kontrola jestli existuje neregistrovaný přemět v aktuálním roce a semestru s daným názvem,
                 // který je pro něj dostupný
                 while ((!Subject.Subjects.Exists(Subject =>
-                           Subject.Name.ToLower() == subjectName.ToLower() && Subject.Year == Year &&
-                           Subject.Semester == CurrentSemester && !SubjectMarkList.Exists(SM =>
-                               SM.Subject == Subject))
-                       || Subject.isPreviousSubjectCompleted(SubjectMarkList, subjectName)) && subjectName != ""
+                            Subject.Name.ToLower() == subjectName.ToLower() && Subject.Year == Year &&
+                            Subject.Semester == CurrentSemester && !SubjectMarkList.Exists(SM =>
+                                SM.Subject == Subject))
+                        || Subject.isPreviousSubjectCompleted(SubjectMarkList, subjectName)) && subjectName != ""
                       )
                 {
                     Console.WriteLine("Neexistuje daný předmět");
@@ -325,25 +325,30 @@ namespace UkolZakladyOOP
 
                 Console.WriteLine("Zadejte název přednášky");
 
-                //string lectureName = Console.ReadLine();
-                string lectureName = "Přednáška z Angličtiny1_1";
-                Lecture ChosenLecture =
-                    Lecture.selectLecture(lectureName, this, CurrentSemester, CompletedLectures); // výběr přednášky
+                string lectureName = Console.ReadLine();
+                //string lectureName = "Přednáška z Angličtiny1_1";
                 Console.WriteLine($"lectureName = {lectureName}");
-
-                if (!SubjectMarkList.Exists(SM => SM.Subject == ChosenLecture.Subject && !SM.Completed))
+                
+                while ((!SubjectMarkList.Exists(SM => SM.Subject == Lecture.Lectures.Find(
+                       Lecture => Lecture.Name.ToLower() == lectureName?.ToLower())?.Subject && !SM.Completed)) && 
+                       lectureName != "")
                 {
                     Console.WriteLine("Předmět dané přednášky nemáš zaregistrovaný");
                     Console.WriteLine("Zadej název přednášky jehož předmět máš zaregistrovaný:");
                     lectureName = Console.ReadLine();
-                    ChosenLecture =
-                        Lecture.selectLecture(lectureName, this, CurrentSemester, CompletedLectures); // výběr cvičení
                     Console.WriteLine($"lectureName = {lectureName}");
                 }
 
-                CompletedLectures.Add(ChosenLecture);
+                // pokud uživatel něco zadal
+                if (lectureName != "")
+                {
+                    Lecture ChosenLecture =
+                        Lecture.selectLecture(lectureName, this, CurrentSemester, CompletedLectures); // výběr přednášky
 
-                Console.WriteLine($"Šel jsi na přednášku {ChosenLecture.Name}");
+                    CompletedLectures.Add(ChosenLecture);
+
+                    Console.WriteLine($"Šel jsi na přednášku {ChosenLecture.Name}");
+                }
             }
             else // pokud ne, tak...    
             {
