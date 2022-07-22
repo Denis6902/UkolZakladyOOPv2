@@ -176,10 +176,8 @@ namespace UkolZakladyOOP
                 }
 
                 Console.WriteLine($"subjectName = {subjectName}");
-
-                // TODO: dodělat zrušení funkce, jestli je subjectName -> ""
-                // TODO: zjednodušit podmínku...
-
+                
+                
                 // kontrola jestli existuje neregistrovaný přemět v aktuálním roce a semestru s daným názvem,
                 // který je pro něj dostupný
                 while ((!Subject.Subjects.Exists(Subject =>
