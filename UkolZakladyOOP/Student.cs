@@ -180,32 +180,32 @@ namespace UkolZakladyOOP
                 // TODO: dodělat zrušení funkce, jestli je subjectName -> ""
                 // TODO: zjednodušit podmínku...
 
-                // kontrola jestli existuje neregistrovaný přemět v aktuálním roce a semestru s daným názvem
-                while (!Subject.Subjects.Exists(Subject =>
+                // kontrola jestli existuje neregistrovaný přemět v aktuálním roce a semestru s daným názvem,
+                // který je pro něj dostupný
+                while ((!Subject.Subjects.Exists(Subject =>
                            Subject.Name.ToLower() == subjectName.ToLower() && Subject.Year == Year &&
                            Subject.Semester == CurrentSemester && !SubjectMarkList.Exists(SM =>
-                               SM.Subject == Subject)) ||
-                       (!SubjectMarkList.Exists(SM => SM.Completed && SM.Subject.Type == Subject.Subjects.Find(
-                               Subject =>
-                                   Subject.Name.ToLower() == subjectName.ToLower())!.Type && SM.Subject.Level + 1 ==
-                           Subject.Subjects.Find(Subject =>
-                               Subject.Name.ToLower() == subjectName.ToLower())!.Level) && Subject.Subjects.Find(
-                           Subject =>
-                               Subject.Name.ToLower() == subjectName.ToLower())!.Level != 1))
+                               SM.Subject == Subject))
+                       || Subject.isPreviousSubjectCompleted(SubjectMarkList, subjectName)) && subjectName != ""
+                      )
                 {
                     Console.WriteLine("Neexistuje daný předmět");
                     Console.WriteLine("Zadej název existujícího předmětu");
                     subjectName = Console.ReadLine();
                 }
 
-                // najde a uloží do proměnné hledaný předmět podle zddaného jména
-                Subject ChosenSubject =
-                    Subject.Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower());
+                // pokud uživatel něco zadal
+                if (subjectName != "")
+                {
+                    // najde a uloží do proměnné hledaný předmět podle zddaného jména
+                    Subject ChosenSubject =
+                        Subject.Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower());
 
-                SubjectMark SubjectMark = new(ChosenSubject, SubjectMarkList);
+                    SubjectMark SubjectMark = new(ChosenSubject, SubjectMarkList);
 
-                Console.WriteLine(
-                    $"{returnFullName()} jsi zapsaný do {SubjectMark.Subject.Name} předmětu, semestr: {SubjectMark.Subject.Semester}");
+                    Console.WriteLine(
+                        $"{returnFullName()} jsi zapsaný do {SubjectMark.Subject.Name} předmětu, semestr: {SubjectMark.Subject.Semester}");
+                }
             }
             else
             {

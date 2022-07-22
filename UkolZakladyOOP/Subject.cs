@@ -196,6 +196,20 @@ namespace UkolZakladyOOP
                 $" garantem je {GarantOfSubject.returnFullName()}," +
                 $" Semestr: {Semester} (Level {Level})");
         }
+
+        /// <summary>
+        /// Kontrola, jestli má student dokončený předmět předchozí úrovně
+        /// </summary>
+        /// <returns>true/false</returns>
+        public static bool isPreviousSubjectCompleted(List<SubjectMark> SubjectMarkList, string subjectName)
+        {
+            return (!SubjectMarkList.Exists(SM => SM.Completed &&
+                    SM.Subject.Type ==
+                    Subject.Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower())!.Type 
+                    && SM.Subject.Level + 1 == Subject.Subjects.Find(Subject => Subject.Name.ToLower()
+                        == subjectName.ToLower())!.Level) 
+                    && Subject.Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower())!.Level != 1);
+        }
     }
 
 
@@ -239,8 +253,8 @@ namespace UkolZakladyOOP
             Name = name;
             HasFactory = hasFactory;
         }
-        
-        
+
+
         public static void createNewSubjectType(string subjectTypeName)
         {
             Subject.SubjectsTypes.Add(new SubjectType(subjectTypeName, false));
