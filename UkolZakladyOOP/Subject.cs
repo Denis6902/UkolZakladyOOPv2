@@ -100,7 +100,7 @@ namespace UkolZakladyOOP
         public static Subject selectSubject(string subjectName)
         {
             // kontrola jestli existuje předmět s daným názvem
-            while (!Subjects.Exists(Subject => Subject.Name.ToLower() == subjectName.ToLower()))
+            while ((!Subjects.Exists(Subject => Subject.Name.ToLower() == subjectName.ToLower())) && subjectName != "")
             {
                 Console.WriteLine("Neexistuje daný předmět");
                 Console.WriteLine("Zadej název existujícího předmětu");
@@ -109,11 +109,18 @@ namespace UkolZakladyOOP
                 // pokud neexistuje, spustí znovu celý cyklus s novým vstupem od uživatele
             }
 
-            Subject ChosenSubject = Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower());
-            // vybere předmět s daným názvem
+            if (subjectName != "")
+            {
+                Subject ChosenSubject = Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower());
+                // vybere předmět s daným názvem
 
-            Console.WriteLine($"ChosenSubject = {ChosenSubject.Name}");
-            return ChosenSubject; // vrátí předmět s daným názvem
+                Console.WriteLine($"ChosenSubject = {ChosenSubject.Name}");
+                return ChosenSubject; // vrátí předmět s daným názvem
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -204,10 +211,12 @@ namespace UkolZakladyOOP
         public static bool isPreviousSubjectCompleted(List<SubjectMark> SubjectMarkList, string subjectName)
         {
             return (!SubjectMarkList.Exists(SM => SM.Completed &&
-                    SM.Subject.Type ==
-                    Subject.Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower())!.Type 
-                    && SM.Subject.Level + 1 == Subject.Subjects.Find(Subject => Subject.Name.ToLower()
-                        == subjectName.ToLower())!.Level) 
+                                                  SM.Subject.Type ==
+                                                  Subject.Subjects.Find(Subject =>
+                                                      Subject.Name.ToLower() == subjectName.ToLower())!.Type
+                                                  && SM.Subject.Level + 1 == Subject.Subjects.Find(Subject =>
+                                                      Subject.Name.ToLower()
+                                                      == subjectName.ToLower())!.Level)
                     && Subject.Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower())!.Level != 1);
         }
     }

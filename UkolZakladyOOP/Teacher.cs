@@ -129,7 +129,12 @@ namespace UkolZakladyOOP
 
             Subject SubjectForRegister = Subject.selectSubject(subjectName);
             // vybrání zvoleného předmětu a uložení do proměnné
-            SubjectForRegister.Teacher = this; // nastaví zvolenému předmětu daného učitele
+
+            // nastaví zvolenému předmětu daného učitele
+            if (SubjectForRegister != null)
+            {
+                SubjectForRegister.Teacher = this;
+            }
         }
 
         /// <summary>
