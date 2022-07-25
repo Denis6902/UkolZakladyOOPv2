@@ -129,7 +129,12 @@ namespace UkolZakladyOOP
 
             Subject SubjectForRegister = Subject.selectSubject(subjectName);
             // vybrání zvoleného předmětu a uložení do proměnné
-            SubjectForRegister.Teacher = this; // nastaví zvolenému předmětu daného učitele
+
+            // nastaví zvolenému předmětu daného učitele
+            if (SubjectForRegister != null)
+            {
+                SubjectForRegister.Teacher = this;
+            }
         }
 
         /// <summary>
@@ -210,7 +215,7 @@ namespace UkolZakladyOOP
             {
                 Console.WriteLine("Zadejte název nového typu předmětu:");
                 subjectTypeName = Console.ReadLine();
-                Subject.createNewSubjectType(subjectTypeName);
+                SubjectType.createNewSubjectType(subjectTypeName);
                 SubjectType = Subject.SubjectsTypes.Find(ST => ST.Name.ToLower() == subjectTypeName.ToLower());
                 Console.WriteLine($"SubjectType = {SubjectType.Name}");
             }

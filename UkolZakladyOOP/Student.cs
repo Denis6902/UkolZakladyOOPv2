@@ -158,10 +158,11 @@ namespace UkolZakladyOOP
         /// <param name="CurrentSemester">Aktuální semestr</param>
         public void registerSubject(Semester CurrentSemester)
         {
+            
             List<Subject>
                 availableSubjects =
                     returnAndWriteAvailableSubjects(CurrentSemester); // uloží předměty dostupné k registraci
-
+            
             //kontola jestli existuje nějaký neregistrovaný předmět v aktuánlím ročníku a semestru
             if (availableSubjects.Any())
             {
@@ -186,15 +187,20 @@ namespace UkolZakladyOOP
                     subjectName = Console.ReadLine();
                 }
 
-                // najde a uloží do proměnné hledaný předmět podle zddaného jména
-                Subject ChosenSubject =
-                    Subject.Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower());
 
-                SubjectMark SubjectMark = new(ChosenSubject, SubjectMarkList,
-                    Random.Shared.Next(1, ChosenSubject.MaxGroupCount + 1), this);
+                // pokud uživatel něco zadal
+                if (subjectName != "")
+                {
+                    // najde a uloží do proměnné hledaný předmět podle zddaného jména
+                    Subject ChosenSubject =
+                        Subject.Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower());
 
-                Console.WriteLine(
-                    $"{returnFullName()} jsi zapsaný do {SubjectMark.Subject.Name} předmětu, semestr: {SubjectMark.Subject.Semester}");
+                    SubjectMark SubjectMark = new(ChosenSubject, SubjectMarkList,
+                        Random.Shared.Next(1, ChosenSubject.MaxGroupCount + 1), this);
+
+                    Console.WriteLine(
+                        $"{returnFullName()} jsi zapsaný do {SubjectMark.Subject.Name} předmětu, semestr: {SubjectMark.Subject.Semester}");
+                }
             }
             else
             {
@@ -320,25 +326,30 @@ namespace UkolZakladyOOP
 
                 Console.WriteLine("Zadejte název přednášky");
 
-                //string lectureName = Console.ReadLine();
-                string lectureName = "Přednáška z Angličtiny1_1";
-                Lecture ChosenLecture =
-                    Lecture.selectLecture(lectureName, this, CurrentSemester, CompletedLectures); // výběr přednášky
+                string lectureName = Console.ReadLine();
+                //string lectureName = "Přednáška z Angličtiny1_1";
                 Console.WriteLine($"lectureName = {lectureName}");
-
-                if (!SubjectMarkList.Exists(SM => SM.Subject == ChosenLecture.Subject && !SM.Completed))
+                
+                while ((!SubjectMarkList.Exists(SM => SM.Subject == Lecture.Lectures.Find(
+                       Lecture => Lecture.Name.ToLower() == lectureName?.ToLower())?.Subject && !SM.Completed)) && 
+                       lectureName != "")
                 {
                     Console.WriteLine("Předmět dané přednášky nemáš zaregistrovaný");
                     Console.WriteLine("Zadej název přednášky jehož předmět máš zaregistrovaný:");
                     lectureName = Console.ReadLine();
-                    ChosenLecture =
-                        Lecture.selectLecture(lectureName, this, CurrentSemester, CompletedLectures); // výběr cvičení
                     Console.WriteLine($"lectureName = {lectureName}");
                 }
 
-                CompletedLectures.Add(ChosenLecture);
+                // pokud uživatel něco zadal
+                if (lectureName != "")
+                {
+                    Lecture ChosenLecture =
+                        Lecture.selectLecture(lectureName, this, CurrentSemester, CompletedLectures); // výběr přednášky
 
-                Console.WriteLine($"Šel jsi na přednášku {ChosenLecture.Name}");
+                    CompletedLectures.Add(ChosenLecture);
+
+                    Console.WriteLine($"Šel jsi na přednášku {ChosenLecture.Name}");
+                }
             }
             else // pokud ne, tak...    
             {
@@ -394,8 +405,9 @@ namespace UkolZakladyOOP
                 string exerciseName = "Cvičení z Angličtiny1_1";
                 Console.WriteLine($"exerciseName = {exerciseName}");
 
-                while (!SubjectMarkList.Exists(SM => SM.Subject == Exercise.Exercises.Find(
-                           Exercise => Exercise.Name.ToLower() == exerciseName.ToLower()).Subject && !SM.Completed))
+                while ((!SubjectMarkList.Exists(SM => SM.Subject == Exercise.Exercises.Find(
+                           Exercise => Exercise.Name.ToLower() == exerciseName?.ToLower())?.Subject && !SM.Completed)) &&
+                       exerciseName != "")
                 {
                     Console.WriteLine("Předmět daného cvičení nemáš zaregistrovaný");
                     Console.WriteLine("Zadej název cvičení jehož předmět máš zaregistrovaný:");
@@ -403,12 +415,17 @@ namespace UkolZakladyOOP
                     Console.WriteLine($"exerciseName = {exerciseName}");
                 }
 
-                Exercise ChosenExercise =
-                    Exercise.selectExercise(exerciseName, this, CurrentSemester, CompletedExercises); // výběr cvičení
+                // pokud uživatel něco zadal
+                if (exerciseName != "")
+                {
+                    Exercise ChosenExercise =
+                        Exercise.selectExercise(exerciseName, this, CurrentSemester,
+                            CompletedExercises); // výběr cvičení
 
-                CompletedExercises.Add(ChosenExercise);
+                    CompletedExercises.Add(ChosenExercise);
 
-                Console.WriteLine($"Dokončil jsi cvičení {ChosenExercise.Name}");
+                    Console.WriteLine($"Dokončil jsi cvičení {ChosenExercise.Name}");
+                }
             }
             else
             {

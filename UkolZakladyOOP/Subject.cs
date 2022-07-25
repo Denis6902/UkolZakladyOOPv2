@@ -103,7 +103,7 @@ namespace UkolZakladyOOP
             MaxGroupCount = maxGroupCount;
             MaxStudentsInGroup = maxStudentsInGroup;
             Subjects.Add(this);
-            
+
             // Vytvoření skupin
             for (int i = 0; i < maxGroupCount; i++)
             {
@@ -119,7 +119,7 @@ namespace UkolZakladyOOP
         public static Subject selectSubject(string subjectName)
         {
             // kontrola jestli existuje předmět s daným názvem
-            while (!Subjects.Exists(Subject => Subject.Name.ToLower() == subjectName.ToLower()))
+            while ((!Subjects.Exists(Subject => Subject.Name.ToLower() == subjectName.ToLower())) && subjectName != "")
             {
                 Console.WriteLine("Neexistuje daný předmět");
                 Console.WriteLine("Zadej název existujícího předmětu");
@@ -128,11 +128,18 @@ namespace UkolZakladyOOP
                 // pokud neexistuje, spustí znovu celý cyklus s novým vstupem od uživatele
             }
 
-            Subject ChosenSubject = Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower());
-            // vybere předmět s daným názvem
+            if (subjectName != "")
+            {
+                Subject ChosenSubject = Subjects.Find(Subject => Subject.Name.ToLower() == subjectName.ToLower());
+                // vybere předmět s daným názvem
 
-            Console.WriteLine($"ChosenSubject = {ChosenSubject.Name}");
-            return ChosenSubject; // vrátí předmět s daným názvem
+                Console.WriteLine($"ChosenSubject = {ChosenSubject.Name}");
+                return ChosenSubject; // vrátí předmět s daným názvem
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -142,7 +149,11 @@ namespace UkolZakladyOOP
         {
             foreach (Subject Subject in Subject.Subjects) // projede všechny předměty ze seznamu předmětů
             {
-                Subject.writeSubjectInfo();
+                Console.WriteLine(
+                    $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}, za dokončení získá {Subject.Credits} kreditů" +
+                    $", garantem je {Subject.GarantOfSubject.returnFullName()}, semestr: {Subject.Semester}");
+                
+                // TODO: možná Subject.writeSubjectInfo(); ??
             }
         }
 
@@ -156,7 +167,11 @@ namespace UkolZakladyOOP
             // projede všechny předměty daného typu
             foreach (Subject Subject in Subject.Subjects.Where(Subject => Subject.Type == subjectType))
             {
-                Subject.writeSubjectInfo();
+                Console.WriteLine(
+                    $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů," +
+                    $" garantem je {Subject.GarantOfSubject.returnFullName()}, Semestr: {Subject.Semester}");
+                
+                // TODO: možná Subject.writeSubjectInfo(); ??
             }
         }
 
@@ -200,7 +215,7 @@ namespace UkolZakladyOOP
                 $" Semestr: {Semester} (Level {Level})" +
                 $", zbýva {returnRemainingStudentCount()} míst");
         }
-
+        
         public static void createNewSubjectType(string subjectTypeName)
         {
             SubjectsTypes.Add(new SubjectType(subjectTypeName, false));
