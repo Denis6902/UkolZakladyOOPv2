@@ -78,9 +78,9 @@ namespace UkolZakladyOOP
             List<Exercise> CompletedExercises)
         {
             // kontrola jestli existuje cvičení s daným názvem v aktuálním ročníku a semestru
-            while (!Exercises.Exists(Exercise =>
+            while ((!Exercises.Exists(Exercise =>
                        Exercise.Name.ToLower() == exerciseName.ToLower() && Exercise.Subject.Year == Student.Year &&
-                       Exercise.Subject.Semester == CurrentSemester && !CompletedExercises.Contains(Exercise)))
+                       Exercise.Subject.Semester == CurrentSemester && !CompletedExercises.Contains(Exercise))) && exerciseName != "")
             {
                 Console.WriteLine("Neexistuje dané cvičení");
                 Console.WriteLine("Zadej název existujícího cvičení");

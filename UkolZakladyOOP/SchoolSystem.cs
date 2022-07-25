@@ -375,16 +375,16 @@ namespace UkolZakladyOOP
         /// </summary>
         private void fillLists()
         {
-            Subject.SubjectsTypes.Add(new SubjectType("Czech", true));
-            Subject.SubjectsTypes.Add(new SubjectType("English", true));
-            Subject.SubjectsTypes.Add(new SubjectType("xxx", false));
+            SubjectType.SubjectsTypes.Add(new SubjectType("Czech", true));
+            SubjectType.SubjectsTypes.Add(new SubjectType("English", true));
+            SubjectType.SubjectsTypes.Add(new SubjectType("xxx", false));
 
             Teacher Pavel = new("Ing.", "Pavel", "Novotný", new DateTime(1980, 2, 9));
             Teacher Aneta = new("Mgr.", "Aneta", "Nováková", new DateTime(1987, 1, 8));
 
-            SubjectType SubjectTypeCzech = Subject.SubjectsTypes.Find(ST => ST.Name == "Czech");
-            SubjectType SubjectTypeEnglish = Subject.SubjectsTypes.Find(ST => ST.Name == "English");
-            SubjectType SubjectTypeXxx = Subject.SubjectsTypes.Find(ST => ST.Name == "xxx");
+            SubjectType SubjectTypeCzech = SubjectType.SubjectsTypes.Find(ST => ST.Name == "Czech");
+            SubjectType SubjectTypeEnglish = SubjectType.SubjectsTypes.Find(ST => ST.Name == "English");
+            SubjectType SubjectTypeXxx = SubjectType.SubjectsTypes.Find(ST => ST.Name == "xxx");
 
             Subject English1_1 = new("English1_1", SubjectTypeEnglish, Pavel, Pavel, 50, 1, Semester.Summer, 1, 2, 20);
             Subject xxx1_1 = new("xxx1_1", SubjectTypeXxx, Aneta, null, 50, 1, Semester.Summer, 1, 2, 20); // TEST_ONLY

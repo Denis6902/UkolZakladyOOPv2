@@ -72,11 +72,6 @@ namespace UkolZakladyOOP
         public static List<Subject> Subjects = new();
 
         /// <summary>
-        /// Seznam všech druhů předmětu
-        /// </summary>
-        public static List<SubjectType> SubjectsTypes = new();
-
-        /// <summary>
         /// Konstruktor. Automaticky přídá předmět d  seznamu předmětů
         /// </summary>
         /// <param name="name">Název</param>
@@ -215,11 +210,6 @@ namespace UkolZakladyOOP
                 $" Semestr: {Semester} (Level {Level})" +
                 $", zbýva {returnRemainingStudentCount()} míst");
         }
-        
-        public static void createNewSubjectType(string subjectTypeName)
-        {
-            SubjectsTypes.Add(new SubjectType(subjectTypeName, false));
-        }
 
         /// <summary>
         /// Vrátí počet volných míst daného předmětu
@@ -261,14 +251,14 @@ namespace UkolZakladyOOP
         public static Subject CreateCzech(string subjectName, Teacher teacher, Teacher garantOfSubject, int credits,
             int year, Semester semester, int subjectLevel, int maxGroupCount, int maxStudentsInGroup)
         {
-            return new Subject(subjectName, Subject.SubjectsTypes.Find(ST => ST.Name == "Czech"), teacher,
+            return new Subject(subjectName, SubjectType.SubjectsTypes.Find(ST => ST.Name == "Czech"), teacher,
                 garantOfSubject, credits, year, semester, subjectLevel, maxGroupCount, maxStudentsInGroup);
         }
 
         public static Subject CreateEnglish(string subjectName, Teacher teacher, Teacher garantOfSubject,
             int credits, int year, Semester semester, int subjectLevel, int maxGroupCount, int maxStudentsInGroup)
         {
-            return new Subject(subjectName, Subject.SubjectsTypes.Find(ST => ST.Name == "English"), teacher,
+            return new Subject(subjectName, SubjectType.SubjectsTypes.Find(ST => ST.Name == "English"), teacher,
                 garantOfSubject, credits, year, semester, subjectLevel, maxGroupCount, maxGroupCount);
         }
     }
@@ -285,11 +275,21 @@ namespace UkolZakladyOOP
         /// Jestli jde vytvořit předmět daného typu pomocí Factory
         /// </summary>
         public bool HasFactory;
+        
+        /// <summary>
+        /// Seznam všech druhů předmětu
+        /// </summary>
+        public static List<SubjectType> SubjectsTypes = new();
 
         public SubjectType(string name, bool hasFactory)
         {
             Name = name;
             HasFactory = hasFactory;
+        }
+        
+        public static void createNewSubjectType(string subjectTypeName)
+        {
+            SubjectsTypes.Add(new SubjectType(subjectTypeName, false));
         }
     }
 }

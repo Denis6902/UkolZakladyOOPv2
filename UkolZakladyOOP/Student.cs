@@ -158,11 +158,10 @@ namespace UkolZakladyOOP
         /// <param name="CurrentSemester">Aktuální semestr</param>
         public void registerSubject(Semester CurrentSemester)
         {
-            
             List<Subject>
                 availableSubjects =
                     returnAndWriteAvailableSubjects(CurrentSemester); // uloží předměty dostupné k registraci
-            
+
             //kontola jestli existuje nějaký neregistrovaný předmět v aktuánlím ročníku a semestru
             if (availableSubjects.Any())
             {
@@ -179,8 +178,9 @@ namespace UkolZakladyOOP
                 Console.WriteLine($"subjectName = {subjectName}");
 
                 // kontrola jestli existuje neregistrovaný přemět v aktuálním roce a semestru s daným názvem
-                while (!Subject.Subjects.Exists(Subject =>
-                           Subject.Name.ToLower() == subjectName.ToLower() && availableSubjects.Contains(Subject)))
+                while ((!Subject.Subjects.Exists(Subject =>
+                           Subject.Name.ToLower() == subjectName.ToLower() && availableSubjects.Contains(Subject))) &&
+                       subjectName != "")
                 {
                     Console.WriteLine("Neexistuje daný předmět");
                     Console.WriteLine("Zadej název existujícího předmětu");
@@ -326,12 +326,12 @@ namespace UkolZakladyOOP
 
                 Console.WriteLine("Zadejte název přednášky");
 
-                string lectureName = Console.ReadLine();
-                //string lectureName = "Přednáška z Angličtiny1_1";
+                //string lectureName = Console.ReadLine();
+                string lectureName = "Přednáška z Angličtiny1_1";
                 Console.WriteLine($"lectureName = {lectureName}");
-                
+
                 while ((!SubjectMarkList.Exists(SM => SM.Subject == Lecture.Lectures.Find(
-                       Lecture => Lecture.Name.ToLower() == lectureName?.ToLower())?.Subject && !SM.Completed)) && 
+                           Lecture => Lecture.Name.ToLower() == lectureName?.ToLower())?.Subject && !SM.Completed)) &&
                        lectureName != "")
                 {
                     Console.WriteLine("Předmět dané přednášky nemáš zaregistrovaný");
@@ -346,9 +346,12 @@ namespace UkolZakladyOOP
                     Lecture ChosenLecture =
                         Lecture.selectLecture(lectureName, this, CurrentSemester, CompletedLectures); // výběr přednášky
 
-                    CompletedLectures.Add(ChosenLecture);
+                    if (ChosenLecture != null)
+                    {
+                        CompletedLectures.Add(ChosenLecture);
 
-                    Console.WriteLine($"Šel jsi na přednášku {ChosenLecture.Name}");
+                        Console.WriteLine($"Šel jsi na přednášku {ChosenLecture.Name}");
+                    }
                 }
             }
             else // pokud ne, tak...    
@@ -406,7 +409,9 @@ namespace UkolZakladyOOP
                 Console.WriteLine($"exerciseName = {exerciseName}");
 
                 while ((!SubjectMarkList.Exists(SM => SM.Subject == Exercise.Exercises.Find(
-                           Exercise => Exercise.Name.ToLower() == exerciseName?.ToLower())?.Subject && !SM.Completed)) &&
+                                                          Exercise => Exercise.Name.ToLower() ==
+                                                                      exerciseName?.ToLower())?.Subject &&
+                                                      !SM.Completed)) &&
                        exerciseName != "")
                 {
                     Console.WriteLine("Předmět daného cvičení nemáš zaregistrovaný");
@@ -422,9 +427,12 @@ namespace UkolZakladyOOP
                         Exercise.selectExercise(exerciseName, this, CurrentSemester,
                             CompletedExercises); // výběr cvičení
 
-                    CompletedExercises.Add(ChosenExercise);
+                    if (ChosenExercise != null)
+                    {
+                        CompletedExercises.Add(ChosenExercise);
 
-                    Console.WriteLine($"Dokončil jsi cvičení {ChosenExercise.Name}");
+                        Console.WriteLine($"Dokončil jsi cvičení {ChosenExercise.Name}");
+                    }
                 }
             }
             else

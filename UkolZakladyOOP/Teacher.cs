@@ -200,7 +200,7 @@ namespace UkolZakladyOOP
             string subjectName = "Nový Předmět"; // načtení z konzole názvu nového předmětu
             Console.WriteLine($"subjectName = {subjectName}");
 
-            foreach (SubjectType SType in Subject.SubjectsTypes)
+            foreach (SubjectType SType in SubjectType.SubjectsTypes)
             {
                 Console.WriteLine(SType.Name); // výpis všech typů předmětů
             }
@@ -216,19 +216,19 @@ namespace UkolZakladyOOP
                 Console.WriteLine("Zadejte název nového typu předmětu:");
                 subjectTypeName = Console.ReadLine();
                 SubjectType.createNewSubjectType(subjectTypeName);
-                SubjectType = Subject.SubjectsTypes.Find(ST => ST.Name.ToLower() == subjectTypeName.ToLower());
+                SubjectType = SubjectType.SubjectsTypes.Find(ST => ST.Name.ToLower() == subjectTypeName.ToLower());
                 Console.WriteLine($"SubjectType = {SubjectType.Name}");
             }
 
             // kontrola jestli existuje typ předmětu s daným názvem
-            while (!Subject.SubjectsTypes.Exists(ST => ST.Name.ToLower() == subjectTypeName.ToLower()))
+            while (!SubjectType.SubjectsTypes.Exists(ST => ST.Name.ToLower() == subjectTypeName.ToLower()))
             {
                 Console.WriteLine("Nesprávný typ předmětu");
                 Console.WriteLine("Zvolte správný typ předmětu");
                 subjectTypeName = Console.ReadLine();
             }
 
-            SubjectType = Subject.SubjectsTypes.Find(ST => ST.Name.ToLower() == subjectTypeName.ToLower());
+            SubjectType = SubjectType.SubjectsTypes.Find(ST => ST.Name.ToLower() == subjectTypeName.ToLower());
             Console.WriteLine($"SubjectType = {SubjectType.Name}");
 
             Console.WriteLine("Garant předmětu: ");
@@ -271,7 +271,7 @@ namespace UkolZakladyOOP
         {
             Console.WriteLine("Předmět jakého typu chcete vytvořit:");
 
-            foreach (SubjectType SType in Subject.SubjectsTypes.Where(ST => ST.HasFactory))
+            foreach (SubjectType SType in SubjectType.SubjectsTypes.Where(ST => ST.HasFactory))
             {
                 Console.WriteLine(SType.Name); // výpis všech typů předmětů
             }
@@ -279,7 +279,7 @@ namespace UkolZakladyOOP
             string subjectTypeName = "Czech";
 
             // kontrola jestli existuje typ předmětu s daným názvem co má factory
-            while (!Subject.SubjectsTypes.Exists(ST => ST.Name.ToLower() == subjectTypeName.ToLower() && ST.HasFactory))
+            while (!SubjectType.SubjectsTypes.Exists(ST => ST.Name.ToLower() == subjectTypeName.ToLower() && ST.HasFactory))
             {
                 Console.WriteLine("Nesprávný typ předmětu");
                 Console.WriteLine("Zadejte správný typ předmětu");
@@ -448,7 +448,7 @@ namespace UkolZakladyOOP
             Console.WriteLine($"exerciseName = {exerciseName}");
 
             SubjectType ChosenSubjectType =
-                Subject.SubjectsTypes.Find(ST => ST.Name == "English"); // zvolení typu předmětu podle cvičení
+                SubjectType.SubjectsTypes.Find(ST => ST.Name == "English"); // zvolení typu předmětu podle cvičení
             Subject.listSubjectsWithOnlyOneType(ChosenSubjectType); // vypíše všechny předměty daného typu
 
             //string subjectName = Console.ReadLine();
@@ -605,7 +605,7 @@ namespace UkolZakladyOOP
             Console.WriteLine($"lectureName = {lectureName}");
 
             SubjectType ChosenSubjectType =
-                Subject.SubjectsTypes.Find(ST =>
+                SubjectType.SubjectsTypes.Find(ST =>
                     ST.Name == ChosenLectureType.SubjectType.Name); // zvolení typu předmětu podle přednášky
             Subject.listSubjectsWithOnlyOneType(ChosenSubjectType); // vypíše všechny předměty daného typu
 

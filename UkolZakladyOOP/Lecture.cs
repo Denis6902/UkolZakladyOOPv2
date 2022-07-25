@@ -84,9 +84,9 @@ namespace UkolZakladyOOP
             List<Lecture> CompletedLectures)
         {
             // kontrola jestli existuje přednáška s daným názvem v aktuálním ročníku a semestru
-            while (!Lectures.Exists(Lecture =>
+            while ((!Lectures.Exists(Lecture =>
                        Lecture.Name.ToLower() == lectureName.ToLower() && Lecture.Subject.Year == Student.Year &&
-                       Lecture.Subject.Semester == CurrentSemester && !CompletedLectures.Contains(Lecture)))
+                       Lecture.Subject.Semester == CurrentSemester && !CompletedLectures.Contains(Lecture))) && lectureName != "")
             {
                 Console.WriteLine("Neexistuje dané cvičení / Předmět dané přednášky nemáš zaregistrovaný");
                 Console.WriteLine("Zadej název platného cvičení");
@@ -95,12 +95,19 @@ namespace UkolZakladyOOP
                 // pokud neexistuje, spustí znovu celý cyklus s novým vstupem od uživatele
             }
 
-            Lecture ChosenLecture = Lectures.Find(Lecture =>
-                Lecture.Name.ToLower() == lectureName.ToLower() && Lecture.Subject.Year == Student.Year &&
-                Lecture.Subject.Semester == CurrentSemester);
-            // vybere existující přednášku s daným názvem v aktuálním ročníku a semestru
+            if (lectureName != null)
+            {
+                Lecture ChosenLecture = Lectures.Find(Lecture =>
+                    Lecture.Name.ToLower() == lectureName.ToLower() && Lecture.Subject.Year == Student.Year &&
+                    Lecture.Subject.Semester == CurrentSemester);
+                // vybere existující přednášku s daným názvem v aktuálním ročníku a semestru
 
-            return ChosenLecture; // vratí přednášku s daným názvem v aktuálním ročníku a semestru
+                return ChosenLecture; // vratí přednášku s daným názvem v aktuálním ročníku a semestru
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>
