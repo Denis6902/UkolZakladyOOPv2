@@ -72,6 +72,11 @@ namespace UkolZakladyOOP
         public static List<Subject> Subjects = new();
 
         /// <summary>
+        /// Skupiny tohoto předmětu
+        /// </summary>
+        public List<SubjectGroup> Groups = new();
+
+        /// <summary>
         /// Konstruktor. Automaticky přídá předmět d  seznamu předmětů
         /// </summary>
         /// <param name="name">Název</param>
@@ -103,6 +108,7 @@ namespace UkolZakladyOOP
             for (int i = 0; i < maxGroupCount; i++)
             {
                 SubjectGroup SG = new(Teacher, maxStudentsInGroup);
+                Groups.Add(SG);
             }
         }
 
@@ -147,7 +153,7 @@ namespace UkolZakladyOOP
                 Console.WriteLine(
                     $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}, za dokončení získá {Subject.Credits} kreditů" +
                     $", garantem je {Subject.GarantOfSubject.returnFullName()}, semestr: {Subject.Semester}");
-                
+
                 // TODO: možná Subject.writeSubjectInfo(); ??
             }
         }
@@ -165,7 +171,7 @@ namespace UkolZakladyOOP
                 Console.WriteLine(
                     $"Předmět typu {Subject.Type.Name} s názvem {Subject.Name}, k dokončení je potřeba {Subject.Credits} kreditů," +
                     $" garantem je {Subject.GarantOfSubject.returnFullName()}, Semestr: {Subject.Semester}");
-                
+
                 // TODO: možná Subject.writeSubjectInfo(); ??
             }
         }
@@ -275,7 +281,7 @@ namespace UkolZakladyOOP
         /// Jestli jde vytvořit předmět daného typu pomocí Factory
         /// </summary>
         public bool HasFactory;
-        
+
         /// <summary>
         /// Seznam všech druhů předmětu
         /// </summary>
@@ -286,7 +292,7 @@ namespace UkolZakladyOOP
             Name = name;
             HasFactory = hasFactory;
         }
-        
+
         public static void createNewSubjectType(string subjectTypeName)
         {
             SubjectsTypes.Add(new SubjectType(subjectTypeName, false));

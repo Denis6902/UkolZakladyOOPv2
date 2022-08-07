@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UkolZakladyOOP
 {
@@ -32,7 +33,7 @@ namespace UkolZakladyOOP
         /// Číslo skupiny
         /// </summary>
         public int GroupNumber;
-        
+
         /// <summary>
         /// Skupina
         /// </summary>
@@ -54,9 +55,9 @@ namespace UkolZakladyOOP
                 : returnRandomGroupNumber();
             // najde skupinu podle ID
             Group = SubjectGroup.SubjectGroups.Find(SG => SG.Id == GroupNumber);
-            
+
             // pokud je volné místo
-            if (Group.canIJoinGroup())
+            if (Group.canIJoinGroup(groupNumber))
             {
                 // přidá studenta to skupiny
                 Group?.addToGroup(student);
@@ -66,6 +67,7 @@ namespace UkolZakladyOOP
                 // vybere náhodně skupinu
                 Group = SubjectGroup.SubjectGroups.Find(SG => SG.Id == returnRandomGroupNumber());
             }
+
             SubjectMarkList.Add(this);
         }
 
@@ -78,7 +80,19 @@ namespace UkolZakladyOOP
             Console.WriteLine("Nesprávné číslo skupiny");
             Console.WriteLine("Generuji náhodné číslo");
 
-            int number = Random.Shared.Next(1, Subject.MaxGroupCount + 1);
+
+            List<SubjectGroup> availableSubjectGroups =
+                SubjectGroup.returnAvailableSubjectGroups()
+                    .FindAll(SG => Subject.Groups.Contains(SG)); // uloží do sezanmu všechny skupony daného předmětu
+            List<int> availableIdOfGroups = new List<int>(); // Seznam id dostupných skupin
+
+            // Přidání všech daých id do seznamu
+            availableSubjectGroups.ForEach(SG => availableIdOfGroups.Add(SG.Id));
+
+            // vygerenuje náhodné číslo 0 - délka seznamu
+            int randomNumber = Random.Shared.Next(0, availableIdOfGroups.Count);
+            // vybere id ze seznamu id s indexem náhodného čísla
+            int number = availableIdOfGroups[randomNumber];
             Console.WriteLine($"number = {number}");
 
             return number;

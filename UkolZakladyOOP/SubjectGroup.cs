@@ -59,8 +59,17 @@ public class SubjectGroup
     /// Je ve skupině ještě volné místo??
     /// </summary>
     /// <returns>Je/Není volné místo (true/false)</returns>
-    public bool canIJoinGroup()
+    public bool canIJoinGroup(int groupNumber)
     {
-        return RemainingInGroup > 0;
+        return RemainingInGroup > 0 && groupNumber == Id;
+    }
+
+    /// <summary>
+    /// Vrátí dostupné skupiny, které mají volné místo
+    /// </summary>
+    /// <returns>List dostupných skupin</returns>
+    public static List<SubjectGroup> returnAvailableSubjectGroups()
+    {
+        return SubjectGroups.FindAll(SG => SG.RemainingInGroup > 0);
     }
 }
