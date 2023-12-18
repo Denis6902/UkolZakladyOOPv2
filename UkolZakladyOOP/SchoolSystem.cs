@@ -110,86 +110,86 @@ namespace UkolZakladyOOP
                     switch (optionAsInt) // jednotlívé volby
                     {
                         case 1:
-                            Console.WriteLine("optionAsInt = 1");
+                            // Console.WriteLine("optionAsInt = 1");
                             ChosenStudent.registerSubject(CurrentSemester); // zapsaní se na předmět
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 2:
-                            Console.WriteLine("optionAsInt = 2"); // zapsané předměty
+                            // Console.WriteLine("optionAsInt = 2"); // zapsané předměty
                             ChosenStudent.listAllMySubjects(CurrentSemester);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 3:
-                            Console.WriteLine("optionAsInt = 3"); // Hlavní menu
-                            //mainMenu();
+                            // Console.WriteLine("optionAsInt = 3"); // Hlavní menu
+                            mainMenu();
                             Console.WriteLine("Spustí znovu hlavní menu");
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 4:
-                            Console.WriteLine("optionAsInt = 4"); // Informace o aktuálním studentovi
+                            // Console.WriteLine("optionAsInt = 4"); // Informace o aktuálním studentovi
                             ChosenStudent.aboutMe();
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 5:
-                            Console.WriteLine("optionAsInt = 5"); // udělat cvičení
+                            // Console.WriteLine("optionAsInt = 5"); // udělat cvičení
                             ChosenStudent.doExercise(CurrentSemester);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 6:
-                            Console.WriteLine("optionAsInt = 6"); // Seznam všech učitelů
+                            // Console.WriteLine("optionAsInt = 6"); // Seznam všech učitelů
                             Teacher.listAllTeachers();
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 7:
-                            Console.WriteLine("optionAsInt = 7"); // jít na přednášku
+                            // Console.WriteLine("optionAsInt = 7"); // jít na přednášku
                             ChosenStudent.goOnLecture(CurrentSemester);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 8:
-                            Console.WriteLine("optionAsInt = 8"); // konec předmětu
+                            // Console.WriteLine("optionAsInt = 8"); // konec předmětu
                             ChosenStudent.endSubject();
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 9:
-                            Console.WriteLine("optionAsInt = 9"); // vypsat dokončené předměty
+                            // Console.WriteLine("optionAsInt = 9"); // vypsat dokončené předměty
                             ChosenStudent.listCompletedSubjects();
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 10:
-                            Console.WriteLine("optionAsInt = 10"); // konec programu
+                            // Console.WriteLine("optionAsInt = 10"); // konec programu
                             ChosenStudent.checkNextSemester(CreditsToAdvancement);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 11:
-                            Console.WriteLine("optionAsInt = 11"); // konec programu
-                            //Environment.Exit(0);
+                            // Console.WriteLine("optionAsInt = 11"); // konec programu
+                            Environment.Exit(0);
                             Console.WriteLine("Ukončí program");
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 12:
-                            Console.WriteLine("Ukázka prerekvizit (optionAsInt = 1)"); // Ukázka prerekvizit
+                            // Console.WriteLine("Ukázka prerekvizit (optionAsInt = 1)"); // Ukázka prerekvizit
                             ChosenStudent.registerSubject(CurrentSemester);
                             Thread.Sleep(Delay);
                             Console.Clear();
@@ -232,94 +232,93 @@ namespace UkolZakladyOOP
                     switch (optionAsInt)
                     {
                         case 1:
-                            Console.WriteLine(
-                                $"optionAsInt = {optionAsInt}"); // zapsaní se na předmět, který ještě nikdo neučí
+                            // Console.WriteLine($"optionAsInt = {optionAsInt}"); // zapsaní se na předmět, který ještě nikdo neučí
                             ChosenTeacher.registerSubject(CurrentSemester);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 2:
-                            Console.WriteLine($"optionAsInt = {optionAsInt}"); // předměty které daný učitel učí
+                            // Console.WriteLine($"optionAsInt = {optionAsInt}"); // předměty které daný učitel učí
                             ChosenTeacher.listAllMySubjects();
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 3:
-                            Console.WriteLine($"optionAsInt = {optionAsInt}"); // spustí zvovu hlavní menu
-                            //mainMenu(); // Hlavní menu
+                            // Console.WriteLine($"optionAsInt = {optionAsInt}"); // spustí zvovu hlavní menu
+                            mainMenu(); // Hlavní menu
                             Console.WriteLine("Spustí znovu celý program");
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 4:
-                            Console.WriteLine($"optionAsInt = {optionAsInt}"); // Informace o aktuálním učitelovi
+                            // Console.WriteLine($"optionAsInt = {optionAsInt}"); // Informace o aktuálním učitelovi
                             ChosenTeacher.aboutMe();
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 5:
-                            Console.WriteLine($"optionAsInt = {optionAsInt}"); // Konec programu
-                            //Environment.Exit(0);
+                            // Console.WriteLine($"optionAsInt = {optionAsInt}"); // Konec programu
+                            Environment.Exit(0);
                             Console.WriteLine("Ukončí program");
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 6:
-                            Console.WriteLine($"optionAsInt = {optionAsInt}"); // vytvoření nového předmmětu
+                            // Console.WriteLine($"optionAsInt = {optionAsInt}"); // vytvoření nového předmmětu
                             Teacher.createSubject(Delay);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 7:
-                            Console.WriteLine($"optionAsInt = {optionAsInt}"); // vytvoření nového cvíčení
+                            // Console.WriteLine($"optionAsInt = {optionAsInt}"); // vytvoření nového cvíčení
                             Teacher.createExercise(Delay);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 8:
-                            Console.WriteLine($"optionAsInt = {optionAsInt}"); // výpis všech cvičení
+                            // Console.WriteLine($"optionAsInt = {optionAsInt}"); // výpis všech cvičení
                             Exercise.listAllExercise();
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 9:
-                            Console.WriteLine($"optionAsInt = {optionAsInt}"); // průměr všech známek u studentů
+                            // Console.WriteLine($"optionAsInt = {optionAsInt}"); // průměr všech známek u studentů
                             Teacher.listStudentsByAverageMarks();
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 10:
-                            Console.WriteLine($"optionAsInt = {optionAsInt}"); // vytvoření nové přednášky
+                            // Console.WriteLine($"optionAsInt = {optionAsInt}"); // vytvoření nové přednášky
                             Teacher.createLecture(Delay);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 11:
-                            Console.WriteLine($"optionAsInt = {optionAsInt}"); // výpis všech přednášek
+                            // Console.WriteLine($"optionAsInt = {optionAsInt}"); // výpis všech přednášek
                             Lecture.listAllLectures();
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 12:
-                            Console.WriteLine($"optionAsInt = {optionAsInt}"); // další semestr
+                            // Console.WriteLine($"optionAsInt = {optionAsInt}"); // další semestr
                             CurrentSemester = Teacher.nextSemester(CurrentSemester, CreditsToAdvancement, MaxYear);
                             Thread.Sleep(Delay);
                             Console.Clear();
                             break;
 
                         case 13:
-                            Console.WriteLine($"optionAsInt = {optionAsInt}"); // výpis všech předmětů
+                            // Console.WriteLine($"optionAsInt = {optionAsInt}"); // výpis všech předmětů
                             Subject.listAllSubjects();
                             Thread.Sleep(Delay);
                             Console.Clear();
