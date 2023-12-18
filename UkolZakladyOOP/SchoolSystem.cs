@@ -16,7 +16,7 @@ namespace UkolZakladyOOP
         /// <summary>
         /// Délka prodlevy mezi metodama
         /// </summary>
-        private const int Delay = 2500;
+        private const int Delay = 1250;
 
         /// <summary>
         /// Aktuální semestr
@@ -48,7 +48,8 @@ namespace UkolZakladyOOP
                 Console.WriteLine("Kdo jsi?");
                 Console.WriteLine("1) Student");
                 Console.WriteLine("2) Ucitel");
-                switch (WhoIAm) // 1 = Student, 2 - Učitel
+                
+                /*switch (WhoIAm) // 1 = Student, 2 - Učitel
                 {
                     case null:
                         WhoIAm = "1";
@@ -56,10 +57,11 @@ namespace UkolZakladyOOP
                     case "1":
                         WhoIAm = "2";
                         break;
-                }
-
-                Console.WriteLine($"WhoIAm = {WhoIAm}");
-                Thread.Sleep(Delay);
+                }*/
+                
+                WhoIAm = Console.ReadLine();
+                
+                //Thread.Sleep(Delay);
                 Console.Clear();
             } while (WhoIAm != "1" && WhoIAm != "2");
 
@@ -87,18 +89,18 @@ namespace UkolZakladyOOP
         /// <param name="ChosenStudent">Daný student</param>
         private void studentMenu(Student ChosenStudent)
         {
-            int optionAsInt = 0;
-            //int optionAsInt;
+            //int optionAsInt = 0;
+            int optionAsInt;
             do
             {
                 listAllChoices(ChosenStudent); // výpis jednotlivých možností
 
-                /*string option = Console.ReadLine();
+                string option = Console.ReadLine();
                 Console.Clear();
-                bool number = int.TryParse(option, out optionAsInt);*/
+                bool number = int.TryParse(option, out optionAsInt);
 
-                bool number = true;
-                optionAsInt++; // automatický průchod - při každé iteraci cyklu se spustí další volba
+                /*bool number = true;
+                optionAsInt++; // automatický průchod - při každé iteraci cyklu se spustí další volba*/
 
 
                 Thread.Sleep(Delay);
@@ -208,20 +210,20 @@ namespace UkolZakladyOOP
         /// <param name="ChosenTeacher">Daný učitel</param>
         private void teacherMenu(Teacher ChosenTeacher)
         {
-            int optionAsInt = 0;
-            //int optionAsInt;
+            //int optionAsInt = 0;
+            int optionAsInt;
 
             do
             {
                 listAllChoices(ChosenTeacher); // výpis jednotlivých možností
 
-                /*string option = Console.ReadLine();
+                string option = Console.ReadLine();
                 Console.Clear();
-                bool number = int.TryParse(option, out optionAsInt);*/
+                bool number = int.TryParse(option, out optionAsInt);
 
 
-                bool number = true;
-                optionAsInt++; // automatický průchod - při každé iteraci cyklu se spustí další volba
+                /*bool number = true;
+                optionAsInt++; // automatický průchod - při každé iteraci cyklu se spustí další volba*/
 
                 Thread.Sleep(Delay);
                 Console.Clear();

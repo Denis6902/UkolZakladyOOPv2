@@ -132,8 +132,8 @@ namespace UkolZakladyOOP
                 Console.WriteLine(Student.returnFullName()); // vypíše celé jména všech studentů ze seznamu students
             }
 
-            //string studentFullName = Console.ReadLine();
-            string studentFullName = "Pepa Nový";
+            string studentFullName = Console.ReadLine();
+            //string studentFullName = "Pepa Nový";
 
             // jestli neexistuje student s daným celým jménem, spustí znovu cyklus
             while (!Students.Exists(Student => Student.returnFullName().ToLower() == studentFullName.ToLower()))
@@ -166,8 +166,8 @@ namespace UkolZakladyOOP
                 listSubjectsForRegister(CurrentSemester); // vypíše předměty dostupné k registraci
 
                 Console.WriteLine("Zadejte název předmětu");
-                //string subjectName = Console.ReadLine();
-                string subjectName = "English1_1";
+                string subjectName = Console.ReadLine();
+                //string subjectName = "English1_1";
 
                 // ukázka prerekvizit.
                 if (SubjectMarkList.Exists(SM => SM.Subject.Name.ToLower() == subjectName.ToLower()))
